@@ -19,7 +19,7 @@ const showcaseCanonicalKeys = showcaseKeys.filter((key) => /^s\d{2}$/.test(key))
 const showcaseMagazineKeys = showcaseKeys.filter((key) => /^a\d{2}$/.test(key));
 const expectedKeys = canonicalLayouts.map((layout) => layout.key);
 const expectedMagazineKeys = magazineLayouts.map((layout) => layout.key);
-const requiredExtensionKeys = ['s08Map'];
+const requiredExtensionKeys = ['s08Map'].filter((key) => new RegExp(`^\\s*${key}:\\s*\\{`, 'm').test(options));
 
 const missing = expectedKeys.filter((key) => !showcaseCanonicalKeys.includes(key));
 const extra = showcaseCanonicalKeys.filter((key) => !expectedKeys.includes(key));
@@ -40,6 +40,6 @@ if (missing.length || extra.length || duplicates.length || missingMagazine.lengt
   process.exit(1);
 }
 
-console.log(`Layout showcase covers ${expectedMagazineKeys.length} magazine layout(s): ${expectedMagazineKeys.join(', ')}`);
-console.log(`Layout showcase covers ${expectedKeys.length} canonical layout(s): ${expectedKeys.join(', ')}`);
-console.log(`Layout showcase covers Style B extension(s): ${requiredExtensionKeys.join(', ')}`);
+console.log(`Layout showcase covers ${expectedMagazineKeys.length} magazine layout(s): ${expectedMagazineKeys.join(', ') || '(none)'}`);
+console.log(`Layout showcase covers ${expectedKeys.length} canonical layout(s): ${expectedKeys.join(', ') || '(none)'}`);
+console.log(`Layout showcase covers Style B extension(s): ${requiredExtensionKeys.join(', ') || '(none)'}`);

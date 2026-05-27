@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 
 const file = process.argv[2];
 const allowExperimental = process.argv.includes('--allow-experimental');
@@ -14,12 +14,11 @@ const htmlForSlides = html.replace(/<!--[\s\S]*?-->/g, '');
 const errors = [];
 const warnings = [];
 
-const allowedLayouts = new Set([
-  'SWISS-COVER-ASCII',
-  'SWISS-CLOSING-ASCII',
-  ...Array.from({ length: 10 }, (_, i) => `A${String(i + 1).padStart(2, '0')}`),
-  ...Array.from({ length: 22 }, (_, i) => `S${String(i + 1).padStart(2, '0')}`),
-]);
+const optionsFile = 'src/options.jsx';
+const registeredLayouts = existsSync(optionsFile)
+  ? [...readFileSync(optionsFile, 'utf8').matchAll(/dataLayout:\s*'([^']+)'/g)].map((match) => match[1])
+  : [];
+const allowedLayouts = new Set(registeredLayouts.length ? registeredLayouts : ['SANDBOX']);
 
 const slideRe = /<section\b[^>]*class="[^"]*\bslide\b[^"]*"[^>]*>[\s\S]*?<\/section>/g;
 const slides = [...htmlForSlides.matchAll(slideRe)].map((m, idx) => ({ idx: idx + 1, html: m[0], tag: m[0].match(/<section\b[^>]*>/)?.[0] ?? '' }));
@@ -32,9 +31,9 @@ slides.forEach((slide) => {
   const layout = slide.tag.match(/\bdata-layout="([^"]+)"/)?.[1];
 
   if (!layout) {
-    errors.push(`Slide ${slide.idx}: missing data-layout. Registered mode requires A01-A10, S01-S22, or SWISS-COVER-ASCII/SWISS-CLOSING-ASCII.`);
+    errors.push(`Slide ${slide.idx}: missing data-layout.`);
   } else if (!allowedLayouts.has(layout)) {
-    errors.push(`Slide ${slide.idx}: data-layout="${layout}" is not registered in scripts/validate-swiss-deck.mjs.`);
+    errors.push(`Slide ${slide.idx}: data-layout="${layout}" is not registered in src/options.jsx.`);
   }
 
   if (!allowExperimental && /\bdata-layout="P2[34]\b|Swiss Image Split|Swiss Evidence Grid|swiss-img-split|swiss-img-grid/.test(slide.html)) {

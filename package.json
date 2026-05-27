@@ -8,8 +8,8 @@
     "render:deck": "tsx scripts/render-deck.jsx",
     "render:all-layouts": "tsx scripts/render-deck.jsx examples/component-decks/all-layouts-showcase.jsx output/all-components-showcase/ppt/index.html",
     "showcase:update": "node scripts/validate-layout-showcase.mjs && npm run render:all-layouts && npm run validate:swiss -- output/all-components-showcase/ppt/index.html",
-    "render:demo": "tsx scripts/render-deck.jsx examples/component-decks/swiss-demo.jsx output/component-demo/ppt/index.html",
-    "render:examples": "tsx scripts/render-deck.jsx examples/component-decks/ai-ops-review.jsx output/examples/ai-ops-review/ppt/index.html && tsx scripts/render-deck.jsx examples/component-decks/climate-field-report.jsx output/examples/climate-field-report/ppt/index.html && tsx scripts/render-deck.jsx examples/component-decks/retail-launch-brief.jsx output/examples/retail-launch-brief/ppt/index.html",
+    "render:demo": "tsx scripts/render-deck.jsx examples/component-decks/all-layouts-showcase.jsx output/component-demo/ppt/index.html",
+    "render:examples": "npm run render:demo",
     "validate:swiss": "node scripts/validate-swiss-deck.mjs",
     "test": "npm run render:demo && npm run validate:swiss -- output/component-demo/ppt/index.html"
   },

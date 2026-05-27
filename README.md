@@ -150,5 +150,5 @@ npm run validate:swiss -- output/examples/retail-launch-brief/ppt/index.html
 提交前 hook 还会运行 `npm run showcase:update`,确保 `all-layouts-showcase.jsx` 覆盖全部 `A01-A10`、`S01-S22` 和 Style B 登记扩展,并刷新 `output/all-components-showcase/ppt/index.html`。
 
 - [ADR](docs/ADR.md): 当前架构决策记录
-- [项目文件作用说明](docs/project-files.md): 当前 114 个源码文件的主要作用
+- [项目文件作用说明](docs/project-files.md): 当前 71 个源码文件的主要作用
 <!-- project-docs:end -->
