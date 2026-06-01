@@ -1333,6 +1333,14 @@ export const SHOWCASE_TEXT_OVERRIDES = {
 export const SHOWCASE_DEV_ADJUSTMENTS = {
   version: 1,
   changes: {
+    "element:bt02:6": {
+      id: "element:bt02:6",
+      slide: 2,
+      slideId: "bt02-2",
+      slideKey: "bt02",
+      layout: "BT02",
+      colorToken: "--bt-page-fg",
+    },
     "text:bt02:7": {
       id: "text:bt02:7",
       slide: 2,
@@ -1341,7 +1349,8 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       layout: "BT02",
       html: "这页面向真实 PPT 场景，重点是对齐目标、确认线索，并形成可追踪结论。<br>销售目标校准 · 目标<strong>目标</strong>线索",
       text: "这页面向真实 PPT 场景，重点是对齐目标、确认线索，并形成可追踪结论。 销售目标校准 · 目标目标线索",
-      colorToken: "--accent-on",
+      backgroundColorToken: "--focus-mark",
+      colorToken: "--theme-xhs-navy",
       scope: "theme",
       theme: "dark",
     },
@@ -1352,7 +1361,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       slideKey: "rp02",
       layout: "RP02",
       backgroundColorToken: "transparent",
-      colorToken: "--text-primary",
+      colorToken: "transparent",
     },
     "text:rp02:10": {
       id: "text:rp02:10",
@@ -1364,6 +1373,16 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       text: "SCEN",
       colorToken: "--focus-mark",
     },
+    "text:rp02:12": {
+      id: "text:rp02:12",
+      slide: 14,
+      slideId: "rp02-14",
+      slideKey: "rp02",
+      layout: "RP02",
+      html: "时间点",
+      text: "时间点",
+      colorToken: "--paper",
+    },
     "text:rp02:14": {
       id: "text:rp02:14",
       slide: 14,
@@ -1372,7 +1391,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       layout: "RP02",
       html: "复盘目录导航进入负责人",
       text: "复盘目录导航进入负责人",
-      colorToken: "--border-subtle",
+      colorToken: "--paper",
     },
     "text:rp03:3": {
       id: "text:rp03:3",
@@ -1404,7 +1423,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       layout: "RP03",
       html: "<span>对齐受众和依据</span><span>23人</span>",
       text: "对齐受众和依据 23人",
-      colorToken: "--accent-on",
+      colorToken: "--theme-st2-ivory",
     },
     "text:rp03:6": {
       id: "text:rp03:6",
@@ -1414,7 +1433,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       layout: "RP03",
       html: "<span>时间点由 Owner 跟进</span><span>3项</span>",
       text: "时间点由 Owner 跟进 3项",
-      colorToken: "--accent-on",
+      colorToken: "--theme-st2-paper",
     },
     "text:rp08:9": {
       id: "text:rp08:9",
@@ -2760,7 +2779,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       html: "AGENDA",
       text: "AGENDA",
       fontSizeToken: "--fs-h2",
-      colorToken: "--accent-on",
+      colorToken: "--focus-fg",
     },
     "text:xhs3_23:10": {
       id: "text:xhs3_23:10",
@@ -2781,9 +2800,7 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       html: "EXER",
       text: "EXER",
       fontSizeToken: "--fs-h2",
-      colorToken: "--accent-on",
-      scope: "theme",
-      theme: "dark",
+      colorToken: "--focus-fg",
     },
     "text:style1_04:3": {
       id: "text:style1_04:3",
