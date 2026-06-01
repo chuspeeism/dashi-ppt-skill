@@ -1349,7 +1349,8 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       slideId: "rp02-14",
       slideKey: "rp02",
       layout: "RP02",
-      backgroundColorToken: "transparent",
+      backgroundColorToken: "--inverse-fg",
+      colorToken: "--text-primary",
     },
     "text:rp02:10": {
       id: "text:rp02:10",
@@ -1397,6 +1398,15 @@ export const SHOWCASE_DEV_ADJUSTMENTS = {
       slideKey: "bt09",
       layout: "BT09",
       backgroundColorToken: "--grey-1",
+    },
+    "text:bt10:5": {
+      id: "text:bt10:5",
+      slide: 10,
+      slideId: "bt10-10",
+      slideKey: "bt10",
+      layout: "BT10",
+      html: "视觉概念目标<br><span class=\"bt-accent\">视觉概念</span>P1",
+      text: "视觉概念目标 视觉概念P1",
     },
     "text:bt10:7": {
       id: "text:bt10:7",
