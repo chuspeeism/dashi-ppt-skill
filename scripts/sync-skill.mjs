@@ -151,7 +151,7 @@ function syncReferences() {
       pageCount: { type: 'number' },
       themePack: { type: 'string', enum: themeMetadata.packs.map(theme => theme.key) },
       text: { type: 'object', additionalProperties: { type: 'string' } },
-      media: { type: 'object' },
+      media: false,
       props: { type: 'object' },
       slides: {
         type: 'array',

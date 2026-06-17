@@ -12,7 +12,7 @@ const result = {
   theme: args.theme || null,
   role: args.role || args.use || null,
   keyword: args.keyword || args.q || null,
-  needsMedia: args['needs-media'] === true || args.media === true || Boolean(mediaIntent),
+  needsMedia: args['needs-media'] === true || args.media === true || Boolean(mediaIntent) || Boolean(mediaCount),
   mediaIntent,
   mediaCount,
   limit: Number(args.limit || 12),

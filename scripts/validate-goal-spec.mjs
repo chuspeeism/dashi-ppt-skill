@@ -27,6 +27,10 @@ export function validateGoalSpec(spec) {
   validateObjectStrings(spec?.text, 'deck', '<deck>', 'text', errors);
   validateObjectStrings(spec?.props, 'deck', '<deck>', 'props', errors);
 
+  if (Object.prototype.hasOwnProperty.call(spec || {}, 'media')) {
+    errors.push('deck layout <deck> field media: top-level media is not rendered; use each slide props.images or props.media');
+  }
+
   const coverCandidates = [];
   const nonCandidateCoverLikes = [];
 

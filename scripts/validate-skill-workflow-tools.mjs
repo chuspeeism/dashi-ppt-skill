@@ -104,6 +104,16 @@ function testMediaWorkflow() {
   assert(imageGen.layouts.length > 0, 'expected image-gen candidates');
   assert(imageGen.layouts.every(item => item.mediaSlots?.length), 'image-gen candidates must all expose media slots');
 
+  const mediaCount = runJson('scripts/layout-query.mjs', [
+    '--theme', 'theme01',
+    '--media-count', '3',
+    '--limit', '3',
+  ]);
+  assert(mediaCount.mediaCount === 3, 'expected media-count to be reflected');
+  assert(mediaCount.needsMedia === true, 'media-count should mark needsMedia=true');
+  assert(mediaCount.layouts.length > 0, 'expected media-count candidates');
+  assert(mediaCount.layouts.every(item => item.mediaSlots?.length), 'media-count candidates must all expose media slots');
+
   const provided = runJson('scripts/write-safe-props.mjs', [
     'theme01_page020',
     JSON.stringify({ title: '提供图片案例' }),
@@ -221,6 +231,14 @@ function testValidateGoalSpec() {
       themePack: 'theme01',
       slides: [{ layout: 'theme01_page020', media: { images: ['x.png'] }, props: { title: 'x' } }],
     }, ['slide 1', 'theme01_page020', 'media', 'props.images']);
+
+    expectGoalFailure(tmp, 'top-level-media.json', {
+      title: 'Top Level Media',
+      goal: 'should fail',
+      themePack: 'theme01',
+      media: { images: ['x.png'] },
+      slides: [{ layout: 'theme01_page020', props: { title: 'x' } }],
+    }, ['deck', 'media', 'props.images']);
 
     expectGoalFailure(tmp, 'unknown-prop.json', {
       title: 'Unknown Prop',
