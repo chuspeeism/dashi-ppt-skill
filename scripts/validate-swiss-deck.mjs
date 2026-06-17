@@ -116,6 +116,14 @@ if (!previewPanelSource) {
       errors.push(`Preview console ${platform} social link must keep an accessible label.`);
     }
   }
+
+  const expectedXiaohongshuHref = 'https://www.xiaohongshu.com/user/profile/62e0c2bb000000001501408c?xsec_token=ABrZskc1MUcZWWuuMx7Fw52HYKSmhrHM2leT3iiPnMmG8%3D&amp;xsec_source=pc_search';
+  const xiaohongshuAnchor = socialAnchors.find(([, , platform]) => platform === 'xiaohongshu');
+  const xiaohongshuAttrs = xiaohongshuAnchor ? `${xiaohongshuAnchor[1]} ${xiaohongshuAnchor[3]}` : '';
+  const xiaohongshuHref = xiaohongshuAttrs.match(/\bhref="([^"]+)"/)?.[1] || '';
+  if (xiaohongshuHref && xiaohongshuHref !== expectedXiaohongshuHref) {
+    errors.push('Preview console 小红书 href must match the exact profile URL.');
+  }
 }
 
 if (!/function isPointInsideDeckStage\(/.test(html)) {
