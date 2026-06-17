@@ -4031,7 +4031,7 @@ refreshRailCatalog();
       return;
     }
     if(location.protocol === 'file:'){
-      const message = '可编辑 PPTX 导出需要通过本地 HTTPS 预览服务打开。请运行 npm run preview:start -- <输出 ppt 目录> <port>，再打开 https://jadon.local:<port>/ 后导出。';
+      const message = '可编辑 PPTX 导出需要通过本地 HTTP/HTTPS 预览服务打开。请运行 npm run preview:start -- <输出 ppt 目录> <port>，优先打开本机 HTTP 地址 http://127.0.0.1:<port>/ 或 http://localhost:<port>/ 后导出。http://jadon.local:<port>/ 这类 HTTP LAN/jadon.local 地址可能导致下载失败，不作为导出主入口；直接打开本地 HTML/file:// 不能导出可编辑 PPTX。';
       window.__httpPreviewRequiredMessage = message;
       alert(message);
       return;
@@ -4086,7 +4086,11 @@ refreshRailCatalog();
     } catch (error) {
       if(isDeckExportCancelledError(error)) return;
       console.error('[export pptx]', error);
-      alert('可编辑 PPTX 导出失败，请确认当前页面是通过本地 HTTP/HTTPS 预览服务打开，而不是 file:// 直接打开。');
+      const message = location.protocol === 'http:' || location.protocol === 'https:'
+        ? `可编辑 PPTX 导出失败：当前页面是 HTTP/HTTPS 地址,但没有连到本地预览导出服务、服务目录不匹配，或使用了会影响下载的 HTTP LAN/jadon.local 地址。请确认用 npm run preview:start -- <输出 ppt 目录> <port> 启动，并优先打开本机 HTTP 地址 http://127.0.0.1:<port>/ 或 http://localhost:<port>/ 后导出。错误：${error?.message || '未知错误'}`
+        : '可编辑 PPTX 导出失败，请通过本地 HTTP/HTTPS 预览服务打开。直接打开本地 HTML/file:// 不能导出可编辑 PPTX。';
+      window.__lastPptxExportErrorMessage = message;
+      alert(message);
     } finally {
       progressPoll?.stop?.();
       document.body.classList.remove('pptx-export-capturing');

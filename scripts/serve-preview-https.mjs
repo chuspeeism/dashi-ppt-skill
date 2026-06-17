@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, statSync, createReadStream } from 'node:fs';
-import https from 'node:https';
+import http from 'node:http';
+import net from 'node:net';
 import os from 'node:os';
 import path from 'node:path';
+import tls from 'node:tls';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const SERVE_ROOT = path.resolve(ROOT, process.argv[2] || 'output/theme-preview/ppt');
@@ -25,50 +27,76 @@ if (!existsSync(path.join(SERVE_ROOT, 'index.html'))) {
 
 ensureCertificate();
 
-const server = https.createServer(
-  {
-    key: readFileSync(CERT_KEY),
-    cert: readFileSync(CERT_FILE),
-  },
-  async (req, res) => {
-    const requestUrl = new URL(req.url || '/', 'https://local.invalid');
-    if (req.method === 'POST' && requestUrl.pathname === '/api/export-editable-pptx') {
-      await handleEditablePptxExport(req, res);
-      return;
-    }
-    if (req.method === 'GET' && requestUrl.pathname === '/api/export-editable-pptx-progress') {
-      handleEditablePptxProgress(req, res, requestUrl);
-      return;
-    }
-    if ((req.method === 'GET' || req.method === 'HEAD') && requestUrl.pathname === '/api/export-editable-pptx-download') {
-      handleEditablePptxDownload(req, res, requestUrl);
-      return;
-    }
+const requestHandler = async (req, res) => {
+  const requestUrl = new URL(req.url || '/', 'https://local.invalid');
+  if (req.method === 'POST' && requestUrl.pathname === '/api/export-editable-pptx') {
+    await handleEditablePptxExport(req, res);
+    return;
+  }
+  if (req.method === 'GET' && requestUrl.pathname === '/api/export-editable-pptx-progress') {
+    handleEditablePptxProgress(req, res, requestUrl);
+    return;
+  }
+  if ((req.method === 'GET' || req.method === 'HEAD') && requestUrl.pathname === '/api/export-editable-pptx-download') {
+    handleEditablePptxDownload(req, res, requestUrl);
+    return;
+  }
 
-    const pathname = safePathname(req.url || '/');
-    const requested = path.join(SERVE_ROOT, pathname === '/' ? 'index.html' : pathname);
-    const file = resolveFile(requested);
+  const pathname = safePathname(req.url || '/');
+  const requested = path.join(SERVE_ROOT, pathname === '/' ? 'index.html' : pathname);
+  const file = resolveFile(requested);
 
-    if (!file) {
-      res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8' });
-      res.end('Not found');
-      return;
-    }
+  if (!file) {
+    res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8' });
+    res.end('Not found');
+    return;
+  }
 
-    res.writeHead(200, {
-      'content-type': contentType(file),
-      'cache-control': 'no-store',
-    });
-    createReadStream(file).pipe(res);
-  },
-);
+  res.writeHead(200, {
+    'content-type': contentType(file),
+    'cache-control': 'no-store',
+  });
+  createReadStream(file).pipe(res);
+};
+
+const httpServer = http.createServer(requestHandler);
+const secureContext = tls.createSecureContext({
+  key: readFileSync(CERT_KEY),
+  cert: readFileSync(CERT_FILE),
+});
+const server = createHttpHttpsMuxServer(httpServer, secureContext);
 
 server.listen(PORT, HOST, () => {
-  const primary = `https://${LOCAL_HOSTNAME}.local:${PORT}/`;
-  const urls = [primary, ...LAN_IPS.map((ip) => `https://${ip}:${PORT}/`)];
-  console.log(`HTTPS preview serving ${SERVE_ROOT}`);
+  const httpPrimary = `http://${LOCAL_HOSTNAME}.local:${PORT}/`;
+  const httpsPrimary = `https://${LOCAL_HOSTNAME}.local:${PORT}/`;
+  const urls = [httpPrimary, httpsPrimary, ...LAN_IPS.flatMap((ip) => [`http://${ip}:${PORT}/`, `https://${ip}:${PORT}/`])];
+  console.log(`HTTP/HTTPS preview serving ${SERVE_ROOT}`);
   console.log(`Open: ${urls.join(' or ')}`);
 });
+
+function createHttpHttpsMuxServer(plainServer, context) {
+  return net.createServer(socket => {
+    socket.once('data', chunk => {
+      socket.pause();
+      socket.unshift(chunk);
+      if (isTlsClientHello(chunk)) {
+        const tlsSocket = new tls.TLSSocket(socket, { isServer: true, secureContext: context });
+        tlsSocket.on('error', () => {});
+        tlsSocket.once('secure', () => {
+          plainServer.emit('connection', tlsSocket);
+        });
+        tlsSocket.resume();
+        return;
+      }
+      plainServer.emit('connection', socket);
+      socket.resume();
+    });
+  });
+}
+
+function isTlsClientHello(chunk) {
+  return chunk?.[0] === 0x16;
+}
 
 function ensureCertificate() {
   mkdirSync(CERT_DIR, { recursive: true });
@@ -280,12 +308,11 @@ function encodeRFC5987(value) {
 function isAllowedExportRequest(req) {
   const origin = req.headers.origin;
   if (!origin) return true;
-  const allowed = new Set([
-    `https://localhost:${PORT}`,
-    `https://127.0.0.1:${PORT}`,
-    `https://${LOCAL_HOSTNAME}.local:${PORT}`,
-    ...LAN_IPS.map(ip => `https://${ip}:${PORT}`),
-  ]);
+  const allowedHosts = ['localhost', '127.0.0.1', `${LOCAL_HOSTNAME}.local`, ...LAN_IPS];
+  const allowed = new Set(allowedHosts.flatMap(host => [
+    `http://${host}:${PORT}`,
+    `https://${host}:${PORT}`,
+  ]));
   return allowed.has(origin);
 }
 
@@ -366,6 +393,7 @@ async function closeBrowser(browser) {
 }
 
 function getLocalHostname() {
+  if (process.env.DASHI_PPT_PREVIEW_NAME) return process.env.DASHI_PPT_PREVIEW_NAME;
   try {
     return execFileSync('scutil', ['--get', 'LocalHostName'], { encoding: 'utf8' }).trim() || os.hostname().split('.')[0];
   } catch {

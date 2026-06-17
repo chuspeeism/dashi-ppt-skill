@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { spawn } from 'node:child_process';
 import { closeSync, existsSync, mkdirSync, openSync, writeFileSync } from 'node:fs';
+import http from 'node:http';
 import https from 'node:https';
 import net from 'node:net';
 import os from 'node:os';
@@ -38,18 +39,27 @@ await waitForPreview(port);
 
 const url = `https://${localName}.local:${port}/`;
 const localUrl = `https://localhost:${port}/`;
+const httpUrl = `http://127.0.0.1:${port}/`;
+const localHttpUrl = `http://localhost:${port}/`;
+const jadonHttpUrl = `http://${localName}.local:${port}/`;
 writeFileSync(path.join(serveRoot, '.preview-server.json'), `${JSON.stringify({
   pid: child.pid,
   port,
+  httpUrl,
   url,
+  localHttpUrl,
   localUrl,
+  jadonHttpUrl,
   serveRoot,
   logFile,
   startedAt: new Date().toISOString(),
 }, null, 2)}\n`);
 
+console.log(`HTTP export URL: ${httpUrl}`);
 console.log(`HTTPS preview URL: ${url}`);
-console.log(`Local URL: ${localUrl}`);
+console.log(`Local HTTP URL: ${localHttpUrl}`);
+console.log(`Local HTTPS URL: ${localUrl}`);
+console.log(`LAN HTTP URL (browse only, not export): ${jadonHttpUrl}`);
 console.log(`PID: ${child.pid}`);
 
 async function findAvailablePort(start, bindHost) {
@@ -75,7 +85,10 @@ async function waitForPreview(port) {
   let lastError = null;
   for (let attempt = 0; attempt < 40; attempt += 1) {
     try {
-      await fetchHttps(`https://localhost:${port}/`);
+      await Promise.all([
+        fetchHttp(`http://localhost:${port}/`),
+        fetchHttps(`https://localhost:${port}/`),
+      ]);
       return;
     } catch (error) {
       lastError = error;
@@ -88,6 +101,18 @@ async function waitForPreview(port) {
 function fetchHttps(url) {
   return new Promise((resolve, reject) => {
     https.get(url, { rejectUnauthorized: false }, response => {
+      response.resume();
+      response.on('end', () => {
+        if (response.statusCode === 200) resolve();
+        else reject(new Error(`status=${response.statusCode}`));
+      });
+    }).on('error', reject);
+  });
+}
+
+function fetchHttp(url) {
+  return new Promise((resolve, reject) => {
+    http.get(url, response => {
       response.resume();
       response.on('end', () => {
         if (response.statusCode === 200) resolve();
