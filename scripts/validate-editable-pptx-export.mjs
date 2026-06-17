@@ -79,6 +79,7 @@ const uiVisualMatrix = args.has('--ui-visual-matrix');
 const fallbackTextRisk = args.has('--fallback-text-risk');
 const fallbackTextRiskMatrix = args.has('--fallback-text-risk-matrix');
 const theme10UserRegressions = args.has('--theme10-user-regressions');
+const jad64FollowupRegressions = args.has('--jad64-followup-regressions');
 const cliUrl = getArg('--url');
 const cliThemePack = getArg('--theme-pack');
 const cliSamplesPerTheme = Math.max(DEFAULT_VISUAL_SAMPLE_COUNT, Number(getArg('--samples-per-theme') || DEFAULT_VISUAL_SAMPLE_COUNT));
@@ -106,10 +107,162 @@ if (legacyRed) {
   await runFallbackTextRiskMatrixValidation();
 } else if (fallbackTextRisk) {
   await runFallbackTextRiskValidation();
+} else if (jad64FollowupRegressions) {
+  await runJad64FollowupRegressionValidation();
 } else if (theme10UserRegressions) {
   await runTheme10UserRegressionValidation();
 } else {
   await runEditableExportValidation();
+}
+
+async function runJad64FollowupRegressionValidation() {
+  if (!cliUrl) throw new Error('Usage: node scripts/validate-editable-pptx-export.mjs --jad64-followup-regressions --url <preview-url>');
+  const outDir = path.join(OUT_DIR, 'jad64-followup-regressions');
+  rmSync(outDir, { recursive: true, force: true });
+  mkdirSync(outDir, { recursive: true });
+  const samples = [
+    {
+      screenshot: [3, 4],
+      themePack: 'theme09',
+      key: 'theme09_page010',
+      label: 'theme09-contents-rounded-cards',
+      coverage: 'rounded card borders and glass glow should stay rounded instead of gaining square edge strips',
+      probes: ['rounded-border-artifacts'],
+    },
+    {
+      screenshot: 14,
+      themePack: 'theme08',
+      key: 'theme08_page060',
+      label: 'theme08-resource-inline-highlight',
+      coverage: 'inline emphasized phrase should not become an overlapping duplicate text run',
+      probes: ['inline-highlight-duplication'],
+    },
+    {
+      screenshot: 18,
+      themePack: 'theme06',
+      key: 'theme06_page070',
+      label: 'theme06-workflow-connectors',
+      coverage: 'CSS pseudo arrows/triangles with percent offsets should become geometry, not misplaced text glyphs',
+      probes: ['pseudo-arrow-geometry'],
+    },
+    {
+      screenshot: 19,
+      themePack: 'theme04',
+      key: 'theme04_page001',
+      label: 'theme04-cover-highlight-pill',
+      coverage: 'large highlight pill and decorative sparkle should keep geometry/material without text overlap',
+      probes: ['highlight-pill-border-artifacts'],
+    },
+  ];
+  const rootCauseMatrix = [
+    {
+      cluster: 'rounded borders',
+      screenshots: [3, 4, 9, 12, 13, 14, 19],
+      currentExporterGap: 'Rounded elements with uniform borders are exported as a rounded shape plus four square border rectangles, so PowerPoint shows mismatched corners and edge strips.',
+      sharedMechanism: true,
+    },
+    {
+      cluster: 'pseudo arrows and triangles',
+      screenshots: [17, 18],
+      currentExporterGap: 'Pseudo elements using percentage offsets and CSS border triangles are measured as plain pixel offsets and only one triangle direction is supported.',
+      sharedMechanism: true,
+    },
+    {
+      cluster: 'inline styled text',
+      screenshots: [1, 14, 19],
+      currentExporterGap: 'Inline emphasis is decomposed into independent text boxes and decoration boxes; when sizing or border strips drift, PowerPoint can show duplicated or overlaid styled phrases.',
+      sharedMechanism: true,
+    },
+    {
+      cluster: 'blend/glow/material',
+      screenshots: [1, 2, 6, 14, 19],
+      currentExporterGap: 'CSS blend modes and soft glows remain approximate in editable PPTX; obvious rectangular artifacts should still be eliminated.',
+      sharedMechanism: false,
+    },
+  ];
+  writeFileSync(path.join(outDir, 'root-cause-matrix.json'), JSON.stringify(rootCauseMatrix, null, 2) + '\n');
+
+  const browser = await chromium.launch({ headless: true, executablePath: CHROME_PATH });
+  let context;
+  let page;
+  const results = [];
+  const failures = [];
+  try {
+    context = await browser.newContext({
+      viewport: { width: 1920, height: 1080 },
+      ignoreHTTPSErrors: true,
+    });
+    page = await context.newPage();
+    page.setDefaultTimeout(180000);
+    await page.goto(`${cliUrl}${cliUrl.includes('?') ? '&' : '?'}jad64_followup=${Date.now()}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('#deck > .slide.active, #deck > .slide[data-deck-active]');
+    await installValidationHelpers(page);
+    const mod = await import(pathToFileURL(path.join(ROOT, 'src/export-pptx/editable.mjs')));
+
+    for (const sample of samples) {
+      const sampleDir = path.join(outDir, sample.label);
+      mkdirSync(sampleDir, { recursive: true });
+      const nav = await navigateValidationSample(page, sample);
+      if (!nav.found) {
+        failures.push(`${sample.label} could not find ${sample.key} in ${sample.themePack}; available keys: ${nav.availableKeys.slice(0, 10).join(', ')}`);
+        results.push({ ...sample, found: false, availableKeys: nav.availableKeys });
+        continue;
+      }
+      const activeSlide = await page.$('#deck > .slide.active, #deck > .slide[data-deck-active]');
+      const htmlScreenshot = path.join(sampleDir, 'html-slide.png');
+      if (activeSlide) await activeSlide.screenshot({ path: htmlScreenshot });
+      const dom = await collectJad64FollowupDomProbe(page);
+      writeFileSync(path.join(sampleDir, 'dom-probe.json'), JSON.stringify(dom, null, 2) + '\n');
+      const pptxFile = path.join(sampleDir, `${sample.label}.pptx`);
+      const reportFile = path.join(sampleDir, `${sample.label}-report.json`);
+      await mod.exportEditablePptxFromPage(page, {
+        outFile: pptxFile,
+        reportFile,
+        title: `JAD-64 follow-up ${sample.label}`,
+        slideIndexes: [nav.index],
+      });
+      const pptx = inspectPptx(pptxFile);
+      const visual = runQuickLookVisualComparison(pptxFile, htmlScreenshot, sampleDir);
+      const pairImage = createSamplePairImage(sample, visual, sampleDir);
+      const checks = validateJad64FollowupSample(sample, dom, pptx);
+      failures.push(...checks.failures);
+      if (!visual?.available || !pairImage) failures.push(`${sample.label} did not produce Quick Look visual evidence (${visual?.reason || 'missing-pair'}).`);
+      results.push({
+        ...sample,
+        found: true,
+        index: nav.index,
+        htmlScreenshot,
+        pptxFile,
+        reportFile,
+        pairImage,
+        quickLook: visual,
+        dom,
+        pptx: summarizeInspection(pptx),
+        checks,
+      });
+    }
+  } finally {
+    await closePage(page);
+    await context?.close().catch(() => {});
+    await closeBrowser(browser);
+  }
+
+  const result = {
+    mode: 'jad64-followup-regressions',
+    url: cliUrl,
+    outDir,
+    rootCauseMatrix: path.join(outDir, 'root-cause-matrix.json'),
+    passed: failures.length === 0,
+    samples: results,
+    failures,
+  };
+  writeFileSync(path.join(outDir, 'jad64-followup-regressions.json'), JSON.stringify(result, null, 2) + '\n');
+  if (failures.length) {
+    console.error(JSON.stringify(result, null, 2));
+    process.exit(1);
+  }
+  console.log(JSON.stringify(result, null, 2));
+  process.exit(0);
 }
 
 async function runTheme10UserRegressionValidation() {
@@ -1420,6 +1573,201 @@ async function installValidationHelpers(page) {
       };
     `,
   });
+}
+
+async function navigateValidationSample(page, sample) {
+  return await page.evaluate(async ({ themePack, key }) => {
+    window.__setActiveThemePack?.(themePack, { navigate: true });
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    window.__finishEditablePptxAnimations?.(document);
+    await new Promise(resolve => requestAnimationFrame(resolve));
+    const slides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')];
+    const availableKeys = slides.map(slide => slide.dataset.vmSlideId || slide.dataset.layoutKey || slide.id || '');
+    const index = availableKeys.findIndex(item => item === key || item.startsWith(`${key}-`));
+    if (index < 0) return { found: false, index: -1, availableKeys };
+    window.go?.(index, { animate: false, force: true });
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    window.__finishEditablePptxAnimations?.(document);
+    await new Promise(resolve => requestAnimationFrame(resolve));
+    return { found: true, index, availableKeys };
+  }, sample);
+}
+
+async function collectJad64FollowupDomProbe(page) {
+  return await page.evaluate(() => {
+    const slide = document.querySelector('#deck > .slide.active, #deck > .slide[data-deck-active]');
+    if (!slide) return { key: '', rounded: [], pseudoTriangles: [], inlineHighlights: [], text: '' };
+    const slideRect = slide.getBoundingClientRect();
+    const localRect = rect => ({
+      x: rect.left - slideRect.left,
+      y: rect.top - slideRect.top,
+      w: rect.width,
+      h: rect.height,
+    });
+    const isVisible = (el, style = getComputedStyle(el)) => {
+      if (!el || style.display === 'none' || style.visibility === 'hidden' || Number(style.opacity || 1) <= 0.01) return false;
+      const rect = el.getBoundingClientRect();
+      return rect.width > 1 && rect.height > 1
+        && rect.right >= slideRect.left && rect.left <= slideRect.right
+        && rect.bottom >= slideRect.top && rect.top <= slideRect.bottom;
+    };
+    const colorVisible = value => {
+      const raw = String(value || '').trim();
+      return raw && raw !== 'transparent' && !/^rgba?\(\s*0\s*,\s*0\s*,\s*0\s*,\s*0\s*\)$/i.test(raw);
+    };
+    const borderWidths = style => ['Top', 'Right', 'Bottom', 'Left'].map(side => parseFloat(style[`border${side}Width`] || '0') || 0);
+    const borderColors = style => ['Top', 'Right', 'Bottom', 'Left'].map(side => style[`border${side}Color`] || '');
+    const isUniformBorder = style => {
+      const widths = borderWidths(style);
+      const colors = borderColors(style);
+      return widths.every(width => width > 0)
+        && Math.max(...widths) - Math.min(...widths) < 0.3
+        && colors.every(color => color === colors[0]);
+    };
+    const rounded = [...slide.querySelectorAll('*')]
+      .filter(el => {
+        const style = getComputedStyle(el);
+        const radii = [
+          parseFloat(style.borderTopLeftRadius || '0') || 0,
+          parseFloat(style.borderTopRightRadius || '0') || 0,
+          parseFloat(style.borderBottomRightRadius || '0') || 0,
+          parseFloat(style.borderBottomLeftRadius || '0') || 0,
+        ];
+        return isVisible(el, style) && Math.max(...radii) >= 8 && isUniformBorder(style);
+      })
+      .slice(0, 24)
+      .map(el => {
+        const style = getComputedStyle(el);
+        return {
+          tag: el.tagName.toLowerCase(),
+          className: String(el.className || ''),
+          rect: localRect(el.getBoundingClientRect()),
+          radius: Math.max(
+            parseFloat(style.borderTopLeftRadius || '0') || 0,
+            parseFloat(style.borderTopRightRadius || '0') || 0,
+            parseFloat(style.borderBottomRightRadius || '0') || 0,
+            parseFloat(style.borderBottomLeftRadius || '0') || 0,
+          ),
+          borderWidths: borderWidths(style),
+          borderColors: borderColors(style),
+        };
+      });
+    const pseudoTriangles = [];
+    for (const el of slide.querySelectorAll('*')) {
+      if (!isVisible(el)) continue;
+      for (const pseudo of ['::before', '::after']) {
+        const style = getComputedStyle(el, pseudo);
+        const widths = borderWidths(style);
+        const colors = borderColors(style);
+        const visibleBorders = colors.filter(colorVisible).length;
+        const rawPosition = [style.left, style.top, style.right, style.bottom, style.transform].join(' ');
+        const hasTriangle = widths.filter(width => width > 0).length >= 3 && visibleBorders === 1;
+        if (!hasTriangle) continue;
+        pseudoTriangles.push({
+          tag: el.tagName.toLowerCase(),
+          className: String(el.className || ''),
+          pseudo,
+          parentRect: localRect(el.getBoundingClientRect()),
+          width: style.width,
+          height: style.height,
+          left: style.left,
+          top: style.top,
+          right: style.right,
+          bottom: style.bottom,
+          transform: style.transform,
+          hasPercentOffset: rawPosition.includes('%'),
+          borderWidths: widths,
+          borderColors: colors,
+        });
+      }
+    }
+    const inlineHighlights = [...slide.querySelectorAll('span,b,strong,em')]
+      .filter(el => {
+        const style = getComputedStyle(el);
+        const bg = style.backgroundImage || '';
+        return isVisible(el, style)
+          && ((bg && bg !== 'none') || colorVisible(style.backgroundColor))
+          && (el.textContent || '').trim().length >= 2;
+      })
+      .slice(0, 24)
+      .map(el => ({
+        tag: el.tagName.toLowerCase(),
+        className: String(el.className || ''),
+        text: (el.textContent || '').trim().replace(/\s+/g, ' '),
+        rect: localRect(el.getBoundingClientRect()),
+        backgroundImage: getComputedStyle(el).backgroundImage,
+        backgroundColor: getComputedStyle(el).backgroundColor,
+        transform: getComputedStyle(el).transform,
+      }));
+    return {
+      key: slide.dataset.vmSlideId || slide.dataset.layoutKey || slide.id || '',
+      text: (slide.innerText || '').trim().replace(/\s+/g, ' '),
+      rounded,
+      pseudoTriangles,
+      inlineHighlights,
+    };
+  });
+}
+
+function validateJad64FollowupSample(sample, dom, pptx) {
+  const failures = [];
+  const details = pptx.slides[0]?.shapeDetails || [];
+  const textBoxes = pptx.slides[0]?.textBoxes || [];
+  const normalizedText = normalizeSearchText(pptx.allText || '');
+  const thinRectArtifacts = details.filter(shape => {
+    if (shape.geom !== 'rect') return false;
+    const minSide = Math.min(shape.w || 0, shape.h || 0);
+    const maxSide = Math.max(shape.w || 0, shape.h || 0);
+    return minSide > 0 && minSide <= 0.045 && maxSide >= 0.45;
+  });
+  const roundedGeomCount = details.filter(shape => ['roundRect', 'ellipse'].includes(shape.geom)).length;
+  const triangleGeomCount = details.filter(shape => ['custGeom', 'triangle', 'rtTriangle'].includes(shape.geom)).length;
+  const symbolTextBoxes = textBoxes.filter(box => /[→↔⇒➜➤▶►◆◇⬩✦✧★☆]/.test(box.text || ''));
+  const highlightTexts = (dom.inlineHighlights || [])
+    .map(item => normalizeSearchText(item.text))
+    .filter(text => text.length >= 2);
+  const duplicatedHighlightTexts = highlightTexts.filter(text => {
+    if (!text) return false;
+    const escaped = text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return (normalizedText.match(new RegExp(escaped, 'g')) || []).length > 1;
+  });
+
+  if (sample.probes.includes('rounded-border-artifacts')) {
+    if ((dom.rounded || []).length >= 3 && roundedGeomCount < 3) {
+      failures.push(`${sample.label} exported ${roundedGeomCount} rounded geometries for ${(dom.rounded || []).length} rounded DOM elements.`);
+    }
+    if (thinRectArtifacts.length > 8) {
+      failures.push(`${sample.label} exported ${thinRectArtifacts.length} long thin rect border artifacts around rounded UI.`);
+    }
+  }
+  if (sample.probes.includes('inline-highlight-duplication')) {
+    if (!highlightTexts.length) failures.push(`${sample.label} did not exercise inline highlighted text.`);
+    if (duplicatedHighlightTexts.length) failures.push(`${sample.label} duplicated highlighted text in PPTX: ${duplicatedHighlightTexts.join(', ')}`);
+  }
+  if (sample.probes.includes('pseudo-arrow-geometry')) {
+    if ((dom.pseudoTriangles || []).length && triangleGeomCount < dom.pseudoTriangles.length) {
+      failures.push(`${sample.label} exported ${triangleGeomCount}/${dom.pseudoTriangles.length} CSS pseudo triangles as PPT geometry.`);
+    }
+    if (symbolTextBoxes.length) {
+      failures.push(`${sample.label} exported arrow/diamond decorative symbols as text glyphs: ${symbolTextBoxes.map(box => box.text).join(', ')}`);
+    }
+  }
+  if (sample.probes.includes('highlight-pill-border-artifacts')) {
+    if (thinRectArtifacts.length > 4) failures.push(`${sample.label} exported ${thinRectArtifacts.length} thin rect artifacts around highlight/material elements.`);
+    if (!highlightTexts.length) failures.push(`${sample.label} did not exercise the cover highlight pill.`);
+  }
+  return {
+    passed: failures.length === 0,
+    roundedDomCount: (dom.rounded || []).length,
+    roundedGeomCount,
+    thinRectArtifactCount: thinRectArtifacts.length,
+    triangleDomCount: (dom.pseudoTriangles || []).length,
+    triangleGeomCount,
+    symbolTextBoxes,
+    highlightedTextCount: highlightTexts.length,
+    duplicatedHighlightTexts,
+    failures,
+  };
 }
 
 async function collectFallbackTextRiskExpectations(page, expectedSlides) {

@@ -533,6 +533,8 @@ async function installBrowserCollector(page) {
         ${hasPaint.toString()}
         ${hasAnyBorder.toString()}
         ${cssPx.toString()}
+        ${cssLengthPx.toString()}
+        ${translateFromTransform.toString()}
         window.__finishEditablePptxAnimations = finishEditablePptxAnimations;
         return collectActiveSlide;
       })();
@@ -572,6 +574,7 @@ function renderBox(slide, node, slideRect, warnings, totals) {
   const radius = Math.min(radiusPx, 48) / slideRect.w * PPT_W;
   const borders = readBorders(style);
   const hasBorder = borders.some(border => border.width > 0 && border.color);
+  const uniformBorder = uniformBorderStyle(borders);
   const shadow = parseBoxShadow(style.boxShadow);
   const rotate = rotateFromTransform(style.transform) || 0;
   const hasFill = fill && fill.alpha > 0.01;
@@ -593,6 +596,8 @@ function renderBox(slide, node, slideRect, warnings, totals) {
     ? { color: fill?.color || 'FFFFFF', transparency: 100 }
     : hasBorder && rotate
     ? { color: firstBorder?.color || fill?.color || 'FFFFFF', transparency: combinedTransparency(firstBorder?.alpha || 1, style.opacity), width: Math.max(...borders.map(border => border.width || 0)) * PX_TO_PT }
+    : hasBorder && uniformBorder
+    ? { color: uniformBorder.color, transparency: combinedTransparency(uniformBorder.alpha, style.opacity), width: uniformBorder.width * PX_TO_PT }
     : { color: hasBorder ? firstBorder?.color || fill?.color || 'FFFFFF' : 'FFFFFF', transparency: 100 };
 
   if (hasFill || hasBorder || borderTriangle) {
@@ -614,7 +619,9 @@ function renderBox(slide, node, slideRect, warnings, totals) {
     }
   }
 
-  if (hasBorder && !rotate && !borderTriangle && shapeName !== 'ellipse') renderBorders(slide, c, borders, slideRect, style.opacity, totals);
+  if (hasBorder && !rotate && !borderTriangle && shapeName !== 'ellipse' && !(uniformBorder && (shapeName === 'roundRect' || polygonPoints))) {
+    renderBorders(slide, c, borders, slideRect, style.opacity, totals);
+  }
 }
 
 function isTinyRotatedBorderOnlyPseudo(node, c, hasFill, hasBorder, rotate) {
@@ -649,8 +656,15 @@ function renderBorders(slide, c, borders, slideRect, opacity, totals) {
   }
 }
 
+function uniformBorderStyle(borders) {
+  if (!borders.length || !borders.every(border => border.width > 0 && border.color)) return null;
+  const [first] = borders;
+  if (!borders.every(border => Math.abs(border.width - first.width) < 0.25 && border.color === first.color && Math.abs(border.alpha - first.alpha) < 0.02)) return null;
+  return first;
+}
+
 function renderText(slide, node, slideRect, warnings, totals) {
-  const value = applyTextTransform(node.text || '', node.style?.textTransform);
+  let value = applyTextTransform(node.text || '', node.style?.textTransform);
   if (!value.trim()) return;
   const c = coords(node, slideRect);
   if (c.w < 0.01 || c.h < 0.01) return;
@@ -662,6 +676,14 @@ function renderText(slide, node, slideRect, warnings, totals) {
   if (isDecorativeRotatedSmallText(value, style, fontSizePx, node)) return;
   if (isDecorativeSparkleText(value)) {
     return;
+  }
+  const leadingSymbol = leadingNativeSymbol(value);
+  if (leadingSymbol) {
+    const symbolWidth = renderLeadingNativeSymbol(slide, c, style, leadingSymbol, totals);
+    value = value.slice(leadingSymbol.raw.length).trimStart();
+    if (!value.trim()) return;
+    c.x += symbolWidth;
+    c.w = Math.max(0.08, c.w - symbolWidth);
   }
   const fontFace = firstFont(style.fontFamily);
   const weight = String(style.fontWeight || '');
@@ -711,6 +733,44 @@ function renderText(slide, node, slideRect, warnings, totals) {
   } catch {
     warnings.push({ slide: node.slideIndex, type: 'render-text-failed', text: value.slice(0, 60) });
   }
+}
+
+function leadingNativeSymbol(value) {
+  const match = String(value || '').match(/^([→➜➤▶►])\s*/);
+  if (!match) return null;
+  return { raw: match[0], symbol: match[1], shape: 'rightArrow' };
+}
+
+function renderLeadingNativeSymbol(slide, box, style, symbol, totals) {
+  const color = textColorForStyle(style);
+  const size = Math.max(0.08, Math.min(0.18, box.h * 0.42));
+  const width = size * 1.75;
+  try {
+    slide.addShape(symbol.shape, {
+      x: box.x,
+      y: box.y + Math.max(0, (box.h - size) / 2),
+      w: size * 1.45,
+      h: size,
+      fill: { color: color.color, transparency: combinedTransparency(color.alpha, style.opacity) },
+      line: { color: color.color, transparency: 100 },
+    });
+    totals.shapeObjects += 1;
+    return width;
+  } catch {
+    try {
+      slide.addShape('triangle', {
+        x: box.x,
+        y: box.y + Math.max(0, (box.h - size) / 2),
+        w: size,
+        h: size,
+        rotate: 90,
+        fill: { color: color.color, transparency: combinedTransparency(color.alpha, style.opacity) },
+        line: { color: color.color, transparency: 100 },
+      });
+      totals.shapeObjects += 1;
+    } catch {}
+  }
+  return width;
 }
 
 function isDecorativeStrokeOnlyText(style, fontSizePx) {
@@ -987,32 +1047,34 @@ function pseudoRect(el, style, slideRect) {
   const parent = el.getBoundingClientRect();
   const stageScaleX = (slideRect?.w || 1920) / 1920;
   const stageScaleY = (slideRect?.h || 1080) / 1080;
-  const width = cssPx(style.width);
-  const height = cssPx(style.height);
+  const parentWidth = el.offsetWidth || parent.width / stageScaleX;
+  const parentHeight = el.offsetHeight || parent.height / stageScaleY;
+  const width = cssLengthPx(style.width, parentWidth);
+  const height = cssLengthPx(style.height, parentHeight);
   if (width == null || height == null) return null;
-  const left = cssPx(style.left);
-  const top = cssPx(style.top);
-  const right = cssPx(style.right);
-  const bottom = cssPx(style.bottom);
+  const left = cssLengthPx(style.left, parentWidth);
+  const top = cssLengthPx(style.top, parentHeight);
+  const right = cssLengthPx(style.right, parentWidth);
+  const bottom = cssLengthPx(style.bottom, parentHeight);
   const parentStyle = getComputedStyle(el);
   const parentRotation = rotateFromTransform(parentStyle.transform);
   if (parentRotation && (left != null || right != null) && (top != null || bottom != null)) {
-    const parentWidth = el.offsetWidth || parent.width / stageScaleX;
-    const parentHeight = el.offsetHeight || parent.height / stageScaleY;
     const [originXRaw = '0', originYRaw = '0'] = String(parentStyle.transformOrigin || '').split(/\s+/);
-    const originX = cssPx(originXRaw) ?? parentWidth / 2;
-    const originY = cssPx(originYRaw) ?? parentHeight / 2;
+    const originX = cssLengthPx(originXRaw, parentWidth) ?? parentWidth / 2;
+    const originY = cssLengthPx(originYRaw, parentHeight) ?? parentHeight / 2;
     const localX = left != null ? left : parentWidth - (right + width);
     const localY = top != null ? top : parentHeight - (bottom + height);
-    const dx = (localX + width / 2 - originX) * stageScaleX;
-    const dy = (localY + height / 2 - originY) * stageScaleY;
+    const translate = translateFromTransform(style.transform, width, height);
+    const dx = (localX + translate.x + width / 2 - originX) * stageScaleX;
+    const dy = (localY + translate.y + height / 2 - originY) * stageScaleY;
     const angle = parentRotation * Math.PI / 180;
     const cx = parent.left + parent.width / 2 + dx * Math.cos(angle) - dy * Math.sin(angle);
     const cy = parent.top + parent.height / 2 + dx * Math.sin(angle) + dy * Math.cos(angle);
     return { x: cx - width * stageScaleX / 2, y: cy - height * stageScaleY / 2, w: width * stageScaleX, h: height * stageScaleY };
   }
-  const x = left != null ? parent.left + left * stageScaleX : right != null ? parent.right - (right + width) * stageScaleX : parent.left;
-  const y = top != null ? parent.top + top * stageScaleY : bottom != null ? parent.bottom - (bottom + height) * stageScaleY : parent.top;
+  const translate = translateFromTransform(style.transform, width, height);
+  const x = (left != null ? parent.left + left * stageScaleX : right != null ? parent.right - (right + width) * stageScaleX : parent.left) + translate.x * stageScaleX;
+  const y = (top != null ? parent.top + top * stageScaleY : bottom != null ? parent.bottom - (bottom + height) * stageScaleY : parent.top) + translate.y * stageScaleY;
   return { x, y, w: width * stageScaleX, h: height * stageScaleY };
 }
 
@@ -1935,6 +1997,32 @@ function cssPx(value) {
   return Number.isFinite(n) ? n : null;
 }
 
+function cssLengthPx(value, base = 0) {
+  const raw = String(value || '').trim();
+  if (!raw || raw === 'auto') return null;
+  const n = parseFloat(raw);
+  if (!Number.isFinite(n)) return null;
+  if (raw.endsWith('%')) return n / 100 * (Number(base) || 0);
+  return n;
+}
+
+function translateFromTransform(value, width = 0, height = 0) {
+  const raw = String(value || '');
+  if (!raw || raw === 'none') return { x: 0, y: 0 };
+  const translate = raw.match(/translate(?:3d)?\(([^)]+)\)/i);
+  const translateX = raw.match(/translateX\(([^)]+)\)/i);
+  const translateY = raw.match(/translateY\(([^)]+)\)/i);
+  const out = { x: 0, y: 0 };
+  if (translate) {
+    const [x = '0', y = '0'] = splitCssArgs(translate[1]);
+    out.x += cssLengthPx(x, width) || 0;
+    out.y += cssLengthPx(y, height) || 0;
+  }
+  if (translateX) out.x += cssLengthPx(translateX[1], width) || 0;
+  if (translateY) out.y += cssLengthPx(translateY[1], height) || 0;
+  return out;
+}
+
 function isTextClippedBackground(style) {
   const clip = `${style?.backgroundClip || ''} ${style?.webkitBackgroundClip || ''}`.toLowerCase();
   return clip.includes('text');
@@ -1949,23 +2037,43 @@ function shouldUseNativeGradientShape(style = {}, width = 0, height = 0) {
 }
 
 function cssBorderTriangle(style = {}, c) {
-  const left = parseFloat(style.borderLeftWidth || '0') || 0;
-  const right = parseFloat(style.borderRightWidth || '0') || 0;
-  const bottom = parseFloat(style.borderBottomWidth || '0') || 0;
-  const top = parseFloat(style.borderTopWidth || '0') || 0;
-  const bottomColor = parseCssColor(style.borderBottomColor);
-  const leftColor = parseCssColor(style.borderLeftColor);
-  const rightColor = parseCssColor(style.borderRightColor);
-  if (bottom <= 0 || left <= 0 || right <= 0 || top > 0 || !bottomColor || leftColor || rightColor) return null;
-  return {
-    fill: bottomColor,
-    points: [
+  const sides = [
+    { side: 'top', width: parseFloat(style.borderTopWidth || '0') || 0, color: parseCssColor(style.borderTopColor) },
+    { side: 'right', width: parseFloat(style.borderRightWidth || '0') || 0, color: parseCssColor(style.borderRightColor) },
+    { side: 'bottom', width: parseFloat(style.borderBottomWidth || '0') || 0, color: parseCssColor(style.borderBottomColor) },
+    { side: 'left', width: parseFloat(style.borderLeftWidth || '0') || 0, color: parseCssColor(style.borderLeftColor) },
+  ];
+  const visible = sides.filter(item => item.width > 0 && item.color);
+  const transparent = sides.filter(item => item.width > 0 && !item.color);
+  if (visible.length !== 1 || transparent.length < 2) return null;
+  const color = visible[0].color;
+  const pointsBySide = {
+    top: [
+      { x: 0, y: 0, moveTo: true },
+      { x: round(c.w), y: 0 },
+      { x: round(c.w / 2), y: round(c.h) },
+      { close: true },
+    ],
+    right: [
+      { x: round(c.w), y: 0, moveTo: true },
+      { x: round(c.w), y: round(c.h) },
+      { x: 0, y: round(c.h / 2) },
+      { close: true },
+    ],
+    bottom: [
       { x: round(c.w / 2), y: 0, moveTo: true },
       { x: round(c.w), y: round(c.h) },
       { x: 0, y: round(c.h) },
       { close: true },
     ],
+    left: [
+      { x: 0, y: 0, moveTo: true },
+      { x: round(c.w), y: round(c.h / 2) },
+      { x: 0, y: round(c.h) },
+      { close: true },
+    ],
   };
+  return { fill: color, points: pointsBySide[visible[0].side] };
 }
 
 function cssClipPolygonPoints(clipPath, c) {
