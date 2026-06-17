@@ -242,8 +242,8 @@ async function resolveElementScreenshots(page, root, warnings, options = {}) {
   for (const node of targets) {
     let hiddenToken = null;
     try {
-      if (node.stripTextForScreenshot) {
-        hiddenToken = await page.evaluate(({ exportId, mode }) => {
+      if (node.stripTextForScreenshot || node.stripOverlayForScreenshot) {
+        hiddenToken = await page.evaluate(({ exportId, mode, stripText, stripOverlay }) => {
           const root = document.querySelector(`[data-editable-pptx-export-id="${exportId}"]`);
           if (!root) return null;
           const token = `hide-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -268,35 +268,84 @@ async function resolveElementScreenshots(page, root, warnings, options = {}) {
               el.style.setProperty('background-image', 'none', 'important');
             }
           };
+          const markOverlay = (el) => {
+            if (!el || entries.some(entry => entry.el === el)) return;
+            entries.push({ el, style: el.getAttribute('style') });
+            el.style.setProperty('opacity', '0', 'important');
+          };
+          const hasOverlayPaint = (el) => {
+            const style = getComputedStyle(el);
+            const bg = String(style.backgroundColor || '').trim();
+            const bgImage = String(style.backgroundImage || '').trim();
+            const hasBg = bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)';
+            const hasBgImage = bgImage && bgImage !== 'none';
+            const hasBorder = ['Top', 'Right', 'Bottom', 'Left'].some(side => {
+              const width = parseFloat(style[`border${side}Width`] || '0') || 0;
+              const color = String(style[`border${side}Color`] || '').trim();
+              return width > 0 && color && color !== 'transparent' && color !== 'rgba(0, 0, 0, 0)';
+            });
+            return hasBg || hasBgImage || hasBorder || (style.boxShadow && style.boxShadow !== 'none') || ['IMG', 'SVG', 'CANVAS', 'VIDEO'].includes(el.tagName);
+          };
+          const isMostlyRootSized = (rect) => {
+            const area = rect.width * rect.height;
+            const rootArea = Math.max(1, rootRect.width * rootRect.height);
+            return area / rootArea > 0.86
+              && Math.abs(rect.left - rootRect.left) < 8
+              && Math.abs(rect.top - rootRect.top) < 8
+              && Math.abs(rect.right - rootRect.right) < 8
+              && Math.abs(rect.bottom - rootRect.bottom) < 8;
+          };
+          const isVisible = (el) => {
+            const style = getComputedStyle(el);
+            const rect = el.getBoundingClientRect();
+            return style.display !== 'none'
+              && style.visibility !== 'hidden'
+              && Number(style.opacity || 1) > 0.01
+              && rect.width > 2
+              && rect.height > 2;
+          };
+          if (mode === 'screenshot-rect' && stripOverlay) {
+            (slide || root).querySelectorAll('*').forEach(el => {
+              if (el === root || root.contains(el) || el.contains(root)) return;
+              if (!isVisible(el)) return;
+              const rect = el.getBoundingClientRect();
+              if (!intersects(rect, rootRect) || isMostlyRootSized(rect) || !hasOverlayPaint(el)) return;
+              markOverlay(el);
+            });
+          }
           const shouldHideRange = (range) => {
             if (mode !== 'screenshot-rect') return true;
             const rects = [...range.getClientRects()];
             const bounds = range.getBoundingClientRect();
             return (rects.length ? rects : [bounds]).some(rect => rect.width > 1 && rect.height > 1 && intersects(rect, rootRect));
           };
-          const walker = document.createTreeWalker(slide || root, NodeFilter.SHOW_TEXT);
-          while (walker.nextNode()) {
-            if (!(walker.currentNode.textContent || '').trim()) continue;
-            const range = document.createRange();
-            range.selectNodeContents(walker.currentNode);
-            const shouldHide = shouldHideRange(range);
-            range.detach?.();
-            if (shouldHide) mark(walker.currentNode.parentElement);
-          }
-          (slide || root).querySelectorAll('svg text, text').forEach(el => {
-            if (mode !== 'screenshot-rect') {
-              mark(el);
-              return;
+          if (stripText) {
+            const walker = document.createTreeWalker(slide || root, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+              if (!(walker.currentNode.textContent || '').trim()) continue;
+              const range = document.createRange();
+              range.selectNodeContents(walker.currentNode);
+              const shouldHide = shouldHideRange(range);
+              range.detach?.();
+              if (shouldHide) mark(walker.currentNode.parentElement);
             }
-            const rect = el.getBoundingClientRect();
-            if (rect.width > 1 && rect.height > 1 && intersects(rect, rootRect)) mark(el);
-          });
+            (slide || root).querySelectorAll('svg text, text').forEach(el => {
+              if (mode !== 'screenshot-rect') {
+                mark(el);
+                return;
+              }
+              const rect = el.getBoundingClientRect();
+              if (rect.width > 1 && rect.height > 1 && intersects(rect, rootRect)) mark(el);
+            });
+          }
           window.__editablePptxHiddenTextStyles ||= new Map();
           window.__editablePptxHiddenTextStyles.set(token, entries);
           return token;
         }, {
           exportId: node.exportId,
           mode: node.imageKind === 'unicorn-background' ? 'screenshot-rect' : 'descendant',
+          stripText: Boolean(node.stripTextForScreenshot),
+          stripOverlay: Boolean(node.stripOverlayForScreenshot),
         });
       }
       const bytes = await page.locator(`[data-editable-pptx-export-id="${node.exportId}"]`).screenshot({ type: 'png' });
@@ -466,6 +515,7 @@ async function installBrowserCollector(page) {
         ${fallbackTextRisk.toString()}
         ${visibleTextInSubtree.toString()}
         ${visibleTextInScreenshotRect.toString()}
+        ${visibleOverlayPaintInScreenshotRect.toString()}
         ${collectDomFallbackTextNodes.toString()}
         ${svgTextRisk.toString()}
         ${fetchImageDataUrl.toString()}
@@ -807,10 +857,12 @@ async function captureElement(el, slideRect, warnings, depth, slideIndex) {
     node.imageKind = 'unicorn-background';
     const textNodes = collectDomFallbackTextNodes(el, slideRect, slideIndex);
     const overlayText = visibleTextInScreenshotRect(el, slideRect);
+    const overlayPaint = visibleOverlayPaintInScreenshotRect(el, slideRect);
     if (textNodes.length) {
       node.children.push(...textNodes);
     }
     if (textNodes.length || overlayText.count) node.stripTextForScreenshot = true;
+    if (overlayPaint.count) node.stripOverlayForScreenshot = true;
     const risk = fallbackTextRisk(el, slideRect);
     if (overlayText.count) {
       warnings.push({ slide: slideIndex, type: 'node-image-fallback-text-extracted', node: 'unicorn-background', textCount: overlayText.count, sample: overlayText.sample, scope: 'screenshot-rect' });
@@ -818,6 +870,9 @@ async function captureElement(el, slideRect, warnings, depth, slideIndex) {
       warnings.push({ slide: slideIndex, type: 'node-image-fallback-text-extracted', node: 'unicorn-background', textCount: textNodes.length, sample: risk.sample, scope: 'descendant' });
     } else if (risk.count) {
       warnings.push({ slide: slideIndex, type: 'node-image-fallback-text-risk', node: 'unicorn-background', textCount: risk.count, sample: risk.sample });
+    }
+    if (overlayPaint.count) {
+      warnings.push({ slide: slideIndex, type: 'node-image-fallback-overlay-extracted', node: 'unicorn-background', overlayCount: overlayPaint.count, sample: overlayPaint.sample, scope: 'screenshot-rect' });
     }
     warnings.push({ slide: slideIndex, type: 'node-image-fallback', node: 'unicorn-background', count: 1 });
     return node;
@@ -1652,6 +1707,47 @@ function visibleTextInScreenshotRect(root, slideRect) {
     add(el.textContent || '', el.getBoundingClientRect());
   });
   return { count: texts.length, sample: texts.join(' ').slice(0, 160) };
+}
+
+function visibleOverlayPaintInScreenshotRect(root, slideRect) {
+  const slide = root.closest('#deck > .slide') || root;
+  const targetRect = root.getBoundingClientRect();
+  const items = [];
+  const seen = new Set();
+  const intersects = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+  const mostlyTargetSized = (rect) => {
+    const area = rect.width * rect.height;
+    const targetArea = Math.max(1, targetRect.width * targetRect.height);
+    return area / targetArea > 0.86
+      && Math.abs(rect.left - targetRect.left) < 8
+      && Math.abs(rect.top - targetRect.top) < 8
+      && Math.abs(rect.right - targetRect.right) < 8
+      && Math.abs(rect.bottom - targetRect.bottom) < 8;
+  };
+  const hasOverlayPaint = (el) => {
+    const style = getComputedStyle(el);
+    const bg = String(style.backgroundColor || '').trim();
+    const bgImage = String(style.backgroundImage || '').trim();
+    const hasBg = bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)';
+    const hasBgImage = bgImage && bgImage !== 'none';
+    const hasBorder = ['Top', 'Right', 'Bottom', 'Left'].some(side => {
+      const width = parseFloat(style[`border${side}Width`] || '0') || 0;
+      const color = String(style[`border${side}Color`] || '').trim();
+      return width > 0 && color && color !== 'transparent' && color !== 'rgba(0, 0, 0, 0)';
+    });
+    return hasBg || hasBgImage || hasBorder || (style.boxShadow && style.boxShadow !== 'none') || ['IMG', 'SVG', 'CANVAS', 'VIDEO'].includes(el.tagName);
+  };
+  slide.querySelectorAll?.('*')?.forEach(el => {
+    if (el === root || root.contains(el) || el.contains(root)) return;
+    if (!isVisibleElement(el, slideRect) || !hasOverlayPaint(el)) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 2 || rect.height <= 2 || rect.width * rect.height < 120 || !intersects(rect, targetRect) || mostlyTargetSized(rect)) return;
+    const key = `${el.tagName}:${Math.round(rect.left)}:${Math.round(rect.top)}:${Math.round(rect.width)}:${Math.round(rect.height)}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    items.push(`${el.tagName.toLowerCase()}${el.className ? `.${String(el.className).trim().replace(/\s+/g, '.')}` : ''}`);
+  });
+  return { count: items.length, sample: items.slice(0, 8).join(' ').slice(0, 160) };
 }
 
 function collectDomFallbackTextNodes(root, slideRect, slideIndex) {

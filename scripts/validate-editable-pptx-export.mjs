@@ -2,7 +2,7 @@
 import { createHash } from 'node:crypto';
 import { createServer } from 'node:http';
 import { execFileSync, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import https from 'node:https';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -648,6 +648,7 @@ async function runFallbackTextRiskMatrixValidation() {
       selectedRiskCount: parsed?.selectedRiskCount || 0,
       expectedRiskCount: parsed?.expectedRiskCount || 0,
       extractedCount: parsed?.extractedCount || 0,
+      overlayExtractedCount: parsed?.overlayExtractedCount || 0,
       riskCount: parsed?.riskCount || 0,
       evidenceDir: parsed?.evidenceDir || null,
       reportFile: parsed?.reportFile || null,
@@ -769,7 +770,8 @@ async function runFallbackTextRiskValidation() {
   const pptx = pptxFile && existsSync(pptxFile) ? inspectPptx(pptxFile) : null;
   const risks = (report?.warnings || []).filter(warning => warning?.type === 'node-image-fallback-text-risk');
   const extracted = (report?.warnings || []).filter(warning => warning?.type === 'node-image-fallback-text-extracted');
-  const missingClassifications = selectedRisks.filter(risk => !fallbackRiskWasClassified(risk, [...risks, ...extracted]));
+  const overlayExtracted = (report?.warnings || []).filter(warning => warning?.type === 'node-image-fallback-overlay-extracted');
+  const missingClassifications = selectedRisks.filter(risk => !fallbackRiskWasClassified(risk, [...risks, ...extracted, ...overlayExtracted]));
   const missingTextObjects = pptx ? missingFallbackTextObjects(selectedRisks, pptx) : [];
   const failures = [];
   if (expectedRisks.length && !report) failures.push('Fallback text risk validation did not write a report file.');
@@ -785,7 +787,7 @@ async function runFallbackTextRiskValidation() {
   }
   const failedEvidenceChecks = evidenceChecks.filter(check => check.checked && !check.passed);
   if (failedEvidenceChecks.length) {
-    failures.push(`${themePack} has ${failedEvidenceChecks.length} fallback evidence text crop(s) that did not change after hiding text paint.`);
+    failures.push(`${themePack} has ${failedEvidenceChecks.length} fallback evidence crop(s) that did not change after hiding overlay paint.`);
   }
   if (risks.length) failures.push(`${themePack} has ${risks.length} local fallback image(s) that include visible fallback text.`);
   const result = {
@@ -798,6 +800,7 @@ async function runFallbackTextRiskValidation() {
     evidenceDir,
     riskCount: risks.length,
     extractedCount: extracted.length,
+    overlayExtractedCount: overlayExtracted.length,
     expectedRiskCount: expectedRisks.length,
     selectedRiskCount: selectedRisks.length,
     expectedRisks: expectedRisks.slice(0, 40),
@@ -807,6 +810,7 @@ async function runFallbackTextRiskValidation() {
     evidenceChecks,
     pptx: pptx ? summarizeInspection(pptx) : null,
     extracted: extracted.slice(0, 40),
+    overlayExtracted: overlayExtracted.slice(0, 40),
     risks: risks.slice(0, 40),
     failures,
   };
@@ -830,6 +834,7 @@ function compactFallbackTextRiskResult(result) {
     evidenceDir: result.evidenceDir,
     riskCount: result.riskCount,
     extractedCount: result.extractedCount,
+    overlayExtractedCount: result.overlayExtractedCount,
     expectedRiskCount: result.expectedRiskCount,
     selectedRiskCount: result.selectedRiskCount,
     missingClassifications: (result.missingClassifications || []).map(compactFallbackRisk),
@@ -844,6 +849,7 @@ function compactFallbackTextRiskResult(result) {
     })),
     pptx: result.pptx,
     extracted: (result.extracted || []).slice(0, 12),
+    overlayExtracted: (result.overlayExtracted || []).slice(0, 12),
     risks: (result.risks || []).slice(0, 12),
     failures: result.failures || [],
   };
@@ -855,6 +861,7 @@ function compactFallbackRisk(risk) {
     key: risk.key,
     kind: risk.kind,
     textCount: risk.textCount,
+    overlayCount: risk.overlayItems?.length || 0,
     sample: risk.sample,
   };
 }
@@ -1057,8 +1064,67 @@ async function collectFallbackTextRiskExpectations(page, expectedSlides) {
         });
         return items;
       };
-      const addRisk = (el, kind, textItems) => {
-        if (!textItems.length) return;
+      const overlayObjectsInRect = (root, frame, clipRect) => {
+        const items = [];
+        const seen = new Set();
+        const isMostlyFrameSized = (rect) => {
+          const area = rect.width * rect.height;
+          const frameArea = Math.max(1, clipRect.width * clipRect.height);
+          return area / frameArea > 0.86
+            && Math.abs(rect.left - clipRect.left) < 8
+            && Math.abs(rect.top - clipRect.top) < 8
+            && Math.abs(rect.right - clipRect.right) < 8
+            && Math.abs(rect.bottom - clipRect.bottom) < 8;
+        };
+        const hasPaint = (el) => {
+          const style = getComputedStyle(el);
+          const bg = String(style.backgroundColor || '').trim();
+          const bgImage = String(style.backgroundImage || '').trim();
+          const hasBg = bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)';
+          const hasBgImage = bgImage && bgImage !== 'none';
+          const hasBorder = ['Top', 'Right', 'Bottom', 'Left'].some(side => {
+            const width = parseFloat(style[`border${side}Width`] || '0') || 0;
+            const color = String(style[`border${side}Color`] || '').trim();
+            return width > 0 && color && color !== 'transparent' && color !== 'rgba(0, 0, 0, 0)';
+          });
+          return hasBg || hasBgImage || hasBorder || (style.boxShadow && style.boxShadow !== 'none') || ['IMG', 'SVG', 'CANVAS', 'VIDEO'].includes(el.tagName);
+        };
+        const add = (el) => {
+          if (!el || el === frame || frame.contains(el) || el.contains(frame)) return;
+          if (!isVisible(el)) return;
+          if (!hasPaint(el)) return;
+          const rect = el.getBoundingClientRect();
+          if (!intersects(rect, clipRect)) return;
+          if (isMostlyFrameSized(rect)) return;
+          const area = rect.width * rect.height;
+          if (area < 120) return;
+          const key = `${el.tagName}:${Math.round(rect.left)}:${Math.round(rect.top)}:${Math.round(rect.width)}:${Math.round(rect.height)}`;
+          if (seen.has(key)) return;
+          seen.add(key);
+          const style = getComputedStyle(el);
+          items.push({
+            tag: el.tagName.toLowerCase(),
+            className: String(el.className || '').slice(0, 120),
+            text: (el.innerText || el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120),
+            rect: {
+              x: Math.max(0, rect.left - slideRect.left),
+              y: Math.max(0, rect.top - slideRect.top),
+              w: Math.max(1, rect.width),
+              h: Math.max(1, rect.height),
+            },
+            paint: {
+              backgroundColor: style.backgroundColor,
+              backgroundImage: String(style.backgroundImage || '').slice(0, 120),
+              borderTop: `${style.borderTopWidth} ${style.borderTopColor}`,
+              boxShadow: String(style.boxShadow || '').slice(0, 120),
+            },
+          });
+        };
+        root.querySelectorAll?.('*')?.forEach(add);
+        return items.sort((a, b) => (b.rect.w * b.rect.h) - (a.rect.w * a.rect.h)).slice(0, 24);
+      };
+      const addRisk = (el, kind, textItems = [], overlayItems = []) => {
+        if (!textItems.length && !overlayItems.length) return;
         const rect = el.getBoundingClientRect();
         const texts = textItems.map(item => item.text);
         out.push({
@@ -1068,6 +1134,7 @@ async function collectFallbackTextRiskExpectations(page, expectedSlides) {
           textCount: texts.length,
           sample: texts.join(' ').slice(0, 120),
           textItems: textItems.slice(0, 40),
+          overlayItems: overlayItems.slice(0, 40),
           rect: {
             x: Math.max(0, rect.left - slideRect.left),
             y: Math.max(0, rect.top - slideRect.top),
@@ -1078,7 +1145,9 @@ async function collectFallbackTextRiskExpectations(page, expectedSlides) {
       };
       slide.querySelectorAll('.bt-unicorn-frame').forEach(el => {
         if (!isVisible(el)) return;
-        addRisk(el, 'unicorn-overlay-text', textInRect(slide, rectObject(el.getBoundingClientRect())));
+        const rect = rectObject(el.getBoundingClientRect());
+        addRisk(el, 'unicorn-overlay-text', textInRect(slide, rect));
+        addRisk(el, 'unicorn-overlay-object', [], overlayObjectsInRect(slide, el, rect));
       });
       slide.querySelectorAll('svg').forEach(el => {
         if (!isVisible(el)) return;
@@ -1111,6 +1180,7 @@ function selectFallbackTextRiskSamples(expectedRisks, limit) {
 }
 
 function fallbackRiskPriority(risk) {
+  if (risk.kind === 'unicorn-overlay-object') return 130;
   if (risk.kind === 'unicorn-overlay-text') return 120;
   if (risk.kind === 'unicorn-background') return 100;
   if (risk.kind === 'canvas') return 80;
@@ -1129,6 +1199,8 @@ async function captureFallbackTextRiskEvidence(page, risks, evidenceDir) {
     const htmlFallback = path.join(sampleDir, 'html-fallback-region.png');
     const hiddenSlide = path.join(sampleDir, 'html-slide-text-hidden.png');
     const hiddenFallback = path.join(sampleDir, 'html-fallback-region-text-hidden.png');
+    const overlayHiddenSlide = path.join(sampleDir, 'html-slide-overlays-hidden.png');
+    const overlayHiddenFallback = path.join(sampleDir, 'html-fallback-region-overlays-hidden.png');
     await page.evaluate(async slideIndex => {
       window.go?.(slideIndex - 1, { animate: false, force: true });
       await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
@@ -1141,7 +1213,8 @@ async function captureFallbackTextRiskEvidence(page, risks, evidenceDir) {
     if (risk.rect && commandAvailable('magick')) {
       const crop = `${Math.max(1, Math.round(risk.rect.w))}x${Math.max(1, Math.round(risk.rect.h))}+${Math.max(0, Math.round(risk.rect.x))}+${Math.max(0, Math.round(risk.rect.y))}`;
       spawnSync('magick', [htmlSlide, '-crop', crop, htmlFallback], { encoding: 'utf8' });
-      await page.evaluate(async rect => {
+      await page.evaluate(async risk => {
+        const rect = risk.rect;
         const slide = document.querySelector('#deck > .slide.active, #deck > .slide[data-deck-active]');
         if (!slide) return;
         const slideRect = slide.getBoundingClientRect();
@@ -1153,7 +1226,7 @@ async function captureFallbackTextRiskEvidence(page, risks, evidenceDir) {
         };
         const intersects = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
         const entries = [];
-        const mark = (el) => {
+        const markText = (el) => {
           if (!el || entries.some(entry => entry.el === el)) return;
           entries.push({ el, style: el.getAttribute('style') });
           const style = getComputedStyle(el);
@@ -1168,6 +1241,52 @@ async function captureFallbackTextRiskEvidence(page, risks, evidenceDir) {
             el.style.setProperty('background-image', 'none', 'important');
           }
         };
+        const markOverlay = (el) => {
+          if (!el || entries.some(entry => entry.el === el)) return;
+          entries.push({ el, style: el.getAttribute('style') });
+          el.style.setProperty('opacity', '0', 'important');
+        };
+        const hasPaint = (el) => {
+          const style = getComputedStyle(el);
+          const bg = String(style.backgroundColor || '').trim();
+          const bgImage = String(style.backgroundImage || '').trim();
+          const hasBg = bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)';
+          const hasBgImage = bgImage && bgImage !== 'none';
+          const hasBorder = ['Top', 'Right', 'Bottom', 'Left'].some(side => {
+            const width = parseFloat(style[`border${side}Width`] || '0') || 0;
+            const color = String(style[`border${side}Color`] || '').trim();
+            return width > 0 && color && color !== 'transparent' && color !== 'rgba(0, 0, 0, 0)';
+          });
+          return hasBg || hasBgImage || hasBorder || (style.boxShadow && style.boxShadow !== 'none') || ['IMG', 'SVG', 'CANVAS', 'VIDEO'].includes(el.tagName);
+        };
+        const isMostlyClipSized = (rect) => {
+          const area = rect.width * rect.height;
+          const clipArea = Math.max(1, (clip.right - clip.left) * (clip.bottom - clip.top));
+          return area / clipArea > 0.86
+            && Math.abs(rect.left - clip.left) < 8
+            && Math.abs(rect.top - clip.top) < 8
+            && Math.abs(rect.right - clip.right) < 8
+            && Math.abs(rect.bottom - clip.bottom) < 8;
+        };
+        if (risk.kind === 'unicorn-overlay-object') {
+          const frame = [...slide.querySelectorAll('.bt-unicorn-frame')]
+            .find(item => {
+              const frameRect = item.getBoundingClientRect();
+              return Math.abs(frameRect.left - clip.left) < 4
+                && Math.abs(frameRect.top - clip.top) < 4
+                && Math.abs(frameRect.width - (clip.right - clip.left)) < 8
+                && Math.abs(frameRect.height - (clip.bottom - clip.top)) < 8;
+            });
+          slide.querySelectorAll('*').forEach(el => {
+            if (el === frame || frame?.contains(el) || el.contains(frame)) return;
+            const style = getComputedStyle(el);
+            if (style.display === 'none' || style.visibility === 'hidden' || Number(style.opacity || 1) <= 0.01) return;
+            const itemRect = el.getBoundingClientRect();
+            if (itemRect.width <= 2 || itemRect.height <= 2 || !intersects(itemRect, clip)) return;
+            if (isMostlyClipSized(itemRect) || !hasPaint(el)) return;
+            markOverlay(el);
+          });
+        }
         const walker = document.createTreeWalker(slide, NodeFilter.SHOW_TEXT);
         while (walker.nextNode()) {
           if (!(walker.currentNode.textContent || '').trim()) continue;
@@ -1177,18 +1296,23 @@ async function captureFallbackTextRiskEvidence(page, risks, evidenceDir) {
           const bounds = range.getBoundingClientRect();
           range.detach?.();
           if ((rects.length ? rects : [bounds]).some(item => item.width > 1 && item.height > 1 && intersects(item, clip))) {
-            mark(walker.currentNode.parentElement);
+            markText(walker.currentNode.parentElement);
           }
         }
         slide.querySelectorAll('svg text').forEach(el => {
           const rect = el.getBoundingClientRect();
-          if (rect.width > 1 && rect.height > 1 && intersects(rect, clip)) mark(el);
+          if (rect.width > 1 && rect.height > 1 && intersects(rect, clip)) markText(el);
         });
         window.__fallbackRiskHiddenTextEntries = entries;
-      }, risk.rect);
+      }, risk);
       await activeSlide.screenshot({ path: hiddenSlide });
       spawnSync('magick', [hiddenSlide, '-crop', crop, hiddenFallback], { encoding: 'utf8' });
+      if (risk.kind === 'unicorn-overlay-object') {
+        copyFileSync(hiddenSlide, overlayHiddenSlide);
+        copyFileSync(hiddenFallback, overlayHiddenFallback);
+      }
       checks.push(analyzeFallbackTextRemoval(risk, htmlFallback, hiddenFallback, sampleDir));
+      checks.push(analyzeFallbackOverlayRemoval(risk, htmlFallback, hiddenFallback, sampleDir));
       await page.evaluate(() => {
         const entries = window.__fallbackRiskHiddenTextEntries || [];
         for (const entry of entries) {
@@ -1251,10 +1375,60 @@ function analyzeFallbackTextRemoval(risk, htmlFallback, hiddenFallback, sampleDi
   };
 }
 
+function analyzeFallbackOverlayRemoval(risk, htmlFallback, hiddenFallback, sampleDir) {
+  if (risk.kind !== 'unicorn-overlay-object' || !risk.rect || !commandAvailable('magick')) {
+    return { slide: risk.slide, kind: risk.kind, checked: false, passed: true, reason: 'not-unicorn-overlay-object' };
+  }
+  const cropDir = path.join(sampleDir, 'overlay-removal-crops');
+  mkdirSync(cropDir, { recursive: true });
+  const candidates = (risk.overlayItems || [])
+    .map((item, index) => {
+      const rect = item.rect || {};
+      const x = Number(rect.x ?? rect.left ?? 0) - Number(risk.rect.x || 0);
+      const y = Number(rect.y ?? rect.top ?? 0) - Number(risk.rect.y || 0);
+      const w = Number(rect.w ?? rect.width ?? 0);
+      const h = Number(rect.h ?? rect.height ?? 0);
+      return { index, tag: item.tag || '', className: item.className || '', x, y, w, h, area: w * h };
+    })
+    .filter(item => item.w >= 8 && item.h >= 8 && item.area >= 120)
+    .sort((a, b) => b.area - a.area)
+    .slice(0, 8);
+  const results = [];
+  for (const item of candidates) {
+    const spec = `${Math.max(1, Math.round(item.w))}x${Math.max(1, Math.round(item.h))}+${Math.max(0, Math.round(item.x))}+${Math.max(0, Math.round(item.y))}`;
+    const before = path.join(cropDir, `overlay-${String(item.index).padStart(2, '0')}-before.png`);
+    const after = path.join(cropDir, `overlay-${String(item.index).padStart(2, '0')}-after.png`);
+    spawnSync('magick', [htmlFallback, '-crop', spec, before], { encoding: 'utf8' });
+    spawnSync('magick', [hiddenFallback, '-crop', spec, after], { encoding: 'utf8' });
+    const rmse = compareImageMetric('RMSE', before, after);
+    results.push({
+      index: item.index,
+      tag: item.tag,
+      className: item.className,
+      rmse,
+      before,
+      after,
+      passed: Number.isFinite(rmse) && rmse >= 0.006,
+    });
+  }
+  const failures = results.filter(item => !item.passed);
+  return {
+    slide: risk.slide,
+    key: risk.key,
+    kind: risk.kind,
+    checked: results.length > 0,
+    passed: failures.length === 0,
+    minRmse: results.length ? Math.min(...results.map(item => Number.isFinite(item.rmse) ? item.rmse : 0)) : null,
+    failures: failures.map(item => ({ index: item.index, tag: item.tag, className: item.className, rmse: item.rmse, before: item.before, after: item.after })),
+    samples: results,
+  };
+}
+
 function fallbackRiskWasClassified(risk, warnings) {
   return warnings.some(warning => {
     if (Number(warning?.slide) !== Number(risk.slide)) return false;
     if (risk.kind === 'svg-text') return warning.node === 'svg';
+    if (risk.kind === 'unicorn-overlay-object') return warning.node === 'unicorn-background' && warning.type === 'node-image-fallback-overlay-extracted';
     if (risk.kind === 'unicorn-background' || risk.kind === 'unicorn-overlay-text') return warning.node === 'unicorn-background';
     return warning.node === risk.kind;
   });
