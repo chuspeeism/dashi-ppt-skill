@@ -11,7 +11,7 @@ import { chromium } from 'playwright-core';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const TEMPLATE = path.join(ROOT, 'assets/template-swiss.html');
-const OUT_DIR = path.join(ROOT, 'output/editable-pptx-validation');
+const OUT_DIR = path.resolve(process.env.EDITABLE_PPTX_VALIDATION_OUT_DIR || path.join(ROOT, 'output/editable-pptx-validation'));
 const CHROME_PATH = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const EXPECTED_SLIDES = 6;
 const THEME_FILTER_EXPECTED_SLIDES = 2;
@@ -106,13 +106,19 @@ async function runUiVisualMatrixValidation() {
     .map(item => item.trim())
     .filter(Boolean);
   const script = fileURLToPath(import.meta.url);
+  const matrixDir = path.join(OUT_DIR, `matrix-${timestampForPath()}`);
+  mkdirSync(matrixDir, { recursive: true });
+  rmSync(path.join(OUT_DIR, 'ui-visual-matrix.json'), { force: true });
+  rmSync(path.join(OUT_DIR, 'ui-visual-matrix.partial.json'), { force: true });
+  writeFileSync(path.join(OUT_DIR, 'ui-visual-matrix.latest.txt'), `${matrixDir}\n`);
   const themeResults = [];
   for (const theme of themes) {
-    const child = runVisualMatrixThemeChild(script, theme);
+    const child = runVisualMatrixThemeChild(script, theme, matrixDir);
     themeResults.push(summarizeMatrixTheme(theme, child.parsed, child.status));
-    writeFileSync(path.join(OUT_DIR, 'ui-visual-matrix.partial.json'), JSON.stringify({
+    writeFileSync(path.join(matrixDir, 'ui-visual-matrix.partial.json'), JSON.stringify({
       mode: 'ui-visual-matrix',
       url: cliUrl,
+      matrixDir,
       samplesPerTheme: cliSamplesPerTheme,
       themes: themeResults,
     }, null, 2) + '\n');
@@ -130,6 +136,7 @@ async function runUiVisualMatrixValidation() {
     encoding: 'utf8',
     maxBuffer: 60 * 1024 * 1024,
     timeout: 5 * 60 * 1000,
+    env: { ...process.env, EDITABLE_PPTX_VALIDATION_OUT_DIR: matrixDir },
   });
   const fallbackParsed = parseJsonProcessOutput(fallbackChild.stdout, fallbackChild.stderr);
   const fallbackSummary = summarizeFallbackTextRisk(fallbackParsed, fallbackChild.status);
@@ -137,15 +144,20 @@ async function runUiVisualMatrixValidation() {
     ...themeResults.filter(item => !item.passed).map(item => `${item.themePack} failed visual fidelity matrix checks.`),
     ...(fallbackSummary.passed ? [] : ['theme03 fallback text risk check reported text baked into local fallback images.']),
   ];
+  const allThemesContactSheet = createMatrixContactSheet(themeResults, matrixDir);
   const result = {
     mode: 'ui-visual-matrix',
     url: cliUrl,
+    matrixDir,
+    matrixJson: path.join(matrixDir, 'ui-visual-matrix.json'),
+    allThemesContactSheet,
     samplesPerTheme: cliSamplesPerTheme,
     passed: failures.length === 0,
     themes: themeResults,
     theme03FallbackTextRisk: fallbackSummary,
     failures,
   };
+  writeFileSync(path.join(matrixDir, 'ui-visual-matrix.json'), JSON.stringify(result, null, 2) + '\n');
   writeFileSync(path.join(OUT_DIR, 'ui-visual-matrix.json'), JSON.stringify(result, null, 2) + '\n');
   if (failures.length) {
     console.error(JSON.stringify(result, null, 2));
@@ -155,7 +167,7 @@ async function runUiVisualMatrixValidation() {
   process.exit(0);
 }
 
-function runVisualMatrixThemeChild(script, theme) {
+function runVisualMatrixThemeChild(script, theme, matrixDir) {
   let last = null;
   for (let attempt = 1; attempt <= 2; attempt += 1) {
     const child = spawnSync(process.execPath, [
@@ -172,6 +184,7 @@ function runVisualMatrixThemeChild(script, theme) {
       encoding: 'utf8',
       maxBuffer: 120 * 1024 * 1024,
       timeout: 10 * 60 * 1000,
+      env: { ...process.env, EDITABLE_PPTX_VALIDATION_OUT_DIR: matrixDir },
     });
     let parsed = parseJsonProcessOutput(child.stdout, child.stderr);
     if (parsed?.parseError && child.stderr?.trim().startsWith('{')) {
@@ -183,10 +196,10 @@ function runVisualMatrixThemeChild(script, theme) {
       parsed.validationAttempts = attempt;
       return { parsed, status: child.status };
     }
-    writeFileSync(path.join(OUT_DIR, `ui-visual-matrix-${theme}-raw-attempt-${attempt}.txt`), `${child.stdout || ''}\n${child.stderr || ''}`);
+    writeFileSync(path.join(matrixDir, `ui-visual-matrix-${theme}-raw-attempt-${attempt}.txt`), `${child.stdout || ''}\n${child.stderr || ''}`);
     last = { parsed, status: child.status };
   }
-  writeFileSync(path.join(OUT_DIR, `ui-visual-matrix-${theme}-raw.txt`), last?.parsed?.raw || '');
+  writeFileSync(path.join(matrixDir, `ui-visual-matrix-${theme}-raw.txt`), last?.parsed?.raw || '');
   return last;
 }
 
@@ -733,6 +746,62 @@ function createSampleContactSheet(samples, visualDir) {
     out,
   ], { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 });
   return sheet.status === 0 ? out : null;
+}
+
+function createMatrixContactSheet(themeResults, matrixDir) {
+  if (!commandAvailable('magick')) return null;
+  const contactDir = path.join(matrixDir, 'contact-sheets');
+  const labeledDir = path.join(contactDir, 'labeled');
+  mkdirSync(labeledDir, { recursive: true });
+  const font = firstExistingFile([
+    '/System/Library/Fonts/Supplemental/Arial.ttf',
+    '/System/Library/Fonts/Helvetica.ttc',
+  ]);
+  const labeled = [];
+  for (const theme of themeResults) {
+    if (!theme.contactSheet || !existsSync(theme.contactSheet)) continue;
+    const out = path.join(labeledDir, `${safePathSegment(theme.themePack)}.png`);
+    const args = [
+      '-background',
+      'white',
+      '-fill',
+      'black',
+      ...(font ? ['-font', font] : []),
+      '-pointsize',
+      '28',
+      `label:${theme.themePack}`,
+      theme.contactSheet,
+      '-resize',
+      '480x',
+      '-append',
+      out,
+    ];
+    const label = spawnSync('magick', args, { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 });
+    if (label.status === 0 && existsSync(out)) labeled.push(out);
+  }
+  if (!labeled.length) return null;
+  const out = path.join(contactDir, 'all-themes-contact-sheet.png');
+  const montage = spawnSync('magick', [
+    'montage',
+    ...(font ? ['-font', font] : []),
+    ...labeled,
+    '-tile',
+    '4x3',
+    '-geometry',
+    '+20+20',
+    '-background',
+    '#f4f4f4',
+    out,
+  ], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  return montage.status === 0 && existsSync(out) ? out : null;
+}
+
+function firstExistingFile(files) {
+  return files.find(file => existsSync(file)) || null;
+}
+
+function timestampForPath() {
+  return new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
 }
 
 function selectVisualSamples(expectations) {
@@ -1681,7 +1750,7 @@ function inspectEditableExportSource(source) {
 }
 
 async function renderValidationDeck() {
-  rmSync(OUT_DIR, { recursive: true, force: true });
+  cleanEditableExportValidationOutputs();
   mkdirSync(OUT_DIR, { recursive: true });
   const configFile = path.join(OUT_DIR, 'validation-deck.jsx');
   const indexFile = path.join(OUT_DIR, 'ppt/index.html');
@@ -1699,6 +1768,19 @@ async function renderValidationDeck() {
   }
   const server = await startStaticServer(path.dirname(indexFile));
   return server;
+}
+
+function cleanEditableExportValidationOutputs() {
+  for (const name of [
+    'editable-export.pptx',
+    'editable-export-report.json',
+    'editable-theme-filter-export.pptx',
+    'editable-theme-filter-report.json',
+    'validation-deck.jsx',
+    'ppt',
+  ]) {
+    rmSync(path.join(OUT_DIR, name), { recursive: true, force: true });
+  }
 }
 
 function createValidationDeckSource() {
