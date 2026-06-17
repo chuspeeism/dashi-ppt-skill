@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, statSync, createReadStream } from 'node:fs';
-import https from 'node:https';
+import http from 'node:http';
+import net from 'node:net';
 import os from 'node:os';
 import path from 'node:path';
+import tls from 'node:tls';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const SERVE_ROOT = path.resolve(ROOT, process.argv[2] || 'output/theme-preview/ppt');
@@ -25,50 +27,88 @@ if (!existsSync(path.join(SERVE_ROOT, 'index.html'))) {
 
 ensureCertificate();
 
-const server = https.createServer(
-  {
-    key: readFileSync(CERT_KEY),
-    cert: readFileSync(CERT_FILE),
-  },
-  async (req, res) => {
-    const requestUrl = new URL(req.url || '/', 'https://local.invalid');
-    if (req.method === 'POST' && requestUrl.pathname === '/api/export-editable-pptx') {
-      await handleEditablePptxExport(req, res);
-      return;
-    }
-    if (req.method === 'GET' && requestUrl.pathname === '/api/export-editable-pptx-progress') {
-      handleEditablePptxProgress(req, res, requestUrl);
-      return;
-    }
-    if ((req.method === 'GET' || req.method === 'HEAD') && requestUrl.pathname === '/api/export-editable-pptx-download') {
-      handleEditablePptxDownload(req, res, requestUrl);
-      return;
-    }
+const requestHandler = async (req, res) => {
+  const requestUrl = new URL(req.url || '/', 'https://local.invalid');
+  if (req.method === 'POST' && requestUrl.pathname === '/api/export-editable-pptx') {
+    await handleEditablePptxExport(req, res);
+    return;
+  }
+  if (req.method === 'GET' && requestUrl.pathname === '/api/export-editable-pptx-progress') {
+    handleEditablePptxProgress(req, res, requestUrl);
+    return;
+  }
+  if ((req.method === 'GET' || req.method === 'HEAD') && requestUrl.pathname === '/api/export-editable-pptx-download') {
+    handleEditablePptxDownload(req, res, requestUrl);
+    return;
+  }
+  if (req.method === 'POST' && requestUrl.pathname === '/api/export-pdf') {
+    await handlePdfExport(req, res);
+    return;
+  }
+  if (req.method === 'GET' && requestUrl.pathname === '/api/export-pdf-progress') {
+    handlePdfProgress(req, res, requestUrl);
+    return;
+  }
+  if ((req.method === 'GET' || req.method === 'HEAD') && requestUrl.pathname === '/api/export-pdf-download') {
+    handlePdfDownload(req, res, requestUrl);
+    return;
+  }
 
-    const pathname = safePathname(req.url || '/');
-    const requested = path.join(SERVE_ROOT, pathname === '/' ? 'index.html' : pathname);
-    const file = resolveFile(requested);
+  const pathname = safePathname(req.url || '/');
+  const requested = path.join(SERVE_ROOT, pathname === '/' ? 'index.html' : pathname);
+  const file = resolveFile(requested);
 
-    if (!file) {
-      res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8' });
-      res.end('Not found');
-      return;
-    }
+  if (!file) {
+    res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8' });
+    res.end('Not found');
+    return;
+  }
 
-    res.writeHead(200, {
-      'content-type': contentType(file),
-      'cache-control': 'no-store',
-    });
-    createReadStream(file).pipe(res);
-  },
-);
+  res.writeHead(200, {
+    'content-type': contentType(file),
+    'cache-control': 'no-store',
+  });
+  createReadStream(file).pipe(res);
+};
+
+const httpServer = http.createServer(requestHandler);
+const secureContext = tls.createSecureContext({
+  key: readFileSync(CERT_KEY),
+  cert: readFileSync(CERT_FILE),
+});
+const server = createHttpHttpsMuxServer(httpServer, secureContext);
 
 server.listen(PORT, HOST, () => {
-  const primary = `https://${LOCAL_HOSTNAME}.local:${PORT}/`;
-  const urls = [primary, ...LAN_IPS.map((ip) => `https://${ip}:${PORT}/`)];
-  console.log(`HTTPS preview serving ${SERVE_ROOT}`);
+  const httpPrimary = `http://${LOCAL_HOSTNAME}.local:${PORT}/`;
+  const httpsPrimary = `https://${LOCAL_HOSTNAME}.local:${PORT}/`;
+  const urls = [httpPrimary, httpsPrimary, ...LAN_IPS.flatMap((ip) => [`http://${ip}:${PORT}/`, `https://${ip}:${PORT}/`])];
+  console.log(`HTTP/HTTPS preview serving ${SERVE_ROOT}`);
   console.log(`Open: ${urls.join(' or ')}`);
 });
+
+function createHttpHttpsMuxServer(plainServer, context) {
+  return net.createServer(socket => {
+    socket.once('data', chunk => {
+      socket.pause();
+      socket.unshift(chunk);
+      if (isTlsClientHello(chunk)) {
+        const tlsSocket = new tls.TLSSocket(socket, { isServer: true, secureContext: context });
+        tlsSocket.on('error', () => {});
+        tlsSocket.once('secure', () => {
+          plainServer.emit('connection', tlsSocket);
+        });
+        tlsSocket.resume();
+        return;
+      }
+      plainServer.emit('connection', socket);
+      socket.resume();
+    });
+  });
+}
+
+function isTlsClientHello(chunk) {
+  return chunk?.[0] === 0x16;
+}
 
 function ensureCertificate() {
   mkdirSync(CERT_DIR, { recursive: true });
@@ -218,6 +258,119 @@ async function handleEditablePptxExport(req, res) {
   }
 }
 
+async function handlePdfExport(req, res) {
+  let progressId = null;
+  try {
+    if (!isAllowedExportRequest(req)) {
+      res.writeHead(403, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
+      res.end(JSON.stringify({ error: 'Forbidden export origin' }));
+      return;
+    }
+    const payload = await readJsonBody(req);
+    progressId = safeProgressId(payload.progressId);
+    updateExportProgress(progressId, { stage: 'queued', detail: '服务端接收 PDF 导出请求', percent: 4 });
+    const [{ chromium }, { exportScreenshotPdfFromUrl }] = await Promise.all([
+      import('playwright-core'),
+      import('../src/export-pdf/screenshot.mjs'),
+    ]);
+    updateExportProgress(progressId, { stage: 'launching', detail: '启动截图浏览器', percent: 6 });
+    const browser = await chromium.launch({ headless: true, executablePath: getChromePath() });
+    const baseName = `${timestampForFile()}-${safeDownloadName(payload.fileName || 'presentation')}`;
+    const outFile = path.join(EXPORT_DIR, `${baseName}.pdf`);
+    const reportFile = path.join(EXPORT_DIR, `${baseName}.pdf.json`);
+    let result;
+    try {
+      const sourcePath = typeof payload.sourcePath === 'string' && payload.sourcePath.startsWith('/') ? payload.sourcePath : '/';
+      const url = `https://localhost:${PORT}${sourcePath}`;
+      result = await exportScreenshotPdfFromUrl(browser, url, {
+        outFile,
+        reportFile,
+        title: payload.title || 'Deck PDF Export',
+        snapshot: payload.snapshot || null,
+        batchSize: payload.batchSize,
+        onProgress: update => updateExportProgress(progressId, update),
+      });
+    } finally {
+      await closeBrowser(browser);
+    }
+    updateExportProgress(progressId, { stage: 'download-ready', detail: '准备浏览器下载', percent: 100, done: true });
+
+    res.writeHead(200, {
+      'content-type': 'application/json;charset=utf-8',
+      'cache-control': 'no-store',
+    });
+    res.end(JSON.stringify({
+      ok: true,
+      screenshot: true,
+      filePath: outFile,
+      reportPath: reportFile,
+      relativePath: path.relative(ROOT, outFile),
+      downloadUrl: `/api/export-pdf-download?file=${encodeURIComponent(path.basename(outFile))}`,
+      downloadName: path.basename(outFile),
+      pages: result.pages,
+      generationMode: result.generationMode,
+      batchSize: result.batchSize,
+      slideReports: result.slideReports,
+    }));
+  } catch (error) {
+    updateExportProgress(progressId, { stage: 'failed', detail: error.message || 'PDF export failed', percent: 100, done: true, error: true });
+    console.error('[pdf export]', error);
+    res.writeHead(500, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
+    res.end(JSON.stringify({ error: error.message || 'PDF export failed' }));
+  }
+}
+
+function handlePdfProgress(req, res, requestUrl) {
+  if (!isAllowedExportRequest(req)) {
+    res.writeHead(403, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
+    res.end(JSON.stringify({ error: 'Forbidden export origin' }));
+    return;
+  }
+  const id = safeProgressId(requestUrl.searchParams.get('id'));
+  const state = id ? EXPORT_PROGRESS.get(id) : null;
+  res.writeHead(200, {
+    'content-type': 'application/json;charset=utf-8',
+    'cache-control': 'no-store',
+  });
+  res.end(JSON.stringify(state || { stage: 'pending', detail: '等待服务端进度', percent: 0, done: false }));
+}
+
+function handlePdfDownload(req, res, requestUrl) {
+  const name = path.basename(requestUrl.searchParams.get('file') || '');
+  if (!name || !/\.pdf$/i.test(name)) {
+    res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8', 'cache-control': 'no-store' });
+    res.end('Not found');
+    return;
+  }
+  const file = path.resolve(EXPORT_DIR, name);
+  if (!file.startsWith(EXPORT_DIR + path.sep)) {
+    res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8', 'cache-control': 'no-store' });
+    res.end('Not found');
+    return;
+  }
+  let stat;
+  try {
+    stat = statSync(file);
+    if (!stat.isFile()) throw new Error('not-file');
+  } catch {
+    res.writeHead(404, { 'content-type': 'text/plain;charset=utf-8', 'cache-control': 'no-store' });
+    res.end('Not found');
+    return;
+  }
+  res.writeHead(200, {
+    'content-type': 'application/pdf',
+    'content-length': stat.size,
+    'content-disposition': `attachment; filename="${asciiDownloadName(name)}"; filename*=UTF-8''${encodeRFC5987(name)}`,
+    'cache-control': 'no-store',
+    'x-content-type-options': 'nosniff',
+  });
+  if (req.method === 'HEAD') {
+    res.end();
+    return;
+  }
+  createReadStream(file).pipe(res);
+}
+
 function handleEditablePptxProgress(req, res, requestUrl) {
   if (!isAllowedExportRequest(req)) {
     res.writeHead(403, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
@@ -280,12 +433,11 @@ function encodeRFC5987(value) {
 function isAllowedExportRequest(req) {
   const origin = req.headers.origin;
   if (!origin) return true;
-  const allowed = new Set([
-    `https://localhost:${PORT}`,
-    `https://127.0.0.1:${PORT}`,
-    `https://${LOCAL_HOSTNAME}.local:${PORT}`,
-    ...LAN_IPS.map(ip => `https://${ip}:${PORT}`),
-  ]);
+  const allowedHosts = ['localhost', '127.0.0.1', `${LOCAL_HOSTNAME}.local`, ...LAN_IPS];
+  const allowed = new Set(allowedHosts.flatMap(host => [
+    `http://${host}:${PORT}`,
+    `https://${host}:${PORT}`,
+  ]));
   return allowed.has(origin);
 }
 
@@ -366,6 +518,7 @@ async function closeBrowser(browser) {
 }
 
 function getLocalHostname() {
+  if (process.env.DASHI_PPT_PREVIEW_NAME) return process.env.DASHI_PPT_PREVIEW_NAME;
   try {
     return execFileSync('scutil', ['--get', 'LocalHostName'], { encoding: 'utf8' }).trim() || os.hostname().split('.')[0];
   } catch {

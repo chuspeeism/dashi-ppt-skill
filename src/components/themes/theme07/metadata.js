@@ -22,21 +22,30 @@ export const pages = [
         "label": "光晕扫光",
         "type": "toggle",
         "default": true,
-        "desc": "右上角放射光晕与透镜光斑装饰的显隐。"
+        "desc": "右上角放射光晕与透镜光斑装饰的显隐。",
+        "publicKey": "showSweep",
+        "publicLabel": "光晕扫光",
+        "description": "右上角放射光晕与透镜光斑装饰的显隐。"
       },
       {
         "key": "showTags",
         "label": "关键词标签",
         "type": "toggle",
         "default": true,
-        "desc": "底部关键词标签行（降本 / 提效 …）的显隐。"
+        "desc": "底部关键词标签行（降本 / 提效 …）的显隐。",
+        "publicKey": "showTags",
+        "publicLabel": "关键词标签",
+        "description": "底部关键词标签行（降本 / 提效 …）的显隐。"
       },
       {
         "key": "showBars",
         "label": "条码图形",
         "type": "toggle",
         "default": true,
-        "desc": "底部绿 / 琥珀 / 红条码图形的显隐。"
+        "desc": "底部绿 / 琥珀 / 红条码图形的显隐。",
+        "publicKey": "showBars",
+        "publicLabel": "条码图形",
+        "description": "底部绿 / 琥珀 / 红条码图形的显隐。"
       },
       {
         "key": "accentColor",
@@ -50,7 +59,10 @@ export const pages = [
           "#F2A93B",
           "#0D100A"
         ],
-        "desc": "品牌强调色（作用于 Logo、条码与高亮）。"
+        "desc": "品牌强调色（作用于 Logo、条码与高亮）。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色（作用于 Logo、条码与高亮）。"
       }
     ],
     "defaultProps": {
@@ -87,14 +99,20 @@ export const pages = [
         "label": "年份时间轴",
         "type": "toggle",
         "default": true,
-        "desc": "正文下方 2026—2028 三年时间轴的显隐。"
+        "desc": "正文下方 2026—2028 三年时间轴的显隐。",
+        "publicKey": "showTimeline",
+        "publicLabel": "年份时间轴",
+        "description": "正文下方 2026—2028 三年时间轴的显隐。"
       },
       {
         "key": "showLenses",
         "label": "透镜光斑",
         "type": "toggle",
         "default": true,
-        "desc": "右侧绿色面板上的透镜光斑装饰显隐。"
+        "desc": "右侧绿色面板上的透镜光斑装饰显隐。",
+        "publicKey": "showLenses",
+        "publicLabel": "透镜光斑",
+        "description": "右侧绿色面板上的透镜光斑装饰显隐。"
       },
       {
         "key": "accentColor",
@@ -108,7 +126,10 @@ export const pages = [
           "#F2A93B",
           "#0D100A"
         ],
-        "desc": "品牌强调色（作用于结语短条与高亮）。"
+        "desc": "品牌强调色（作用于结语短条与高亮）。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色（作用于结语短条与高亮）。"
       }
     ],
     "defaultProps": {
@@ -148,21 +169,30 @@ export const pages = [
         "label": "面包屑标签",
         "type": "toggle",
         "default": true,
-        "desc": "标题上方 RETAIL · OPERATION · GROWTH 面包屑显隐。"
+        "desc": "标题上方 RETAIL · OPERATION · GROWTH 面包屑显隐。",
+        "publicKey": "showCrumbs",
+        "publicLabel": "面包屑标签",
+        "description": "标题上方 RETAIL · OPERATION · GROWTH 面包屑显隐。"
       },
       {
         "key": "showSlogan",
         "label": "口号胶囊",
         "type": "toggle",
         "default": true,
-        "desc": "深色口号胶囊条的显隐。"
+        "desc": "深色口号胶囊条的显隐。",
+        "publicKey": "showSlogan",
+        "publicLabel": "口号胶囊",
+        "description": "深色口号胶囊条的显隐。"
       },
       {
         "key": "showBase",
         "label": "底部弧形",
         "type": "toggle",
         "default": true,
-        "desc": "底部绿色弧形台座（含透镜与条码）的显隐。"
+        "desc": "底部绿色弧形台座（含透镜与条码）的显隐。",
+        "publicKey": "showBase",
+        "publicLabel": "底部弧形",
+        "description": "底部绿色弧形台座（含透镜与条码）的显隐。"
       },
       {
         "key": "accentColor",
@@ -176,7 +206,10 @@ export const pages = [
           "#F2A93B",
           "#0D100A"
         ],
-        "desc": "品牌强调色（作用于分隔点与底部台座）。"
+        "desc": "品牌强调色（作用于分隔点与底部台座）。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色（作用于分隔点与底部台座）。"
       }
     ],
     "defaultProps": {
@@ -208,17 +241,23 @@ export const pages = [
     "controls": [
       {
         "key": "showNetwork",
-        "label": "供应链网络图",
+        "label": "关系网络图",
         "type": "toggle",
         "default": true,
-        "desc": "右侧供应链节点网络 SVG 装饰的显隐。"
+        "desc": "右侧关系节点网络 SVG 装饰的显隐。",
+        "publicKey": "showNetwork",
+        "publicLabel": "关系网络图",
+        "description": "右侧关系节点网络 SVG 装饰的显隐。"
       },
       {
         "key": "showFrame",
         "label": "内描边框",
         "type": "toggle",
         "default": true,
-        "desc": "高级感内描边框的显隐。"
+        "desc": "高级感内描边框的显隐。",
+        "publicKey": "showFrame",
+        "publicLabel": "内描边框",
+        "description": "高级感内描边框的显隐。"
       },
       {
         "key": "accentColor",
@@ -232,7 +271,10 @@ export const pages = [
           "#F5A623",
           "#FFFFFF"
         ],
-        "desc": "品牌强调色（作用于网络节点、高亮词与短条）。"
+        "desc": "品牌强调色（作用于网络节点、高亮词与短条）。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色（作用于网络节点、高亮词与短条）。"
       }
     ],
     "defaultProps": {
@@ -278,7 +320,10 @@ export const pages = [
             "label": "深色"
           }
         ],
-        "desc": "封面底色与氛围：浅色 + 渐变光晕 / 纯净浅色 / 深色反白。"
+        "desc": "封面底色与氛围：浅色 + 渐变光晕 / 纯净浅色 / 深色反白。",
+        "publicKey": "backgroundVariant",
+        "publicLabel": "背景风格",
+        "description": "封面底色与氛围：浅色 + 渐变光晕 / 纯净浅色 / 深色反白。"
       },
       {
         "key": "heroMotif",
@@ -299,21 +344,30 @@ export const pages = [
             "label": "组合"
           }
         ],
-        "desc": "右侧主视觉：品牌透镜光斑 / 大号焦点数字 / 两者组合。"
+        "desc": "右侧主视觉：品牌透镜光斑 / 大号焦点数字 / 两者组合。",
+        "publicKey": "heroMotif",
+        "publicLabel": "主视觉",
+        "description": "右侧主视觉：品牌透镜光斑 / 大号焦点数字 / 两者组合。"
       },
       {
         "key": "numberSlant",
         "label": "数字倾斜",
         "type": "toggle",
         "default": true,
-        "desc": "大号数字采用品牌标志性的倾斜处理。"
+        "desc": "大号数字采用品牌标志性的倾斜处理。",
+        "publicKey": "numberSlant",
+        "publicLabel": "数字倾斜",
+        "description": "大号数字采用品牌标志性的倾斜处理。"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "顶部标签、底部热力条与角落光晕等装饰细节的显隐。"
+        "desc": "顶部标签、底部热力条与角落光晕等装饰细节的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "顶部标签、底部热力条与角落光晕等装饰细节的显隐。"
       },
       {
         "key": "accentColor",
@@ -327,7 +381,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于渐变、透镜、数字与高亮。"
+        "desc": "品牌强调色，作用于渐变、透镜、数字与高亮。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于渐变、透镜、数字与高亮。"
       }
     ],
     "defaultProps": {
@@ -382,14 +439,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "底部核心指标卡的数量（2–4）。"
+        "desc": "底部核心指标卡的数量（2–4）。",
+        "publicKey": "cardCount",
+        "publicLabel": "指标卡数量",
+        "description": "底部核心指标卡的数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮其中一张指标卡作为视觉重点。"
+        "desc": "是否高亮其中一张指标卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮其中一张指标卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -414,7 +477,10 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的指标卡。"
+        "desc": "选择被高亮的指标卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标卡。"
       },
       {
         "key": "chartType",
@@ -431,14 +497,20 @@ export const pages = [
             "label": "环形图"
           }
         ],
-        "desc": "右侧赛道占比的呈现方式。"
+        "desc": "右侧分类占比的呈现方式。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "右侧分类占比的呈现方式。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "关键词标签与背景光晕等装饰的显隐。"
+        "desc": "关键词标签与背景光晕等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "关键词标签与背景光晕等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -452,7 +524,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -548,7 +623,10 @@ export const pages = [
         "min": 3,
         "max": 7,
         "step": 1,
-        "desc": "展示的章节卡数量（3–7）。"
+        "desc": "展示的章节卡数量（3–7）。",
+        "publicKey": "cardCount",
+        "publicLabel": "章节卡数量",
+        "description": "展示的章节卡数量（3–7）。"
       },
       {
         "key": "columns",
@@ -565,14 +643,20 @@ export const pages = [
             "label": "4 列"
           }
         ],
-        "desc": "章节卡的网格列数，影响排布节奏。"
+        "desc": "章节卡的网格列数，影响排布节奏。",
+        "publicKey": "columns",
+        "publicLabel": "每行列数",
+        "description": "章节卡的网格列数，影响排布节奏。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一章节卡作为阅读重点。"
+        "desc": "是否高亮某一章节卡作为阅读重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一章节卡作为阅读重点。"
       },
       {
         "key": "focusIndex",
@@ -609,14 +693,20 @@ export const pages = [
             "label": "第 7 个"
           }
         ],
-        "desc": "选择被高亮的章节卡。"
+        "desc": "选择被高亮的章节卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的章节卡。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "序号水印与条码等装饰的显隐。"
+        "desc": "序号水印与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "序号水印与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -630,7 +720,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -701,7 +794,10 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "展示的方法层数量（1–3）。"
+        "desc": "展示的方法层数量（1–3）。",
+        "publicKey": "cardCount",
+        "publicLabel": "方法卡数量",
+        "description": "展示的方法层数量（1–3）。"
       },
       {
         "key": "layout",
@@ -718,14 +814,20 @@ export const pages = [
             "label": "并排"
           }
         ],
-        "desc": "方法卡的排布：纵向堆叠或横向并排。"
+        "desc": "方法卡的排布：纵向堆叠或横向并排。",
+        "publicKey": "layout",
+        "publicLabel": "排布方式",
+        "description": "方法卡的排布：纵向堆叠或横向并排。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一方法层作为重点。"
+        "desc": "是否高亮某一方法层作为重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一方法层作为重点。"
       },
       {
         "key": "focusIndex",
@@ -746,14 +848,20 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的方法卡。"
+        "desc": "选择被高亮的方法卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的方法卡。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "底部方法链与条码等装饰的显隐。"
+        "desc": "底部方法链与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "底部方法链与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -767,7 +875,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -842,7 +953,10 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "展示的案例卡数量（1–3）。"
+        "desc": "展示的案例卡数量（1–3）。",
+        "publicKey": "cardCount",
+        "publicLabel": "卡片数量",
+        "description": "展示的案例卡数量（1–3）。"
       },
       {
         "key": "imageCount",
@@ -852,7 +966,10 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "带图片槽的卡片数量（0–n）；其余卡片以品牌图形填充，保持构图完整。"
+        "desc": "带图片槽的卡片数量（0–n）；其余卡片以品牌图形填充，保持构图完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "带图片槽的卡片数量（0–n）；其余卡片以品牌图形填充，保持构图完整。"
       },
       {
         "key": "imageRatio",
@@ -877,14 +994,20 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽的比例；自适应会跟随用户上传图片的原始比例。"
+        "desc": "图片槽的比例；自适应会跟随用户上传图片的原始比例。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽的比例；自适应会跟随用户上传图片的原始比例。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张案例卡作为视觉重点。"
+        "desc": "是否高亮某一张案例卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张案例卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -905,14 +1028,20 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的案例卡。"
+        "desc": "选择被高亮的案例卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的案例卡。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "重点标签、背景光晕与条码等装饰的显隐。"
+        "desc": "重点标签、背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "重点标签、背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -926,7 +1055,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -1009,21 +1141,30 @@ export const pages = [
             "label": "热力格"
           }
         ],
-        "desc": "月度热度的呈现方式：竖向热力柱 / 方格热力图。"
+        "desc": "月度热度的呈现方式：竖向热力柱 / 方格热力图。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "月度热度的呈现方式：竖向热力柱 / 方格热力图。"
       },
       {
         "key": "showSecondary",
         "label": "辅助序列",
         "type": "toggle",
         "default": true,
-        "desc": "叠加月度均值参考线。"
+        "desc": "叠加月度均值参考线。",
+        "publicKey": "showSecondary",
+        "publicLabel": "辅助序列",
+        "description": "叠加月度均值参考线。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个月作为视觉重点。"
+        "desc": "是否高亮某一个月作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个月作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -1080,14 +1221,20 @@ export const pages = [
             "label": "12 月"
           }
         ],
-        "desc": "选择被高亮的月份。"
+        "desc": "选择被高亮的月份。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的月份。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "峰值标记、背景光晕与底部条码等装饰的显隐。"
+        "desc": "峰值标记、背景光晕与底部条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "峰值标记、背景光晕与底部条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -1101,7 +1248,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于热度配色与高亮。"
+        "desc": "品牌强调色，作用于热度配色与高亮。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于热度配色与高亮。"
       }
     ],
     "defaultProps": {
@@ -1159,14 +1309,20 @@ export const pages = [
         "min": 5,
         "max": 10,
         "step": 1,
-        "desc": "榜单展示的公司数量（5–10）。"
+        "desc": "榜单展示的公司数量（5–10）。",
+        "publicKey": "rowCount",
+        "publicLabel": "公司数量",
+        "description": "榜单展示的公司数量（5–10）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮榜单前列作为视觉重点。"
+        "desc": "是否高亮榜单前列作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮榜单前列作为视觉重点。"
       },
       {
         "key": "focusCount",
@@ -1176,21 +1332,30 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "高亮的前列条目数量（前 N 名）。"
+        "desc": "高亮的前列条目数量（前 N 名）。",
+        "publicKey": "itemCount",
+        "publicLabel": "重点数量",
+        "description": "高亮的前列条目数量（前 N 名）。"
       },
       {
         "key": "showSecondary",
         "label": "分类配色",
         "type": "toggle",
         "default": true,
-        "desc": "按赛道为条形与圆点配色；关闭后为单色。"
+        "desc": "按分类为条形与圆点配色；关闭后为单色。",
+        "publicKey": "showSecondary",
+        "publicLabel": "分类配色",
+        "description": "按分类为条形与圆点配色；关闭后为单色。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "赛道图例、背景光晕与条码等装饰的显隐。"
+        "desc": "分类图例、背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "分类图例、背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -1204,7 +1369,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -1288,7 +1456,10 @@ export const pages = [
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一象限作为视觉重点。"
+        "desc": "是否高亮某一象限作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一象限作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -1313,21 +1484,30 @@ export const pages = [
             "label": "等待验证"
           }
         ],
-        "desc": "选择被高亮的象限。"
+        "desc": "选择被高亮的象限。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的象限。"
       },
       {
         "key": "showSecondary",
         "label": "辅助信息",
         "type": "toggle",
         "default": true,
-        "desc": "各象限代表方向标签的显隐。"
+        "desc": "各象限代表方向标签的显隐。",
+        "publicKey": "showSecondary",
+        "publicLabel": "辅助信息",
+        "description": "各象限代表方向标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "坐标轴标签、箭头与背景光晕等装饰的显隐。"
+        "desc": "坐标轴标签、箭头与背景光晕等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "坐标轴标签、箭头与背景光晕等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -1341,7 +1521,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -1423,7 +1606,10 @@ export const pages = [
         "min": 2,
         "max": 5,
         "step": 1,
-        "desc": "展示的风险卡数量（2–5）。"
+        "desc": "展示的状态卡数量（2–5）。",
+        "publicKey": "cardCount",
+        "publicLabel": "卡片数量",
+        "description": "展示的状态卡数量（2–5）。"
       },
       {
         "key": "imageCount",
@@ -1433,21 +1619,30 @@ export const pages = [
         "min": 0,
         "max": 1,
         "step": 1,
-        "desc": "主视觉图片槽数量（0–1）；为 0 时风险卡占据整页宽度。图片以裁切填充侧栏，可双击重新取景。"
+        "desc": "主视觉图片槽数量（0–1）；为 0 时状态卡占据整页宽度。图片以裁切填充侧栏，可双击重新取景。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉图片槽数量（0–1）；为 0 时状态卡占据整页宽度。图片以裁切填充侧栏，可双击重新取景。"
       },
       {
         "key": "showSecondary",
         "label": "辅助信息",
         "type": "toggle",
         "default": true,
-        "desc": "顶部风险传导链的显隐。"
+        "desc": "顶部状态传导链的显隐。",
+        "publicKey": "showSecondary",
+        "publicLabel": "辅助信息",
+        "description": "顶部状态传导链的显隐。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一项风险作为视觉重点。"
+        "desc": "是否高亮某一项状态作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一项状态作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -1476,14 +1671,20 @@ export const pages = [
             "label": "第 5 个"
           }
         ],
-        "desc": "选择被高亮的风险卡。"
+        "desc": "选择被高亮的状态卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的状态卡。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "警示标记、背景光晕与条码等装饰的显隐。"
+        "desc": "警示标记、背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "警示标记、背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -1497,7 +1698,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -1562,7 +1766,10 @@ export const pages = [
         "min": 1,
         "max": 2,
         "step": 1,
-        "desc": "并排对比栏数量（1–2）；为 1 时单栏占据整行。"
+        "desc": "并排对比栏数量（1–2）；为 1 时单栏占据整行。",
+        "publicKey": "columnCount",
+        "publicLabel": "对比栏数量",
+        "description": "并排对比栏数量（1–2）；为 1 时单栏占据整行。"
       },
       {
         "key": "itemCount",
@@ -1572,14 +1779,20 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "每个对比栏内的方向条目数量（1–3）。"
+        "desc": "每个对比栏内的方向条目数量（1–3）。",
+        "publicKey": "itemCount",
+        "publicLabel": "条目数量",
+        "description": "每个对比栏内的方向条目数量（1–3）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个对比栏作为视觉重点。"
+        "desc": "是否高亮某一个对比栏作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个对比栏作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -1596,14 +1809,20 @@ export const pages = [
             "label": "第 2 栏"
           }
         ],
-        "desc": "选择被高亮的对比栏。"
+        "desc": "选择被高亮的对比栏。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的对比栏。"
       },
       {
         "key": "showTimeline",
         "label": "阶段时间轴",
         "type": "toggle",
         "default": true,
-        "desc": "底部阶段性时间轴的显隐。"
+        "desc": "底部阶段性时间轴的显隐。",
+        "publicKey": "showTimeline",
+        "publicLabel": "阶段时间轴",
+        "description": "底部阶段性时间轴的显隐。"
       },
       {
         "key": "nodeCount",
@@ -1613,14 +1832,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "时间轴上的阶段节点数量（2–3）。"
+        "desc": "时间轴上的阶段节点数量（2–3）。",
+        "publicKey": "nodeCount",
+        "publicLabel": "节点数量",
+        "description": "时间轴上的阶段节点数量（2–3）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -1634,7 +1859,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -1735,14 +1963,20 @@ export const pages = [
             "label": "左对齐"
           }
         ],
-        "desc": "金句与辅助信息的整体对齐方式。"
+        "desc": "金句与辅助信息的整体对齐方式。",
+        "publicKey": "align",
+        "publicLabel": "对齐方式",
+        "description": "金句与辅助信息的整体对齐方式。"
       },
       {
         "key": "showConclusions",
         "label": "辅助信息",
         "type": "toggle",
         "default": true,
-        "desc": "底部核心结论行的显隐。"
+        "desc": "底部核心结论行的显隐。",
+        "publicKey": "showConclusions",
+        "publicLabel": "辅助信息",
+        "description": "底部核心结论行的显隐。"
       },
       {
         "key": "conclusionCount",
@@ -1752,28 +1986,40 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "展示的核心结论条目数量（0–3）。"
+        "desc": "展示的核心结论条目数量（0–3）。",
+        "publicKey": "itemCount",
+        "publicLabel": "结论数量",
+        "description": "展示的核心结论条目数量（0–3）。"
       },
       {
         "key": "showQuoteMark",
         "label": "引号装饰",
         "type": "toggle",
         "default": true,
-        "desc": "超大引号装饰符号的显隐。"
+        "desc": "超大引号装饰符号的显隐。",
+        "publicKey": "showQuoteMark",
+        "publicLabel": "引号装饰",
+        "description": "超大引号装饰符号的显隐。"
       },
       {
         "key": "showSource",
         "label": "数据来源",
         "type": "toggle",
         "default": true,
-        "desc": "底部数据来源说明行的显隐。"
+        "desc": "底部数据来源说明行的显隐。",
+        "publicKey": "showSource",
+        "publicLabel": "数据来源",
+        "description": "底部数据来源说明行的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、镜头光斑与条码等装饰的显隐。"
+        "desc": "背景光晕、镜头光斑与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、镜头光斑与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -1787,7 +2033,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于金句重点词与装饰。"
+        "desc": "品牌强调色，作用于金句重点词与装饰。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于金句重点词与装饰。"
       }
     ],
     "defaultProps": {
@@ -1849,7 +2098,10 @@ export const pages = [
             "label": "浅色"
           }
         ],
-        "desc": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。"
+        "desc": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。",
+        "publicKey": "backgroundVariant",
+        "publicLabel": "背景风格",
+        "description": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。"
       },
       {
         "key": "layout",
@@ -1866,21 +2118,30 @@ export const pages = [
             "label": "居中"
           }
         ],
-        "desc": "标题与关键词的整体排布方式。"
+        "desc": "标题与关键词的整体排布方式。",
+        "publicKey": "layout",
+        "publicLabel": "排版",
+        "description": "标题与关键词的整体排布方式。"
       },
       {
         "key": "showIndex",
         "label": "章节序号",
         "type": "toggle",
         "default": true,
-        "desc": "超大章节编号水印的显隐。"
+        "desc": "超大章节编号水印的显隐。",
+        "publicKey": "showIndex",
+        "publicLabel": "章节序号",
+        "description": "超大章节编号水印的显隐。"
       },
       {
         "key": "showKeywords",
         "label": "关键词",
         "type": "toggle",
         "default": true,
-        "desc": "本章关键词标签行的显隐。"
+        "desc": "本章关键词标签行的显隐。",
+        "publicKey": "showKeywords",
+        "publicLabel": "关键词",
+        "description": "本章关键词标签行的显隐。"
       },
       {
         "key": "keywordCount",
@@ -1890,14 +2151,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的关键词数量（2–4）。"
+        "desc": "展示的关键词数量（2–4）。",
+        "publicKey": "keywordCount",
+        "publicLabel": "关键词数量",
+        "description": "展示的关键词数量（2–4）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "镜头光斑、背景光晕与条码等装饰的显隐。"
+        "desc": "镜头光斑、背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "镜头光斑、背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -1911,7 +2178,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -1960,7 +2230,10 @@ export const pages = [
             "label": "聚合气泡"
           }
         ],
-        "desc": "散点：逐笔交易点阵；聚合气泡：每个区间汇总为一个气泡。"
+        "desc": "散点：逐笔交易点阵；聚合气泡：每个区间汇总为一个气泡。",
+        "publicKey": "viewMode",
+        "publicLabel": "图表类型",
+        "description": "散点：逐笔交易点阵；聚合气泡：每个区间汇总为一个气泡。"
       },
       {
         "key": "bandCount",
@@ -1970,7 +2243,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "金额区间分组数量（2–4）。"
+        "desc": "数值区间分组数量（2–4）。",
+        "publicKey": "bandCount",
+        "publicLabel": "分组数量",
+        "description": "数值区间分组数量（2–4）。"
       },
       {
         "key": "bubbleScale",
@@ -1980,14 +2256,20 @@ export const pages = [
         "min": 0.6,
         "max": 1.4,
         "step": 0.1,
-        "desc": "气泡整体大小比例。"
+        "desc": "气泡整体大小比例。",
+        "publicKey": "bubbleScale",
+        "publicLabel": "气泡大小",
+        "description": "气泡整体大小比例。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一金额区间作为视觉重点。"
+        "desc": "是否高亮某一数值区间作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一数值区间作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -2012,21 +2294,30 @@ export const pages = [
             "label": "第 4 组"
           }
         ],
-        "desc": "选择被高亮的金额区间。"
+        "desc": "选择被高亮的数值区间。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的数值区间。"
       },
       {
         "key": "showLegend",
         "label": "图例",
         "type": "toggle",
         "default": true,
-        "desc": "赛道颜色图例的显隐。"
+        "desc": "分类颜色图例的显隐。",
+        "publicKey": "showLegend",
+        "publicLabel": "图例",
+        "description": "分类颜色图例的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -2040,7 +2331,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -2135,7 +2429,10 @@ export const pages = [
             "label": "面积"
           }
         ],
-        "desc": "主图表（月度序列）的呈现方式：柱状 / 折线 / 面积。"
+        "desc": "主图表（月度序列）的呈现方式：柱状 / 折线 / 面积。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "主图表（月度序列）的呈现方式：柱状 / 折线 / 面积。"
       },
       {
         "key": "metricCount",
@@ -2145,14 +2442,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "指标卡数量（2–4）；自动重排为完整网格。"
+        "desc": "指标卡数量（2–4）；自动重排为完整网格。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "指标卡数量（2–4）；自动重排为完整网格。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张指标卡作为视觉重点。"
+        "desc": "是否高亮某一张指标卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张指标卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -2177,21 +2480,30 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的指标卡。"
+        "desc": "选择被高亮的指标卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标卡。"
       },
       {
         "key": "showContext",
         "label": "背景对比",
         "type": "toggle",
         "default": true,
-        "desc": "全年季度对比条的显隐，用于交代当前季度在全年中的位置。"
+        "desc": "全年时间段对比条的显隐，用于交代当前时间段在全年中的位置。",
+        "publicKey": "showContext",
+        "publicLabel": "背景对比",
+        "description": "全年时间段对比条的显隐，用于交代当前时间段在全年中的位置。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -2205,7 +2517,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于图表、季度标记与高亮卡。"
+        "desc": "品牌强调色，作用于图表、时间段标记与高亮卡。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于图表、时间段标记与高亮卡。"
       }
     ],
     "defaultProps": {
@@ -2299,28 +2614,40 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "表格展示的行数量（3–5）。"
+        "desc": "表格展示的行数量（3–5）。",
+        "publicKey": "rowCount",
+        "publicLabel": "行数量",
+        "description": "表格展示的行数量（3–5）。"
       },
       {
         "key": "showChange",
         "label": "环比列",
         "type": "toggle",
         "default": true,
-        "desc": "环比变化列（涨跌徽标）的显隐。"
+        "desc": "环比变化列（涨跌徽标）的显隐。",
+        "publicKey": "showChange",
+        "publicLabel": "环比列",
+        "description": "环比变化列（涨跌徽标）的显隐。"
       },
       {
         "key": "showJudgment",
         "label": "判断列",
         "type": "toggle",
         "default": true,
-        "desc": "信号判断列的显隐；关闭后表格更紧凑。"
+        "desc": "信号判断列的显隐；关闭后表格更紧凑。",
+        "publicKey": "showJudgment",
+        "publicLabel": "判断列",
+        "description": "信号判断列的显隐；关闭后表格更紧凑。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行作为视觉重点。"
+        "desc": "是否高亮某一行作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一行作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -2349,14 +2676,20 @@ export const pages = [
             "label": "第 5 行"
           }
         ],
-        "desc": "选择被高亮的行。"
+        "desc": "选择被高亮的行。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的行。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -2370,7 +2703,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于季度标记、高亮行与锚点数字。"
+        "desc": "品牌强调色，作用于时间段标记、高亮行与锚点数字。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于时间段标记、高亮行与锚点数字。"
       }
     ],
     "defaultProps": {
@@ -2460,7 +2796,10 @@ export const pages = [
             "label": "柱状图"
           }
         ],
-        "desc": "主视觉信息图表样式：高亮面积图 / 月度柱状图。"
+        "desc": "主视觉信息图表样式：高亮面积图 / 月度柱状图。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "主视觉信息图表样式：高亮面积图 / 月度柱状图。"
       },
       {
         "key": "metricCount",
@@ -2470,14 +2809,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "峰值指标卡数量（2–4）。"
+        "desc": "峰值指标卡数量（2–4）。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "峰值指标卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张指标卡作为视觉重点。"
+        "desc": "是否高亮某一张指标卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张指标卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -2502,35 +2847,50 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的指标卡。"
+        "desc": "选择被高亮的指标卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标卡。"
       },
       {
         "key": "showPeakMarker",
         "label": "峰值标记",
         "type": "toggle",
         "default": true,
-        "desc": "图表上峰值月份的标记与数值气泡的显隐。"
+        "desc": "图表上峰值月份的标记与数值气泡的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "峰值标记",
+        "description": "图表上峰值月份的标记与数值气泡的显隐。"
       },
       {
         "key": "showAverage",
         "label": "均值线",
         "type": "toggle",
         "default": true,
-        "desc": "全年月度均值参考线的显隐。"
+        "desc": "全年月度均值参考线的显隐。",
+        "publicKey": "showAverage",
+        "publicLabel": "均值线",
+        "description": "全年月度均值参考线的显隐。"
       },
       {
         "key": "showQuarterBand",
         "label": "区间高亮",
         "type": "toggle",
         "default": true,
-        "desc": "当前季度（Q3 · 7—9 月）高亮背景带的显隐。"
+        "desc": "当前时间段（Q3 · 7—9 月）高亮背景带的显隐。",
+        "publicKey": "showQuarterBand",
+        "publicLabel": "区间高亮",
+        "description": "当前时间段（Q3 · 7—9 月）高亮背景带的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -2544,7 +2904,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于季度标记、图表与高亮卡。"
+        "desc": "品牌强调色，作用于时间段标记、图表与高亮卡。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于时间段标记、图表与高亮卡。"
       }
     ],
     "defaultProps": {
@@ -2642,7 +3005,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "时间轴 / 曲线上的阶段节点数量（2–4）。"
+        "desc": "时间轴 / 曲线上的阶段节点数量（2–4）。",
+        "publicKey": "nodeCount",
+        "publicLabel": "节点数量",
+        "description": "时间轴 / 曲线上的阶段节点数量（2–4）。"
       },
       {
         "key": "metricCount",
@@ -2652,14 +3018,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "指标卡数量（2–4）。"
+        "desc": "指标卡数量（2–4）。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "指标卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个时间轴节点作为视觉重点。"
+        "desc": "是否高亮某一个时间轴节点作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个时间轴节点作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -2684,28 +3056,40 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的节点。"
+        "desc": "选择被高亮的节点。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的节点。"
       },
       {
         "key": "showCurve",
         "label": "趋势曲线",
         "type": "toggle",
         "default": true,
-        "desc": "年度回落曲线（面积 + 折线）的显隐。"
+        "desc": "年度回落曲线（面积 + 折线）的显隐。",
+        "publicKey": "showCurve",
+        "publicLabel": "趋势曲线",
+        "description": "年度回落曲线（面积 + 折线）的显隐。"
       },
       {
         "key": "showBaseline",
         "label": "基准参考线",
         "type": "toggle",
         "default": true,
-        "desc": "年初水平虚线参考线的显隐，用于交代“仍处高位”。"
+        "desc": "年初水平虚线参考线的显隐，用于交代“仍处高位”。",
+        "publicKey": "showBaseline",
+        "publicLabel": "基准参考线",
+        "description": "年初水平虚线参考线的显隐，用于交代“仍处高位”。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -2719,7 +3103,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于曲线、高亮节点与指标卡。"
+        "desc": "品牌强调色，作用于曲线、高亮节点与指标卡。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于曲线、高亮节点与指标卡。"
       }
     ],
     "defaultProps": {
@@ -2818,7 +3205,10 @@ export const pages = [
             "label": "棒点"
           }
         ],
-        "desc": "主图表样式：实心柱状 / 棒棒糖（细杆 + 圆点）。"
+        "desc": "主图表样式：实心柱状 / 棒棒糖（细杆 + 圆点）。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "主图表样式：实心柱状 / 棒棒糖（细杆 + 圆点）。"
       },
       {
         "key": "barCount",
@@ -2828,21 +3218,30 @@ export const pages = [
         "min": 6,
         "max": 12,
         "step": 1,
-        "desc": "展示的月份数量（6–12），自右向左裁剪。"
+        "desc": "展示的月份数量（6–12），自右向左裁剪。",
+        "publicKey": "barCount",
+        "publicLabel": "柱子数量",
+        "description": "展示的月份数量（6–12），自右向左裁剪。"
       },
       {
         "key": "highlightExtremes",
         "label": "峰谷高亮",
         "type": "toggle",
         "default": true,
-        "desc": "是否用强调色 / 警示色区分峰值与低位月份。"
+        "desc": "是否用强调色 / 警示色区分峰值与低位月份。",
+        "publicKey": "highlightExtremes",
+        "publicLabel": "峰谷高亮",
+        "description": "是否用强调色 / 警示色区分峰值与低位月份。"
       },
       {
         "key": "showAverage",
         "label": "均值参考线",
         "type": "toggle",
         "default": true,
-        "desc": "全年平均水平虚线参考线的显隐。"
+        "desc": "全年平均水平虚线参考线的显隐。",
+        "publicKey": "showAverage",
+        "publicLabel": "均值参考线",
+        "description": "全年平均水平虚线参考线的显隐。"
       },
       {
         "key": "calloutCount",
@@ -2852,14 +3251,20 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "峰谷信息卡数量（0–4）；为 0 时仅保留图表。"
+        "desc": "峰谷信息卡数量（0–4）；为 0 时仅保留图表。",
+        "publicKey": "calloutCount",
+        "publicLabel": "卡片数量",
+        "description": "峰谷信息卡数量（0–4）；为 0 时仅保留图表。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张峰谷信息卡。"
+        "desc": "是否高亮某一张峰谷信息卡。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张峰谷信息卡。"
       },
       {
         "key": "focusIndex",
@@ -2884,14 +3289,20 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的信息卡。"
+        "desc": "选择被高亮的信息卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的信息卡。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -2905,7 +3316,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于峰值柱、均值线与高亮卡。"
+        "desc": "品牌强调色，作用于峰值柱、均值线与高亮卡。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于峰值柱、均值线与高亮卡。"
       }
     ],
     "defaultProps": {
@@ -3036,35 +3450,50 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "瀑布图的贡献台阶数量（3–5）；合计自动重算。"
+        "desc": "瀑布图的贡献台阶数量（3–5）；合计自动重算。",
+        "publicKey": "stepCount",
+        "publicLabel": "台阶数量",
+        "description": "瀑布图的贡献台阶数量（3–5）；合计自动重算。"
       },
       {
         "key": "showTotal",
         "label": "合计列",
         "type": "toggle",
         "default": true,
-        "desc": "末尾全年合计落地柱的显隐。"
+        "desc": "末尾全年合计落地柱的显隐。",
+        "publicKey": "showTotal",
+        "publicLabel": "合计列",
+        "description": "末尾全年合计落地柱的显隐。"
       },
       {
         "key": "showConnectors",
         "label": "连接线",
         "type": "toggle",
         "default": true,
-        "desc": "台阶之间的虚线连接线的显隐。"
+        "desc": "台阶之间的虚线连接线的显隐。",
+        "publicKey": "showConnectors",
+        "publicLabel": "连接线",
+        "description": "台阶之间的虚线连接线的显隐。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "每个台阶上方增量数值的显隐。"
+        "desc": "每个台阶上方增量数值的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "每个台阶上方增量数值的显隐。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个贡献台阶作为视觉重点。"
+        "desc": "是否高亮某一个贡献台阶作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个贡献台阶作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -3093,14 +3522,20 @@ export const pages = [
             "label": "第 5 个"
           }
         ],
-        "desc": "选择被高亮的台阶。"
+        "desc": "选择被高亮的台阶。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的台阶。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -3114,7 +3549,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于高亮台阶、合计柱与连接线。"
+        "desc": "品牌强调色，作用于高亮台阶、合计柱与连接线。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于高亮台阶、合计柱与连接线。"
       }
     ],
     "defaultProps": {
@@ -3180,7 +3618,10 @@ export const pages = [
         "min": 3,
         "max": 4,
         "step": 1,
-        "desc": "金额区间分组数量（3–4）。"
+        "desc": "数值区间分组数量（3–4）。",
+        "publicKey": "rowCount",
+        "publicLabel": "行数量",
+        "description": "数值区间分组数量（3–4）。"
       },
       {
         "key": "metricMode",
@@ -3198,24 +3639,33 @@ export const pages = [
           },
           {
             "value": "amount",
-            "label": "仅金额"
+            "label": "仅数值"
           }
         ],
-        "desc": "展示维度：数量 + 金额对照 / 仅数量 / 仅金额。"
+        "desc": "展示维度：数量 + 数值对照 / 仅数量 / 仅数值。",
+        "publicKey": "metricMode",
+        "publicLabel": "图表类型",
+        "description": "展示维度：数量 + 数值对照 / 仅数量 / 仅数值。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "条形末端数值标签的显隐。"
+        "desc": "条形末端数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "条形末端数值标签的显隐。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个金额区间作为视觉重点。"
+        "desc": "是否高亮某一个数值区间作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个数值区间作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -3240,14 +3690,20 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的区间。"
+        "desc": "选择被高亮的区间。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的区间。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -3261,7 +3717,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于金额条与高亮区间。"
+        "desc": "品牌强调色，作用于数值条与高亮区间。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于数值条与高亮区间。"
       }
     ],
     "defaultProps": {
@@ -3317,7 +3776,10 @@ export const pages = [
         "label": "数字倾斜",
         "type": "toggle",
         "default": true,
-        "desc": "主数字是否应用品牌斜切（italic-slant）效果。"
+        "desc": "主数字是否应用品牌斜切（italic-slant）效果。",
+        "publicKey": "numberSlant",
+        "publicLabel": "数字倾斜",
+        "description": "主数字是否应用品牌斜切（italic-slant）效果。"
       },
       {
         "key": "auxCount",
@@ -3327,35 +3789,50 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。"
+        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。",
+        "publicKey": "auxCount",
+        "publicLabel": "卡片数量",
+        "description": "辅助指标数量（0–3）；为 0 时只保留主数字。"
       },
       {
         "key": "showCaption",
         "label": "说明文案",
         "type": "toggle",
         "default": true,
-        "desc": "主数字下方解释性说明的显隐。"
+        "desc": "主数字下方解释性说明的显隐。",
+        "publicKey": "showCaption",
+        "publicLabel": "说明文案",
+        "description": "主数字下方解释性说明的显隐。"
       },
       {
         "key": "showNote",
         "label": "辅助注释",
         "type": "toggle",
         "default": true,
-        "desc": "底部补充注释的显隐。"
+        "desc": "底部补充注释的显隐。",
+        "publicKey": "showNote",
+        "publicLabel": "辅助注释",
+        "description": "底部补充注释的显隐。"
       },
       {
         "key": "showLens",
         "label": "品牌图形",
         "type": "toggle",
         "default": true,
-        "desc": "品牌透镜图形（焦点圆盘）的显隐。"
+        "desc": "品牌透镜图形（焦点圆盘）的显隐。",
+        "publicKey": "showLens",
+        "publicLabel": "品牌图形",
+        "description": "品牌透镜图形（焦点圆盘）的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -3369,7 +3846,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于主数字下划线、品牌图形与点缀。"
+        "desc": "品牌强调色，作用于主数字下划线、品牌图形与点缀。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于主数字下划线、品牌图形与点缀。"
       }
     ],
     "defaultProps": {
@@ -3425,7 +3905,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "图片墙的图片槽数量（0–4）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "图片墙的图片槽数量（0–4）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "图片墙的图片槽数量（0–4）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -3450,21 +3933,30 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "showLabels",
         "label": "说明文案",
         "type": "toggle",
         "default": true,
-        "desc": "每张图片上叠加的机构名称 / 角色标签的显隐。"
+        "desc": "每张图片上叠加的机构名称 / 角色标签的显隐。",
+        "publicKey": "showLabels",
+        "publicLabel": "说明文案",
+        "description": "每张图片上叠加的机构名称 / 角色标签的显隐。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张图片作为视觉重点。"
+        "desc": "是否高亮某一张图片作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张图片作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -3489,21 +3981,30 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的图片。"
+        "desc": "选择被高亮的图片。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的图片。"
       },
       {
         "key": "showAnchor",
         "label": "重点数字",
         "type": "toggle",
         "default": true,
-        "desc": "右上锚点数字（活跃机构数量）的显隐。"
+        "desc": "右上锚点数字（活跃机构数量）的显隐。",
+        "publicKey": "showAnchor",
+        "publicLabel": "重点数字",
+        "description": "右上锚点数字（活跃机构数量）的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -3517,7 +4018,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于高亮图片框、机构标签与锚点数字。"
+        "desc": "品牌强调色，作用于高亮图片框、机构标签与锚点数字。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于高亮图片框、机构标签与锚点数字。"
       }
     ],
     "defaultProps": {
@@ -3575,7 +4079,10 @@ export const pages = [
         "min": 4,
         "max": 7,
         "step": 1,
-        "desc": "排行榜展示的机构行数量（4–7）。"
+        "desc": "排行榜展示的机构行数量（4–7）。",
+        "publicKey": "rowCount",
+        "publicLabel": "卡片数量",
+        "description": "排行榜展示的机构行数量（4–7）。"
       },
       {
         "key": "chartType",
@@ -3592,28 +4099,40 @@ export const pages = [
             "label": "棒点"
           }
         ],
-        "desc": "排名条的呈现方式：实心条形 / 棒点（lollipop）。"
+        "desc": "排名条的呈现方式：实心条形 / 棒点（lollipop）。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "排名条的呈现方式：实心条形 / 棒点（lollipop）。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "每条排名条末端的数值标签显隐。"
+        "desc": "每条排名条末端的数值标签显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "每条排名条末端的数值标签显隐。"
       },
       {
         "key": "showTags",
         "label": "说明文案",
         "type": "toggle",
         "default": true,
-        "desc": "每家机构的偏好赛道标签显隐。"
+        "desc": "每家机构的偏好分类标签显隐。",
+        "publicKey": "showTags",
+        "publicLabel": "说明文案",
+        "description": "每家机构的偏好分类标签显隐。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行作为视觉重点。"
+        "desc": "是否高亮某一行作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一行作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -3650,21 +4169,30 @@ export const pages = [
             "label": "第 7 名"
           }
         ],
-        "desc": "选择被高亮的机构行。"
+        "desc": "选择被高亮的机构行。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的机构行。"
       },
       {
         "key": "showAnchor",
         "label": "重点数字",
         "type": "toggle",
         "default": true,
-        "desc": "左侧锚点数字（头部机构覆盖占比）的显隐。"
+        "desc": "左侧锚点数字（头部机构覆盖占比）的显隐。",
+        "publicKey": "showAnchor",
+        "publicLabel": "重点数字",
+        "description": "左侧锚点数字（头部机构覆盖占比）的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -3678,7 +4206,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于高亮行、排名条与锚点数字。"
+        "desc": "品牌强调色，作用于高亮行、排名条与锚点数字。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于高亮行、排名条与锚点数字。"
       }
     ],
     "defaultProps": {
@@ -3752,7 +4283,10 @@ export const pages = [
         "label": "数字倾斜",
         "type": "toggle",
         "default": true,
-        "desc": "主数字是否应用品牌斜切（italic-slant）效果。"
+        "desc": "主数字是否应用品牌斜切（italic-slant）效果。",
+        "publicKey": "numberSlant",
+        "publicLabel": "数字倾斜",
+        "description": "主数字是否应用品牌斜切（italic-slant）效果。"
       },
       {
         "key": "tierCount",
@@ -3762,21 +4296,30 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "份额条中显式展示的头部分层数量（2–3）；剩余自动并入「其他」。"
+        "desc": "份额条中显式展示的头部分层数量（2–3）；剩余自动并入「其他」。",
+        "publicKey": "tierCount",
+        "publicLabel": "卡片数量",
+        "description": "份额条中显式展示的头部分层数量（2–3）；剩余自动并入「其他」。"
       },
       {
         "key": "showRemainder",
         "label": "其他分段",
         "type": "toggle",
         "default": true,
-        "desc": "是否在份额条末尾补上「其他机构」剩余分段。"
+        "desc": "是否在份额条末尾补上「其他机构」剩余分段。",
+        "publicKey": "showRemainder",
+        "publicLabel": "其他分段",
+        "description": "是否在份额条末尾补上「其他机构」剩余分段。"
       },
       {
         "key": "showShareBar",
         "label": "份额图表",
         "type": "toggle",
         "default": true,
-        "desc": "堆叠份额条（按机构排名分层）的显隐。"
+        "desc": "堆叠份额条（按机构排名分层）的显隐。",
+        "publicKey": "showShareBar",
+        "publicLabel": "份额图表",
+        "description": "堆叠份额条（按机构排名分层）的显隐。"
       },
       {
         "key": "auxCount",
@@ -3786,28 +4329,40 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。"
+        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。",
+        "publicKey": "auxCount",
+        "publicLabel": "辅助数量",
+        "description": "辅助指标数量（0–3）；为 0 时只保留主数字。"
       },
       {
         "key": "showNote",
         "label": "辅助注释",
         "type": "toggle",
         "default": true,
-        "desc": "底部补充注释的显隐。"
+        "desc": "底部补充注释的显隐。",
+        "publicKey": "showNote",
+        "publicLabel": "辅助注释",
+        "description": "底部补充注释的显隐。"
       },
       {
         "key": "showLens",
         "label": "品牌图形",
         "type": "toggle",
         "default": true,
-        "desc": "品牌透镜图形（焦点圆盘）的显隐。"
+        "desc": "品牌透镜图形（焦点圆盘）的显隐。",
+        "publicKey": "showLens",
+        "publicLabel": "品牌图形",
+        "description": "品牌透镜图形（焦点圆盘）的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -3821,7 +4376,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于主数字下划线、份额条与品牌图形。"
+        "desc": "品牌强调色，作用于主数字下划线、份额条与品牌图形。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于主数字下划线、份额条与品牌图形。"
       }
     ],
     "defaultProps": {
@@ -3894,28 +4452,40 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "表格展示的行数量（3–6）。"
+        "desc": "表格展示的行数量（3–6）。",
+        "publicKey": "rowCount",
+        "publicLabel": "行数量",
+        "description": "表格展示的行数量（3–6）。"
       },
       {
         "key": "showRound",
-        "label": "轮次列",
+        "label": "阶段列",
         "type": "toggle",
         "default": true,
-        "desc": "融资轮次列的显隐。"
+        "desc": "数值阶段列的显隐。",
+        "publicKey": "showStage",
+        "publicLabel": "阶段列",
+        "description": "数值阶段列的显隐。"
       },
       {
         "key": "showSyndicate",
         "label": "阵容列",
         "type": "toggle",
         "default": true,
-        "desc": "领投 / 跟投阵容列（机构缩写徽标）的显隐；关闭后表格更紧凑。"
+        "desc": "领投 / 跟投阵容列（机构缩写徽标）的显隐；关闭后表格更紧凑。",
+        "publicKey": "showSyndicate",
+        "publicLabel": "阵容列",
+        "description": "领投 / 跟投阵容列（机构缩写徽标）的显隐；关闭后表格更紧凑。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行作为视觉重点。"
+        "desc": "是否高亮某一行作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一行作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -3948,21 +4518,30 @@ export const pages = [
             "label": "第 6 行"
           }
         ],
-        "desc": "选择被高亮的行。"
+        "desc": "选择被高亮的行。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的行。"
       },
       {
         "key": "showStatLine",
         "label": "说明文案",
         "type": "toggle",
         "default": true,
-        "desc": "标题下方汇总统计行的显隐。"
+        "desc": "标题下方汇总统计行的显隐。",
+        "publicKey": "showStatLine",
+        "publicLabel": "说明文案",
+        "description": "标题下方汇总统计行的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -3976,7 +4555,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于高亮行、阵容徽标与点缀。"
+        "desc": "品牌强调色，作用于高亮行、阵容徽标与点缀。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于高亮行、阵容徽标与点缀。"
       }
     ],
     "defaultProps": {
@@ -4093,7 +4675,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -4118,7 +4703,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "metricCount",
@@ -4128,14 +4716,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "指标栏条目数量（2–4）。"
+        "desc": "指标栏条目数量（2–4）。",
+        "publicKey": "itemCount",
+        "publicLabel": "卡片数量",
+        "description": "指标栏条目数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一条指标作为视觉重点。"
+        "desc": "是否高亮某一条指标作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一条指标作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -4160,21 +4754,30 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的指标。"
+        "desc": "选择被高亮的指标。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标。"
       },
       {
         "key": "showProgress",
         "label": "进度指标",
         "type": "toggle",
         "default": true,
-        "desc": "底部渗透 / 采用率进度条的显隐。"
+        "desc": "底部渗透 / 采用率进度条的显隐。",
+        "publicKey": "showProgress",
+        "publicLabel": "进度指标",
+        "description": "底部渗透 / 采用率进度条的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -4188,7 +4791,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮指标与进度条。"
+        "desc": "品牌强调色，作用于分类标记、高亮指标与进度条。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮指标与进度条。"
       }
     ],
     "defaultProps": {
@@ -4254,21 +4860,30 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "场景表格展示的行数量（3–5）。"
+        "desc": "场景表格展示的行数量（3–5）。",
+        "publicKey": "rowCount",
+        "publicLabel": "行数量",
+        "description": "场景表格展示的行数量（3–5）。"
       },
       {
         "key": "showShare",
         "label": "占比列",
         "type": "toggle",
         "default": true,
-        "desc": "场景占比列（迷你条 + 数值）的显隐。"
+        "desc": "场景占比列（迷你条 + 数值）的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "占比列",
+        "description": "场景占比列（迷你条 + 数值）的显隐。"
       },
       {
         "key": "showFlow",
         "label": "流程图",
         "type": "toggle",
         "default": true,
-        "desc": "底部横向工作流程条的显隐。"
+        "desc": "底部横向工作流程条的显隐。",
+        "publicKey": "showFlow",
+        "publicLabel": "流程图",
+        "description": "底部横向工作流程条的显隐。"
       },
       {
         "key": "flowStepCount",
@@ -4278,14 +4893,20 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "流程节点数量（3–5）。"
+        "desc": "流程节点数量（3–5）。",
+        "publicKey": "flowStepCount",
+        "publicLabel": "流程数量",
+        "description": "流程节点数量（3–5）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行作为视觉重点。"
+        "desc": "是否高亮某一行作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一行作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -4314,14 +4935,20 @@ export const pages = [
             "label": "第 5 行"
           }
         ],
-        "desc": "选择被高亮的行。"
+        "desc": "选择被高亮的行。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的行。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -4335,7 +4962,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、占比条、高亮行与流程节点。"
+        "desc": "品牌强调色，作用于分类标记、占比条、高亮行与流程节点。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、占比条、高亮行与流程节点。"
       }
     ],
     "defaultProps": {
@@ -4416,7 +5046,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -4441,7 +5074,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "branchCount",
@@ -4451,14 +5087,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "融资分布分支数量（2–3）。"
+        "desc": "数值分布分支数量（2–3）。",
+        "publicKey": "branchCount",
+        "publicLabel": "卡片数量",
+        "description": "数值分布分支数量（2–3）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个分支作为视觉重点。"
+        "desc": "是否高亮某一个分支作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个分支作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -4479,21 +5121,30 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的分支。"
+        "desc": "选择被高亮的分支。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的分支。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "分支柱顶部融资数值标签的显隐。"
+        "desc": "分支柱顶部数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "分支柱顶部数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -4507,7 +5158,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮分支与柱形。"
+        "desc": "品牌强调色，作用于分类标记、高亮分支与柱形。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮分支与柱形。"
       }
     ],
     "defaultProps": {
@@ -4565,7 +5219,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -4590,7 +5247,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "chartType",
@@ -4607,7 +5267,10 @@ export const pages = [
             "label": "占比条"
           }
         ],
-        "desc": "场景占比图表样式：环形图 / 占比条。"
+        "desc": "场景占比图表样式：环形图 / 占比条。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "场景占比图表样式：环形图 / 占比条。"
       },
       {
         "key": "segmentCount",
@@ -4617,14 +5280,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "场景占比分段数量（2–4）。"
+        "desc": "场景占比分段数量（2–4）。",
+        "publicKey": "segmentCount",
+        "publicLabel": "卡片数量",
+        "description": "场景占比分段数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个场景作为视觉重点。"
+        "desc": "是否高亮某一个场景作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个场景作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -4649,21 +5318,30 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的场景。"
+        "desc": "选择被高亮的场景。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的场景。"
       },
       {
         "key": "showLegend",
         "label": "图例",
         "type": "toggle",
         "default": true,
-        "desc": "环形图右侧图例列表的显隐。"
+        "desc": "环形图右侧图例列表的显隐。",
+        "publicKey": "showLegend",
+        "publicLabel": "图例",
+        "description": "环形图右侧图例列表的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -4677,7 +5355,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、图表与高亮场景。"
+        "desc": "品牌强调色，作用于分类标记、图表与高亮场景。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、图表与高亮场景。"
       }
     ],
     "defaultProps": {
@@ -4748,7 +5429,10 @@ export const pages = [
             "label": "占比条"
           }
         ],
-        "desc": "主图表样式：算力集群热力网格 / 资源占比条。"
+        "desc": "主图表样式：算力集群热力网格 / 资源占比条。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "主图表样式：算力集群热力网格 / 资源占比条。"
       },
       {
         "key": "gridDensity",
@@ -4758,7 +5442,10 @@ export const pages = [
         "min": 8,
         "max": 16,
         "step": 1,
-        "desc": "集群网格的列密度（8–16）；行数自动推导。"
+        "desc": "集群网格的列密度（8–16）；行数自动推导。",
+        "publicKey": "gridDensity",
+        "publicLabel": "图表密度",
+        "description": "集群网格的列密度（8–16）；行数自动推导。"
       },
       {
         "key": "metricCount",
@@ -4768,14 +5455,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "左侧指标卡数量（2–4）。"
+        "desc": "左侧指标卡数量（2–4）。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "左侧指标卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张指标卡作为视觉重点。"
+        "desc": "是否高亮某一张指标卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张指标卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -4800,21 +5493,30 @@ export const pages = [
             "label": "第 4 张"
           }
         ],
-        "desc": "选择被高亮的指标卡。"
+        "desc": "选择被高亮的指标卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标卡。"
       },
       {
         "key": "showSplit",
         "label": "占比图",
         "type": "toggle",
         "default": true,
-        "desc": "资源构成占比（网格上方条带 / 占比条）的显隐。"
+        "desc": "资源构成占比（网格上方条带 / 占比条）的显隐。",
+        "publicKey": "showSplit",
+        "publicLabel": "占比图",
+        "description": "资源构成占比（网格上方条带 / 占比条）的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -4828,7 +5530,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、集群高负载单元与高亮卡。"
+        "desc": "品牌强调色，作用于分类标记、集群高负载单元与高亮卡。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、集群高负载单元与高亮卡。"
       }
     ],
     "defaultProps": {
@@ -4906,28 +5611,40 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "表格展示的行数量（3–5）。"
+        "desc": "表格展示的行数量（3–5）。",
+        "publicKey": "rowCount",
+        "publicLabel": "行数量",
+        "description": "表格展示的行数量（3–5）。"
       },
       {
         "key": "showShare",
         "label": "占比列",
         "type": "toggle",
         "default": true,
-        "desc": "资金拆分列（迷你占比条）的显隐。"
+        "desc": "资金拆分列（迷你占比条）的显隐。",
+        "publicKey": "showShare",
+        "publicLabel": "占比列",
+        "description": "资金拆分列（迷你占比条）的显隐。"
       },
       {
         "key": "showJudgment",
         "label": "判断列",
         "type": "toggle",
         "default": true,
-        "desc": "判断列的显隐；关闭后表格更紧凑。"
+        "desc": "判断列的显隐；关闭后表格更紧凑。",
+        "publicKey": "showJudgment",
+        "publicLabel": "判断列",
+        "description": "判断列的显隐；关闭后表格更紧凑。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行作为视觉重点。"
+        "desc": "是否高亮某一行作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一行作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -4956,14 +5673,20 @@ export const pages = [
             "label": "第 5 行"
           }
         ],
-        "desc": "选择被高亮的行。"
+        "desc": "选择被高亮的行。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的行。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -4977,7 +5700,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于层级标记、高亮行与总额数字。"
+        "desc": "品牌强调色，作用于层级标记、高亮行与总额数字。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于层级标记、高亮行与总额数字。"
       }
     ],
     "defaultProps": {
@@ -5056,7 +5782,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -5081,7 +5810,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "segmentCount",
@@ -5091,14 +5823,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "应用方向分布数量（2–3）。"
+        "desc": "应用方向分布数量（2–3）。",
+        "publicKey": "segmentCount",
+        "publicLabel": "卡片数量",
+        "description": "应用方向分布数量（2–3）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个应用方向作为视觉重点。"
+        "desc": "是否高亮某一个应用方向作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个应用方向作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -5119,21 +5857,30 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的应用方向。"
+        "desc": "选择被高亮的应用方向。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的应用方向。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "应用柱顶部融资数值标签的显隐。"
+        "desc": "应用柱顶部数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "应用柱顶部数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -5147,7 +5894,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮应用与柱形。"
+        "desc": "品牌强调色，作用于分类标记、高亮应用与柱形。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮应用与柱形。"
       }
     ],
     "defaultProps": {
@@ -5205,7 +5955,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -5230,7 +5983,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "chartType",
@@ -5247,7 +6003,10 @@ export const pages = [
             "label": "环形图"
           }
         ],
-        "desc": "场景拆分图表样式：占比条 / 环形图。"
+        "desc": "场景拆分图表样式：占比条 / 环形图。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "场景拆分图表样式：占比条 / 环形图。"
       },
       {
         "key": "segmentCount",
@@ -5257,14 +6016,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "场景拆分分段数量（2–3）。"
+        "desc": "场景拆分分段数量（2–3）。",
+        "publicKey": "segmentCount",
+        "publicLabel": "卡片数量",
+        "description": "场景拆分分段数量（2–3）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个场景作为视觉重点。"
+        "desc": "是否高亮某一个场景作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个场景作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -5285,28 +6050,40 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的场景。"
+        "desc": "选择被高亮的场景。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的场景。"
       },
       {
         "key": "showArch",
         "label": "装饰图示",
         "type": "toggle",
         "default": true,
-        "desc": "车载 AI 架构层级条（感知 → 决策 → 控制 → 座舱）的显隐。"
+        "desc": "车载 AI 架构层级条（感知 → 决策 → 控制 → 座舱）的显隐。",
+        "publicKey": "showArch",
+        "publicLabel": "装饰图示",
+        "description": "车载 AI 架构层级条（感知 → 决策 → 控制 → 座舱）的显隐。"
       },
       {
         "key": "showLegend",
         "label": "图例",
         "type": "toggle",
         "default": true,
-        "desc": "环形图右侧图例列表的显隐。"
+        "desc": "环形图右侧图例列表的显隐。",
+        "publicKey": "showLegend",
+        "publicLabel": "图例",
+        "description": "环形图右侧图例列表的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -5320,7 +6097,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、架构条、图表与高亮场景。"
+        "desc": "品牌强调色，作用于分类标记、架构条、图表与高亮场景。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、架构条、图表与高亮场景。"
       }
     ],
     "defaultProps": {
@@ -5394,7 +6174,10 @@ export const pages = [
             "label": "占比条"
           }
         ],
-        "desc": "主图表样式：分层防线堆叠 / 资金占比条。"
+        "desc": "主图表样式：分层防线堆叠 / 资金占比条。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "主图表样式：分层防线堆叠 / 资金占比条。"
       },
       {
         "key": "layerCount",
@@ -5404,7 +6187,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "安全防线分层 / 占比条的数量（2–4）。"
+        "desc": "安全防线分层 / 占比条的数量（2–4）。",
+        "publicKey": "layerCount",
+        "publicLabel": "分项数量",
+        "description": "安全防线分层 / 占比条的数量（2–4）。"
       },
       {
         "key": "metricCount",
@@ -5414,14 +6200,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "左侧指标卡数量（2–4）。"
+        "desc": "左侧指标卡数量（2–4）。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "左侧指标卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张指标卡作为视觉重点。"
+        "desc": "是否高亮某一张指标卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张指标卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -5446,21 +6238,30 @@ export const pages = [
             "label": "第 4 张"
           }
         ],
-        "desc": "选择被高亮的指标卡。"
+        "desc": "选择被高亮的指标卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标卡。"
       },
       {
         "key": "showStrip",
         "label": "示意条带",
         "type": "toggle",
         "default": true,
-        "desc": "防线上方风险拦截示意条带的显隐。"
+        "desc": "防线上方状态拦截示意条带的显隐。",
+        "publicKey": "showStrip",
+        "publicLabel": "示意条带",
+        "description": "防线上方状态拦截示意条带的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -5474,7 +6275,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、防线层级与高亮卡。"
+        "desc": "品牌强调色，作用于分类标记、防线层级与高亮卡。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、防线层级与高亮卡。"
       }
     ],
     "defaultProps": {
@@ -5562,7 +6366,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -5587,7 +6394,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "segmentCount",
@@ -5597,14 +6407,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "媒介方向分布数量（2–4）。"
+        "desc": "媒介方向分布数量（2–4）。",
+        "publicKey": "segmentCount",
+        "publicLabel": "卡片数量",
+        "description": "媒介方向分布数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个媒介方向作为视觉重点。"
+        "desc": "是否高亮某一个媒介方向作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个媒介方向作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -5629,21 +6445,30 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的媒介方向。"
+        "desc": "选择被高亮的媒介方向。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的媒介方向。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "分布行末端融资数值标签的显隐。"
+        "desc": "分布行末端数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "分布行末端数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -5657,7 +6482,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮媒介与分布条。"
+        "desc": "品牌强调色，作用于分类标记、高亮媒介与分布条。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮媒介与分布条。"
       }
     ],
     "defaultProps": {
@@ -5720,7 +6548,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -5745,7 +6576,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "segmentCount",
@@ -5755,14 +6589,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "学习路径阶段数量（2–3）。"
+        "desc": "学习路径阶段数量（2–3）。",
+        "publicKey": "segmentCount",
+        "publicLabel": "卡片数量",
+        "description": "学习路径阶段数量（2–3）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个学习阶段作为视觉重点。"
+        "desc": "是否高亮某一个学习阶段作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个学习阶段作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -5783,21 +6623,30 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的学习阶段。"
+        "desc": "选择被高亮的学习阶段。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的学习阶段。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "阶段节点内融资数值标签的显隐。"
+        "desc": "阶段节点内数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "阶段节点内数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -5811,7 +6660,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮阶段与路径节点。"
+        "desc": "品牌强调色，作用于分类标记、高亮阶段与路径节点。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮阶段与路径节点。"
       }
     ],
     "defaultProps": {
@@ -5869,28 +6721,40 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "表格展示的行数量（3–5）。"
+        "desc": "表格展示的行数量（3–5）。",
+        "publicKey": "rowCount",
+        "publicLabel": "行数量",
+        "description": "表格展示的行数量（3–5）。"
       },
       {
         "key": "showShare",
         "label": "占比列",
         "type": "toggle",
         "default": true,
-        "desc": "降本贡献列（迷你占比条）的显隐。"
+        "desc": "降本贡献列（迷你占比条）的显隐。",
+        "publicKey": "showShare",
+        "publicLabel": "占比列",
+        "description": "降本贡献列（迷你占比条）的显隐。"
       },
       {
         "key": "showJudgment",
         "label": "判断列",
         "type": "toggle",
         "default": true,
-        "desc": "判断列的显隐；关闭后表格更紧凑。"
+        "desc": "判断列的显隐；关闭后表格更紧凑。",
+        "publicKey": "showJudgment",
+        "publicLabel": "判断列",
+        "description": "判断列的显隐；关闭后表格更紧凑。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行作为视觉重点。"
+        "desc": "是否高亮某一行作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一行作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -5919,14 +6783,20 @@ export const pages = [
             "label": "第 5 行"
           }
         ],
-        "desc": "选择被高亮的行。"
+        "desc": "选择被高亮的行。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的行。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -5940,7 +6810,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于角色标记、高亮行与总额数字。"
+        "desc": "品牌强调色，作用于角色标记、高亮行与总额数字。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于角色标记、高亮行与总额数字。"
       }
     ],
     "defaultProps": {
@@ -6018,7 +6891,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -6043,7 +6919,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "segmentCount",
@@ -6053,14 +6932,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "漏斗阶段数量（2–3）。"
+        "desc": "漏斗阶段数量（2–3）。",
+        "publicKey": "segmentCount",
+        "publicLabel": "卡片数量",
+        "description": "漏斗阶段数量（2–3）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个漏斗阶段作为视觉重点。"
+        "desc": "是否高亮某一个漏斗阶段作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个漏斗阶段作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -6081,21 +6966,30 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的漏斗阶段。"
+        "desc": "选择被高亮的漏斗阶段。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的漏斗阶段。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "漏斗阶段内融资数值标签的显隐。"
+        "desc": "漏斗阶段内数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "漏斗阶段内数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -6109,7 +7003,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮阶段与漏斗。"
+        "desc": "品牌强调色，作用于分类标记、高亮阶段与漏斗。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮阶段与漏斗。"
       }
     ],
     "defaultProps": {
@@ -6167,7 +7064,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -6192,7 +7092,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "stepCount",
@@ -6202,7 +7105,10 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "流程编排节点数量（3–5）。"
+        "desc": "流程编排节点数量（3–5）。",
+        "publicKey": "stepCount",
+        "publicLabel": "卡片数量",
+        "description": "流程编排节点数量（3–5）。"
       },
       {
         "key": "metricCount",
@@ -6212,14 +7118,20 @@ export const pages = [
         "min": 1,
         "max": 2,
         "step": 1,
-        "desc": "客户与留存指标盘数量（1–2）。"
+        "desc": "客户与留存指标盘数量（1–2）。",
+        "publicKey": "metricCount",
+        "publicLabel": "指标数量",
+        "description": "客户与留存指标盘数量（1–2）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个流程节点作为视觉重点。"
+        "desc": "是否高亮某一个流程节点作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个流程节点作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -6248,28 +7160,40 @@ export const pages = [
             "label": "第 5 个"
           }
         ],
-        "desc": "选择被高亮的流程节点。"
+        "desc": "选择被高亮的流程节点。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的流程节点。"
       },
       {
         "key": "showMetrics",
         "label": "留存面板",
         "type": "toggle",
         "default": true,
-        "desc": "底部客户与留存指标盘的显隐。"
+        "desc": "底部客户与留存指标盘的显隐。",
+        "publicKey": "showMetrics",
+        "publicLabel": "留存面板",
+        "description": "底部客户与留存指标盘的显隐。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "指标盘内数值标签的显隐。"
+        "desc": "指标盘内数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "指标盘内数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -6283,7 +7207,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮节点与指标盘。"
+        "desc": "品牌强调色，作用于分类标记、高亮节点与指标盘。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮节点与指标盘。"
       }
     ],
     "defaultProps": {
@@ -6365,7 +7292,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -6390,7 +7320,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "chartType",
@@ -6407,14 +7340,20 @@ export const pages = [
             "label": "占比条"
           }
         ],
-        "desc": "企业服务收入占比的呈现方式：环形图 / 占比条。"
+        "desc": "企业服务收入占比的呈现方式：环形图 / 占比条。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "企业服务收入占比的呈现方式：环形图 / 占比条。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮转化路径的某一端作为视觉重点。"
+        "desc": "是否高亮转化路径的某一端作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮转化路径的某一端作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -6431,28 +7370,40 @@ export const pages = [
             "label": "企业服务"
           }
         ],
-        "desc": "选择被高亮的转化节点。"
+        "desc": "选择被高亮的转化节点。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的转化节点。"
       },
       {
         "key": "showBridge",
         "label": "转化连接",
         "type": "toggle",
         "default": true,
-        "desc": "两节点之间的渐缩转化连接带的显隐。"
+        "desc": "两节点之间的渐缩转化连接带的显隐。",
+        "publicKey": "showBridge",
+        "publicLabel": "转化连接",
+        "description": "两节点之间的渐缩转化连接带的显隐。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "转化节点内数值标签的显隐。"
+        "desc": "转化节点内数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "转化节点内数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -6466,7 +7417,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮节点与转化连接带。"
+        "desc": "品牌强调色，作用于分类标记、高亮节点与转化连接带。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮节点与转化连接带。"
       }
     ],
     "defaultProps": {
@@ -6524,7 +7478,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -6549,7 +7506,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "segmentCount",
@@ -6559,14 +7519,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "安全防线分项数量（2–3）。"
+        "desc": "安全防线分项数量（2–3）。",
+        "publicKey": "segmentCount",
+        "publicLabel": "卡片数量",
+        "description": "安全防线分项数量（2–3）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个防线分项作为视觉重点。"
+        "desc": "是否高亮某一个防线分项作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个防线分项作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -6587,28 +7553,40 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的防线分项。"
+        "desc": "选择被高亮的防线分项。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的防线分项。"
       },
       {
         "key": "showShield",
         "label": "防线装饰",
         "type": "toggle",
         "default": true,
-        "desc": "防线上方的防护弧线装饰的显隐。"
+        "desc": "防线上方的防护弧线装饰的显隐。",
+        "publicKey": "showShield",
+        "publicLabel": "防线装饰",
+        "description": "防线上方的防护弧线装饰的显隐。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "防线柱内融资数值标签的显隐。"
+        "desc": "防线柱内数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "防线柱内数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -6622,7 +7600,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮防线与防护弧线。"
+        "desc": "品牌强调色，作用于分类标记、高亮防线与防护弧线。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮防线与防护弧线。"
       }
     ],
     "defaultProps": {
@@ -6689,7 +7670,10 @@ export const pages = [
             "label": "浅色"
           }
         ],
-        "desc": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。"
+        "desc": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。",
+        "publicKey": "backgroundVariant",
+        "publicLabel": "背景风格",
+        "description": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。"
       },
       {
         "key": "layout",
@@ -6706,21 +7690,30 @@ export const pages = [
             "label": "居中"
           }
         ],
-        "desc": "标题与关键词的整体排布方式；居中时隐藏右侧集群图。"
+        "desc": "标题与关键词的整体排布方式；居中时隐藏右侧集群图。",
+        "publicKey": "layout",
+        "publicLabel": "排版",
+        "description": "标题与关键词的整体排布方式；居中时隐藏右侧集群图。"
       },
       {
         "key": "showIndex",
         "label": "章节序号",
         "type": "toggle",
         "default": true,
-        "desc": "超大章节编号水印的显隐。"
+        "desc": "超大章节编号水印的显隐。",
+        "publicKey": "showIndex",
+        "publicLabel": "章节序号",
+        "description": "超大章节编号水印的显隐。"
       },
       {
         "key": "showKeywords",
         "label": "关键词",
         "type": "toggle",
         "default": true,
-        "desc": "本章关键词标签行的显隐。"
+        "desc": "本章关键词标签行的显隐。",
+        "publicKey": "showKeywords",
+        "publicLabel": "关键词",
+        "description": "本章关键词标签行的显隐。"
       },
       {
         "key": "keywordCount",
@@ -6730,14 +7723,20 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "展示的关键词数量（3–6）。"
+        "desc": "展示的关键词数量（3–6）。",
+        "publicKey": "keywordCount",
+        "publicLabel": "关键词数量",
+        "description": "展示的关键词数量（3–6）。"
       },
       {
         "key": "showCluster",
         "label": "地理集群图",
         "type": "toggle",
         "default": true,
-        "desc": "右侧地理集群气泡图的显隐（仅左对齐排版生效）。"
+        "desc": "右侧地理集群气泡图的显隐（仅左对齐排版生效）。",
+        "publicKey": "showCluster",
+        "publicLabel": "地理集群图",
+        "description": "右侧地理集群气泡图的显隐（仅左对齐排版生效）。"
       },
       {
         "key": "hubCount",
@@ -6747,14 +7746,20 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "地理集群展示的城市节点数量（3–5）。"
+        "desc": "地理集群展示的城市节点数量（3–5）。",
+        "publicKey": "hubCount",
+        "publicLabel": "集群节点数量",
+        "description": "地理集群展示的城市节点数量（3–5）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -6768,7 +7773,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -6857,35 +7865,50 @@ export const pages = [
         "min": 3,
         "max": 4,
         "step": 1,
-        "desc": "表格展示的轮次行数量（3–4）。"
+        "desc": "表格展示的阶段行数量（3–4）。",
+        "publicKey": "rowCount",
+        "publicLabel": "行数量",
+        "description": "表格展示的阶段行数量（3–4）。"
       },
       {
         "key": "showBubble",
         "label": "气泡列",
         "type": "toggle",
         "default": true,
-        "desc": "平均单笔气泡列（气泡大小=平均单笔规模）的显隐。"
+        "desc": "平均单笔气泡列（气泡大小=平均单笔规模）的显隐。",
+        "publicKey": "showBubble",
+        "publicLabel": "气泡列",
+        "description": "平均单笔气泡列（气泡大小=平均单笔规模）的显隐。"
       },
       {
         "key": "showThemes",
         "label": "主题标签列",
         "type": "toggle",
         "default": true,
-        "desc": "萌芽主题标签列的显隐。"
+        "desc": "萌芽主题标签列的显隐。",
+        "publicKey": "showThemes",
+        "publicLabel": "主题标签列",
+        "description": "萌芽主题标签列的显隐。"
       },
       {
         "key": "showSignal",
         "label": "信号列",
         "type": "toggle",
         "default": true,
-        "desc": "信号判断列的显隐；关闭后表格更紧凑。"
+        "desc": "信号判断列的显隐；关闭后表格更紧凑。",
+        "publicKey": "showSignal",
+        "publicLabel": "信号列",
+        "description": "信号判断列的显隐；关闭后表格更紧凑。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行作为视觉重点。"
+        "desc": "是否高亮某一行作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一行作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -6910,14 +7933,20 @@ export const pages = [
             "label": "第 4 行"
           }
         ],
-        "desc": "选择被高亮的行。"
+        "desc": "选择被高亮的行。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的行。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -6931,7 +7960,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于轮次标记、气泡、高亮行与锚点数字。"
+        "desc": "品牌强调色，作用于阶段标记、气泡、高亮行与锚点数字。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于阶段标记、气泡、高亮行与锚点数字。"
       }
     ],
     "defaultProps": {
@@ -7030,7 +8062,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "交易结构构成项数量（2–4）。"
+        "desc": "交易结构构成项数量（2–4）。",
+        "publicKey": "componentCount",
+        "publicLabel": "卡片数量",
+        "description": "交易结构构成项数量（2–4）。"
       },
       {
         "key": "chartType",
@@ -7047,21 +8082,30 @@ export const pages = [
             "label": "环形图"
           }
         ],
-        "desc": "构成占比图表样式：堆叠条 / 环形图。"
+        "desc": "构成占比图表样式：堆叠条 / 环形图。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "构成占比图表样式：堆叠条 / 环形图。"
       },
       {
         "key": "showStats",
         "label": "锚点指标",
         "type": "toggle",
         "default": true,
-        "desc": "左侧事件数与平均单笔锚点指标的显隐。"
+        "desc": "左侧事件数与平均单笔锚点指标的显隐。",
+        "publicKey": "showStats",
+        "publicLabel": "锚点指标",
+        "description": "左侧事件数与平均单笔锚点指标的显隐。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个构成项作为视觉重点。"
+        "desc": "是否高亮某一个构成项作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个构成项作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -7086,14 +8130,20 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的构成项。"
+        "desc": "选择被高亮的构成项。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的构成项。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -7107,7 +8157,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于图表、锚点数字与高亮构成项。"
+        "desc": "品牌强调色，作用于图表、锚点数字与高亮构成项。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于图表、锚点数字与高亮构成项。"
       }
     ],
     "defaultProps": {
@@ -7189,7 +8242,10 @@ export const pages = [
             "label": "占比条"
           }
         ],
-        "desc": "分类占比图表样式：环形图 / 占比条。"
+        "desc": "分类占比图表样式：环形图 / 占比条。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "分类占比图表样式：环形图 / 占比条。"
       },
       {
         "key": "segmentCount",
@@ -7199,14 +8255,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "分类类型分段数量（2–4）。"
+        "desc": "分类类型分段数量（2–4）。",
+        "publicKey": "categoryCount",
+        "publicLabel": "卡片数量",
+        "description": "分类类型分段数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一类角色作为视觉重点。"
+        "desc": "是否高亮某一类角色作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一类角色作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -7231,21 +8293,30 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的分类类型。"
+        "desc": "选择被高亮的分类类型。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的分类类型。"
       },
       {
         "key": "showLegend",
         "label": "图例",
         "type": "toggle",
         "default": true,
-        "desc": "环形图右侧图例列表的显隐。"
+        "desc": "环形图右侧图例列表的显隐。",
+        "publicKey": "showLegend",
+        "publicLabel": "图例",
+        "description": "环形图右侧图例列表的显隐。"
       },
       {
         "key": "showTimeline",
         "label": "阶段时间轴",
         "type": "toggle",
         "default": true,
-        "desc": "底部资本来源演进时间轴的显隐。"
+        "desc": "底部来源演进时间轴的显隐。",
+        "publicKey": "showTimeline",
+        "publicLabel": "阶段时间轴",
+        "description": "底部来源演进时间轴的显隐。"
       },
       {
         "key": "nodeCount",
@@ -7255,14 +8326,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "时间轴上的阶段节点数量（2–3）。"
+        "desc": "时间轴上的阶段节点数量（2–3）。",
+        "publicKey": "nodeCount",
+        "publicLabel": "节点数量",
+        "description": "时间轴上的阶段节点数量（2–3）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -7276,7 +8353,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于图表、高亮分类类型与时间轴节点。"
+        "desc": "品牌强调色，作用于图表、高亮分类类型与时间轴节点。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于图表、高亮分类类型与时间轴节点。"
       }
     ],
     "defaultProps": {
@@ -7356,7 +8436,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -7381,7 +8464,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "cardCount",
@@ -7391,14 +8477,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "资源类型卡数量（2–4）。"
+        "desc": "资源类型卡数量（2–4）。",
+        "publicKey": "cardCount",
+        "publicLabel": "卡片数量",
+        "description": "资源类型卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张资源卡作为视觉重点。"
+        "desc": "是否高亮某一张资源卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张资源卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -7423,21 +8515,30 @@ export const pages = [
             "label": "第 4 张"
           }
         ],
-        "desc": "选择被高亮的资源卡。"
+        "desc": "选择被高亮的资源卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的资源卡。"
       },
       {
         "key": "showMeter",
         "label": "强度条",
         "type": "toggle",
         "default": true,
-        "desc": "资源卡底部资源强度示意条的显隐。"
+        "desc": "资源卡底部资源强度示意条的显隐。",
+        "publicKey": "showMeter",
+        "publicLabel": "强度条",
+        "description": "资源卡底部资源强度示意条的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -7451,7 +8552,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于资源标记、强度条与高亮卡。"
+        "desc": "品牌强调色，作用于资源标记、强度条与高亮卡。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于资源标记、强度条与高亮卡。"
       }
     ],
     "defaultProps": {
@@ -7526,7 +8630,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "云厂商节点数量（2–4）。"
+        "desc": "云厂商节点数量（2–4）。",
+        "publicKey": "providerCount",
+        "publicLabel": "卡片数量",
+        "description": "云厂商节点数量（2–4）。"
       },
       {
         "key": "chartType",
@@ -7543,14 +8650,20 @@ export const pages = [
             "label": "占比条"
           }
         ],
-        "desc": "主图表样式：联盟关系图 / 投资占比条。"
+        "desc": "主图表样式：联盟关系图 / 投资占比条。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "主图表样式：联盟关系图 / 投资占比条。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个云厂商作为视觉重点。"
+        "desc": "是否高亮某一个云厂商作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个云厂商作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -7575,28 +8688,40 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的云厂商。"
+        "desc": "选择被高亮的云厂商。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的云厂商。"
       },
       {
         "key": "showLoop",
         "label": "回路标识",
         "type": "toggle",
         "default": true,
-        "desc": "算力消费回收的回路连接与闭环说明显隐。"
+        "desc": "算力消费回收的回路连接与闭环说明显隐。",
+        "publicKey": "showLoop",
+        "publicLabel": "回路标识",
+        "description": "算力消费回收的回路连接与闭环说明显隐。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "节点 / 连接上的投资数值标签显隐。"
+        "desc": "节点 / 连接上的投资数值标签显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "节点 / 连接上的投资数值标签显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -7610,7 +8735,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于厂商节点、投资连接与高亮节点。"
+        "desc": "品牌强调色，作用于厂商节点、投资连接与高亮节点。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于厂商节点、投资连接与高亮节点。"
       }
     ],
     "defaultProps": {
@@ -7685,7 +8813,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -7710,7 +8841,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "segmentCount",
@@ -7720,14 +8854,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "生态环上的节点数量（2–4）。"
+        "desc": "生态环上的节点数量（2–4）。",
+        "publicKey": "segmentCount",
+        "publicLabel": "卡片数量",
+        "description": "生态环上的节点数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个生态节点作为视觉重点。"
+        "desc": "是否高亮某一个生态节点作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个生态节点作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -7752,28 +8892,40 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的生态节点。"
+        "desc": "选择被高亮的生态节点。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的生态节点。"
       },
       {
         "key": "showSpokes",
         "label": "连接线",
         "type": "toggle",
         "default": true,
-        "desc": "中心 GPU 节点到各生态节点的连接线显隐。"
+        "desc": "中心 GPU 节点到各生态节点的连接线显隐。",
+        "publicKey": "showSpokes",
+        "publicLabel": "连接线",
+        "description": "中心 GPU 节点到各生态节点的连接线显隐。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "节点内融资数值标签的显隐。"
+        "desc": "节点内数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "节点内数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -7787,7 +8939,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于生态节点、连接线与高亮节点。"
+        "desc": "品牌强调色，作用于生态节点、连接线与高亮节点。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于生态节点、连接线与高亮节点。"
       }
     ],
     "defaultProps": {
@@ -7849,7 +9004,10 @@ export const pages = [
         "label": "数字倾斜",
         "type": "toggle",
         "default": true,
-        "desc": "主数字是否应用品牌斜切（italic-slant）效果。"
+        "desc": "主数字是否应用品牌斜切（italic-slant）效果。",
+        "publicKey": "numberSlant",
+        "publicLabel": "数字倾斜",
+        "description": "主数字是否应用品牌斜切（italic-slant）效果。"
       },
       {
         "key": "auxCount",
@@ -7859,35 +9017,50 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。"
+        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。",
+        "publicKey": "auxCount",
+        "publicLabel": "卡片数量",
+        "description": "辅助指标数量（0–3）；为 0 时只保留主数字。"
       },
       {
         "key": "showCaption",
         "label": "说明文案",
         "type": "toggle",
         "default": true,
-        "desc": "主数字下方解释性说明的显隐。"
+        "desc": "主数字下方解释性说明的显隐。",
+        "publicKey": "showCaption",
+        "publicLabel": "说明文案",
+        "description": "主数字下方解释性说明的显隐。"
       },
       {
         "key": "showNote",
         "label": "辅助注释",
         "type": "toggle",
         "default": true,
-        "desc": "底部补充注释的显隐。"
+        "desc": "底部补充注释的显隐。",
+        "publicKey": "showNote",
+        "publicLabel": "辅助注释",
+        "description": "底部补充注释的显隐。"
       },
       {
         "key": "showLens",
         "label": "品牌图形",
         "type": "toggle",
         "default": true,
-        "desc": "品牌透镜图形（焦点圆盘）的显隐。"
+        "desc": "品牌透镜图形（焦点圆盘）的显隐。",
+        "publicKey": "showLens",
+        "publicLabel": "品牌图形",
+        "description": "品牌透镜图形（焦点圆盘）的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -7901,7 +9074,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于主数字点缀、品牌图形与高亮。"
+        "desc": "品牌强调色，作用于主数字点缀、品牌图形与高亮。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于主数字点缀、品牌图形与高亮。"
       }
     ],
     "defaultProps": {
@@ -7972,7 +9148,10 @@ export const pages = [
             "label": "其他地区"
           }
         ],
-        "desc": "切换展示的地区集群（纽约 / 西雅图 / 波士顿 / 其他地区），整页内容随之更新。"
+        "desc": "切换展示的地区集群（纽约 / 西雅图 / 波士顿 / 其他地区），整页内容随之更新。",
+        "publicKey": "region",
+        "publicLabel": "地区",
+        "description": "切换展示的地区集群（纽约 / 西雅图 / 波士顿 / 其他地区），整页内容随之更新。"
       },
       {
         "key": "imageCount",
@@ -7982,7 +9161,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -8007,14 +9189,20 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "showShare",
         "label": "占比图表",
         "type": "toggle",
         "default": true,
-        "desc": "区域全美占比图表模块的显隐。"
+        "desc": "区域全美占比图表模块的显隐。",
+        "publicKey": "showShare",
+        "publicLabel": "占比图表",
+        "description": "区域全美占比图表模块的显隐。"
       },
       {
         "key": "chartType",
@@ -8031,7 +9219,10 @@ export const pages = [
             "label": "环形图"
           }
         ],
-        "desc": "占比图表样式：百分百堆叠占比条 / 环形图。"
+        "desc": "占比图表样式：百分百堆叠占比条 / 环形图。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "占比图表样式：百分百堆叠占比条 / 环形图。"
       },
       {
         "key": "tagCount",
@@ -8041,7 +9232,10 @@ export const pages = [
         "min": 2,
         "max": 5,
         "step": 1,
-        "desc": "行业标签数量（2–5）。"
+        "desc": "分类标签数量（2–5）。",
+        "publicKey": "categoryCount",
+        "publicLabel": "标签数量",
+        "description": "分类标签数量（2–5）。"
       },
       {
         "key": "metricCount",
@@ -8051,14 +9245,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "指标卡数量（2–4）。"
+        "desc": "指标卡数量（2–4）。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "指标卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张指标卡作为视觉重点。"
+        "desc": "是否高亮某一张指标卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张指标卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -8083,14 +9283,20 @@ export const pages = [
             "label": "第 4 张"
           }
         ],
-        "desc": "选择被高亮的指标卡。"
+        "desc": "选择被高亮的指标卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标卡。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标、排名标记与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标、排名标记与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标、排名标记与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -8104,7 +9310,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于占比高亮、标签、强调卡与图形。"
+        "desc": "品牌强调色，作用于占比高亮、标签、强调卡与图形。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于占比高亮、标签、强调卡与图形。"
       }
     ],
     "defaultProps": {
@@ -8336,14 +9545,20 @@ export const pages = [
             "label": "左对齐"
           }
         ],
-        "desc": "金句与三角资源的整体对齐方式。"
+        "desc": "金句与三角资源的整体对齐方式。",
+        "publicKey": "align",
+        "publicLabel": "对齐方式",
+        "description": "金句与三角资源的整体对齐方式。"
       },
       {
         "key": "showPillars",
         "label": "辅助信息",
         "type": "toggle",
         "default": true,
-        "desc": "底部三类关键资源支柱行的显隐。"
+        "desc": "底部三类关键资源支柱行的显隐。",
+        "publicKey": "showPillars",
+        "publicLabel": "辅助信息",
+        "description": "底部三类关键资源支柱行的显隐。"
       },
       {
         "key": "pillarCount",
@@ -8353,14 +9568,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "展示的资源支柱数量（2–3）。"
+        "desc": "展示的资源支柱数量（2–3）。",
+        "publicKey": "pillarCount",
+        "publicLabel": "卡片数量",
+        "description": "展示的资源支柱数量（2–3）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一类资源支柱作为视觉重点。"
+        "desc": "是否高亮某一类资源支柱作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一类资源支柱作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -8381,28 +9602,40 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的资源支柱。"
+        "desc": "选择被高亮的资源支柱。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的资源支柱。"
       },
       {
         "key": "showQuoteMark",
         "label": "引号装饰",
         "type": "toggle",
         "default": true,
-        "desc": "超大引号装饰符号的显隐。"
+        "desc": "超大引号装饰符号的显隐。",
+        "publicKey": "showQuoteMark",
+        "publicLabel": "引号装饰",
+        "description": "超大引号装饰符号的显隐。"
       },
       {
         "key": "showSource",
         "label": "数据来源",
         "type": "toggle",
         "default": true,
-        "desc": "底部数据来源说明行的显隐。"
+        "desc": "底部数据来源说明行的显隐。",
+        "publicKey": "showSource",
+        "publicLabel": "数据来源",
+        "description": "底部数据来源说明行的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、镜头光斑与条码等装饰的显隐。"
+        "desc": "背景光晕、镜头光斑与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、镜头光斑与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -8416,7 +9649,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于金句重点词与支柱高亮。"
+        "desc": "品牌强调色，作用于金句重点词与支柱高亮。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于金句重点词与支柱高亮。"
       }
     ],
     "defaultProps": {
@@ -8474,7 +9710,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -8499,7 +9738,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "metricCount",
@@ -8509,14 +9751,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的指标卡数量（2–4）。"
+        "desc": "展示的指标卡数量（2–4）。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "展示的指标卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张指标卡作为视觉重点。"
+        "desc": "是否高亮某一张指标卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张指标卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -8541,14 +9789,20 @@ export const pages = [
             "label": "第 4 张"
           }
         ],
-        "desc": "选择被高亮的指标卡。"
+        "desc": "选择被高亮的指标卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标卡。"
       },
       {
         "key": "showTags",
         "label": "标签文案",
         "type": "toggle",
         "default": true,
-        "desc": "定位标签行的显隐。"
+        "desc": "定位标签行的显隐。",
+        "publicKey": "showTags",
+        "publicLabel": "标签文案",
+        "description": "定位标签行的显隐。"
       },
       {
         "key": "tagCount",
@@ -8558,14 +9812,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "定位标签数量（2–3）。"
+        "desc": "定位标签数量（2–3）。",
+        "publicKey": "tagCount",
+        "publicLabel": "标签数量",
+        "description": "定位标签数量（2–3）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标、公司名压底与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标、公司名压底与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标、公司名压底与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -8579,7 +9839,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于强调卡、标签与图形。"
+        "desc": "品牌强调色，作用于强调卡、标签与图形。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于强调卡、标签与图形。"
       }
     ],
     "defaultProps": {
@@ -8648,7 +9911,10 @@ export const pages = [
         "label": "数字倾斜",
         "type": "toggle",
         "default": true,
-        "desc": "主数字是否应用品牌斜切（italic-slant）效果。"
+        "desc": "主数字是否应用品牌斜切（italic-slant）效果。",
+        "publicKey": "numberSlant",
+        "publicLabel": "数字倾斜",
+        "description": "主数字是否应用品牌斜切（italic-slant）效果。"
       },
       {
         "key": "auxCount",
@@ -8658,42 +9924,60 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。"
+        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。",
+        "publicKey": "auxCount",
+        "publicLabel": "卡片数量",
+        "description": "辅助指标数量（0–3）；为 0 时只保留主数字。"
       },
       {
         "key": "showCaption",
         "label": "说明文案",
         "type": "toggle",
         "default": true,
-        "desc": "主数字下方解释性说明的显隐。"
+        "desc": "主数字下方解释性说明的显隐。",
+        "publicKey": "showCaption",
+        "publicLabel": "说明文案",
+        "description": "主数字下方解释性说明的显隐。"
       },
       {
         "key": "showNote",
         "label": "辅助注释",
         "type": "toggle",
         "default": true,
-        "desc": "底部补充注释的显隐。"
+        "desc": "底部补充注释的显隐。",
+        "publicKey": "showNote",
+        "publicLabel": "辅助注释",
+        "description": "底部补充注释的显隐。"
       },
       {
         "key": "showGhost",
         "label": "背景大字",
         "type": "toggle",
         "default": true,
-        "desc": "主数字背后的超大描边数字水印的显隐。"
+        "desc": "主数字背后的超大描边数字水印的显隐。",
+        "publicKey": "showGhost",
+        "publicLabel": "背景大字",
+        "description": "主数字背后的超大描边数字水印的显隐。"
       },
       {
         "key": "showLens",
         "label": "品牌图形",
         "type": "toggle",
         "default": true,
-        "desc": "品牌透镜图形（焦点圆盘）的显隐。"
+        "desc": "品牌透镜图形（焦点圆盘）的显隐。",
+        "publicKey": "showLens",
+        "publicLabel": "品牌图形",
+        "description": "品牌透镜图形（焦点圆盘）的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -8707,7 +9991,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于主数字点缀、品牌图形与高亮。"
+        "desc": "品牌强调色，作用于主数字点缀、品牌图形与高亮。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于主数字点缀、品牌图形与高亮。"
       }
     ],
     "defaultProps": {
@@ -8766,7 +10053,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
+        "desc": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–2）；为 0 时以品牌图形填充，构图保持完整。"
       },
       {
         "key": "imageRatio",
@@ -8791,7 +10081,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例并自动居中排布。"
       },
       {
         "key": "metricCount",
@@ -8801,14 +10094,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的指标卡数量（2–4）。"
+        "desc": "展示的指标卡数量（2–4）。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "展示的指标卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张指标卡作为视觉重点。"
+        "desc": "是否高亮某一张指标卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张指标卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -8833,14 +10132,20 @@ export const pages = [
             "label": "第 4 张"
           }
         ],
-        "desc": "选择被高亮的指标卡。"
+        "desc": "选择被高亮的指标卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标卡。"
       },
       {
         "key": "showTags",
         "label": "标签文案",
         "type": "toggle",
         "default": true,
-        "desc": "定位标签行的显隐。"
+        "desc": "定位标签行的显隐。",
+        "publicKey": "showTags",
+        "publicLabel": "标签文案",
+        "description": "定位标签行的显隐。"
       },
       {
         "key": "tagCount",
@@ -8850,14 +10155,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "定位标签数量（2–3）。"
+        "desc": "定位标签数量（2–3）。",
+        "publicKey": "tagCount",
+        "publicLabel": "标签数量",
+        "description": "定位标签数量（2–3）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标、公司名压底与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标、公司名压底与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标、公司名压底与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -8871,7 +10182,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于强调卡、标签与图形。"
+        "desc": "品牌强调色，作用于强调卡、标签与图形。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于强调卡、标签与图形。"
       }
     ],
     "defaultProps": {
@@ -8950,7 +10264,10 @@ export const pages = [
             "label": "浅色"
           }
         ],
-        "desc": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。"
+        "desc": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。",
+        "publicKey": "backgroundVariant",
+        "publicLabel": "背景风格",
+        "description": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。"
       },
       {
         "key": "layout",
@@ -8967,21 +10284,30 @@ export const pages = [
             "label": "居中"
           }
         ],
-        "desc": "标题与关键词的整体排布方式。"
+        "desc": "标题与关键词的整体排布方式。",
+        "publicKey": "layout",
+        "publicLabel": "排版",
+        "description": "标题与关键词的整体排布方式。"
       },
       {
         "key": "showIndex",
         "label": "章节序号",
         "type": "toggle",
         "default": true,
-        "desc": "超大章节编号水印的显隐。"
+        "desc": "超大章节编号水印的显隐。",
+        "publicKey": "showIndex",
+        "publicLabel": "章节序号",
+        "description": "超大章节编号水印的显隐。"
       },
       {
         "key": "showKeywords",
         "label": "关键词",
         "type": "toggle",
         "default": true,
-        "desc": "本章关键词标签行的显隐。"
+        "desc": "本章关键词标签行的显隐。",
+        "publicKey": "showKeywords",
+        "publicLabel": "关键词",
+        "description": "本章关键词标签行的显隐。"
       },
       {
         "key": "keywordCount",
@@ -8991,14 +10317,20 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "展示的关键词数量（3–5）。"
+        "desc": "展示的关键词数量（3–5）。",
+        "publicKey": "keywordCount",
+        "publicLabel": "关键词数量",
+        "description": "展示的关键词数量（3–5）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "镜头光斑、背景光晕与条码等装饰的显隐。"
+        "desc": "镜头光斑、背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "镜头光斑、背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -9012,7 +10344,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -9055,7 +10390,10 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "转化漏斗的阶段数量（2–3）。"
+        "desc": "转化漏斗的阶段数量（2–3）。",
+        "publicKey": "stageCount",
+        "publicLabel": "阶段数量",
+        "description": "转化漏斗的阶段数量（2–3）。"
       },
       {
         "key": "metricCount",
@@ -9065,14 +10403,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "底部指标卡数量（2–4）。"
+        "desc": "底部指标卡数量（2–4）。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "底部指标卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张指标卡作为视觉重点。"
+        "desc": "是否高亮某一张指标卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张指标卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -9097,21 +10441,30 @@ export const pages = [
             "label": "第 4 张"
           }
         ],
-        "desc": "选择被高亮的指标卡。"
+        "desc": "选择被高亮的指标卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标卡。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "漏斗阶段数值与转化率标签的显隐。"
+        "desc": "漏斗阶段数值与转化率标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "漏斗阶段数值与转化率标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -9125,7 +10478,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于漏斗、转化率与高亮卡。"
+        "desc": "品牌强调色，作用于漏斗、转化率与高亮卡。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于漏斗、转化率与高亮卡。"
       }
     ],
     "defaultProps": {
@@ -9206,21 +10562,30 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "风险表格展示的行数量（3–5）。"
+        "desc": "状态表格展示的行数量（3–5）。",
+        "publicKey": "rowCount",
+        "publicLabel": "行数量",
+        "description": "状态表格展示的行数量（3–5）。"
       },
       {
         "key": "showLevel",
         "label": "强度列",
         "type": "toggle",
         "default": true,
-        "desc": "风险强度列（强度条 + 数值）的显隐。"
+        "desc": "状态强度列（强度条 + 数值）的显隐。",
+        "publicKey": "showStatusLevel",
+        "publicLabel": "强度列",
+        "description": "状态强度列（强度条 + 数值）的显隐。"
       },
       {
         "key": "showFlow",
         "label": "流程图",
         "type": "toggle",
         "default": true,
-        "desc": "底部横向合规流程条的显隐。"
+        "desc": "底部横向状态流程条的显隐。",
+        "publicKey": "showFlow",
+        "publicLabel": "流程图",
+        "description": "底部横向状态流程条的显隐。"
       },
       {
         "key": "flowStepCount",
@@ -9230,14 +10595,20 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "流程节点数量（3–5）。"
+        "desc": "流程节点数量（3–5）。",
+        "publicKey": "flowStepCount",
+        "publicLabel": "流程数量",
+        "description": "流程节点数量（3–5）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行作为视觉重点。"
+        "desc": "是否高亮某一行作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一行作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -9266,14 +10637,20 @@ export const pages = [
             "label": "第 5 行"
           }
         ],
-        "desc": "选择被高亮的行。"
+        "desc": "选择被高亮的行。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的行。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -9287,7 +10664,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、高亮行与流程节点。"
+        "desc": "品牌强调色，作用于分类标记、高亮行与流程节点。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、高亮行与流程节点。"
       }
     ],
     "defaultProps": {
@@ -9365,7 +10745,10 @@ export const pages = [
         "label": "数字倾斜",
         "type": "toggle",
         "default": true,
-        "desc": "主数字是否应用品牌斜切（italic-slant）效果。"
+        "desc": "主数字是否应用品牌斜切（italic-slant）效果。",
+        "publicKey": "numberSlant",
+        "publicLabel": "数字倾斜",
+        "description": "主数字是否应用品牌斜切（italic-slant）效果。"
       },
       {
         "key": "auxCount",
@@ -9375,42 +10758,60 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。"
+        "desc": "辅助指标数量（0–3）；为 0 时只保留主数字。",
+        "publicKey": "auxCount",
+        "publicLabel": "卡片数量",
+        "description": "辅助指标数量（0–3）；为 0 时只保留主数字。"
       },
       {
         "key": "showCaption",
         "label": "说明文案",
         "type": "toggle",
         "default": true,
-        "desc": "主数字下方解释性说明的显隐。"
+        "desc": "主数字下方解释性说明的显隐。",
+        "publicKey": "showCaption",
+        "publicLabel": "说明文案",
+        "description": "主数字下方解释性说明的显隐。"
       },
       {
         "key": "showGauge",
         "label": "示意图形",
         "type": "toggle",
         "default": true,
-        "desc": "成本 / 毛利构成的天花板示意条的显隐。"
+        "desc": "成本 / 毛利构成的天花板示意条的显隐。",
+        "publicKey": "showGauge",
+        "publicLabel": "示意图形",
+        "description": "成本 / 毛利构成的天花板示意条的显隐。"
       },
       {
         "key": "showNote",
         "label": "辅助注释",
         "type": "toggle",
         "default": true,
-        "desc": "底部补充注释的显隐。"
+        "desc": "底部补充注释的显隐。",
+        "publicKey": "showNote",
+        "publicLabel": "辅助注释",
+        "description": "底部补充注释的显隐。"
       },
       {
         "key": "showLens",
         "label": "品牌图形",
         "type": "toggle",
         "default": true,
-        "desc": "品牌透镜图形（焦点圆盘）的显隐。"
+        "desc": "品牌透镜图形（焦点圆盘）的显隐。",
+        "publicKey": "showLens",
+        "publicLabel": "品牌图形",
+        "description": "品牌透镜图形（焦点圆盘）的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -9424,7 +10825,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于主数字点缀、毛利段与品牌图形。"
+        "desc": "品牌强调色，作用于主数字点缀、毛利段与品牌图形。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于主数字点缀、毛利段与品牌图形。"
       }
     ],
     "defaultProps": {
@@ -9508,7 +10912,10 @@ export const pages = [
             "label": "占比条"
           }
         ],
-        "desc": "主图表样式：逼近壁垒线的压力计 / 资金占比条。"
+        "desc": "主图表样式：逼近壁垒线的压力计 / 资金占比条。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "主图表样式：逼近壁垒线的压力计 / 资金占比条。"
       },
       {
         "key": "segmentCount",
@@ -9518,14 +10925,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "竞争压力指标数量（2–3）。"
+        "desc": "竞争压力指标数量（2–3）。",
+        "publicKey": "segmentCount",
+        "publicLabel": "卡片数量",
+        "description": "竞争压力指标数量（2–3）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个压力指标作为视觉重点。"
+        "desc": "是否高亮某一个压力指标作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个压力指标作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -9546,28 +10959,40 @@ export const pages = [
             "label": "第 3 个"
           }
         ],
-        "desc": "选择被高亮的压力指标。"
+        "desc": "选择被高亮的压力指标。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的压力指标。"
       },
       {
         "key": "showBand",
         "label": "示意图形",
         "type": "toggle",
         "default": true,
-        "desc": "上方“独立空间被压缩”示意带的显隐。"
+        "desc": "上方“独立空间被压缩”示意带的显隐。",
+        "publicKey": "showBand",
+        "publicLabel": "示意图形",
+        "description": "上方“独立空间被压缩”示意带的显隐。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "压力指标数值标签的显隐。"
+        "desc": "压力指标数值标签的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "压力指标数值标签的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -9581,7 +11006,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于赛道标记、剩余壁垒与高亮指标。"
+        "desc": "品牌强调色，作用于分类标记、剩余壁垒与高亮指标。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于分类标记、剩余壁垒与高亮指标。"
       }
     ],
     "defaultProps": {
@@ -9643,7 +11071,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "推荐方向卡数量（2–4）。"
+        "desc": "推荐方向卡数量（2–4）。",
+        "publicKey": "cardCount",
+        "publicLabel": "卡片数量",
+        "description": "推荐方向卡数量（2–4）。"
       },
       {
         "key": "columns",
@@ -9660,7 +11091,10 @@ export const pages = [
             "label": "2 列"
           }
         ],
-        "desc": "卡片网格每行的列数。"
+        "desc": "卡片网格每行的列数。",
+        "publicKey": "columns",
+        "publicLabel": "每行列数",
+        "description": "卡片网格每行的列数。"
       },
       {
         "key": "criteriaCount",
@@ -9670,14 +11104,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "左侧筛选指标清单的条目数量（2–4）。"
+        "desc": "左侧筛选指标清单的条目数量（2–4）。",
+        "publicKey": "itemCount",
+        "publicLabel": "清单条目",
+        "description": "左侧筛选指标清单的条目数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张推荐方向卡作为视觉重点。"
+        "desc": "是否高亮某一张推荐方向卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张推荐方向卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -9702,21 +11142,30 @@ export const pages = [
             "label": "第 4 张"
           }
         ],
-        "desc": "选择被高亮的方向卡。"
+        "desc": "选择被高亮的方向卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的方向卡。"
       },
       {
         "key": "showMeter",
         "label": "示意图形",
         "type": "toggle",
         "default": true,
-        "desc": "卡片上的确定性强度条显隐。"
+        "desc": "卡片上的确定性强度条显隐。",
+        "publicKey": "showMeter",
+        "publicLabel": "示意图形",
+        "description": "卡片上的确定性强度条显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -9730,7 +11179,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于强度条、高亮卡与序号。"
+        "desc": "品牌强调色，作用于强度条、高亮卡与序号。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于强度条、高亮卡与序号。"
       }
     ],
     "defaultProps": {
@@ -9813,14 +11265,20 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "工作流链路的节点数量（3–5）。"
+        "desc": "工作流链路的节点数量（3–5）。",
+        "publicKey": "stepCount",
+        "publicLabel": "流程节点",
+        "description": "工作流链路的节点数量（3–5）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮工作流中的 AI 嵌入节点。"
+        "desc": "是否高亮工作流中的 AI 嵌入节点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮工作流中的 AI 嵌入节点。"
       },
       {
         "key": "focusIndex",
@@ -9849,7 +11307,10 @@ export const pages = [
             "label": "第 5 个"
           }
         ],
-        "desc": "选择被高亮的嵌入节点。"
+        "desc": "选择被高亮的嵌入节点。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的嵌入节点。"
       },
       {
         "key": "cardCount",
@@ -9859,14 +11320,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "底部筛选维度卡数量（2–4）。"
+        "desc": "底部筛选维度卡数量（2–4）。",
+        "publicKey": "cardCount",
+        "publicLabel": "卡片数量",
+        "description": "底部筛选维度卡数量（2–4）。"
       },
       {
         "key": "showTags",
         "label": "标签行",
         "type": "toggle",
         "default": true,
-        "desc": "底部落地场景标签行的显隐。"
+        "desc": "底部落地场景标签行的显隐。",
+        "publicKey": "showTags",
+        "publicLabel": "标签行",
+        "description": "底部落地场景标签行的显隐。"
       },
       {
         "key": "tagCount",
@@ -9876,14 +11343,20 @@ export const pages = [
         "min": 2,
         "max": 5,
         "step": 1,
-        "desc": "展示的场景标签数量（2–5）。"
+        "desc": "展示的场景标签数量（2–5）。",
+        "publicKey": "tagCount",
+        "publicLabel": "标签数量",
+        "description": "展示的场景标签数量（2–5）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -9897,7 +11370,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于嵌入节点、连接线与标签。"
+        "desc": "品牌强调色，作用于嵌入节点、连接线与标签。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于嵌入节点、连接线与标签。"
       }
     ],
     "defaultProps": {
@@ -9994,14 +11470,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "时间轴上的观察公司节点数量（2–4）。"
+        "desc": "时间轴上的观察公司节点数量（2–4）。",
+        "publicKey": "nodeCount",
+        "publicLabel": "节点数量",
+        "description": "时间轴上的观察公司节点数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一家观察公司作为视觉重点。"
+        "desc": "是否高亮某一家观察公司作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一家观察公司作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -10026,14 +11508,20 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的观察公司。"
+        "desc": "选择被高亮的观察公司。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的观察公司。"
       },
       {
         "key": "showMetrics",
         "label": "指标行",
         "type": "toggle",
         "default": true,
-        "desc": "底部观察指标行的显隐。"
+        "desc": "底部观察指标行的显隐。",
+        "publicKey": "showMetrics",
+        "publicLabel": "指标行",
+        "description": "底部观察指标行的显隐。"
       },
       {
         "key": "metricCount",
@@ -10043,14 +11531,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的观察指标数量（2–4）。"
+        "desc": "展示的观察指标数量（2–4）。",
+        "publicKey": "metricCount",
+        "publicLabel": "指标数量",
+        "description": "展示的观察指标数量（2–4）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -10064,7 +11558,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于时间轴节点与高亮公司。"
+        "desc": "品牌强调色，作用于时间轴节点与高亮公司。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于时间轴节点与高亮公司。"
       }
     ],
     "defaultProps": {
@@ -10149,7 +11646,10 @@ export const pages = [
             "label": "左对齐"
           }
         ],
-        "desc": "金句与辅助信息的整体对齐方式。"
+        "desc": "金句与辅助信息的整体对齐方式。",
+        "publicKey": "align",
+        "publicLabel": "对齐方式",
+        "description": "金句与辅助信息的整体对齐方式。"
       },
       {
         "key": "backgroundVariant",
@@ -10166,42 +11666,60 @@ export const pages = [
             "label": "深色"
           }
         ],
-        "desc": "收尾背景：浅色统一 / 深色换气强调。"
+        "desc": "收尾背景：浅色统一 / 深色换气强调。",
+        "publicKey": "backgroundVariant",
+        "publicLabel": "背景风格",
+        "description": "收尾背景：浅色统一 / 深色换气强调。"
       },
       {
         "key": "showKicker",
         "label": "标题标签",
         "type": "toggle",
         "default": true,
-        "desc": "顶部“最终判断”标签行的显隐。"
+        "desc": "顶部“最终判断”标签行的显隐。",
+        "publicKey": "showKicker",
+        "publicLabel": "标题标签",
+        "description": "顶部“最终判断”标签行的显隐。"
       },
       {
         "key": "showQuoteMark",
         "label": "引号装饰",
         "type": "toggle",
         "default": true,
-        "desc": "超大引号装饰符号的显隐。"
+        "desc": "超大引号装饰符号的显隐。",
+        "publicKey": "showQuoteMark",
+        "publicLabel": "引号装饰",
+        "description": "超大引号装饰符号的显隐。"
       },
       {
         "key": "showTagline",
         "label": "辅助信息",
         "type": "toggle",
         "default": true,
-        "desc": "金句下方单行收束语的显隐。"
+        "desc": "金句下方单行收束语的显隐。",
+        "publicKey": "showTagline",
+        "publicLabel": "辅助信息",
+        "description": "金句下方单行收束语的显隐。"
       },
       {
         "key": "showBrand",
         "label": "品牌签名",
         "type": "toggle",
         "default": true,
-        "desc": "左下角品牌标识的显隐。"
+        "desc": "左下角品牌标识的显隐。",
+        "publicKey": "showBrand",
+        "publicLabel": "品牌签名",
+        "description": "左下角品牌标识的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、镜头光斑与条码等装饰的显隐。"
+        "desc": "背景光晕、镜头光斑与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、镜头光斑与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -10215,7 +11733,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于金句重点词与装饰。"
+        "desc": "品牌强调色，作用于金句重点词与装饰。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于金句重点词与装饰。"
       }
     ],
     "defaultProps": {
@@ -10261,7 +11782,10 @@ export const pages = [
             "label": "浅色"
           }
         ],
-        "desc": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。"
+        "desc": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。",
+        "publicKey": "backgroundVariant",
+        "publicLabel": "背景风格",
+        "description": "章节页背景：深色（强换气节奏）/ 浅色（与正文统一）。"
       },
       {
         "key": "layout",
@@ -10278,21 +11802,30 @@ export const pages = [
             "label": "居中"
           }
         ],
-        "desc": "标题与关键词的整体排布方式。"
+        "desc": "标题与关键词的整体排布方式。",
+        "publicKey": "layout",
+        "publicLabel": "排版",
+        "description": "标题与关键词的整体排布方式。"
       },
       {
         "key": "showIndex",
         "label": "章节序号",
         "type": "toggle",
         "default": true,
-        "desc": "超大章节编号水印的显隐。"
+        "desc": "超大章节编号水印的显隐。",
+        "publicKey": "showIndex",
+        "publicLabel": "章节序号",
+        "description": "超大章节编号水印的显隐。"
       },
       {
         "key": "showKeywords",
         "label": "关键词",
         "type": "toggle",
         "default": true,
-        "desc": "本章关键词标签行的显隐。"
+        "desc": "本章关键词标签行的显隐。",
+        "publicKey": "showKeywords",
+        "publicLabel": "关键词",
+        "description": "本章关键词标签行的显隐。"
       },
       {
         "key": "keywordCount",
@@ -10302,14 +11835,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的关键词数量（2–4）。"
+        "desc": "展示的关键词数量（2–4）。",
+        "publicKey": "keywordCount",
+        "publicLabel": "关键词数量",
+        "description": "展示的关键词数量（2–4）。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "镜头光斑、背景光晕与条码等装饰的显隐。"
+        "desc": "镜头光斑、背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "镜头光斑、背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -10323,7 +11862,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色。"
+        "desc": "品牌强调色。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色。"
       }
     ],
     "defaultProps": {
@@ -10372,7 +11914,10 @@ export const pages = [
             "label": "偏离条"
           }
         ],
-        "desc": "前瞻图表样式：2024→2025E 推演线（扇形）/ 围绕基线的偏离条。"
+        "desc": "前瞻图表样式：2024→2025E 推演线（扇形）/ 围绕基线的偏离条。",
+        "publicKey": "chartType",
+        "publicLabel": "图表类型",
+        "description": "前瞻图表样式：2024→2025E 推演线（扇形）/ 围绕基线的偏离条。"
       },
       {
         "key": "metricCount",
@@ -10382,14 +11927,20 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "展示的前瞻指标数量（3–5）。"
+        "desc": "展示的前瞻指标数量（3–5）。",
+        "publicKey": "metricCount",
+        "publicLabel": "卡片数量",
+        "description": "展示的前瞻指标数量（3–5）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一个指标作为视觉重点。"
+        "desc": "是否高亮某一个指标作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一个指标作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -10418,28 +11969,40 @@ export const pages = [
             "label": "第 5 个"
           }
         ],
-        "desc": "选择被高亮的指标。"
+        "desc": "选择被高亮的指标。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的指标。"
       },
       {
         "key": "showValues",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "指标 2025E 指数与变化徽标的显隐。"
+        "desc": "指标 2025E 指数与变化徽标的显隐。",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "指标 2025E 指数与变化徽标的显隐。"
       },
       {
         "key": "showBand",
         "label": "情景区间",
         "type": "toggle",
         "default": true,
-        "desc": "推演线的情景区间扇形带的显隐。"
+        "desc": "推演线的情景区间扇形带的显隐。",
+        "publicKey": "showBand",
+        "publicLabel": "情景区间",
+        "description": "推演线的情景区间扇形带的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -10453,7 +12016,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于上行指标、推演线与高亮元素。"
+        "desc": "品牌强调色，作用于上行指标、推演线与高亮元素。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于上行指标、推演线与高亮元素。"
       }
     ],
     "defaultProps": {
@@ -10523,21 +12089,30 @@ export const pages = [
         "min": 4,
         "max": 6,
         "step": 1,
-        "desc": "口径表格展示的行数量（4–6）。"
+        "desc": "口径表格展示的行数量（4–6）。",
+        "publicKey": "rowCount",
+        "publicLabel": "行数量",
+        "description": "口径表格展示的行数量（4–6）。"
       },
       {
         "key": "showLevel",
         "label": "强度列",
         "type": "toggle",
         "default": true,
-        "desc": "可信度列（强度条 + 数值）的显隐。"
+        "desc": "可信度列（强度条 + 数值）的显隐。",
+        "publicKey": "showStatusLevel",
+        "publicLabel": "强度列",
+        "description": "可信度列（强度条 + 数值）的显隐。"
       },
       {
         "key": "showFlow",
         "label": "流程图",
         "type": "toggle",
         "default": true,
-        "desc": "底部横向口径处理流程条的显隐。"
+        "desc": "底部横向口径处理流程条的显隐。",
+        "publicKey": "showFlow",
+        "publicLabel": "流程图",
+        "description": "底部横向口径处理流程条的显隐。"
       },
       {
         "key": "flowStepCount",
@@ -10547,14 +12122,20 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "流程节点数量（3–5）。"
+        "desc": "流程节点数量（3–5）。",
+        "publicKey": "flowStepCount",
+        "publicLabel": "流程数量",
+        "description": "流程节点数量（3–5）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行作为视觉重点。"
+        "desc": "是否高亮某一行作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一行作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -10587,14 +12168,20 @@ export const pages = [
             "label": "第 6 行"
           }
         ],
-        "desc": "选择被高亮的行。"
+        "desc": "选择被高亮的行。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的行。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕与条码等装饰的显隐。"
+        "desc": "背景光晕与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -10608,7 +12195,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于维度标记、高亮行与流程节点。"
+        "desc": "品牌强调色，作用于维度标记、高亮行与流程节点。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于维度标记、高亮行与流程节点。"
       }
     ],
     "defaultProps": {
@@ -10694,7 +12284,10 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "主视觉区图片槽数量（0–3）；为 0 时以品牌图形填充，1 张可跟随原图比例，多张自动排成画廊。"
+        "desc": "主视觉区图片槽数量（0–3）；为 0 时以品牌图形填充，1 张可跟随原图比例，多张自动排成画廊。",
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量",
+        "description": "主视觉区图片槽数量（0–3）；为 0 时以品牌图形填充，1 张可跟随原图比例，多张自动排成画廊。"
       },
       {
         "key": "imageRatio",
@@ -10719,7 +12312,10 @@ export const pages = [
             "label": "自适应"
           }
         ],
-        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例（单图自然排布，多图统一为画廊墙）。"
+        "desc": "图片槽比例；自适应会跟随用户上传图片的原始比例（单图自然排布，多图统一为画廊墙）。",
+        "publicKey": "imageRatio",
+        "publicLabel": "图片比例",
+        "description": "图片槽比例；自适应会跟随用户上传图片的原始比例（单图自然排布，多图统一为画廊墙）。"
       },
       {
         "key": "cardCount",
@@ -10729,14 +12325,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "左侧能力说明卡数量（2–4）。"
+        "desc": "左侧能力说明卡数量（2–4）。",
+        "publicKey": "cardCount",
+        "publicLabel": "卡片数量",
+        "description": "左侧能力说明卡数量（2–4）。"
       },
       {
         "key": "focusEnabled",
         "label": "重点信息",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张能力卡作为视觉重点。"
+        "desc": "是否高亮某一张能力卡作为视觉重点。",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点信息",
+        "description": "是否高亮某一张能力卡作为视觉重点。"
       },
       {
         "key": "focusIndex",
@@ -10761,21 +12363,30 @@ export const pages = [
             "label": "第 4 个"
           }
         ],
-        "desc": "选择被高亮的能力卡。"
+        "desc": "选择被高亮的能力卡。",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点元素",
+        "description": "选择被高亮的能力卡。"
       },
       {
         "key": "showContact",
         "label": "联系信息",
         "type": "toggle",
         "default": true,
-        "desc": "底部联系信息行的显隐。"
+        "desc": "底部联系信息行的显隐。",
+        "publicKey": "showContact",
+        "publicLabel": "联系信息",
+        "description": "底部联系信息行的显隐。"
       },
       {
         "key": "showDecorations",
         "label": "装饰文案",
         "type": "toggle",
         "default": true,
-        "desc": "背景光晕、图片角标与条码等装饰的显隐。"
+        "desc": "背景光晕、图片角标与条码等装饰的显隐。",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰文案",
+        "description": "背景光晕、图片角标与条码等装饰的显隐。"
       },
       {
         "key": "accentColor",
@@ -10789,7 +12400,10 @@ export const pages = [
           "#F2A93B",
           "#0E110B"
         ],
-        "desc": "品牌强调色，作用于序号、高亮卡与装饰。"
+        "desc": "品牌强调色，作用于序号、高亮卡与装饰。",
+        "publicKey": "accentColor",
+        "publicLabel": "主题色",
+        "description": "品牌强调色，作用于序号、高亮卡与装饰。"
       }
     ],
     "defaultProps": {

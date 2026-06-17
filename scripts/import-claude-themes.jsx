@@ -3,6 +3,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import React from 'react';
+import {
+  normalizeControlValue,
+  normalizePublicControls,
+} from '../src/control-naming.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const DEFAULT_GOAL = path.join(ROOT, 'theme-import-goal.json');
@@ -1201,55 +1205,34 @@ function serializePages(runtimePages, theme) {
 }
 
 function serializeControls(controls) {
-  return (controls || []).filter(control => !isRemovedControl(control)).map(control => {
+  const normalized = (controls || []).filter(control => !isRemovedControl(control)).map(control => {
     const key = control.key || control.prop;
     if (!key) return null;
     return {
       key,
       prop: control.prop,
-      label: genericControlText(control.label || key),
+      label: control.label || key,
       type: control.type,
       default: serializeValue(control.default ?? control.def),
       def: serializeValue(control.def),
       min: serializeValue(control.min),
       max: serializeValue(control.max),
       step: serializeValue(control.step),
-      options: genericControlValue(serializeValue(controlOptions(control))),
+      options: normalizeControlValue(serializeValue(controlOptions(control))),
       countKey: control.countKey,
       countIndex: control.countIndex,
       maxFromKey: control.maxFromKey,
       dependsOn: serializeValue(control.dependsOn),
       dependsOnValue: serializeValue(control.dependsOnValue),
       dependsOnValues: serializeValue(control.dependsOnValues),
-      desc: genericControlText(control.desc || control.describe || control.description),
+      desc: control.desc || control.describe || control.description,
     };
   }).filter(Boolean);
+  return normalizePublicControls(normalized);
 }
 
 function isRemovedControl(control) {
   return REMOVED_CONTROL_TYPES.has(String(control?.type || '').toLowerCase());
-}
-
-function genericControlText(value) {
-  if (typeof value !== 'string') return value;
-  return value
-    .replaceAll('联系方式数量', '信息条目数量')
-    .replaceAll('联系方式', '次级文案')
-    .replaceAll('投资人类型占比', '分类占比')
-    .replaceAll('投资人类型数', '分类数量')
-    .replaceAll('投资人类型', '分类类型')
-    .replaceAll('平均单笔融资金额', '平均指标')
-    .replaceAll('融资金额', '数值指标')
-    .replaceAll('投资人', '角色')
-    .replaceAll('AI Capital Lab', '研究机构')
-    .replaceAll('AI Capital', '研究机构');
-}
-
-function genericControlValue(value) {
-  if (typeof value === 'string') return genericControlText(value);
-  if (Array.isArray(value)) return value.map(genericControlValue);
-  if (!value || typeof value !== 'object') return value;
-  return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, genericControlValue(item)]));
 }
 
 function controlOptions(control) {

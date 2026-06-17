@@ -1,3 +1,9 @@
+import {
+  normalizeControlValue,
+  normalizePublicControls,
+  resolvePublicPropAliases,
+} from './control-naming.mjs';
+
 const REMOVED_CONTROL_TYPES = new Set(['text', 'string', 'input', 'url', 'email', 'textarea', 'multiline']);
 
 export const COUNT_ARRAY_BINDINGS = {
@@ -32,7 +38,8 @@ export function createLayoutContracts(pages = []) {
 }
 
 export function normalizeSlidePropsForContract(layout, props = {}, contract = null) {
-  const authoredProps = props || {};
+  const aliasResult = contract ? resolvePublicPropAliases(props, contract.controls) : { props: props || {} };
+  const authoredProps = aliasResult.props || {};
   const authoredCounts = deriveAuthoredCounts(authoredProps, contract?.countBindings || []);
   const next = contract ? mergeCountBoundArrayProps(authoredProps, contract) : { ...authoredProps };
   if (!contract) return next;
@@ -89,6 +96,8 @@ export function createContract(page, themePack) {
     .filter(item => item.arrays.length)
     .map(({ control, arrays }) => ({
       key: control.key,
+      publicKey: control.publicKey || control.key,
+      label: control.label || control.publicLabel || control.key,
       arrays,
       min: control.min,
       max: control.max,
@@ -249,9 +258,10 @@ function normalizeControls(page) {
     page.spec.controls.forEach(control => {
       if (control.prop) defaults[control.prop] = control.default;
     });
-    return page.spec.controls.filter(control => !isRemovedControl(control)).map(control => normalizeControl({
+    return normalizePublicControls(page.spec.controls.filter(control => !isRemovedControl(control)).map(control => normalizeControl({
       key: control.prop,
       label: control.label,
+      desc: control.desc || control.description || control.describe,
       type: control.type,
       defaultValue: control.default,
       min: control.min,
@@ -264,12 +274,13 @@ function normalizeControls(page) {
       dependsOn: control.dependsOn,
       dependsOnValue: control.dependsOnValue,
       dependsOnValues: control.dependsOnValues,
-    }, defaults));
+    }, defaults)), { layout: page.key, themeKey: page.themeKey });
   }
 
-  return (page.controls || []).filter(control => !isRemovedControl(control)).map(control => normalizeControl({
+  return normalizePublicControls((page.controls || []).filter(control => !isRemovedControl(control)).map(control => normalizeControl({
     key: control.key || control.prop,
     label: control.label,
+    desc: control.desc || control.description || control.describe,
     type: control.type,
     defaultValue: control.default ?? control.def,
     min: control.min,
@@ -282,7 +293,7 @@ function normalizeControls(page) {
     dependsOn: control.dependsOn,
     dependsOnValue: control.dependsOnValue,
     dependsOnValues: control.dependsOnValues,
-  }, page.defaultProps || {}));
+  }, page.defaultProps || {})), { layout: page.key, themeKey: page.themeKey });
 }
 
 function isRemovedControl(control) {
@@ -292,42 +303,21 @@ function isRemovedControl(control) {
 function normalizeControl(control, defaults) {
   return {
     key: control.key,
-    label: genericControlText(control.label || control.key),
+    label: control.label || control.key,
     type: normalizeControlType(control.type),
     default: serializeValue(control.defaultValue),
     min: resolveControlValue(control.min, defaults),
     max: resolveControlValue(control.max, defaults),
     step: serializeValue(control.step),
-    options: genericControlValue(serializeValue(control.options)),
+    options: normalizeControlValue(serializeValue(control.options)),
     countKey: serializeValue(control.countKey),
     countIndex: serializeValue(control.countIndex),
     maxFromKey: serializeValue(control.maxFromKey),
     dependsOn: serializeValue(control.dependsOn),
     dependsOnValue: serializeValue(control.dependsOnValue),
     dependsOnValues: serializeValue(control.dependsOnValues),
+    desc: control.desc,
   };
-}
-
-function genericControlText(value) {
-  if (typeof value !== 'string') return value;
-  return value
-    .replaceAll('联系方式数量', '信息条目数量')
-    .replaceAll('联系方式', '次级文案')
-    .replaceAll('投资人类型占比', '分类占比')
-    .replaceAll('投资人类型数', '分类数量')
-    .replaceAll('投资人类型', '分类类型')
-    .replaceAll('平均单笔融资金额', '平均指标')
-    .replaceAll('融资金额', '数值指标')
-    .replaceAll('投资人', '角色')
-    .replaceAll('AI Capital Lab', '研究机构')
-    .replaceAll('AI Capital', '研究机构');
-}
-
-function genericControlValue(value) {
-  if (typeof value === 'string') return genericControlText(value);
-  if (Array.isArray(value)) return value.map(genericControlValue);
-  if (!value || typeof value !== 'object') return value;
-  return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, genericControlValue(item)]));
 }
 
 function normalizeControlType(type) {

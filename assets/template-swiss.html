@@ -331,7 +331,7 @@
       </button>
       <div class="pp-export-menu" role="menu">
         <button id="preview-export" type="button" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/></svg><span>HTML</span><kbd>离线包</kbd></button>
-        <button id="preview-export-pdf" type="button" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg><span>PDF</span><kbd>打印</kbd></button>
+        <button id="preview-export-pdf" type="button" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg><span>PDF</span><kbd>下载</kbd></button>
         <button id="preview-export-pptx" type="button" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h20"/><path d="M4 4v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4"/><path d="m9 20 3-3 3 3"/></svg><span>PPTX</span><kbd>可编辑</kbd></button>
       </div>
     </div>
@@ -3989,38 +3989,96 @@ refreshRailCatalog();
 
   window.__exportDeckPdf = async function(){
     if(window.__deckExportLocked) return;
-    const restoreState = captureExportViewState();
     let exportUi = null;
-    let restorePrintState = null;
+    let progressPoll = null;
     try {
+      if(location.protocol === 'file:'){
+        const message = 'PDF 直接下载需要通过本地 HTTPS 预览服务打开。请运行 npm run preview:start -- <输出 ppt 目录> <port>，再打开 https://jadon.local:<port>/ 后导出。';
+        window.__httpPreviewRequiredMessage = message;
+        alert(message);
+        return;
+      }
       exportUi = beginDeckExport('PDF');
-      updateDeckExport(exportUi, 0, 1, '准备页面状态...');
+      const progressId = createPdfExportProgressId();
+      progressPoll = beginPdfExportProgressPolling(exportUi, progressId);
+      updateDeckExport(exportUi, 0, 1, '提交截图 PDF 生成任务...');
       window.__syncDeckPageNumbers?.();
       window.__flushEditableTextState?.();
       window.__syncDeckViewModelFromDom?.();
       throwIfDeckExportCancelled(exportUi);
-      setDeckMode('present');
-      window.__layoutDeck?.();
-      window.__restoreEffectIframes?.(document);
-      const slides = await materializeExportSlides(exportUi, 'PDF');
+      const slides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')];
+      const response = await fetch('/api/export-pdf', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify({
+          title: document.title || 'Presentation',
+          fileName: getDeckFileName(),
+          sourcePath: location.pathname + location.search,
+          progressId,
+          snapshot: buildPdfExportSnapshot(),
+        }),
+      });
+      progressPoll.stop();
+      progressPoll = null;
       throwIfDeckExportCancelled(exportUi);
-      restorePrintState = prepareSlidesForPrint(slides);
-      await nextFrame();
-      await waitForExportFonts();
-      await nextFrame();
-      updateDeckExport(exportUi, slides.length, slides.length, '正在打开浏览器打印...');
-      await runBrowserPrint(window);
+      if(!response.ok){
+        let detail = '';
+        try { detail = (await response.json())?.error || ''; } catch {}
+        if(response.status === 404) detail = '当前页面没有 PDF 截图导出服务。请通过 npm run preview:start 启动本地预览后再导出。';
+        throw new Error(detail || `PDF export endpoint failed (${response.status})`);
+      }
+      const result = await response.json();
+      if(!result?.filePath) throw new Error('PDF export did not return a saved file path.');
+      window.__lastPdfExportResult = result;
+      const downloadStarted = startServerExportDownload(result.downloadUrl, result.downloadName || `${getDeckFileName()}.pdf`);
+      window.__lastPdfExportResult.downloadStarted = downloadStarted;
+      updateDeckExport(exportUi, slides.length, slides.length, downloadStarted ? 'PDF 已开始下载' : `PDF 已保存：${result.relativePath || result.filePath}`);
+      if(!downloadStarted) alert(`PDF 已保存到：\n${result.filePath}`);
     } catch (error) {
       if(isDeckExportCancelledError(error)) return;
       console.error('[export pdf]', error);
-      alert('PDF 导出失败，请在浏览器控制台查看错误。');
+      alert(error?.message || 'PDF 导出失败，请在浏览器控制台查看错误。');
     } finally {
-      restorePrintState?.();
-      restoreExportViewState(restoreState);
+      progressPoll?.stop?.();
       endDeckExport(exportUi);
       window.__syncActiveEffects?.();
     }
   };
+
+  function createPdfExportProgressId(){
+    const random = Math.random().toString(36).slice(2, 10);
+    return `pdf-${Date.now().toString(36)}-${random}`;
+  }
+
+  function beginPdfExportProgressPolling(exportUi, progressId){
+    let stopped = false;
+    const read = async () => {
+      if(stopped || !progressId) return;
+      try {
+        const response = await fetch(`/api/export-pdf-progress?id=${encodeURIComponent(progressId)}`, {
+          cache: 'no-store',
+          credentials: 'same-origin',
+        });
+        if(!response.ok) return;
+        const progress = await response.json();
+        const percent = Math.max(0, Math.min(100, Number(progress.percent || 0)));
+        const detail = progress.detail || '正在生成截图 PDF';
+        updateDeckExport(exportUi, percent, 100, `${detail} · ${Math.round(percent)}%`);
+      } catch {}
+      if(!stopped) setTimeout(read, 450);
+    };
+    read();
+    return { stop(){ stopped = true; } };
+  }
+
+  function buildPdfExportSnapshot(){
+    return {
+      themePack: document.documentElement.dataset.themePack || '',
+      currentIndex: window.__currentSlideIndex || 0,
+      state: window.__getDeckViewModelState?.() || {},
+      canvasSnapshots: collectEditablePptxCanvasSnapshots(),
+    };
+  }
 
   window.__exportDeckPptx = async function(){
     if(window.__deckExportLocked) return;
@@ -4031,7 +4089,7 @@ refreshRailCatalog();
       return;
     }
     if(location.protocol === 'file:'){
-      const message = '可编辑 PPTX 导出需要通过本地 HTTPS 预览服务打开。请运行 npm run preview:start -- <输出 ppt 目录> <port>，再打开 https://jadon.local:<port>/ 后导出。';
+      const message = '可编辑 PPTX 导出需要通过本地 HTTP/HTTPS 预览服务打开。请运行 npm run preview:start -- <输出 ppt 目录> <port>，优先打开本机 HTTP 地址 http://127.0.0.1:<port>/ 或 http://localhost:<port>/ 后导出。http://jadon.local:<port>/ 这类 HTTP LAN/jadon.local 地址可能导致下载失败，不作为导出主入口；直接打开本地 HTML/file:// 不能导出可编辑 PPTX。';
       window.__httpPreviewRequiredMessage = message;
       alert(message);
       return;
@@ -4086,7 +4144,11 @@ refreshRailCatalog();
     } catch (error) {
       if(isDeckExportCancelledError(error)) return;
       console.error('[export pptx]', error);
-      alert('可编辑 PPTX 导出失败，请确认当前页面是通过本地 HTTP/HTTPS 预览服务打开，而不是 file:// 直接打开。');
+      const message = location.protocol === 'http:' || location.protocol === 'https:'
+        ? `可编辑 PPTX 导出失败：当前页面是 HTTP/HTTPS 地址,但没有连到本地预览导出服务、服务目录不匹配，或使用了会影响下载的 HTTP LAN/jadon.local 地址。请确认用 npm run preview:start -- <输出 ppt 目录> <port> 启动，并优先打开本机 HTTP 地址 http://127.0.0.1:<port>/ 或 http://localhost:<port>/ 后导出。错误：${error?.message || '未知错误'}`
+        : '可编辑 PPTX 导出失败，请通过本地 HTTP/HTTPS 预览服务打开。直接打开本地 HTML/file:// 不能导出可编辑 PPTX。';
+      window.__lastPptxExportErrorMessage = message;
+      alert(message);
     } finally {
       progressPoll?.stop?.();
       document.body.classList.remove('pptx-export-capturing');

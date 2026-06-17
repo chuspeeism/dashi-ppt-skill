@@ -22,19 +22,26 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showFigure",
         "label": "重点数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "重点数字"
       },
       {
         "key": "accent",
@@ -50,7 +57,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "imageCount",
@@ -59,13 +68,17 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "showMeta",
         "label": "页脚信息",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "页脚信息"
       }
     ],
     "defaultProps": {
@@ -108,13 +121,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "theme",
@@ -130,7 +148,9 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "accent",
@@ -146,7 +166,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "statCount",
@@ -155,13 +177,17 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "数据条目"
       },
       {
         "key": "showMeta",
         "label": "页脚信息",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "页脚信息"
       }
     ],
     "defaultProps": {
@@ -233,7 +259,10 @@ export const pages = [
             "label": "上传"
           }
         ],
-        "desc": "动态 shader 或自定义背景媒体"
+        "desc": "动态 shader 或自定义背景媒体",
+        "publicKey": "backgroundMode",
+        "publicLabel": "背景替换",
+        "description": "动态 shader 或自定义背景媒体"
       },
       {
         "key": "unicornScene",
@@ -261,14 +290,20 @@ export const pages = [
         ],
         "dependsOn": "backgroundMode",
         "dependsOnValue": "unicorn",
-        "desc": "选择固定 Unicorn shader 场景"
+        "desc": "选择固定 Unicorn shader 场景",
+        "publicKey": "dynamicVisual",
+        "publicLabel": "动态场景",
+        "description": "选择固定 Unicorn shader 场景"
       },
       {
         "key": "forceDark",
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "accent",
@@ -285,7 +320,10 @@ export const pages = [
             "label": "荧光绿"
           }
         ],
-        "desc": "theme03 全局强调色，作用于该主题所有页面。"
+        "desc": "theme03 全局强调色，作用于该主题所有页面。",
+        "publicKey": "accent",
+        "publicLabel": "强调色",
+        "description": "theme03 全局强调色，作用于该主题所有页面。"
       },
       {
         "key": "imageCount",
@@ -296,13 +334,17 @@ export const pages = [
         "max": 1,
         "step": 1,
         "dependsOn": "backgroundMode",
-        "dependsOnValue": "media"
+        "dependsOnValue": "media",
+        "publicKey": "imageCount",
+        "publicLabel": "背景图"
       },
       {
         "key": "showEyebrow",
         "label": "中央标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "中央标签"
       },
       {
         "key": "theme",
@@ -318,31 +360,41 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "showFrame",
         "label": "描边边框",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFrame",
+        "publicLabel": "描边边框"
       },
       {
         "key": "showFigure",
         "label": "核心数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "核心数字"
       },
       {
         "key": "showMeta",
         "label": "页脚信息",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "页脚信息"
       },
       {
         "key": "showDecor",
         "label": "装饰图片",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "showDecor",
+        "publicLabel": "装饰图片"
       },
       {
         "key": "decorSrc",
@@ -409,7 +461,9 @@ export const pages = [
             "label": "番茄箱",
             "image": "assets/3d/12.png"
           }
-        ]
+        ],
+        "publicKey": "decorSrc",
+        "publicLabel": "装饰元素"
       },
       {
         "key": "decorScale",
@@ -418,7 +472,9 @@ export const pages = [
         "default": 1,
         "min": 0.6,
         "max": 1.6,
-        "step": 0.05
+        "step": 0.05,
+        "publicKey": "decorScale",
+        "publicLabel": "图片大小"
       }
     ],
     "defaultProps": {
@@ -495,13 +551,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "theme",
@@ -517,7 +578,9 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "accent",
@@ -533,25 +596,33 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "showFigure",
         "label": "巨数模块",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "巨数模块"
       },
       {
         "key": "showPunch",
         "label": "荧光绿块",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showPunch",
+        "publicLabel": "荧光绿块"
       },
       {
         "key": "showMeta",
         "label": "元数据块",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "元数据块"
       }
     ],
     "defaultProps": {
@@ -613,7 +684,10 @@ export const pages = [
             "label": "上传"
           }
         ],
-        "desc": "动态 shader 或自定义背景媒体"
+        "desc": "动态 shader 或自定义背景媒体",
+        "publicKey": "backgroundMode",
+        "publicLabel": "背景替换",
+        "description": "动态 shader 或自定义背景媒体"
       },
       {
         "key": "unicornScene",
@@ -641,14 +715,20 @@ export const pages = [
         ],
         "dependsOn": "backgroundMode",
         "dependsOnValue": "unicorn",
-        "desc": "选择固定 Unicorn shader 场景"
+        "desc": "选择固定 Unicorn shader 场景",
+        "publicKey": "dynamicVisual",
+        "publicLabel": "动态场景",
+        "description": "选择固定 Unicorn shader 场景"
       },
       {
         "key": "forceDark",
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "accent",
@@ -665,13 +745,18 @@ export const pages = [
             "label": "荧光绿"
           }
         ],
-        "desc": "theme03 全局强调色，作用于该主题所有页面。"
+        "desc": "theme03 全局强调色，作用于该主题所有页面。",
+        "publicKey": "accent",
+        "publicLabel": "强调色",
+        "description": "theme03 全局强调色，作用于该主题所有页面。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "theme",
@@ -687,7 +772,9 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "imageCount",
@@ -696,25 +783,33 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 1,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "showFigure",
         "label": "核心数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "核心数字"
       },
       {
         "key": "showMeta",
         "label": "底部数据",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "底部数据"
       },
       {
         "key": "showDecor",
         "label": "装饰图片",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "showDecor",
+        "publicLabel": "装饰图片"
       },
       {
         "key": "decorSrc",
@@ -781,7 +876,9 @@ export const pages = [
             "label": "番茄箱",
             "image": "assets/3d/12.png"
           }
-        ]
+        ],
+        "publicKey": "decorSrc",
+        "publicLabel": "装饰元素"
       },
       {
         "key": "decorScale",
@@ -790,7 +887,9 @@ export const pages = [
         "default": 1,
         "min": 0.6,
         "max": 1.6,
-        "step": 0.05
+        "step": 0.05,
+        "publicKey": "decorScale",
+        "publicLabel": "图片大小"
       }
     ],
     "defaultProps": {
@@ -847,13 +946,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -862,7 +966,9 @@ export const pages = [
         "default": 7,
         "min": 4,
         "max": 7,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "章节数量"
       },
       {
         "key": "columns",
@@ -878,19 +984,25 @@ export const pages = [
             "value": "2",
             "label": "双栏"
           }
-        ]
+        ],
+        "publicKey": "columns",
+        "publicLabel": "栏目布局"
       },
       {
         "key": "showRule",
         "label": "分隔线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showRule",
+        "publicLabel": "分隔线"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -899,7 +1011,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 6,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "accent",
@@ -915,7 +1029,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       }
     ],
     "defaultProps": {
@@ -984,13 +1100,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "cardCount",
@@ -999,13 +1120,17 @@ export const pages = [
         "default": 2,
         "min": 1,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "cardCount",
+        "publicLabel": "卡片数量"
       },
       {
         "key": "showDiagram",
         "label": "装饰图形",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showDiagram",
+        "publicLabel": "装饰图形"
       },
       {
         "key": "diagramStyle1",
@@ -1043,7 +1168,9 @@ export const pages = [
           }
         ],
         "countKey": "cardCount",
-        "countIndex": 0
+        "countIndex": 0,
+        "publicKey": "diagramStyle1",
+        "publicLabel": "图形类型 1"
       },
       {
         "key": "diagramStyle2",
@@ -1081,7 +1208,9 @@ export const pages = [
           }
         ],
         "countKey": "cardCount",
-        "countIndex": 1
+        "countIndex": 1,
+        "publicKey": "diagramStyle2",
+        "publicLabel": "图形类型 2"
       },
       {
         "key": "diagramStyle3",
@@ -1119,13 +1248,17 @@ export const pages = [
           }
         ],
         "countKey": "cardCount",
-        "countIndex": 2
+        "countIndex": 2,
+        "publicKey": "diagramStyle3",
+        "publicLabel": "图形类型 3"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -1134,7 +1267,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       }
     ],
     "defaultProps": {
@@ -1189,13 +1324,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "chartType",
@@ -1215,25 +1355,33 @@ export const pages = [
             "value": "area",
             "label": "面积"
           }
-        ]
+        ],
+        "publicKey": "chartType",
+        "publicLabel": "图表类型"
       },
       {
         "key": "showSecondary",
         "label": "次级系列",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSecondary",
+        "publicLabel": "次级系列"
       },
       {
         "key": "showGrid",
         "label": "网格线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showGrid",
+        "publicLabel": "网格线"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -1242,13 +1390,17 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showAnnotation",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnnotation",
+        "publicLabel": "装饰解读"
       }
     ],
     "defaultProps": {
@@ -1308,13 +1460,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -1323,25 +1480,33 @@ export const pages = [
         "default": 6,
         "min": 3,
         "max": 6,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "节点数量"
       },
       {
         "key": "showConnector",
         "label": "连接轨道",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showConnector",
+        "publicLabel": "连接轨道"
       },
       {
         "key": "showMetric",
         "label": "关键数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMetric",
+        "publicLabel": "关键数字"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -1350,13 +1515,17 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showMeta",
         "label": "底部口径",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "底部口径"
       },
       {
         "key": "theme",
@@ -1372,7 +1541,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -1453,13 +1624,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "chartType",
@@ -1479,13 +1655,17 @@ export const pages = [
             "value": "bar",
             "label": "条形"
           }
-        ]
+        ],
+        "publicKey": "chartType",
+        "publicLabel": "图表类型"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -1494,31 +1674,41 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "dotFill",
         "label": "点阵填充",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "dotFill",
+        "publicLabel": "点阵填充"
       },
       {
         "key": "showCenter",
         "label": "中心数据",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCenter",
+        "publicLabel": "中心数据"
       },
       {
         "key": "showLegend",
         "label": "图例明细",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showLegend",
+        "publicLabel": "图例明细"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       }
     ],
     "defaultProps": {
@@ -1589,13 +1779,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -1604,7 +1799,9 @@ export const pages = [
         "default": 8,
         "min": 5,
         "max": 10,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "条目数量"
       },
       {
         "key": "chartType",
@@ -1620,13 +1817,17 @@ export const pages = [
             "value": "lollipop",
             "label": "棒棒糖"
           }
-        ]
+        ],
+        "publicKey": "chartType",
+        "publicLabel": "图表类型"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -1635,13 +1836,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 9,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       }
     ],
     "defaultProps": {
@@ -1726,13 +1931,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -1741,25 +1951,33 @@ export const pages = [
         "default": 10,
         "min": 5,
         "max": 10,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "条目数量"
       },
       {
         "key": "showBar",
         "label": "数值条",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值条"
       },
       {
         "key": "showSecondary",
         "label": "附加列",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSecondary",
+        "publicLabel": "附加列"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -1768,13 +1986,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 9,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       }
     ],
     "defaultProps": {
@@ -1876,31 +2098,42 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showValues",
         "label": "数值标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标注"
       },
       {
         "key": "showLegend",
-        "label": "赛道图例",
+        "label": "分类图例",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showLegend",
+        "publicLabel": "分类图例"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -1909,13 +2142,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 9,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "结构解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "结构解读"
       },
       {
         "key": "theme",
@@ -1931,7 +2168,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -2025,31 +2264,42 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showAxis",
         "label": "坐标轴标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAxis",
+        "publicLabel": "坐标轴标注"
       },
       {
         "key": "showChips",
-        "label": "公司标签",
+        "label": "对象标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showChips",
+        "publicLabel": "对象标签"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -2058,7 +2308,9 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       }
     ],
     "defaultProps": {
@@ -2136,13 +2388,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "layerCount",
@@ -2151,19 +2408,25 @@ export const pages = [
         "default": 3,
         "min": 1,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "layerCount",
+        "publicLabel": "层级数量"
       },
       {
         "key": "showChips",
-        "label": "公司标签",
+        "label": "对象标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showChips",
+        "publicLabel": "对象标签"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -2172,7 +2435,9 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       }
     ],
     "defaultProps": {
@@ -2275,37 +2540,50 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showCompanies",
         "label": "代表公司",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCompanies",
+        "publicLabel": "代表公司"
       },
       {
         "key": "showAmount",
         "label": "层资金量级",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAmount",
+        "publicLabel": "层资金量级"
       },
       {
         "key": "showCertainty",
         "label": "确定性标记",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCertainty",
+        "publicLabel": "确定性标记"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -2314,13 +2592,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       },
       {
         "key": "theme",
@@ -2336,7 +2618,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -2475,13 +2759,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "imageCount",
@@ -2490,7 +2779,9 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "layout",
@@ -2506,13 +2797,17 @@ export const pages = [
             "value": "column",
             "label": "竖排"
           }
-        ]
+        ],
+        "publicKey": "layout",
+        "publicLabel": "图片排布"
       },
       {
         "key": "showFigure",
         "label": "核心数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "核心数字"
       },
       {
         "key": "chipCount",
@@ -2521,13 +2816,17 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "chipCount",
+        "publicLabel": "特征标签"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       },
       {
         "key": "accent",
@@ -2543,7 +2842,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       }
     ],
     "defaultProps": {
@@ -2594,13 +2895,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "imageCount",
@@ -2609,19 +2915,25 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "showTimeline",
-        "label": "融资时间轴",
+        "label": "时间轴",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showTimeline",
+        "publicLabel": "时间轴"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -2630,13 +2942,17 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showQuote",
         "label": "装饰引言",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showQuote",
+        "publicLabel": "装饰引言"
       }
     ],
     "defaultProps": {
@@ -2693,13 +3009,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "imageCount",
@@ -2708,7 +3029,9 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "layout",
@@ -2724,7 +3047,9 @@ export const pages = [
             "value": "column",
             "label": "竖排"
           }
-        ]
+        ],
+        "publicKey": "layout",
+        "publicLabel": "图片排布"
       },
       {
         "key": "statCount",
@@ -2733,13 +3058,17 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "statCount",
+        "publicLabel": "关键数字"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -2748,13 +3077,17 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       },
       {
         "key": "accent",
@@ -2770,7 +3103,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       }
     ],
     "defaultProps": {
@@ -2830,19 +3165,26 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showPivot",
         "label": "转型对比",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showPivot",
+        "publicLabel": "转型对比"
       },
       {
         "key": "imageCount",
@@ -2851,7 +3193,9 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "layout",
@@ -2867,7 +3211,9 @@ export const pages = [
             "value": "column",
             "label": "竖排"
           }
-        ]
+        ],
+        "publicKey": "layout",
+        "publicLabel": "图片排布"
       },
       {
         "key": "statCount",
@@ -2876,13 +3222,17 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "statCount",
+        "publicLabel": "关键数字"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -2891,13 +3241,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       },
       {
         "key": "accent",
@@ -2913,7 +3267,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       }
     ],
     "defaultProps": {
@@ -2975,13 +3331,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -2990,25 +3351,33 @@ export const pages = [
         "default": 3,
         "min": 2,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "公司数量"
       },
       {
         "key": "showEdge",
         "label": "差异化行",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEdge",
+        "publicLabel": "差异化行"
       },
       {
         "key": "showRank",
-        "label": "估值标记",
+        "label": "指标标记",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showRank",
+        "publicLabel": "指标标记"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -3017,13 +3386,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       }
     ],
     "defaultProps": {
@@ -3125,13 +3498,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "theme",
@@ -3147,7 +3525,9 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "accent",
@@ -3163,13 +3543,17 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "showIndex",
         "label": "章节序号",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showIndex",
+        "publicLabel": "章节序号"
       },
       {
         "key": "imageCount",
@@ -3178,13 +3562,17 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "showMeta",
         "label": "页脚信息",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "页脚信息"
       }
     ],
     "defaultProps": {
@@ -3230,13 +3618,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "chartType",
@@ -3252,25 +3645,33 @@ export const pages = [
             "value": "lollipop",
             "label": "棒棒糖"
           }
-        ]
+        ],
+        "publicKey": "chartType",
+        "publicLabel": "图表类型"
       },
       {
         "key": "showSecondary",
         "label": "次级系列",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSecondary",
+        "publicLabel": "次级系列"
       },
       {
         "key": "showGrid",
         "label": "网格线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showGrid",
+        "publicLabel": "网格线"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -3279,13 +3680,17 @@ export const pages = [
         "default": 4,
         "min": 0,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       }
     ],
     "defaultProps": {
@@ -3360,13 +3765,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "columns",
@@ -3375,25 +3785,33 @@ export const pages = [
         "default": 14,
         "min": 10,
         "max": 16,
-        "step": 1
+        "step": 1,
+        "publicKey": "columns",
+        "publicLabel": "每行格数"
       },
       {
         "key": "showLegend",
-        "label": "轮次图例",
+        "label": "阶段图例",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showLegend",
+        "publicLabel": "阶段图例"
       },
       {
         "key": "showAvg",
         "label": "平均单笔",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAvg",
+        "publicLabel": "平均单笔"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -3402,13 +3820,17 @@ export const pages = [
         "default": 4,
         "min": 0,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "核心发现",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "核心发现"
       },
       {
         "key": "theme",
@@ -3424,7 +3846,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -3522,31 +3946,42 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showHeat",
         "label": "热力底色",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showHeat",
+        "publicLabel": "热力底色"
       },
       {
         "key": "showBar",
         "label": "数值条",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值条"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -3555,13 +3990,17 @@ export const pages = [
         "default": 7,
         "min": 0,
         "max": 11,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showSummary",
         "label": "侧栏汇总",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSummary",
+        "publicLabel": "侧栏汇总"
       }
     ],
     "defaultProps": {
@@ -3630,13 +4069,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "theme",
@@ -3652,7 +4096,9 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "accent",
@@ -3668,31 +4114,41 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "showUnit",
         "label": "数字单位",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showUnit",
+        "publicLabel": "数字单位"
       },
       {
         "key": "showSupport",
         "label": "辅助说明",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSupport",
+        "publicLabel": "辅助说明"
       },
       {
         "key": "showChart",
         "label": "月度节奏",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showChart",
+        "publicLabel": "月度节奏"
       },
       {
         "key": "showSecondPeak",
         "label": "次峰标记",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSecondPeak",
+        "publicLabel": "次峰标记"
       }
     ],
     "defaultProps": {
@@ -3799,13 +4255,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "chartType",
@@ -3821,25 +4282,33 @@ export const pages = [
             "value": "line",
             "label": "折线"
           }
-        ]
+        ],
+        "publicKey": "chartType",
+        "publicLabel": "主系列样式"
       },
       {
         "key": "showSecondary",
         "label": "月度增量",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSecondary",
+        "publicLabel": "月度增量"
       },
       {
         "key": "showGrid",
         "label": "网格线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showGrid",
+        "publicLabel": "网格线"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -3848,13 +4317,17 @@ export const pages = [
         "default": 7,
         "min": 0,
         "max": 11,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "趋势解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "趋势解读"
       },
       {
         "key": "theme",
@@ -3870,7 +4343,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -3954,13 +4429,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "theme",
@@ -3976,7 +4456,9 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "accent",
@@ -3992,19 +4474,25 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "showUnit",
         "label": "数字单位",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showUnit",
+        "publicLabel": "数字单位"
       },
       {
         "key": "showSupport",
         "label": "辅助说明",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSupport",
+        "publicLabel": "辅助说明"
       },
       {
         "key": "statCount",
@@ -4013,7 +4501,9 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "statCount",
+        "publicLabel": "佐证数据"
       }
     ],
     "defaultProps": {
@@ -4067,13 +4557,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -4082,7 +4577,9 @@ export const pages = [
         "default": 5,
         "min": 3,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "条目数量"
       },
       {
         "key": "chartType",
@@ -4098,13 +4595,17 @@ export const pages = [
             "value": "lollipop",
             "label": "棒棒糖"
           }
-        ]
+        ],
+        "publicKey": "chartType",
+        "publicLabel": "图表类型"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -4113,7 +4614,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "imageCount",
@@ -4122,13 +4625,17 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       }
     ],
     "defaultProps": {
@@ -4203,13 +4710,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "imageCount",
@@ -4218,19 +4730,25 @@ export const pages = [
         "default": 4,
         "min": 2,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "showFigure",
         "label": "主视觉数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "主视觉数字"
       },
       {
         "key": "showMeta",
         "label": "地区明细",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "地区明细"
       },
       {
         "key": "theme",
@@ -4246,7 +4764,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "明暗主题"
       },
       {
         "key": "accent",
@@ -4262,7 +4782,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       }
     ],
     "defaultProps": {
@@ -4327,13 +4849,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "chartType",
@@ -4353,25 +4880,33 @@ export const pages = [
             "value": "area",
             "label": "面积"
           }
-        ]
+        ],
+        "publicKey": "chartType",
+        "publicLabel": "图表类型"
       },
       {
         "key": "showSecondary",
         "label": "次级系列",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSecondary",
+        "publicLabel": "次级系列"
       },
       {
         "key": "showGrid",
         "label": "网格线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showGrid",
+        "publicLabel": "网格线"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -4380,13 +4915,17 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       }
     ],
     "defaultProps": {
@@ -4444,13 +4983,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "theme",
@@ -4466,7 +5010,9 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "accent",
@@ -4482,25 +5028,33 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "showInputs",
         "label": "构成项",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showInputs",
+        "publicLabel": "构成项"
       },
       {
         "key": "showBar",
         "label": "量级条",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showBar",
+        "publicLabel": "量级条"
       },
       {
         "key": "showSupport",
         "label": "辅助说明",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSupport",
+        "publicLabel": "辅助说明"
       }
     ],
     "defaultProps": {
@@ -4568,13 +5122,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "cardCount",
@@ -4583,7 +5142,9 @@ export const pages = [
         "default": 4,
         "min": 1,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "cardCount",
+        "publicLabel": "卡片数量"
       },
       {
         "key": "columns",
@@ -4599,25 +5160,33 @@ export const pages = [
             "value": "4",
             "label": "四列"
           }
-        ]
+        ],
+        "publicKey": "columns",
+        "publicLabel": "网格列数"
       },
       {
         "key": "showIndex",
         "label": "卡片序号",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showIndex",
+        "publicLabel": "卡片序号"
       },
       {
         "key": "showMeter",
-        "label": "风险等级",
+        "label": "状态等级",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showStatusRating",
+        "publicLabel": "状态等级"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -4626,7 +5195,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       }
     ],
     "defaultProps": {
@@ -4689,13 +5260,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "chainCount",
@@ -4704,25 +5280,33 @@ export const pages = [
         "default": 3,
         "min": 1,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "chainCount",
+        "publicLabel": "链条数量"
       },
       {
         "key": "showConnector",
         "label": "传导箭头",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showConnector",
+        "publicLabel": "传导箭头"
       },
       {
         "key": "showOutcome",
         "label": "终局结果",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showOutcome",
+        "publicLabel": "终局结果"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -4731,7 +5315,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       }
     ],
     "defaultProps": {
@@ -4798,13 +5384,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -4813,7 +5404,9 @@ export const pages = [
         "default": 3,
         "min": 1,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "条目数量"
       },
       {
         "key": "focusSide",
@@ -4833,19 +5426,25 @@ export const pages = [
             "value": "right",
             "label": "谨慎"
           }
-        ]
+        ],
+        "publicKey": "focusSide",
+        "publicLabel": "突出栏目"
       },
       {
         "key": "showTag",
         "label": "栏目标记",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showTag",
+        "publicLabel": "栏目标记"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       }
     ],
     "defaultProps": {
@@ -4908,13 +5507,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "orientation",
@@ -4930,7 +5534,9 @@ export const pages = [
             "value": "vertical",
             "label": "纵向"
           }
-        ]
+        ],
+        "publicKey": "orientation",
+        "publicLabel": "排布方向"
       },
       {
         "key": "itemCount",
@@ -4939,19 +5545,25 @@ export const pages = [
         "default": 3,
         "min": 1,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "阶段数量"
       },
       {
         "key": "showConnector",
         "label": "连接轨道",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showConnector",
+        "publicLabel": "连接轨道"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -4960,13 +5572,17 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showMeta",
         "label": "页脚说明",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "页脚说明"
       }
     ],
     "defaultProps": {
@@ -5024,37 +5640,50 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showEnvelope",
         "label": "雄心包络",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEnvelope",
+        "publicLabel": "雄心包络"
       },
       {
         "key": "showCards",
         "label": "视野卡片",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCards",
+        "publicLabel": "视野卡片"
       },
       {
         "key": "showMeter",
         "label": "定性标尺",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeter",
+        "publicLabel": "定性标尺"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -5063,13 +5692,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "底部小结",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "底部小结"
       },
       {
         "key": "theme",
@@ -5085,7 +5718,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -5191,13 +5826,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -5206,19 +5846,25 @@ export const pages = [
         "default": 3,
         "min": 1,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "结论数量"
       },
       {
         "key": "showIndex",
         "label": "巨型序号",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showIndex",
+        "publicLabel": "巨型序号"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -5227,7 +5873,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "accent",
@@ -5243,13 +5891,17 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "showMeta",
         "label": "底部口径",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "底部口径"
       }
     ],
     "defaultProps": {
@@ -5308,13 +5960,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "theme",
@@ -5330,7 +5987,9 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "accent",
@@ -5346,13 +6005,17 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "showMark",
         "label": "引号装饰",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMark",
+        "publicLabel": "引号装饰"
       },
       {
         "key": "align",
@@ -5368,13 +6031,17 @@ export const pages = [
             "value": "center",
             "label": "居中"
           }
-        ]
+        ],
+        "publicKey": "align",
+        "publicLabel": "对齐方式"
       },
       {
         "key": "showAttribution",
         "label": "署名出处",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAttribution",
+        "publicLabel": "署名出处"
       }
     ],
     "defaultProps": {
@@ -5416,13 +6083,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "stageCount",
@@ -5431,31 +6103,41 @@ export const pages = [
         "default": 5,
         "min": 3,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "stageCount",
+        "publicLabel": "阶段数量"
       },
       {
         "key": "showMetric",
         "label": "指标数值",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "指标数值"
       },
       {
         "key": "showRate",
         "label": "转化率",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showRate",
+        "publicLabel": "转化率"
       },
       {
         "key": "showStrategy",
         "label": "策略解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showStrategy",
+        "publicLabel": "策略解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -5464,7 +6146,9 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -5480,7 +6164,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -5564,43 +6250,58 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showCube",
         "label": "方位立方体",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCube",
+        "publicLabel": "方位立方体"
       },
       {
         "key": "showAxis",
         "label": "坐标轴标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAxis",
+        "publicLabel": "坐标轴标注"
       },
       {
         "key": "showAction",
         "label": "行动策略",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAction",
+        "publicLabel": "行动策略"
       },
       {
         "key": "showAnalysis",
         "label": "模型解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "模型解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -5609,7 +6310,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 7,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -5625,7 +6328,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -5745,52 +6450,69 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showAxis",
         "label": "坐标轴标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAxis",
+        "publicLabel": "坐标轴标注"
       },
       {
         "key": "showZones",
         "label": "三区配色",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showZones",
+        "publicLabel": "三区配色"
       },
       {
         "key": "bubbleCount",
-        "label": "赛道数量",
+        "label": "分类数量",
         "type": "slider",
         "default": 6,
         "min": 1,
         "max": 6,
-        "step": 1
+        "step": 1,
+        "publicKey": "categoryCount",
+        "publicLabel": "分类数量"
       },
       {
         "key": "showReads",
-        "label": "赛道读解",
+        "label": "分类读解",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showReads",
+        "publicLabel": "分类读解"
       },
       {
         "key": "showAnalysis",
         "label": "策略解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "策略解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -5799,7 +6521,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -5815,7 +6539,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -5929,13 +6655,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "taskCount",
@@ -5944,43 +6675,57 @@ export const pages = [
         "default": 7,
         "min": 3,
         "max": 8,
-        "step": 1
+        "step": 1,
+        "publicKey": "taskCount",
+        "publicLabel": "任务数量"
       },
       {
         "key": "showGrid",
         "label": "网格线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showGrid",
+        "publicLabel": "网格线"
       },
       {
         "key": "showProgress",
         "label": "配置进度",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showProgress",
+        "publicLabel": "配置进度"
       },
       {
         "key": "showMilestones",
         "label": "关键节点",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMilestones",
+        "publicLabel": "关键节点"
       },
       {
         "key": "showToday",
         "label": "当前基准线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showToday",
+        "publicLabel": "当前基准线"
       },
       {
         "key": "showAnalysis",
         "label": "节奏解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "节奏解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -5989,7 +6734,9 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 7,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -6005,7 +6752,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -6119,43 +6868,58 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showSpaces",
         "label": "空间括注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSpaces",
+        "publicLabel": "空间括注"
       },
       {
         "key": "showFlow",
         "label": "发散收敛标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFlow",
+        "publicLabel": "发散收敛标注"
       },
       {
         "key": "showCards",
         "label": "阶段说明",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCards",
+        "publicLabel": "阶段说明"
       },
       {
         "key": "showAnalysis",
         "label": "模型解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "模型解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -6164,7 +6928,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -6180,7 +6946,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -6255,25 +7023,34 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showAxis",
         "label": "坐标轴标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAxis",
+        "publicLabel": "坐标轴标注"
       },
       {
         "key": "showLetter",
         "label": "象限字母",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showLetter",
+        "publicLabel": "象限字母"
       },
       {
         "key": "itemCount",
@@ -6282,19 +7059,25 @@ export const pages = [
         "default": 3,
         "min": 2,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "每象限条目"
       },
       {
         "key": "showAnalysis",
         "label": "模型解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "模型解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -6303,7 +7086,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -6319,7 +7104,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -6426,37 +7213,50 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showArrows",
         "label": "传导箭头",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showArrows",
+        "publicLabel": "传导箭头"
       },
       {
         "key": "showMeter",
         "label": "强度标尺",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeter",
+        "publicLabel": "强度标尺"
       },
       {
         "key": "showAnalysis",
         "label": "模型解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "模型解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -6465,7 +7265,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -6481,7 +7283,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -6556,43 +7360,58 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showItems",
         "label": "要点条目",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showItems",
+        "publicLabel": "要点条目"
       },
       {
         "key": "showIndex",
         "label": "模块编号",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showIndex",
+        "publicLabel": "模块编号"
       },
       {
         "key": "groupColor",
         "label": "三区配色",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "groupColor",
+        "publicLabel": "三区配色"
       },
       {
         "key": "showAnalysis",
         "label": "模型解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "模型解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -6601,7 +7420,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 8,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -6617,7 +7438,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -6747,13 +7570,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "stageCount",
@@ -6762,31 +7590,41 @@ export const pages = [
         "default": 5,
         "min": 3,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "stageCount",
+        "publicLabel": "阶段数量"
       },
       {
         "key": "showBehaviour",
-        "label": "用户行为",
+        "label": "行为",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showBehaviour",
+        "publicLabel": "行为"
       },
       {
         "key": "showCurve",
         "label": "情绪曲线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCurve",
+        "publicLabel": "情绪曲线"
       },
       {
         "key": "showOpportunity",
         "label": "机会点",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showOpportunity",
+        "publicLabel": "机会点"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -6795,7 +7633,9 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -6811,7 +7651,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -6892,13 +7734,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "layerCount",
@@ -6907,31 +7754,41 @@ export const pages = [
         "default": 5,
         "min": 3,
         "max": 6,
-        "step": 1
+        "step": 1,
+        "publicKey": "layerCount",
+        "publicLabel": "层级数量"
       },
       {
         "key": "showSideNote",
         "label": "层级解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSideNote",
+        "publicLabel": "层级解读"
       },
       {
         "key": "showTierTag",
         "label": "层级序号",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showTierTag",
+        "publicLabel": "层级序号"
       },
       {
         "key": "showAnalysis",
         "label": "模型解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "模型解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -6940,7 +7797,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -6956,7 +7815,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -7025,31 +7886,42 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showAxis",
         "label": "坐标轴标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAxis",
+        "publicLabel": "坐标轴标注"
       },
       {
         "key": "showQuadLabel",
         "label": "象限水印",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showQuadLabel",
+        "publicLabel": "象限水印"
       },
       {
         "key": "showEmblem",
         "label": "3D 象限元素",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEmblem",
+        "publicLabel": "3D 象限元素"
       },
       {
         "key": "bubbleCount",
@@ -7058,19 +7930,25 @@ export const pages = [
         "default": 6,
         "min": 1,
         "max": 6,
-        "step": 1
+        "step": 1,
+        "publicKey": "bubbleCount",
+        "publicLabel": "气泡数量"
       },
       {
         "key": "showPanel",
         "label": "策略面板",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showPanel",
+        "publicLabel": "策略面板"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -7079,7 +7957,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -7095,7 +7975,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -7219,13 +8101,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "stageCount",
@@ -7234,37 +8121,49 @@ export const pages = [
         "default": 6,
         "min": 4,
         "max": 6,
-        "step": 1
+        "step": 1,
+        "publicKey": "stageCount",
+        "publicLabel": "环节数量"
       },
       {
         "key": "showArrows",
         "label": "传导箭头",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showArrows",
+        "publicLabel": "传导箭头"
       },
       {
         "key": "showLegend",
         "label": "环节解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showLegend",
+        "publicLabel": "环节解读"
       },
       {
         "key": "showHub",
         "label": "中心枢纽",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showHub",
+        "publicLabel": "中心枢纽"
       },
       {
         "key": "showAnalysis",
         "label": "模型解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "模型解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -7273,7 +8172,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -7289,7 +8190,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -7361,13 +8264,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "factorCount",
@@ -7376,7 +8284,9 @@ export const pages = [
         "default": 4,
         "min": 4,
         "max": 6,
-        "step": 1
+        "step": 1,
+        "publicKey": "factorCount",
+        "publicLabel": "因素维度"
       },
       {
         "key": "itemCount",
@@ -7385,25 +8295,33 @@ export const pages = [
         "default": 3,
         "min": 2,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "每维条目"
       },
       {
         "key": "showLetter",
         "label": "维度字母",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showLetter",
+        "publicLabel": "维度字母"
       },
       {
         "key": "showAnalysis",
         "label": "模型解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "模型解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -7412,7 +8330,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -7428,7 +8348,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -7541,13 +8463,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "chartType",
@@ -7563,31 +8490,41 @@ export const pages = [
             "value": "lollipop",
             "label": "棒棒糖"
           }
-        ]
+        ],
+        "publicKey": "chartType",
+        "publicLabel": "柱样式"
       },
       {
         "key": "showCumulative",
         "label": "累计曲线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCumulative",
+        "publicLabel": "累计曲线"
       },
       {
         "key": "showThreshold",
         "label": "80% 基准线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showThreshold",
+        "publicLabel": "80% 基准线"
       },
       {
         "key": "showGrid",
         "label": "网格线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showGrid",
+        "publicLabel": "网格线"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -7596,13 +8533,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "核心发现",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "核心发现"
       },
       {
         "key": "theme",
@@ -7618,7 +8559,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -7714,43 +8657,58 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showRings",
         "label": "强度刻度环",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showRings",
+        "publicLabel": "强度刻度环"
       },
       {
         "key": "showValue",
         "label": "强度数值",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "强度数值"
       },
       {
         "key": "showPanel",
-        "label": "风险解读",
+        "label": "状态解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showPanel",
+        "publicLabel": "状态解读"
       },
       {
         "key": "showAnalysis",
         "label": "模型解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAnalysis",
+        "publicLabel": "模型解读"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -7759,7 +8717,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -7775,7 +8735,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -7852,40 +8814,53 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
-        "label": "风险数量",
+        "label": "状态项数量",
         "type": "slider",
         "default": 4,
         "min": 2,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "状态项数量"
       },
       {
         "key": "showLikelihood",
         "label": "可能性列",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showLikelihood",
+        "publicLabel": "可能性列"
       },
       {
         "key": "showImpact",
         "label": "主要影响列",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showImpact",
+        "publicLabel": "主要影响列"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -7894,13 +8869,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "结论解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "结论解读"
       },
       {
         "key": "theme",
@@ -7916,7 +8895,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -7989,25 +8970,34 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showCriteria",
         "label": "判断标准",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCriteria",
+        "publicLabel": "判断标准"
       },
       {
         "key": "showBridge",
         "label": "转变中枢",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showBridge",
+        "publicLabel": "转变中枢"
       },
       {
         "key": "focusSide",
@@ -8027,13 +9017,17 @@ export const pages = [
             "value": "right",
             "label": "兑现侧"
           }
-        ]
+        ],
+        "publicKey": "focusSide",
+        "publicLabel": "重点突出"
       },
       {
         "key": "showMeta",
         "label": "底部小结",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "底部小结"
       },
       {
         "key": "theme",
@@ -8049,7 +9043,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -8136,37 +9132,50 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showPhases",
         "label": "阶段分区",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showPhases",
+        "publicLabel": "阶段分区"
       },
       {
         "key": "showReads",
-        "label": "赛道读解",
+        "label": "分类读解",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showReads",
+        "publicLabel": "分类读解"
       },
       {
         "key": "showValue",
         "label": "量级标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValue",
+        "publicLabel": "量级标注"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -8175,13 +9184,17 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "底部小结",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "底部小结"
       },
       {
         "key": "theme",
@@ -8197,7 +9210,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -8325,43 +9340,58 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showAxis",
         "label": "坐标轴标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAxis",
+        "publicLabel": "坐标轴标注"
       },
       {
         "key": "showZones",
         "label": "优选/规避区",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showZones",
+        "publicLabel": "优选/规避区"
       },
       {
         "key": "showAvoid",
         "label": "规避标的",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAvoid",
+        "publicLabel": "规避标的"
       },
       {
         "key": "showCallout",
         "label": "策略小结",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "策略小结"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -8370,7 +9400,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 10,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -8386,7 +9418,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -8506,25 +9540,34 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showRing",
         "label": "占比圆环",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showRing",
+        "publicLabel": "占比圆环"
       },
       {
         "key": "showSupport",
         "label": "支撑微数据",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSupport",
+        "publicLabel": "支撑微数据"
       },
       {
         "key": "statCount",
@@ -8533,13 +9576,17 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "statCount",
+        "publicLabel": "微数据条数"
       },
       {
         "key": "showNote",
         "label": "口径注记",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showNote",
+        "publicLabel": "口径注记"
       },
       {
         "key": "accent",
@@ -8555,7 +9602,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "theme",
@@ -8571,7 +9620,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -8640,43 +9691,58 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showConnector",
         "label": "桥接连线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showConnector",
+        "publicLabel": "桥接连线"
       },
       {
         "key": "showDelta",
         "label": "环比变化",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showDelta",
+        "publicLabel": "环比变化"
       },
       {
         "key": "showCount",
         "label": "事件笔数",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCount",
+        "publicLabel": "事件笔数"
       },
       {
         "key": "showGrid",
         "label": "网格线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showGrid",
+        "publicLabel": "网格线"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -8685,13 +9751,17 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "趋势解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "趋势解读"
       },
       {
         "key": "theme",
@@ -8707,7 +9777,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -8786,37 +9858,50 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showShare",
-        "label": "金额/占比",
+        "label": "数值/占比",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值/占比"
       },
       {
         "key": "showCompanies",
         "label": "代表公司",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCompanies",
+        "publicLabel": "代表公司"
       },
       {
         "key": "showCallout",
         "label": "核心发现",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "核心发现"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -8825,7 +9910,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "theme",
@@ -8841,7 +9928,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -8913,43 +10002,58 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showStep",
         "label": "阶梯连线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showStep",
+        "publicLabel": "阶梯连线"
       },
       {
         "key": "showMultiple",
         "label": "放大倍数",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMultiple",
+        "publicLabel": "放大倍数"
       },
       {
         "key": "showCount",
         "label": "事件笔数",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCount",
+        "publicLabel": "事件笔数"
       },
       {
         "key": "showGrid",
         "label": "网格线",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showGrid",
+        "publicLabel": "网格线"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -8958,13 +10062,17 @@ export const pages = [
         "default": 4,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "结构解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "结构解读"
       },
       {
         "key": "theme",
@@ -8980,7 +10088,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -9054,13 +10164,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "imageCount",
@@ -9069,7 +10184,9 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "layout",
@@ -9085,7 +10202,9 @@ export const pages = [
             "value": "column",
             "label": "竖排"
           }
-        ]
+        ],
+        "publicKey": "layout",
+        "publicLabel": "图片排布"
       },
       {
         "key": "labCount",
@@ -9094,19 +10213,25 @@ export const pages = [
         "default": 4,
         "min": 2,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "labCount",
+        "publicLabel": "实验室数量"
       },
       {
         "key": "showValuation",
-        "label": "估值标记",
+        "label": "指标标记",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMetricMarker",
+        "publicLabel": "指标标记"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -9115,7 +10240,9 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "accent",
@@ -9131,7 +10258,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       }
     ],
     "defaultProps": {
@@ -9198,31 +10327,42 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showLayers",
         "label": "产业链分层",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showLayers",
+        "publicLabel": "产业链分层"
       },
       {
         "key": "showValues",
         "label": "数值标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标注"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -9231,13 +10371,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "趋势解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "趋势解读"
       },
       {
         "key": "theme",
@@ -9253,7 +10397,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -9361,13 +10507,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -9376,25 +10527,33 @@ export const pages = [
         "default": 8,
         "min": 4,
         "max": 8,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "公司数量"
       },
       {
         "key": "showQuadrant",
         "label": "象限定位",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showQuadrant",
+        "publicLabel": "象限定位"
       },
       {
         "key": "showBarrier",
         "label": "竞争壁垒",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showBarrier",
+        "publicLabel": "竞争壁垒"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -9403,13 +10562,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 7,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "结论解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "结论解读"
       },
       {
         "key": "theme",
@@ -9425,7 +10588,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -9549,37 +10714,50 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showZones",
         "label": "区间色带",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showZones",
+        "publicLabel": "区间色带"
       },
       {
         "key": "showTicks",
         "label": "刻度标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showTicks",
+        "publicLabel": "刻度标注"
       },
       {
         "key": "showSupport",
         "label": "佐证数据",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSupport",
+        "publicLabel": "佐证数据"
       },
       {
         "key": "showCallout",
-        "label": "风险解读",
+        "label": "状态解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "状态解读"
       },
       {
         "key": "accent",
@@ -9595,7 +10773,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "theme",
@@ -9611,7 +10791,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -9690,13 +10872,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "imageCount",
@@ -9705,7 +10892,9 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "layout",
@@ -9721,13 +10910,17 @@ export const pages = [
             "value": "column",
             "label": "竖排"
           }
-        ]
+        ],
+        "publicKey": "layout",
+        "publicLabel": "图片排布"
       },
       {
         "key": "showFigure",
         "label": "核心数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "核心数字"
       },
       {
         "key": "chipCount",
@@ -9736,13 +10929,17 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "chipCount",
+        "publicLabel": "理由标签"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       },
       {
         "key": "accent",
@@ -9758,7 +10955,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       }
     ],
     "defaultProps": {
@@ -9809,37 +11008,50 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showRings",
         "label": "刻度环",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showRings",
+        "publicLabel": "刻度环"
       },
       {
         "key": "showValue",
         "label": "花瓣数值",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "花瓣数值"
       },
       {
         "key": "showLegend",
-        "label": "季度面板",
+        "label": "时间面板",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showLegend",
+        "publicLabel": "时间面板"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -9848,13 +11060,17 @@ export const pages = [
         "default": 7,
         "min": 0,
         "max": 11,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "趋势解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "趋势解读"
       },
       {
         "key": "theme",
@@ -9870,7 +11086,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -9946,31 +11164,42 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showValues",
-        "label": "金额标注",
+        "label": "数值标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标注"
       },
       {
         "key": "showPercent",
         "label": "占比标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showPercent",
+        "publicLabel": "占比标注"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -9979,13 +11208,17 @@ export const pages = [
         "default": 0,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "结构解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "结构解读"
       },
       {
         "key": "theme",
@@ -10001,7 +11234,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -10086,13 +11321,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "ringCount",
@@ -10101,19 +11341,25 @@ export const pages = [
         "default": 3,
         "min": 2,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "ringCount",
+        "publicLabel": "圆环数量"
       },
       {
         "key": "showArc",
         "label": "环形进度",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showArc",
+        "publicLabel": "环形进度"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -10122,13 +11368,17 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "结论解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "结论解读"
       },
       {
         "key": "accent",
@@ -10144,7 +11394,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "theme",
@@ -10160,7 +11412,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -10227,7 +11481,10 @@ export const pages = [
             "label": "上传"
           }
         ],
-        "desc": "动态 shader 或自定义背景媒体"
+        "desc": "动态 shader 或自定义背景媒体",
+        "publicKey": "backgroundMode",
+        "publicLabel": "背景替换",
+        "description": "动态 shader 或自定义背景媒体"
       },
       {
         "key": "unicornScene",
@@ -10255,14 +11512,20 @@ export const pages = [
         ],
         "dependsOn": "backgroundMode",
         "dependsOnValue": "unicorn",
-        "desc": "选择固定 Unicorn shader 场景"
+        "desc": "选择固定 Unicorn shader 场景",
+        "publicKey": "dynamicVisual",
+        "publicLabel": "动态场景",
+        "description": "选择固定 Unicorn shader 场景"
       },
       {
         "key": "forceDark",
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "accent",
@@ -10279,13 +11542,18 @@ export const pages = [
             "label": "荧光绿"
           }
         ],
-        "desc": "theme03 全局强调色，作用于该主题所有页面。"
+        "desc": "theme03 全局强调色，作用于该主题所有页面。",
+        "publicKey": "accent",
+        "publicLabel": "强调色",
+        "description": "theme03 全局强调色，作用于该主题所有页面。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "imageCount",
@@ -10294,19 +11562,25 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 1,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "showFigure",
         "label": "核心数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "核心数字"
       },
       {
         "key": "showMeta",
         "label": "支撑数据",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "支撑数据"
       },
       {
         "key": "align",
@@ -10322,7 +11596,9 @@ export const pages = [
             "value": "center",
             "label": "居中"
           }
-        ]
+        ],
+        "publicKey": "align",
+        "publicLabel": "文案对齐"
       },
       {
         "key": "theme",
@@ -10338,13 +11614,17 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       },
       {
         "key": "showDecor",
         "label": "装饰图片",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "showDecor",
+        "publicLabel": "装饰图片"
       },
       {
         "key": "decorSrc",
@@ -10411,7 +11691,9 @@ export const pages = [
             "label": "番茄箱",
             "image": "assets/3d/12.png"
           }
-        ]
+        ],
+        "publicKey": "decorSrc",
+        "publicLabel": "装饰元素"
       },
       {
         "key": "decorScale",
@@ -10420,7 +11702,9 @@ export const pages = [
         "default": 1,
         "min": 0.6,
         "max": 1.6,
-        "step": 0.05
+        "step": 0.05,
+        "publicKey": "decorScale",
+        "publicLabel": "图片大小"
       }
     ],
     "defaultProps": {
@@ -10478,31 +11762,42 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "showValues",
         "label": "数值标注",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标注"
       },
       {
         "key": "showAxis",
         "label": "两侧轴名",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showAxis",
+        "publicLabel": "两侧轴名"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -10511,13 +11806,17 @@ export const pages = [
         "default": 4,
         "min": 0,
         "max": 5,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "结构解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "结构解读"
       },
       {
         "key": "accent",
@@ -10533,7 +11832,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "theme",
@@ -10549,7 +11850,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -10620,13 +11923,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "itemCount",
@@ -10635,25 +11943,33 @@ export const pages = [
         "default": 3,
         "min": 2,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "itemCount",
+        "publicLabel": "公司数量"
       },
       {
         "key": "showType",
         "label": "壁垒类型",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showType",
+        "publicLabel": "壁垒类型"
       },
       {
         "key": "showMeter",
         "label": "护城河深度",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeter",
+        "publicLabel": "护城河深度"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": false
+        "default": false,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -10662,13 +11978,17 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 2,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "结构解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "结构解读"
       },
       {
         "key": "accent",
@@ -10684,7 +12004,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "theme",
@@ -10700,7 +12022,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -10778,13 +12102,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "stageCount",
@@ -10793,25 +12122,33 @@ export const pages = [
         "default": 4,
         "min": 2,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "stageCount",
+        "publicLabel": "环节数量"
       },
       {
         "key": "showConnector",
         "label": "传导箭头",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showConnector",
+        "publicLabel": "传导箭头"
       },
       {
         "key": "showWinner",
         "label": "赢家条",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showWinner",
+        "publicLabel": "赢家条"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出"
       },
       {
         "key": "focusIndex",
@@ -10820,13 +12157,17 @@ export const pages = [
         "default": 1,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "focusIndex",
+        "publicLabel": "突出项"
       },
       {
         "key": "showCallout",
         "label": "结构解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "结构解读"
       },
       {
         "key": "theme",
@@ -10842,7 +12183,9 @@ export const pages = [
             "value": "dark",
             "label": "深色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "主题"
       }
     ],
     "defaultProps": {
@@ -10905,13 +12248,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "imageCount",
@@ -10920,7 +12268,9 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "layout",
@@ -10936,13 +12286,17 @@ export const pages = [
             "value": "column",
             "label": "竖排"
           }
-        ]
+        ],
+        "publicKey": "layout",
+        "publicLabel": "图片排布"
       },
       {
         "key": "showFigure",
         "label": "核心数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "核心数字"
       },
       {
         "key": "chipCount",
@@ -10951,13 +12305,17 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "chipCount",
+        "publicLabel": "特征标签"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       },
       {
         "key": "accent",
@@ -10973,7 +12331,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       }
     ],
     "defaultProps": {
@@ -11021,13 +12381,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "imageCount",
@@ -11036,7 +12401,9 @@ export const pages = [
         "default": 2,
         "min": 0,
         "max": 4,
-        "step": 1
+        "step": 1,
+        "publicKey": "imageCount",
+        "publicLabel": "图片数量"
       },
       {
         "key": "layout",
@@ -11052,13 +12419,17 @@ export const pages = [
             "value": "column",
             "label": "竖排"
           }
-        ]
+        ],
+        "publicKey": "layout",
+        "publicLabel": "图片排布"
       },
       {
         "key": "showFigure",
         "label": "核心数字",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showFigure",
+        "publicLabel": "核心数字"
       },
       {
         "key": "chipCount",
@@ -11067,13 +12438,17 @@ export const pages = [
         "default": 3,
         "min": 0,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "chipCount",
+        "publicLabel": "特征标签"
       },
       {
         "key": "showCallout",
         "label": "装饰解读",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showCallout",
+        "publicLabel": "装饰解读"
       },
       {
         "key": "accent",
@@ -11089,7 +12464,9 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       }
     ],
     "defaultProps": {
@@ -11137,13 +12514,18 @@ export const pages = [
         "label": "全局深色",
         "type": "toggle",
         "default": true,
-        "desc": "复刻 Claude Design 右上角深浅配色切换。"
+        "desc": "复刻 Claude Design 右上角深浅配色切换。",
+        "publicKey": "forceDark",
+        "publicLabel": "全局深色",
+        "description": "复刻 Claude Design 右上角深浅配色切换。"
       },
       {
         "key": "showEyebrow",
         "label": "装饰标签",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showEyebrow",
+        "publicLabel": "装饰标签"
       },
       {
         "key": "theme",
@@ -11159,7 +12541,9 @@ export const pages = [
             "value": "light",
             "label": "浅色"
           }
-        ]
+        ],
+        "publicKey": "theme",
+        "publicLabel": "背景主题"
       },
       {
         "key": "accent",
@@ -11175,13 +12559,17 @@ export const pages = [
             "value": "lime",
             "label": "荧光绿"
           }
-        ]
+        ],
+        "publicKey": "accent",
+        "publicLabel": "强调色"
       },
       {
         "key": "showSources",
         "label": "来源说明",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showSources",
+        "publicLabel": "来源说明"
       },
       {
         "key": "noteCount",
@@ -11190,13 +12578,17 @@ export const pages = [
         "default": 3,
         "min": 1,
         "max": 3,
-        "step": 1
+        "step": 1,
+        "publicKey": "noteCount",
+        "publicLabel": "提示条数"
       },
       {
         "key": "showMeta",
         "label": "页脚信息",
         "type": "toggle",
-        "default": true
+        "default": true,
+        "publicKey": "showMeta",
+        "publicLabel": "页脚信息"
       }
     ],
     "defaultProps": {

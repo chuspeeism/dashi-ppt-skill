@@ -40,7 +40,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -50,7 +53,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "accentTone",
@@ -75,24 +81,33 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "statCount",
-        "label": "数据芯片数量",
+        "label": "指标卡片数量",
         "type": "slider",
         "default": 3,
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "底部并置数据芯片数量"
+        "desc": "底部并置指标卡片数量",
+        "publicKey": "statCount",
+        "publicLabel": "指标卡片数量",
+        "description": "底部并置指标卡片数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一枚芯片"
+        "desc": "是否高亮某一枚芯片",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一枚芯片"
       },
       {
         "key": "focusIndex",
@@ -103,32 +118,44 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "statCount",
-        "desc": "被高亮芯片序号"
+        "desc": "被高亮芯片序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "高亮第几个",
+        "description": "被高亮芯片序号"
       },
       {
         "key": "showSub",
         "label": "副标题",
         "type": "toggle",
         "default": true,
-        "desc": "副标题显隐"
+        "desc": "副标题显隐",
+        "publicKey": "showSub",
+        "publicLabel": "副标题",
+        "description": "副标题显隐"
       },
       {
         "key": "showBrand",
         "label": "顶部刊名",
         "type": "toggle",
         "default": true,
-        "desc": "顶部刊名显隐"
+        "desc": "顶部刊名显隐",
+        "publicKey": "showBrand",
+        "publicLabel": "顶部刊名",
+        "description": "顶部刊名显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "stats",
-        "label": "数据芯片",
+        "label": "指标卡片",
         "type": "list",
         "default": [
           {
@@ -147,7 +174,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "底部数据芯片：数字 / 标签 / 主色"
+        "desc": "底部指标卡片：数字 / 标签 / 主色",
+        "publicKey": "stats",
+        "publicLabel": "指标卡片",
+        "description": "底部指标卡片：数字 / 标签 / 主色"
       }
     ],
     "defaultProps": {
@@ -217,7 +247,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -227,7 +260,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "accentTone",
@@ -252,7 +288,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "itemCount",
@@ -262,14 +301,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "右侧索引卡数量"
+        "desc": "右侧索引卡数量",
+        "publicKey": "itemCount",
+        "publicLabel": "索引卡数量",
+        "description": "右侧索引卡数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一张索引卡"
+        "desc": "是否高亮某一张索引卡",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张索引卡"
       },
       {
         "key": "focusIndex",
@@ -280,28 +325,40 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮索引卡序号"
+        "desc": "被高亮索引卡序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "高亮第几个",
+        "description": "被高亮索引卡序号"
       },
       {
         "key": "showIssue",
         "label": "期号徽标",
         "type": "toggle",
         "default": true,
-        "desc": "期号徽标显隐"
+        "desc": "期号徽标显隐",
+        "publicKey": "showIssue",
+        "publicLabel": "期号徽标",
+        "description": "期号徽标显隐"
       },
       {
         "key": "showSub",
         "label": "副标题",
         "type": "toggle",
         "default": true,
-        "desc": "副标题显隐"
+        "desc": "副标题显隐",
+        "publicKey": "showSub",
+        "publicLabel": "副标题",
+        "description": "副标题显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "items",
@@ -333,7 +390,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "右侧索引卡：编号 / 主句 / 释义 / 主色"
+        "desc": "右侧索引卡：编号 / 主句 / 释义 / 主色",
+        "publicKey": "items",
+        "publicLabel": "索引卡",
+        "description": "右侧索引卡：编号 / 主句 / 释义 / 主色"
       }
     ],
     "defaultProps": {
@@ -416,7 +476,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -426,7 +489,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "accentTone",
@@ -451,7 +517,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "lineCount",
@@ -461,14 +530,20 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "底部导读条数量"
+        "desc": "底部导读条数量",
+        "publicKey": "lineCount",
+        "publicLabel": "导读条数量",
+        "description": "底部导读条数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一导读条"
+        "desc": "是否高亮某一导读条",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一导读条"
       },
       {
         "key": "focusIndex",
@@ -479,28 +554,40 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "lineCount",
-        "desc": "被高亮导读条序号"
+        "desc": "被高亮导读条序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "高亮第几个",
+        "description": "被高亮导读条序号"
       },
       {
         "key": "showGhost",
         "label": "幽灵数字",
         "type": "toggle",
         "default": true,
-        "desc": "背景巨型描边数字显隐"
+        "desc": "背景巨型描边数字显隐",
+        "publicKey": "showGhost",
+        "publicLabel": "幽灵数字",
+        "description": "背景巨型描边数字显隐"
       },
       {
         "key": "showIssue",
         "label": "期号徽标",
         "type": "toggle",
         "default": true,
-        "desc": "期号徽标显隐"
+        "desc": "期号徽标显隐",
+        "publicKey": "showIssue",
+        "publicLabel": "期号徽标",
+        "description": "期号徽标显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "lines",
@@ -528,7 +615,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "底部导读条：主句 / 释义 / 主色"
+        "desc": "底部导读条：主句 / 释义 / 主色",
+        "publicKey": "lines",
+        "publicLabel": "导读条",
+        "description": "底部导读条：主句 / 释义 / 主色"
       }
     ],
     "defaultProps": {
@@ -607,7 +697,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "标题板主色调(通用命名)"
+        "desc": "标题板主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "标题板主色",
+        "description": "标题板主色调(通用命名)"
       },
       {
         "key": "tileCount",
@@ -617,7 +710,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "玻璃糖果数据瓷砖数量(自动重排)"
+        "desc": "玻璃糖果数据瓷砖数量(自动重排)",
+        "publicKey": "tileCount",
+        "publicLabel": "瓷砖数量",
+        "description": "玻璃糖果数据瓷砖数量(自动重排)"
       },
       {
         "key": "paletteVariant",
@@ -634,14 +730,20 @@ export const pages = [
             "单色"
           ]
         ],
-        "desc": "瓷砖多彩 / 统一主色"
+        "desc": "瓷砖多彩 / 统一主色",
+        "publicKey": "paletteVariant",
+        "publicLabel": "瓷砖配色",
+        "description": "瓷砖多彩 / 统一主色"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一块瓷砖"
+        "desc": "是否高亮某一块瓷砖",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一块瓷砖"
       },
       {
         "key": "focusIndex",
@@ -652,28 +754,40 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "tileCount",
-        "desc": "被高亮瓷砖序号"
+        "desc": "被高亮瓷砖序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "高亮第几个",
+        "description": "被高亮瓷砖序号"
       },
       {
         "key": "showIssue",
         "label": "期号徽标",
         "type": "toggle",
         "default": true,
-        "desc": "期号徽标显隐"
+        "desc": "期号徽标显隐",
+        "publicKey": "showIssue",
+        "publicLabel": "期号徽标",
+        "description": "期号徽标显隐"
       },
       {
         "key": "showKicker",
         "label": "瓷砖角标",
         "type": "toggle",
         "default": true,
-        "desc": "瓷砖英文小标显隐"
+        "desc": "瓷砖英文小标显隐",
+        "publicKey": "showKicker",
+        "publicLabel": "瓷砖角标",
+        "description": "瓷砖英文小标显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "tiles",
@@ -709,7 +823,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "数据瓷砖：角标 / 大数 / 单位 / 标签 / 主色"
+        "desc": "数据瓷砖：角标 / 大数 / 单位 / 标签 / 主色",
+        "publicKey": "tiles",
+        "publicLabel": "数据瓷砖",
+        "description": "数据瓷砖：角标 / 大数 / 单位 / 标签 / 主色"
       }
     ],
     "defaultProps": {
@@ -793,7 +910,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -803,7 +923,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "itemCount",
@@ -813,14 +936,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的章节模块卡数量"
+        "desc": "展示的章节模块卡数量",
+        "publicKey": "itemCount",
+        "publicLabel": "模块数量",
+        "description": "展示的章节模块卡数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一个模块"
+        "desc": "是否高亮某一个模块",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一个模块"
       },
       {
         "key": "focusIndex",
@@ -831,28 +960,40 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮模块的序号"
+        "desc": "被高亮模块的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮模块的序号"
       },
       {
         "key": "tilt",
         "label": "卡片倾斜",
         "type": "toggle",
         "default": true,
-        "desc": "卡片是否带随机倾斜角"
+        "desc": "卡片是否带随机倾斜角",
+        "publicKey": "tilt",
+        "publicLabel": "卡片倾斜",
+        "description": "卡片是否带随机倾斜角"
       },
       {
         "key": "showTag",
         "label": "序号标签",
         "type": "toggle",
         "default": true,
-        "desc": "显示 <Part0X> 标签"
+        "desc": "显示 <Part0X> 标签",
+        "publicKey": "showTag",
+        "publicLabel": "序号标签",
+        "description": "显示 <Part0X> 标签"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       },
       {
         "key": "items",
@@ -880,7 +1021,10 @@ export const pages = [
             "caption": "从「赌叙事」到「看兑现」"
           }
         ],
-        "desc": "章节模块卡：标签 / 标题 / 说明"
+        "desc": "章节模块卡：标签 / 标题 / 说明",
+        "publicKey": "items",
+        "publicLabel": "模块卡",
+        "description": "章节模块卡：标签 / 标题 / 说明"
       }
     ],
     "defaultProps": {
@@ -937,7 +1081,10 @@ export const pages = [
           "text001": "全篇导览 · CONTENTS",
           "text002": "六章，看懂这一年的 AI 资本"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "itemsData",
@@ -987,7 +1134,10 @@ export const pages = [
             "color": "#FFC700"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "itemsData",
+        "publicLabel": "itemsData",
+        "description": "默认数据内容"
       },
       {
         "key": "itemCount",
@@ -997,7 +1147,10 @@ export const pages = [
         "min": 4,
         "max": 6,
         "step": 1,
-        "desc": "展示的章节卡数量"
+        "desc": "展示的章节卡数量",
+        "publicKey": "itemCount",
+        "publicLabel": "章节卡数量",
+        "description": "展示的章节卡数量"
       },
       {
         "key": "mediaCount",
@@ -1008,14 +1161,20 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "显示缩略图的卡数(其余转霓虹编号)"
+        "desc": "显示缩略图的卡数(其余转霓虹编号)",
+        "publicKey": "mediaCount",
+        "publicLabel": "缩略图卡数",
+        "description": "显示缩略图的卡数(其余转霓虹编号)"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一章节"
+        "desc": "是否高亮某一章节",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一章节"
       },
       {
         "key": "focusIndex",
@@ -1026,21 +1185,30 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮章节的序号"
+        "desc": "被高亮章节的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮章节的序号"
       },
       {
         "key": "showDesc",
         "label": "导读",
         "type": "toggle",
         "default": true,
-        "desc": "卡片导读一句话"
+        "desc": "卡片导读一句话",
+        "publicKey": "showDesc",
+        "publicLabel": "导读",
+        "description": "卡片导读一句话"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -1125,7 +1293,10 @@ export const pages = [
           "text009": "因果传导关系",
           "placeholder001": "研究框架 / 数据墙示意"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "dimsData",
@@ -1147,7 +1318,10 @@ export const pages = [
             "desc": "沿时间轴追踪同一指标的演化——回答「趋势向上还是向下、拐点在何处、节奏是否可持续」。"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "dimsData",
+        "publicLabel": "dimsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -1172,7 +1346,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -1182,7 +1359,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -1192,7 +1372,10 @@ export const pages = [
         "min": 0,
         "max": 1,
         "step": 1,
-        "desc": "自适应配图(0=纯概念居中)"
+        "desc": "自适应配图(0=纯概念居中)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "自适应配图(0=纯概念居中)"
       },
       {
         "key": "imageSide",
@@ -1209,7 +1392,10 @@ export const pages = [
             "右侧"
           ]
         ],
-        "desc": "配图在左 / 右(有图时生效)"
+        "desc": "配图在左 / 右(有图时生效)",
+        "publicKey": "imageSide",
+        "publicLabel": "配图位置",
+        "description": "配图在左 / 右(有图时生效)"
       },
       {
         "key": "dimCount",
@@ -1219,7 +1405,10 @@ export const pages = [
         "min": 1,
         "max": 2,
         "step": 1,
-        "desc": "展示的维度卡数量(横向 / 纵向)"
+        "desc": "展示的维度卡数量(横向 / 纵向)",
+        "publicKey": "dimCount",
+        "publicLabel": "维度卡数量",
+        "description": "展示的维度卡数量(横向 / 纵向)"
       },
       {
         "key": "accentTone",
@@ -1244,21 +1433,30 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "showSynthesis",
         "label": "交叉结论条",
         "type": "toggle",
         "default": true,
-        "desc": "底部「两维交叉」结论条"
+        "desc": "底部「两维交叉」结论条",
+        "publicKey": "showSynthesis",
+        "publicLabel": "交叉结论条",
+        "description": "底部「两维交叉」结论条"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -1317,7 +1515,10 @@ export const pages = [
         "min": 1,
         "max": 6,
         "step": 1,
-        "desc": "大号 Part 编号徽章"
+        "desc": "大号 Part 编号徽章",
+        "publicKey": "partNumber",
+        "publicLabel": "章节编号",
+        "description": "大号 Part 编号徽章"
       },
       {
         "key": "accentTone",
@@ -1342,14 +1543,20 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调"
+        "desc": "页面主色调",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调"
       },
       {
         "key": "showIndex",
         "label": "章节索引",
         "type": "toggle",
         "default": true,
-        "desc": "右侧章节导航列表"
+        "desc": "右侧章节导航列表",
+        "publicKey": "showIndex",
+        "publicLabel": "章节索引",
+        "description": "右侧章节导航列表"
       },
       {
         "key": "indexCount",
@@ -1359,14 +1566,20 @@ export const pages = [
         "min": 2,
         "max": 5,
         "step": 1,
-        "desc": "索引列表条目数量"
+        "desc": "索引列表条目数量",
+        "publicKey": "itemCount",
+        "publicLabel": "索引条目",
+        "description": "索引列表条目数量"
       },
       {
         "key": "focusEnabled",
         "label": "当前高亮",
         "type": "toggle",
         "default": true,
-        "desc": "高亮当前章节"
+        "desc": "高亮当前章节",
+        "publicKey": "focusEnabled",
+        "publicLabel": "当前高亮",
+        "description": "高亮当前章节"
       },
       {
         "key": "focusIndex",
@@ -1377,14 +1590,20 @@ export const pages = [
         "max": 5,
         "step": 1,
         "maxFromKey": "indexCount",
-        "desc": "当前章节的序号"
+        "desc": "当前章节的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "当前序号",
+        "description": "当前章节的序号"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "chapters",
@@ -1417,7 +1636,10 @@ export const pages = [
             "en": "RISK & OUTLOOK"
           }
         ],
-        "desc": "章节列表：编号 / 中文 / 英文（海报卡标题取 partNumber 对应项）"
+        "desc": "章节列表：编号 / 中文 / 英文（海报卡标题取 partNumber 对应项）",
+        "publicKey": "chapters",
+        "publicLabel": "章节",
+        "description": "章节列表：编号 / 中文 / 英文（海报卡标题取 partNumber 对应项）"
       }
     ],
     "defaultProps": {
@@ -1475,7 +1697,10 @@ export const pages = [
         "default": {
           "text001": "占比"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "hlStyle",
@@ -1500,7 +1725,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -1510,7 +1738,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "cardCount",
@@ -1520,14 +1751,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "赛道卡片数量"
+        "desc": "分类卡片数量",
+        "publicKey": "categoryCount",
+        "publicLabel": "卡片数量",
+        "description": "分类卡片数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一张卡片"
+        "desc": "是否高亮某一张卡片",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张卡片"
       },
       {
         "key": "focusIndex",
@@ -1538,7 +1775,10 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "cardCount",
-        "desc": "被高亮卡片的序号"
+        "desc": "被高亮卡片的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮卡片的序号"
       },
       {
         "key": "mediaCount",
@@ -1549,25 +1789,34 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "cardCount",
-        "desc": "从左起 N 张卡片加入自适应图片槽"
+        "desc": "从左起 N 张卡片加入自适应图片槽",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "从左起 N 张卡片加入自适应图片槽"
       },
       {
         "key": "showTags",
         "label": "底部标签",
         "type": "toggle",
         "default": true,
-        "desc": "卡片底部小标签"
+        "desc": "卡片底部小标签",
+        "publicKey": "showTags",
+        "publicLabel": "底部标签",
+        "description": "卡片底部小标签"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "cards",
-        "label": "赛道卡",
+        "label": "分类卡",
         "type": "list",
         "default": [
           {
@@ -1611,7 +1860,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "赛道卡：标题 / 金额 / 占比 / 说明 / 标签"
+        "desc": "分类卡：标题 / 数值 / 占比 / 说明 / 标签",
+        "publicKey": "cards",
+        "publicLabel": "分类卡",
+        "description": "分类卡：标题 / 数值 / 占比 / 说明 / 标签"
       }
     ],
     "defaultProps": {
@@ -1694,7 +1946,10 @@ export const pages = [
           "text001": "亿",
           "text002": "%"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "hlStyle",
@@ -1719,7 +1974,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -1729,7 +1987,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "segmentCount",
@@ -1739,7 +2000,10 @@ export const pages = [
         "min": 2,
         "max": 5,
         "step": 1,
-        "desc": "展示的赛道分段数量"
+        "desc": "展示的分类分段数量",
+        "publicKey": "categoryCount",
+        "publicLabel": "分段数量",
+        "description": "展示的分类分段数量"
       },
       {
         "key": "chartVariant",
@@ -1756,14 +2020,20 @@ export const pages = [
             "柱状"
           ]
         ],
-        "desc": "同心放射环 / 纵向渐变柱"
+        "desc": "同心放射环 / 纵向渐变柱",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "同心放射环 / 纵向渐变柱"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一分段"
+        "desc": "是否高亮某一分段",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一分段"
       },
       {
         "key": "focusIndex",
@@ -1774,32 +2044,44 @@ export const pages = [
         "max": 5,
         "step": 1,
         "maxFromKey": "segmentCount",
-        "desc": "被高亮分段的序号"
+        "desc": "被高亮分段的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮分段的序号"
       },
       {
         "key": "showCenterTotal",
         "label": "中心总额",
         "type": "toggle",
         "default": true,
-        "desc": "环形中心总融资额(环形生效)"
+        "desc": "环形中心总数值(环形生效)",
+        "publicKey": "showValueLabels",
+        "publicLabel": "中心总额",
+        "description": "环形中心总数值(环形生效)"
       },
       {
         "key": "showLegend",
         "label": "图例列表",
         "type": "toggle",
         "default": true,
-        "desc": "右侧图例列表(环形生效)"
+        "desc": "右侧图例列表(环形生效)",
+        "publicKey": "showLegend",
+        "publicLabel": "图例列表",
+        "description": "右侧图例列表(环形生效)"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       },
       {
         "key": "segments",
-        "label": "赛道分段",
+        "label": "分类分段",
         "type": "list",
         "default": [
           {
@@ -1838,7 +2120,10 @@ export const pages = [
             "color": "#8a8f98"
           }
         ],
-        "desc": "赛道：中文 / 英文 / 金额 / 占比 / 主色（中心总额自动求和）"
+        "desc": "分类：中文 / 英文 / 数值 / 占比 / 主色（中心总额自动求和）",
+        "publicKey": "segments",
+        "publicLabel": "分类分段",
+        "description": "分类：中文 / 英文 / 数值 / 占比 / 主色（中心总额自动求和）"
       }
     ],
     "defaultProps": {
@@ -1928,7 +2213,10 @@ export const pages = [
           "text012": "资本图谱",
           "text013": "气泡大小 = 资本热度 · 纵轴为 sqrt 示意比例（小值仍可辨识）· 数值见标注（报告 2.x · 调研整理）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "ptsData",
@@ -1984,7 +2272,10 @@ export const pages = [
             "note": "种子即被追捧"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "ptsData",
+        "publicLabel": "ptsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -2009,7 +2300,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -2019,7 +2313,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "itemCount",
@@ -2029,7 +2326,10 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "展示的公司气泡数量"
+        "desc": "展示的公司气泡数量",
+        "publicKey": "itemCount",
+        "publicLabel": "公司气泡数",
+        "description": "展示的公司气泡数量"
       },
       {
         "key": "chartVariant",
@@ -2046,14 +2346,20 @@ export const pages = [
             "柱状"
           ]
         ],
-        "desc": "气泡散点 / 横向柱状"
+        "desc": "气泡散点 / 横向柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "气泡散点 / 横向柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一公司"
+        "desc": "是否高亮某一公司",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一公司"
       },
       {
         "key": "focusIndex",
@@ -2064,28 +2370,40 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮公司的序号"
+        "desc": "被高亮公司的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮公司的序号"
       },
       {
         "key": "showZones",
         "label": "对角分区",
         "type": "toggle",
         "default": true,
-        "desc": "背景估值兑现 / 跑前淡色块"
+        "desc": "背景指标兑现 / 跑前淡色块",
+        "publicKey": "showZones",
+        "publicLabel": "对角分区",
+        "description": "背景指标兑现 / 跑前淡色块"
       },
       {
         "key": "showAxisLabels",
         "label": "坐标轴文字",
         "type": "toggle",
         "default": true,
-        "desc": "横纵坐标轴文字"
+        "desc": "横纵坐标轴文字",
+        "publicKey": "showAxisLabels",
+        "publicLabel": "坐标轴文字",
+        "description": "横纵坐标轴文字"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -2188,7 +2506,10 @@ export const pages = [
           "text007": "#",
           "text008": "数据为调研整理与推演 · 名次＝该赛道半年内 ≥1 亿美元 AI 轮次的资本关注度排名（1＝最热 · 示意）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "rowsData",
@@ -2238,7 +2559,10 @@ export const pages = [
             "color": "#FFC700"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "rowsData",
+        "publicLabel": "rowsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -2263,7 +2587,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -2273,17 +2600,23 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "itemCount",
-        "label": "赛道条数",
+        "label": "分类条数",
         "type": "slider",
         "default": 6,
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "展示的赛道数量"
+        "desc": "展示的分类数量",
+        "publicKey": "categoryCount",
+        "publicLabel": "分类条数",
+        "description": "展示的分类数量"
       },
       {
         "key": "chartVariant",
@@ -2300,14 +2633,20 @@ export const pages = [
             "横向柱"
           ]
         ],
-        "desc": "斜率图 / 横向柱状"
+        "desc": "斜率图 / 横向柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "斜率图 / 横向柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一赛道"
+        "desc": "是否高亮某一分类",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一分类"
       },
       {
         "key": "focusIndex",
@@ -2318,28 +2657,40 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮赛道的序号"
+        "desc": "被高亮分类的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮分类的序号"
       },
       {
         "key": "showDelta",
         "label": "升降徽标",
         "type": "toggle",
         "default": true,
-        "desc": "▲n / ▼n / = 升降标记"
+        "desc": "▲n / ▼n / = 升降标记",
+        "publicKey": "showDelta",
+        "publicLabel": "升降徽标",
+        "description": "▲n / ▼n / = 升降标记"
       },
       {
         "key": "showRankNum",
         "label": "名次数字",
         "type": "toggle",
         "default": true,
-        "desc": "两端名次数字"
+        "desc": "两端名次数字",
+        "publicKey": "showRankNum",
+        "publicLabel": "名次数字",
+        "description": "两端名次数字"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -2430,7 +2781,10 @@ export const pages = [
           "text006": "亿美元",
           "text007": "面积 / 长度 ∝ 赛道融资额 · 数据为调研整理（报告 3.1）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "segData",
@@ -2478,7 +2832,10 @@ export const pages = [
             "note": "工具链 / 安全"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "segData",
+        "publicLabel": "segData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -2503,7 +2860,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -2513,17 +2873,23 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "segmentCount",
-        "label": "赛道瓷砖",
+        "label": "分类块",
         "type": "slider",
         "default": 5,
         "min": 2,
         "max": 5,
         "step": 1,
-        "desc": "展示的赛道瓷砖数"
+        "desc": "展示的分类块数",
+        "publicKey": "categoryCount",
+        "publicLabel": "分类块",
+        "description": "展示的分类块数"
       },
       {
         "key": "chartVariant",
@@ -2540,14 +2906,20 @@ export const pages = [
             "横向柱"
           ]
         ],
-        "desc": "矩形树图 / 横向柱状"
+        "desc": "矩形树图 / 横向柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "矩形树图 / 横向柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一赛道"
+        "desc": "是否高亮某一分类",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一分类"
       },
       {
         "key": "focusIndex",
@@ -2558,28 +2930,40 @@ export const pages = [
         "max": 5,
         "step": 1,
         "maxFromKey": "segmentCount",
-        "desc": "被高亮赛道的序号"
+        "desc": "被高亮分类的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮分类的序号"
       },
       {
         "key": "showShare",
         "label": "占比百分比",
         "type": "toggle",
         "default": true,
-        "desc": "瓷砖 / 柱尾占比显隐"
+        "desc": "瓷砖 / 柱尾占比显隐",
+        "publicKey": "showShare",
+        "publicLabel": "占比百分比",
+        "description": "瓷砖 / 柱尾占比显隐"
       },
       {
         "key": "showTotal",
         "label": "合计徽标",
         "type": "toggle",
         "default": true,
-        "desc": "页脚总额显隐"
+        "desc": "页脚总额显隐",
+        "publicKey": "showTotal",
+        "publicLabel": "合计徽标",
+        "description": "页脚总额显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -2669,7 +3053,10 @@ export const pages = [
           "text008": "头部赛道领跑",
           "text009": "通用大模型 + 算力两条赛道吃掉七成盘子 · 数据为调研整理（报告 3.1，单位亿美元 / 示意比例）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "segsData",
@@ -2707,7 +3094,10 @@ export const pages = [
             "color": "#9aa0ff"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "segsData",
+        "publicLabel": "segsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -2732,7 +3122,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -2742,17 +3135,23 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "segmentCount",
-        "label": "赛道段数",
+        "label": "分类段数",
         "type": "slider",
         "default": 5,
         "min": 2,
         "max": 5,
         "step": 1,
-        "desc": "参与累加的赛道段数"
+        "desc": "参与累加的分类段数",
+        "publicKey": "categoryCount",
+        "publicLabel": "分类段数",
+        "description": "参与累加的分类段数"
       },
       {
         "key": "chartVariant",
@@ -2769,14 +3168,20 @@ export const pages = [
             "横向柱"
           ]
         ],
-        "desc": "瀑布累加 / 横向柱状"
+        "desc": "瀑布累加 / 横向柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "瀑布累加 / 横向柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一赛道段"
+        "desc": "是否高亮某一分类段",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一分类段"
       },
       {
         "key": "focusIndex",
@@ -2787,28 +3192,40 @@ export const pages = [
         "max": 5,
         "step": 1,
         "maxFromKey": "segmentCount",
-        "desc": "被高亮赛道段的序号"
+        "desc": "被高亮分类段的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮分类段的序号"
       },
       {
         "key": "showConnectors",
         "label": "段间连接",
         "type": "toggle",
         "default": true,
-        "desc": "瀑布段间虚线连接（瀑布生效）"
+        "desc": "瀑布段间虚线连接（瀑布生效）",
+        "publicKey": "showConnectors",
+        "publicLabel": "段间连接",
+        "description": "瀑布段间虚线连接（瀑布生效）"
       },
       {
         "key": "showTotal",
         "label": "合计柱",
         "type": "toggle",
         "default": true,
-        "desc": "末端总额柱显隐（瀑布生效）"
+        "desc": "末端总额柱显隐（瀑布生效）",
+        "publicKey": "showTotal",
+        "publicLabel": "合计柱",
+        "description": "末端总额柱显隐（瀑布生效）"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -2888,7 +3305,10 @@ export const pages = [
           "text006": "半年消长",
           "text007": "柱高为示意比例，数值以柱顶标签为准（单位亿美元）· 报告 3.x · 调研整理"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "groupsData",
@@ -2931,7 +3351,10 @@ export const pages = [
             "color": "#27E021"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "groupsData",
+        "publicLabel": "groupsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -2956,7 +3379,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -2966,17 +3392,23 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "columnCount",
-        "label": "赛道组数",
+        "label": "分类组数",
         "type": "slider",
         "default": 5,
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "展示的赛道组数量"
+        "desc": "展示的分类组数量",
+        "publicKey": "categoryCount",
+        "publicLabel": "分类组数",
+        "description": "展示的分类组数量"
       },
       {
         "key": "chartVariant",
@@ -2993,14 +3425,20 @@ export const pages = [
             "合计"
           ]
         ],
-        "desc": "上下半年双柱 / 合计单柱"
+        "desc": "上下半年双柱 / 合计单柱",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "上下半年双柱 / 合计单柱"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一赛道组"
+        "desc": "是否高亮某一分类组",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一分类组"
       },
       {
         "key": "focusIndex",
@@ -3011,28 +3449,40 @@ export const pages = [
         "max": 5,
         "step": 1,
         "maxFromKey": "columnCount",
-        "desc": "被高亮赛道的序号"
+        "desc": "被高亮分类的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮分类的序号"
       },
       {
         "key": "showValues",
         "label": "柱顶数值",
         "type": "toggle",
         "default": true,
-        "desc": "柱顶数值标签"
+        "desc": "柱顶数值标签",
+        "publicKey": "showValueLabels",
+        "publicLabel": "柱顶数值",
+        "description": "柱顶数值标签"
       },
       {
         "key": "showLegend",
         "label": "图例",
         "type": "toggle",
         "default": true,
-        "desc": "上 / 下半年图例"
+        "desc": "上 / 下半年图例",
+        "publicKey": "showLegend",
+        "publicLabel": "图例",
+        "description": "上 / 下半年图例"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -3112,7 +3562,10 @@ export const pages = [
           "text003": "一屏看懂资本流向",
           "text004": "“"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "tilesData",
@@ -3176,7 +3629,10 @@ export const pages = [
             "label": "头部单笔估值峰值 / 美元"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "tilesData",
+        "publicLabel": "tilesData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -3201,7 +3657,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -3211,7 +3670,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -3221,14 +3683,20 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "显示图片槽的瓷砖数(其余转无图态)"
+        "desc": "显示图片槽的瓷砖数(其余转无图态)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片瓷砖",
+        "description": "显示图片槽的瓷砖数(其余转无图态)"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一块瓷砖"
+        "desc": "是否高亮某一块瓷砖",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一块瓷砖"
       },
       {
         "key": "focusIndex",
@@ -3238,7 +3706,10 @@ export const pages = [
         "min": 1,
         "max": 7,
         "step": 1,
-        "desc": "被高亮瓷砖的序号"
+        "desc": "被高亮瓷砖的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮瓷砖的序号"
       },
       {
         "key": "paletteVariant",
@@ -3255,21 +3726,30 @@ export const pages = [
             "单色"
           ]
         ],
-        "desc": "瓷砖多彩 / 统一单色"
+        "desc": "瓷砖多彩 / 统一单色",
+        "publicKey": "paletteVariant",
+        "publicLabel": "配色",
+        "description": "瓷砖多彩 / 统一单色"
       },
       {
         "key": "showCaptions",
         "label": "瓷砖标签",
         "type": "toggle",
         "default": true,
-        "desc": "瓷砖小标签 / 说明"
+        "desc": "瓷砖小标签 / 说明",
+        "publicKey": "showCaptions",
+        "publicLabel": "瓷砖标签",
+        "description": "瓷砖小标签 / 说明"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -3364,7 +3844,10 @@ export const pages = [
           "text001": "单位：",
           "text002": "%"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "hlStyle",
@@ -3389,7 +3872,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -3399,7 +3885,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "panelCount",
@@ -3409,7 +3898,10 @@ export const pages = [
         "min": 1,
         "max": 2,
         "step": 1,
-        "desc": "并排展示的图表面板数"
+        "desc": "并排展示的图表面板数",
+        "publicKey": "panelCount",
+        "publicLabel": "面板数量",
+        "description": "并排展示的图表面板数"
       },
       {
         "key": "chartVariant",
@@ -3426,14 +3918,20 @@ export const pages = [
             "折线"
           ]
         ],
-        "desc": "柱状图或折线图"
+        "desc": "柱状图或折线图",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "柱状图或折线图"
       },
       {
         "key": "focusEnabled",
         "label": "高亮重点",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某个数据点"
+        "desc": "是否高亮某个数据点",
+        "publicKey": "focusEnabled",
+        "publicLabel": "高亮重点",
+        "description": "是否高亮某个数据点"
       },
       {
         "key": "focusIndex",
@@ -3443,21 +3941,30 @@ export const pages = [
         "min": 1,
         "max": 4,
         "step": 1,
-        "desc": "被高亮数据点的序号"
+        "desc": "被高亮数据点的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮数据点的序号"
       },
       {
         "key": "showGrowthMarkers",
         "label": "增长标注",
         "type": "toggle",
         "default": true,
-        "desc": "柱间 +x% 增幅标注"
+        "desc": "柱间 +x% 增幅标注",
+        "publicKey": "showGrowthMarkers",
+        "publicLabel": "增长标注",
+        "description": "柱间 +x% 增幅标注"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "panels",
@@ -3511,7 +4018,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "面板文案：标题 / 关键词 / 描述 / 单位（柱点数值 data 在 defaults 中）"
+        "desc": "面板文案：标题 / 关键词 / 描述 / 单位（柱点数值 data 在 defaults 中）",
+        "publicKey": "panels",
+        "publicLabel": "图表面板",
+        "description": "面板文案：标题 / 关键词 / 描述 / 单位（柱点数值 data 在 defaults 中）"
       }
     ],
     "defaultProps": {
@@ -3611,7 +4121,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -3621,7 +4134,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "chartVariant",
@@ -3642,14 +4158,20 @@ export const pages = [
             "柱状"
           ]
         ],
-        "desc": "面积 / 折线 / 柱状"
+        "desc": "面积 / 折线 / 柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "面积 / 折线 / 柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点月份",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某个月份"
+        "desc": "是否高亮某个月份",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点月份",
+        "description": "是否高亮某个月份"
       },
       {
         "key": "focusIndex",
@@ -3659,28 +4181,40 @@ export const pages = [
         "min": 1,
         "max": 12,
         "step": 1,
-        "desc": "被高亮月份(1=1月)"
+        "desc": "被高亮月份(1=1月)",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮月份(1=1月)"
       },
       {
         "key": "showPeakMarkers",
         "label": "峰值标记",
         "type": "toggle",
         "default": true,
-        "desc": "5月/8月峰值标注"
+        "desc": "5月/8月峰值标注",
+        "publicKey": "showPeakMarkers",
+        "publicLabel": "峰值标记",
+        "description": "5月/8月峰值标注"
       },
       {
         "key": "showAvgLine",
         "label": "月均线",
         "type": "toggle",
         "default": true,
-        "desc": "月均参考虚线"
+        "desc": "月均参考虚线",
+        "publicKey": "showAvgLine",
+        "publicLabel": "月均线",
+        "description": "月均参考虚线"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "data",
@@ -3736,7 +4270,10 @@ export const pages = [
             "value": 52
           }
         ],
-        "desc": "12 个月的数值（峰值标记自动取最大两点）"
+        "desc": "12 个月的数值（峰值标记自动取最大两点）",
+        "publicKey": "data",
+        "publicLabel": "月度数据",
+        "description": "12 个月的数值（峰值标记自动取最大两点）"
       }
     ],
     "defaultProps": {
@@ -3827,7 +4364,10 @@ export const pages = [
           "text004": "数据为调研整理与推演 ·",
           "text005": "· 示意"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "colsData",
@@ -3875,7 +4415,10 @@ export const pages = [
             }
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "colsData",
+        "publicLabel": "colsData",
+        "description": "默认数据内容"
       },
       {
         "key": "tracksData",
@@ -3907,7 +4450,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "tracksData",
+        "publicLabel": "tracksData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -3932,7 +4478,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -3942,17 +4491,23 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "columnCount",
-        "label": "季度柱数",
+        "label": "时间柱数",
         "type": "slider",
         "default": 4,
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的季度数量"
+        "desc": "展示的时间段数量",
+        "publicKey": "columnCount",
+        "publicLabel": "时间柱数",
+        "description": "展示的时间段数量"
       },
       {
         "key": "chartVariant",
@@ -3969,45 +4524,63 @@ export const pages = [
             "绝对额"
           ]
         ],
-        "desc": "100% 占比 / 绝对额(柱高随总盘)"
+        "desc": "100% 占比 / 绝对额(柱高随总盘)",
+        "publicKey": "chartVariant",
+        "publicLabel": "堆叠口径",
+        "description": "100% 占比 / 绝对额(柱高随总盘)"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一赛道"
+        "desc": "是否高亮某一分类",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一分类"
       },
       {
         "key": "focusIndex",
-        "label": "重点赛道",
+        "label": "重点分类",
         "type": "slider",
         "default": 1,
         "min": 1,
         "max": 4,
         "step": 1,
-        "desc": "被高亮赛道的序号"
+        "desc": "被高亮分类的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点分类",
+        "description": "被高亮分类的序号"
       },
       {
         "key": "showSegLabel",
         "label": "段内标签",
         "type": "toggle",
         "default": true,
-        "desc": "段内占比 / 金额标签"
+        "desc": "段内占比 / 数值标签",
+        "publicKey": "showValueLabels",
+        "publicLabel": "段内标签",
+        "description": "段内占比 / 数值标签"
       },
       {
         "key": "showLegend",
-        "label": "赛道图例",
+        "label": "分类图例",
         "type": "toggle",
         "default": true,
-        "desc": "底部赛道图例"
+        "desc": "底部分类图例",
+        "publicKey": "showLegend",
+        "publicLabel": "分类图例",
+        "description": "底部分类图例"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -4118,7 +4691,10 @@ export const pages = [
           "text005": "赢家通吃",
           "text006": "资金高度向头部公司、单一赛道与少数枢纽集中 · 数据为调研整理（报告 3.1 / 3.2）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "dialsData",
@@ -4150,7 +4726,10 @@ export const pages = [
             "note": "后期大额轮包揽近半笔数"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "dialsData",
+        "publicLabel": "dialsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -4175,7 +4754,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -4185,7 +4767,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "gaugeCount",
@@ -4195,7 +4780,10 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "展示的环形仪表盘数量"
+        "desc": "展示的环形仪表盘数量",
+        "publicKey": "gaugeCount",
+        "publicLabel": "仪表盘数",
+        "description": "展示的环形仪表盘数量"
       },
       {
         "key": "chartVariant",
@@ -4212,14 +4800,20 @@ export const pages = [
             "横向柱"
           ]
         ],
-        "desc": "环形仪表盘 / 横向柱状"
+        "desc": "环形仪表盘 / 横向柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "环形仪表盘 / 横向柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一仪表盘"
+        "desc": "是否高亮某一仪表盘",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一仪表盘"
       },
       {
         "key": "focusIndex",
@@ -4230,28 +4824,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "gaugeCount",
-        "desc": "被高亮仪表盘的序号"
+        "desc": "被高亮仪表盘的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮仪表盘的序号"
       },
       {
         "key": "showContext",
         "label": "盘下注释",
         "type": "toggle",
         "default": true,
-        "desc": "仪表盘下方注释行"
+        "desc": "仪表盘下方注释行",
+        "publicKey": "showContext",
+        "publicLabel": "盘下注释",
+        "description": "仪表盘下方注释行"
       },
       {
         "key": "showTrack",
         "label": "底环",
         "type": "toggle",
         "default": true,
-        "desc": "未填充弧（底环）显隐"
+        "desc": "未填充弧（底环）显隐",
+        "publicKey": "showGuide",
+        "publicLabel": "底环",
+        "description": "未填充弧（底环）显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -4325,7 +4931,10 @@ export const pages = [
           "text009": "数值为相对热度（0–100）· 颜色深浅 / 气泡大小同义",
           "text010": "数据为调研整理与月度推演 · 列「合计」越高代表当月越热"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "monthsData",
@@ -4345,7 +4954,10 @@ export const pages = [
           "11月",
           "12月"
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "monthsData",
+        "publicLabel": "monthsData",
+        "description": "默认数据内容"
       },
       {
         "key": "rowsData",
@@ -4429,7 +5041,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "rowsData",
+        "publicLabel": "rowsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -4454,7 +5069,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -4464,7 +5082,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "columnCount",
@@ -4474,17 +5095,23 @@ export const pages = [
         "min": 6,
         "max": 12,
         "step": 1,
-        "desc": "展示的月份列数"
+        "desc": "展示的月份列数",
+        "publicKey": "columnCount",
+        "publicLabel": "月份列数",
+        "description": "展示的月份列数"
       },
       {
         "key": "rowCount",
-        "label": "赛道行数",
+        "label": "分类行数",
         "type": "slider",
         "default": 4,
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的赛道行数"
+        "desc": "展示的分类行数",
+        "publicKey": "categoryCount",
+        "publicLabel": "分类行数",
+        "description": "展示的分类行数"
       },
       {
         "key": "chartVariant",
@@ -4501,14 +5128,20 @@ export const pages = [
             "气泡"
           ]
         ],
-        "desc": "颜色深浅 / 气泡大小"
+        "desc": "颜色深浅 / 气泡大小",
+        "publicKey": "chartVariant",
+        "publicLabel": "编码方式",
+        "description": "颜色深浅 / 气泡大小"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一月份"
+        "desc": "是否高亮某一月份",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一月份"
       },
       {
         "key": "focusIndex",
@@ -4519,28 +5152,40 @@ export const pages = [
         "max": 12,
         "step": 1,
         "maxFromKey": "columnCount",
-        "desc": "被高亮月份的序号"
+        "desc": "被高亮月份的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点月份",
+        "description": "被高亮月份的序号"
       },
       {
         "key": "showRowTotal",
-        "label": "赛道合计",
+        "label": "分类合计",
         "type": "toggle",
         "default": true,
-        "desc": "行尾赛道合计列"
+        "desc": "行尾分类合计列",
+        "publicKey": "showRowTotal",
+        "publicLabel": "分类合计",
+        "description": "行尾分类合计列"
       },
       {
         "key": "showScale",
         "label": "强度图例",
         "type": "toggle",
         "default": true,
-        "desc": "底部强度图例"
+        "desc": "底部强度图例",
+        "publicKey": "showScale",
+        "publicLabel": "强度图例",
+        "description": "底部强度图例"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -4685,7 +5330,10 @@ export const pages = [
           "text009": "资本月历",
           "text010": "格内为当月 ≥1 亿美元融资笔数 · 着色随笔数加深 · 峰值月加 ★（报告 2.x · 调研整理）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "monthsData",
@@ -4777,7 +5425,10 @@ export const pages = [
             "peak": true
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "monthsData",
+        "publicLabel": "monthsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -4802,7 +5453,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -4812,7 +5466,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "monthCount",
@@ -4822,14 +5479,20 @@ export const pages = [
         "min": 6,
         "max": 12,
         "step": 1,
-        "desc": "展示的月份数量"
+        "desc": "展示的月份数量",
+        "publicKey": "monthCount",
+        "publicLabel": "月份数",
+        "description": "展示的月份数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一月份"
+        "desc": "是否高亮某一月份",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一月份"
       },
       {
         "key": "focusIndex",
@@ -4840,35 +5503,50 @@ export const pages = [
         "max": 12,
         "step": 1,
         "maxFromKey": "monthCount",
-        "desc": "被高亮月份(1=1月)"
+        "desc": "被高亮月份(1=1月)",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点月份",
+        "description": "被高亮月份(1=1月)"
       },
       {
         "key": "showHeat",
         "label": "热力着色",
         "type": "toggle",
         "default": true,
-        "desc": "按笔数热力着色"
+        "desc": "按笔数热力着色",
+        "publicKey": "showHeat",
+        "publicLabel": "热力着色",
+        "description": "按笔数热力着色"
       },
       {
         "key": "showEventNote",
         "label": "标志事件",
         "type": "toggle",
         "default": true,
-        "desc": "标志事件芯片"
+        "desc": "标志事件芯片",
+        "publicKey": "showEventNote",
+        "publicLabel": "标志事件",
+        "description": "标志事件芯片"
       },
       {
         "key": "showPeakTag",
         "label": "峰值角标",
         "type": "toggle",
         "default": true,
-        "desc": "峰值月 ★ 角标"
+        "desc": "峰值月 ★ 角标",
+        "publicKey": "showPeakTag",
+        "publicLabel": "峰值角标",
+        "description": "峰值月 ★ 角标"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -5004,7 +5682,10 @@ export const pages = [
           "text007": "峰值",
           "text008": "数据为调研整理与推演 · 单位见各行标注 · 峰值角标标示该指标全年最高季度"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "colsData",
@@ -5016,7 +5697,10 @@ export const pages = [
           "Q3",
           "Q4"
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "colsData",
+        "publicLabel": "colsData",
+        "description": "默认数据内容"
       },
       {
         "key": "rowsData",
@@ -5068,7 +5752,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "rowsData",
+        "publicLabel": "rowsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -5093,7 +5780,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -5103,17 +5793,23 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "columnCount",
-        "label": "季度列数",
+        "label": "时间列数",
         "type": "slider",
         "default": 4,
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的季度列数"
+        "desc": "展示的时间列数",
+        "publicKey": "columnCount",
+        "publicLabel": "时间列数",
+        "description": "展示的时间列数"
       },
       {
         "key": "rowCount",
@@ -5123,14 +5819,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的指标行数"
+        "desc": "展示的指标行数",
+        "publicKey": "rowCount",
+        "publicLabel": "指标行数",
+        "description": "展示的指标行数"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一列"
+        "desc": "是否高亮某一列",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一列"
       },
       {
         "key": "focusIndex",
@@ -5141,28 +5843,40 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "columnCount",
-        "desc": "被高亮列的序号"
+        "desc": "被高亮列的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点列序号",
+        "description": "被高亮列的序号"
       },
       {
         "key": "showTrendBar",
         "label": "趋势条",
         "type": "toggle",
         "default": false,
-        "desc": "行尾迷你趋势折线"
+        "desc": "行尾迷你趋势折线",
+        "publicKey": "showTrendBar",
+        "publicLabel": "趋势条",
+        "description": "行尾迷你趋势折线"
       },
       {
         "key": "showPeakTag",
         "label": "峰值角标",
         "type": "toggle",
         "default": true,
-        "desc": "各行峰值单元格角标"
+        "desc": "各行峰值单元格角标",
+        "publicKey": "showPeakTag",
+        "publicLabel": "峰值角标",
+        "description": "各行峰值单元格角标"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -5256,7 +5970,10 @@ export const pages = [
           "text001": "笔",
           "text002": "笔"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "hlStyle",
@@ -5281,7 +5998,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -5291,7 +6011,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "rowCount",
@@ -5301,14 +6024,20 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "展示的数据行数量"
+        "desc": "展示的数据行数量",
+        "publicKey": "rowCount",
+        "publicLabel": "数据行数",
+        "description": "展示的数据行数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行"
+        "desc": "是否高亮某一行",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一行"
       },
       {
         "key": "focusIndex",
@@ -5319,28 +6048,40 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "rowCount",
-        "desc": "被高亮行的序号"
+        "desc": "被高亮行的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点行号",
+        "description": "被高亮行的序号"
       },
       {
         "key": "showBar",
         "label": "可视化列",
         "type": "toggle",
         "default": true,
-        "desc": "行内规模对比柱条列"
+        "desc": "行内规模对比柱条列",
+        "publicKey": "showBar",
+        "publicLabel": "可视化列",
+        "description": "行内规模对比柱条列"
       },
       {
         "key": "showTotalRow",
         "label": "合计行",
         "type": "toggle",
         "default": true,
-        "desc": "底部合计行"
+        "desc": "底部合计行",
+        "publicKey": "showTotalRow",
+        "publicLabel": "合计行",
+        "description": "底部合计行"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "rows",
@@ -5384,7 +6125,10 @@ export const pages = [
             "avg": 18.6
           }
         ],
-        "desc": "表格数据行：轮次 / 英文 / 笔数 / 平均单笔"
+        "desc": "表格数据行：阶段 / 英文 / 笔数 / 平均单笔",
+        "publicKey": "rows",
+        "publicLabel": "数据行",
+        "description": "表格数据行：阶段 / 英文 / 笔数 / 平均单笔"
       },
       {
         "key": "totalRow",
@@ -5396,7 +6140,10 @@ export const pages = [
           "count": 97,
           "avg": 10
         },
-        "desc": "底部合计行"
+        "desc": "底部合计行",
+        "publicKey": "totalRow",
+        "publicLabel": "合计行",
+        "description": "底部合计行"
       }
     ],
     "defaultProps": {
@@ -5498,7 +6245,10 @@ export const pages = [
           "text015": "亿",
           "text016": "数据为调研整理与推演 · 金额＝该赛道半年内 ≥1 亿美元 AI 轮次合计（亿美元 · 示意）· mini 双柱按全表最高额归一"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "rowsData",
@@ -5548,7 +6298,10 @@ export const pages = [
             "color": "#FFC700"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "rowsData",
+        "publicLabel": "rowsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -5573,7 +6326,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -5583,24 +6339,33 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "rowCount",
-        "label": "赛道行数",
+        "label": "分类行数",
         "type": "slider",
         "default": 6,
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "展示的赛道行数"
+        "desc": "展示的分类行数",
+        "publicKey": "categoryCount",
+        "publicLabel": "分类行数",
+        "description": "展示的分类行数"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行"
+        "desc": "是否高亮某一行",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一行"
       },
       {
         "key": "focusIndex",
@@ -5611,35 +6376,50 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "rowCount",
-        "desc": "被高亮行的序号"
+        "desc": "被高亮行的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点行序号",
+        "description": "被高亮行的序号"
       },
       {
         "key": "showDelta",
         "label": "环比徽标",
         "type": "toggle",
         "default": true,
-        "desc": "Δ 升降徽标列"
+        "desc": "Δ 升降徽标列",
+        "publicKey": "showDelta",
+        "publicLabel": "环比徽标",
+        "description": "Δ 升降徽标列"
       },
       {
         "key": "showMiniBar",
         "label": "双柱对比",
         "type": "toggle",
         "default": true,
-        "desc": "上 / 下半年并置双柱列"
+        "desc": "上 / 下半年并置双柱列",
+        "publicKey": "showMiniBar",
+        "publicLabel": "双柱对比",
+        "description": "上 / 下半年并置双柱列"
       },
       {
         "key": "showTotalRow",
         "label": "合计行",
         "type": "toggle",
         "default": true,
-        "desc": "底部全市场合计行"
+        "desc": "底部全市场合计行",
+        "publicKey": "showTotalRow",
+        "publicLabel": "合计行",
+        "description": "底部全市场合计行"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -5743,7 +6523,10 @@ export const pages = [
           "text011": "资本热度",
           "text012": "数据为调研整理与推演 · 估值柱条按全表最高估值归一 · 资本热度＝该公司 2024 受追捧程度（0–5）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "rowsData",
@@ -5793,7 +6576,10 @@ export const pages = [
             "heat": 3
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "rowsData",
+        "publicLabel": "rowsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -5818,7 +6604,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -5828,7 +6617,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "rowCount",
@@ -5838,14 +6630,20 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "展示的公司行数"
+        "desc": "展示的公司行数",
+        "publicKey": "rowCount",
+        "publicLabel": "公司行数",
+        "description": "展示的公司行数"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行"
+        "desc": "是否高亮某一行",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一行"
       },
       {
         "key": "focusIndex",
@@ -5856,35 +6654,50 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "rowCount",
-        "desc": "被高亮行的序号"
+        "desc": "被高亮行的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点行序号",
+        "description": "被高亮行的序号"
       },
       {
         "key": "showBar",
-        "label": "估值柱条",
+        "label": "指标柱条",
         "type": "toggle",
         "default": true,
-        "desc": "行内估值规模柱条"
+        "desc": "行内指标规模柱条",
+        "publicKey": "showBar",
+        "publicLabel": "指标柱条",
+        "description": "行内指标规模柱条"
       },
       {
         "key": "showRating",
-        "label": "资本热度",
+        "label": "关注度",
         "type": "toggle",
         "default": true,
-        "desc": "资本热度评级点"
+        "desc": "关注度评级点",
+        "publicKey": "showStatusRating",
+        "publicLabel": "关注度",
+        "description": "关注度评级点"
       },
       {
         "key": "showCategory",
-        "label": "赛道标签",
+        "label": "分类标签",
         "type": "toggle",
         "default": true,
-        "desc": "主投赛道标签列"
+        "desc": "主投分类标签列",
+        "publicKey": "showCategory",
+        "publicLabel": "分类标签",
+        "description": "主投分类标签列"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -5982,7 +6795,10 @@ export const pages = [
           "text009": "代表押注",
           "text010": "数据为调研整理与推演 · 出手次数＝该机构 2024 参与的 ≥1 亿美元 AI 轮次（示意量级）· 柱条按全表最多出手归一"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "rowsData",
@@ -6032,7 +6848,10 @@ export const pages = [
             "rep": "中东资本进场"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "rowsData",
+        "publicLabel": "rowsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -6057,7 +6876,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -6067,7 +6889,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "rowCount",
@@ -6077,14 +6902,20 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "展示的出资方行数"
+        "desc": "展示的出资方行数",
+        "publicKey": "rowCount",
+        "publicLabel": "机构行数",
+        "description": "展示的出资方行数"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行"
+        "desc": "是否高亮某一行",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一行"
       },
       {
         "key": "focusIndex",
@@ -6095,35 +6926,50 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "rowCount",
-        "desc": "被高亮行的序号"
+        "desc": "被高亮行的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点行序号",
+        "description": "被高亮行的序号"
       },
       {
         "key": "showBar",
         "label": "出手柱条",
         "type": "toggle",
         "default": true,
-        "desc": "行内出手次数柱条"
+        "desc": "行内出手次数柱条",
+        "publicKey": "showBar",
+        "publicLabel": "出手柱条",
+        "description": "行内出手次数柱条"
       },
       {
         "key": "showType",
         "label": "类型标签",
         "type": "toggle",
         "default": true,
-        "desc": "机构类型标签列"
+        "desc": "机构类型标签列",
+        "publicKey": "showType",
+        "publicLabel": "类型标签",
+        "description": "机构类型标签列"
       },
       {
         "key": "showRep",
         "label": "代表押注",
         "type": "toggle",
         "default": true,
-        "desc": "代表押注列"
+        "desc": "代表押注列",
+        "publicKey": "showRep",
+        "publicLabel": "代表押注",
+        "description": "代表押注列"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -6215,7 +7061,10 @@ export const pages = [
           "text005": "综合强度",
           "text006": "横纵分析法 · 能力画像（报告 2，评级为调研整理 / 示意）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "dimsData",
@@ -6243,7 +7092,10 @@ export const pages = [
             "en": "ECOSYSTEM"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "dimsData",
+        "publicLabel": "dimsData",
+        "description": "默认数据内容"
       },
       {
         "key": "rowsData",
@@ -6299,7 +7151,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "rowsData",
+        "publicLabel": "rowsData",
+        "description": "默认数据内容"
       },
       {
         "key": "lvData",
@@ -6322,7 +7177,10 @@ export const pages = [
             "tag": "领先"
           }
         },
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "lvData",
+        "publicLabel": "lvData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -6347,7 +7205,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -6357,7 +7218,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "rowCount",
@@ -6367,7 +7231,10 @@ export const pages = [
         "min": 3,
         "max": 4,
         "step": 1,
-        "desc": "展示的公司行数"
+        "desc": "展示的公司行数",
+        "publicKey": "rowCount",
+        "publicLabel": "公司行数",
+        "description": "展示的公司行数"
       },
       {
         "key": "colCount",
@@ -6377,14 +7244,20 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "展示的能力维度列数"
+        "desc": "展示的能力维度列数",
+        "publicKey": "colCount",
+        "publicLabel": "维度列数",
+        "description": "展示的能力维度列数"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行"
+        "desc": "是否高亮某一行",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一行"
       },
       {
         "key": "focusIndex",
@@ -6395,35 +7268,50 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "rowCount",
-        "desc": "被高亮行的序号"
+        "desc": "被高亮行的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮行的序号"
       },
       {
         "key": "showRowMeta",
-        "label": "赛道副标",
+        "label": "分类副标",
         "type": "toggle",
         "default": true,
-        "desc": "公司下方赛道副标显隐"
+        "desc": "公司下方分类副标显隐",
+        "publicKey": "showRowMeta",
+        "publicLabel": "分类副标",
+        "description": "公司下方分类副标显隐"
       },
       {
         "key": "showLegend",
         "label": "评级图例",
         "type": "toggle",
         "default": true,
-        "desc": "底部评级图例显隐"
+        "desc": "底部评级图例显隐",
+        "publicKey": "showLegend",
+        "publicLabel": "评级图例",
+        "description": "底部评级图例显隐"
       },
       {
         "key": "showColScore",
         "label": "综合强度行",
         "type": "toggle",
         "default": true,
-        "desc": "列尾综合强度行显隐"
+        "desc": "列尾综合强度行显隐",
+        "publicKey": "showColScore",
+        "publicLabel": "综合强度行",
+        "description": "列尾综合强度行显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -6553,14 +7441,20 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "主数字下方支撑数据卡数量"
+        "desc": "主数字下方支撑数据卡数量",
+        "publicKey": "statCount",
+        "publicLabel": "支撑卡数量",
+        "description": "主数字下方支撑数据卡数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一张支撑卡"
+        "desc": "是否高亮某一张支撑卡",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张支撑卡"
       },
       {
         "key": "focusIndex",
@@ -6571,28 +7465,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "statCount",
-        "desc": "被高亮支撑卡的序号"
+        "desc": "被高亮支撑卡的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮支撑卡的序号"
       },
       {
         "key": "showUnit",
         "label": "单位后缀",
         "type": "toggle",
         "default": true,
-        "desc": "主数字「亿美元」单位"
+        "desc": "主数字「亿美元」单位",
+        "publicKey": "showUnit",
+        "publicLabel": "单位后缀",
+        "description": "主数字「亿美元」单位"
       },
       {
         "key": "showCaption",
         "label": "底部说明",
         "type": "toggle",
         "default": true,
-        "desc": "底部数据口径说明"
+        "desc": "底部数据口径说明",
+        "publicKey": "showCaption",
+        "publicLabel": "底部说明",
+        "description": "底部数据口径说明"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "stats",
@@ -6617,7 +7523,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "支撑数据卡：数值 / 单位 / 标签 / 主色"
+        "desc": "支撑数据卡：数值 / 单位 / 标签 / 主色",
+        "publicKey": "stats",
+        "publicLabel": "支撑卡",
+        "description": "支撑数据卡：数值 / 单位 / 标签 / 主色"
       }
     ],
     "defaultProps": {
@@ -6675,7 +7584,10 @@ export const pages = [
           "text005": "资本大年",
           "text006": "数据口径：2024 全年公开披露的 ≥1 亿美元 AI 融资事件 · 占美国 VC 近三分之一（报告 2.x · 调研整理）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "statsData",
@@ -6707,7 +7619,10 @@ export const pages = [
             "color": "#FFC700"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "statsData",
+        "publicLabel": "statsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -6732,7 +7647,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -6742,7 +7660,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "statCount",
@@ -6752,14 +7673,20 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "并置展示的巨型数字列数"
+        "desc": "并置展示的巨型数字列数",
+        "publicKey": "statCount",
+        "publicLabel": "巨数列数",
+        "description": "并置展示的巨型数字列数"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一列"
+        "desc": "是否高亮某一列",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一列"
       },
       {
         "key": "focusIndex",
@@ -6770,28 +7697,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "statCount",
-        "desc": "被高亮列的序号"
+        "desc": "被高亮列的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮列的序号"
       },
       {
         "key": "showDelta",
         "label": "趋势徽标",
         "type": "toggle",
         "default": true,
-        "desc": "数字下方趋势徽标"
+        "desc": "数字下方趋势徽标",
+        "publicKey": "showDelta",
+        "publicLabel": "趋势徽标",
+        "description": "数字下方趋势徽标"
       },
       {
         "key": "showDivider",
         "label": "列间分隔",
         "type": "toggle",
         "default": true,
-        "desc": "列与列之间的分隔线"
+        "desc": "列与列之间的分隔线",
+        "publicKey": "showDivider",
+        "publicLabel": "列间分隔",
+        "description": "列与列之间的分隔线"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -6870,7 +7809,10 @@ export const pages = [
           "text015": "一年之变",
           "text016": "同比口径：2023→2024 全年公开披露 AI 融资额，比例为示意（报告 2.x · 调研整理）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "metricsData",
@@ -6899,7 +7841,10 @@ export const pages = [
             "note": "逼近三分之一"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "metricsData",
+        "publicLabel": "metricsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -6924,7 +7869,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -6934,7 +7882,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "accentTone",
@@ -6959,7 +7910,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "metricCount",
@@ -6969,14 +7923,20 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "右栏支撑变化卡数量"
+        "desc": "右栏支撑变化卡数量",
+        "publicKey": "metricCount",
+        "publicLabel": "支撑变化卡",
+        "description": "右栏支撑变化卡数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一张支撑卡"
+        "desc": "是否高亮某一张支撑卡",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张支撑卡"
       },
       {
         "key": "focusIndex",
@@ -6987,28 +7947,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "metricCount",
-        "desc": "被高亮支撑卡序号"
+        "desc": "被高亮支撑卡序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮支撑卡序号"
       },
       {
         "key": "showTrack",
         "label": "跃迁条",
         "type": "toggle",
         "default": true,
-        "desc": "去年→今年体量跃迁条"
+        "desc": "去年→今年体量跃迁条",
+        "publicKey": "showGuide",
+        "publicLabel": "跃迁条",
+        "description": "去年→今年体量跃迁条"
       },
       {
         "key": "showUnit",
         "label": "单位后缀",
         "type": "toggle",
         "default": true,
-        "desc": "主数字 % 单位后缀"
+        "desc": "主数字 % 单位后缀",
+        "publicKey": "showUnit",
+        "publicLabel": "单位后缀",
+        "description": "主数字 % 单位后缀"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -7083,7 +8055,10 @@ export const pages = [
           "text003": "资本大年",
           "text004": "数据为调研整理与推演 · 口径＝2024 全年美国 ≥1 亿美元 AI 融资事件汇总（示意）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "cardsData",
@@ -7139,7 +8114,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "cardsData",
+        "publicLabel": "cardsData",
+        "description": "默认数据内容"
       },
       {
         "key": "deltaSymData",
@@ -7150,7 +8128,10 @@ export const pages = [
           "down": "▼",
           "flat": "="
         },
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "deltaSymData",
+        "publicLabel": "deltaSymData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -7175,7 +8156,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -7185,7 +8169,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "statCount",
@@ -7195,7 +8182,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的计分卡数量"
+        "desc": "展示的计分卡数量",
+        "publicKey": "statCount",
+        "publicLabel": "计分卡数",
+        "description": "展示的计分卡数量"
       },
       {
         "key": "layoutVariant",
@@ -7212,14 +8202,20 @@ export const pages = [
             "一行排开"
           ]
         ],
-        "desc": "网格 / 一行（2 张自动一行）"
+        "desc": "网格 / 一行（2 张自动一行）",
+        "publicKey": "layoutVariant",
+        "publicLabel": "排布",
+        "description": "网格 / 一行（2 张自动一行）"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一张卡"
+        "desc": "是否高亮某一张卡",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张卡"
       },
       {
         "key": "focusIndex",
@@ -7230,28 +8226,40 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "statCount",
-        "desc": "被高亮卡的序号"
+        "desc": "被高亮卡的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点卡序号",
+        "description": "被高亮卡的序号"
       },
       {
         "key": "showDelta",
         "label": "趋势徽标",
         "type": "toggle",
         "default": true,
-        "desc": "卡内趋势徽标"
+        "desc": "卡内趋势徽标",
+        "publicKey": "showDelta",
+        "publicLabel": "趋势徽标",
+        "description": "卡内趋势徽标"
       },
       {
         "key": "showContext",
         "label": "卡片注脚",
         "type": "toggle",
         "default": true,
-        "desc": "卡片底部一句注脚"
+        "desc": "卡片底部一句注脚",
+        "publicKey": "showContext",
+        "publicLabel": "卡片注脚",
+        "description": "卡片底部一句注脚"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -7349,7 +8357,10 @@ export const pages = [
           "text006": "xAI · 60 亿",
           "text007": "两笔交易体量近乎并驾齐驱，头部资金高度集中于通用大模型「第一梯队」。"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "sidesData",
@@ -7399,7 +8410,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "sidesData",
+        "publicLabel": "sidesData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -7424,7 +8438,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -7434,7 +8451,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "metricCount",
@@ -7444,7 +8464,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "每侧支撑指标行数"
+        "desc": "每侧支撑指标行数",
+        "publicKey": "metricCount",
+        "publicLabel": "支撑指标",
+        "description": "每侧支撑指标行数"
       },
       {
         "key": "focusSide",
@@ -7465,35 +8488,50 @@ export const pages = [
             "右侧"
           ]
         ],
-        "desc": "高亮左 / 右某一侧"
+        "desc": "高亮左 / 右某一侧",
+        "publicKey": "focusSide",
+        "publicLabel": "高亮侧",
+        "description": "高亮左 / 右某一侧"
       },
       {
         "key": "showVsBadge",
         "label": "VS 徽章",
         "type": "toggle",
         "default": true,
-        "desc": "中缝 VS 徽章"
+        "desc": "中缝 VS 徽章",
+        "publicKey": "showVsBadge",
+        "publicLabel": "VS 徽章",
+        "description": "中缝 VS 徽章"
       },
       {
         "key": "showDelta",
         "label": "差额对比条",
         "type": "toggle",
         "default": true,
-        "desc": "底部两侧体量对比条"
+        "desc": "底部两侧体量对比条",
+        "publicKey": "showDelta",
+        "publicLabel": "差额对比条",
+        "description": "底部两侧体量对比条"
       },
       {
         "key": "showUnit",
         "label": "单位后缀",
         "type": "toggle",
         "default": true,
-        "desc": "主数字「亿」单位"
+        "desc": "主数字「亿」单位",
+        "publicKey": "showUnit",
+        "publicLabel": "单位后缀",
+        "description": "主数字「亿」单位"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -7583,7 +8621,10 @@ export const pages = [
           "text007": "通过率",
           "text008": "漏斗宽度为示意比例 · 通过率 = 本层 ÷ 上一层 · 数据为调研整理推演"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "stagesData",
@@ -7636,7 +8677,10 @@ export const pages = [
             "topW": 17
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "stagesData",
+        "publicLabel": "stagesData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -7661,7 +8705,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -7671,7 +8718,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "stageCount",
@@ -7681,7 +8731,10 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "漏斗层级数量"
+        "desc": "漏斗层级数量",
+        "publicKey": "stageCount",
+        "publicLabel": "层级数量",
+        "description": "漏斗层级数量"
       },
       {
         "key": "chartVariant",
@@ -7698,14 +8751,20 @@ export const pages = [
             "横向柱"
           ]
         ],
-        "desc": "梯形漏斗 / 横向柱状"
+        "desc": "梯形漏斗 / 横向柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "梯形漏斗 / 横向柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一层级"
+        "desc": "是否高亮某一层级",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一层级"
       },
       {
         "key": "focusIndex",
@@ -7716,28 +8775,40 @@ export const pages = [
         "max": 5,
         "step": 1,
         "maxFromKey": "stageCount",
-        "desc": "被高亮层级的序号"
+        "desc": "被高亮层级的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮层级的序号"
       },
       {
         "key": "showConversion",
         "label": "层级转化率",
         "type": "toggle",
         "default": true,
-        "desc": "层级间通过率显隐"
+        "desc": "层级间通过率显隐",
+        "publicKey": "showConversion",
+        "publicLabel": "层级转化率",
+        "description": "层级间通过率显隐"
       },
       {
         "key": "showStageIndex",
         "label": "层级编号",
         "type": "toggle",
         "default": true,
-        "desc": "漏斗内层级编号(funnel/bars)"
+        "desc": "漏斗内层级编号(funnel/bars)",
+        "publicKey": "showStageIndex",
+        "publicLabel": "层级编号",
+        "description": "漏斗内层级编号(funnel/bars)"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -7825,7 +8896,10 @@ export const pages = [
         "default": {
           "text001": "PART"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "chapterData",
@@ -7841,7 +8915,10 @@ export const pages = [
             "头部玩家"
           ]
         },
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "chapterData",
+        "publicLabel": "chapterData",
+        "description": "默认数据内容"
       },
       {
         "key": "partNumber",
@@ -7852,7 +8929,10 @@ export const pages = [
         "max": 7,
         "step": 1,
         "maxFromKey": "progressCount",
-        "desc": "徽章 / 进度轨当前段"
+        "desc": "徽章 / 进度轨当前段",
+        "publicKey": "partNumber",
+        "publicLabel": "章节编号",
+        "description": "徽章 / 进度轨当前段"
       },
       {
         "key": "accentTone",
@@ -7877,7 +8957,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调"
+        "desc": "页面主色调",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调"
       },
       {
         "key": "textAlign",
@@ -7894,21 +8977,30 @@ export const pages = [
             "靠左"
           ]
         ],
-        "desc": "居中 / 靠左"
+        "desc": "居中 / 靠左",
+        "publicKey": "textAlign",
+        "publicLabel": "文案对齐",
+        "description": "居中 / 靠左"
       },
       {
         "key": "showGhost",
         "label": "幽灵数字",
         "type": "toggle",
         "default": true,
-        "desc": "背景巨型描边数字"
+        "desc": "背景巨型描边数字",
+        "publicKey": "showGhost",
+        "publicLabel": "幽灵数字",
+        "description": "背景巨型描边数字"
       },
       {
         "key": "showProgress",
         "label": "进度轨",
         "type": "toggle",
         "default": true,
-        "desc": "底部章节进度轨"
+        "desc": "底部章节进度轨",
+        "publicKey": "showProgress",
+        "publicLabel": "进度轨",
+        "description": "底部章节进度轨"
       },
       {
         "key": "progressCount",
@@ -7918,14 +9010,20 @@ export const pages = [
         "min": 3,
         "max": 7,
         "step": 1,
-        "desc": "进度轨段数"
+        "desc": "进度轨段数",
+        "publicKey": "progressCount",
+        "publicLabel": "进度段数",
+        "description": "进度轨段数"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -7983,7 +9081,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -7993,7 +9094,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "itemCount",
@@ -8003,14 +9107,20 @@ export const pages = [
         "min": 3,
         "max": 10,
         "step": 1,
-        "desc": "展示的排行条目数量"
+        "desc": "展示的排行条目数量",
+        "publicKey": "itemCount",
+        "publicLabel": "条目数量",
+        "description": "展示的排行条目数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一名次"
+        "desc": "是否高亮某一名次",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一名次"
       },
       {
         "key": "focusIndex",
@@ -8021,7 +9131,10 @@ export const pages = [
         "max": 10,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮条目的名次"
+        "desc": "被高亮条目的名次",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮条目的名次"
       },
       {
         "key": "sortDir",
@@ -8038,35 +9151,50 @@ export const pages = [
             "从低到高"
           ]
         ],
-        "desc": "展示顺序方向"
+        "desc": "展示顺序方向",
+        "publicKey": "sortDir",
+        "publicLabel": "排序方向",
+        "description": "展示顺序方向"
       },
       {
         "key": "showValue",
         "label": "数值显示",
         "type": "toggle",
         "default": true,
-        "desc": "条末数值标签"
+        "desc": "条末数值标签",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值显示",
+        "description": "条末数值标签"
       },
       {
         "key": "showCategory",
         "label": "类别标签",
         "type": "toggle",
         "default": true,
-        "desc": "名称下方的赛道标签"
+        "desc": "名称下方的分类标签",
+        "publicKey": "showCategory",
+        "publicLabel": "类别标签",
+        "description": "名称下方的分类标签"
       },
       {
         "key": "showRankBadge",
         "label": "序号徽章",
         "type": "toggle",
         "default": true,
-        "desc": "左侧名次徽章"
+        "desc": "左侧名次徽章",
+        "publicKey": "showRankBadge",
+        "publicLabel": "序号徽章",
+        "description": "左侧名次徽章"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "rows",
@@ -8124,7 +9252,10 @@ export const pages = [
             "cat": "垂直应用"
           }
         ],
-        "desc": "排行条目：名称 / 数值 / 赛道（赛道名决定色彩）"
+        "desc": "排行条目：名称 / 数值 / 分类（分类名决定色彩）",
+        "publicKey": "rows",
+        "publicLabel": "排行条目",
+        "description": "排行条目：名称 / 数值 / 分类（分类名决定色彩）"
       }
     ],
     "defaultProps": {
@@ -8228,7 +9359,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -8238,7 +9372,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "layerCount",
@@ -8248,14 +9385,20 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "展示的产业链层数(上→中→下游)"
+        "desc": "展示的产业链层数(上→中→下游)",
+        "publicKey": "layerCount",
+        "publicLabel": "展示层数",
+        "description": "展示的产业链层数(上→中→下游)"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一层"
+        "desc": "是否高亮某一层",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一层"
       },
       {
         "key": "focusIndex",
@@ -8266,28 +9409,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "layerCount",
-        "desc": "被高亮层的序号"
+        "desc": "被高亮层的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮层的序号"
       },
       {
         "key": "showSegments",
         "label": "细分环节",
         "type": "toggle",
         "default": true,
-        "desc": "每层的细分环节卡"
+        "desc": "每层的细分环节卡",
+        "publicKey": "showSegments",
+        "publicLabel": "细分环节",
+        "description": "每层的细分环节卡"
       },
       {
         "key": "showTags",
-        "label": "公司标签",
+        "label": "对象标签",
         "type": "toggle",
         "default": true,
-        "desc": "代表公司标签"
+        "desc": "代表对象标签",
+        "publicKey": "showTags",
+        "publicLabel": "对象标签",
+        "description": "代表对象标签"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "layers",
@@ -8362,7 +9517,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "产业层：层名 / 英文 / 注释 / 颜色（细分 segments 在 defaults 中）"
+        "desc": "产业层：层名 / 英文 / 注释 / 颜色（细分 segments 在 defaults 中）",
+        "publicKey": "layers",
+        "publicLabel": "产业层",
+        "description": "产业层：层名 / 英文 / 注释 / 颜色（细分 segments 在 defaults 中）"
       }
     ],
     "defaultProps": {
@@ -8473,7 +9631,10 @@ export const pages = [
           "text008": "细分环节",
           "text009": "代表公司"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "groupsData",
@@ -8553,7 +9714,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "groupsData",
+        "publicLabel": "groupsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -8578,7 +9742,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -8588,7 +9755,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "groupCount",
@@ -8598,14 +9768,20 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "展示的产业层级数(上中下游)"
+        "desc": "展示的产业层级数(上中下游)",
+        "publicKey": "groupCount",
+        "publicLabel": "层级数量",
+        "description": "展示的产业层级数(上中下游)"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一层级"
+        "desc": "是否高亮某一层级",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一层级"
       },
       {
         "key": "focusIndex",
@@ -8616,35 +9792,50 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "groupCount",
-        "desc": "被高亮层级的序号"
+        "desc": "被高亮层级的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮层级的序号"
       },
       {
         "key": "showCompanyTags",
-        "label": "公司标签",
+        "label": "对象标签",
         "type": "toggle",
         "default": true,
-        "desc": "代表公司用标签(关) / 纯文本"
+        "desc": "代表公司用标签(关) / 纯文本",
+        "publicKey": "showCompanyTags",
+        "publicLabel": "对象标签",
+        "description": "代表公司用标签(关) / 纯文本"
       },
       {
         "key": "showLevelBadge",
         "label": "层级徽章",
         "type": "toggle",
         "default": true,
-        "desc": "层级大徽章 + 英文"
+        "desc": "层级大徽章 + 英文",
+        "publicKey": "showLevelBadge",
+        "publicLabel": "层级徽章",
+        "description": "层级大徽章 + 英文"
       },
       {
         "key": "showFlow",
         "label": "传导箭头",
         "type": "toggle",
         "default": true,
-        "desc": "层级间向下传导箭头"
+        "desc": "层级间向下传导箭头",
+        "publicKey": "showFlow",
+        "publicLabel": "传导箭头",
+        "description": "层级间向下传导箭头"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -8764,7 +9955,10 @@ export const pages = [
           "text004": "%",
           "text005": "资本占比"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "layersData",
@@ -8847,7 +10041,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "layersData",
+        "publicLabel": "layersData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -8872,7 +10069,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -8882,7 +10082,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "groupCount",
@@ -8892,14 +10095,20 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "展示的产业层级数（上中下游）"
+        "desc": "展示的产业层级数（上中下游）",
+        "publicKey": "groupCount",
+        "publicLabel": "产业层数",
+        "description": "展示的产业层级数（上中下游）"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一层级"
+        "desc": "是否高亮某一层级",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一层级"
       },
       {
         "key": "focusIndex",
@@ -8910,42 +10119,60 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "groupCount",
-        "desc": "被高亮层级的序号"
+        "desc": "被高亮层级的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点层序号",
+        "description": "被高亮层级的序号"
       },
       {
         "key": "showShareBar",
-        "label": "资本占比",
+        "label": "占比",
         "type": "toggle",
         "default": true,
-        "desc": "右栏资本占比大数字 + 进度条"
+        "desc": "右栏占比大数字 + 进度条",
+        "publicKey": "showShareBar",
+        "publicLabel": "占比",
+        "description": "右栏占比大数字 + 进度条"
       },
       {
         "key": "showCompanyTags",
-        "label": "公司芯片",
+        "label": "对象标签",
         "type": "toggle",
         "default": true,
-        "desc": "公司用霓虹芯片（关=纯文本）"
+        "desc": "公司用霓虹芯片（关=纯文本）",
+        "publicKey": "showCompanyTags",
+        "publicLabel": "对象标签",
+        "description": "公司用霓虹芯片（关=纯文本）"
       },
       {
         "key": "showLevelBadge",
         "label": "层级徽章",
         "type": "toggle",
         "default": true,
-        "desc": "层级大徽章 + 英文"
+        "desc": "层级大徽章 + 英文",
+        "publicKey": "showLevelBadge",
+        "publicLabel": "层级徽章",
+        "description": "层级大徽章 + 英文"
       },
       {
         "key": "showFlow",
         "label": "传导箭头",
         "type": "toggle",
         "default": true,
-        "desc": "层级间向下传导箭头"
+        "desc": "层级间向下传导箭头",
+        "publicKey": "showFlow",
+        "publicLabel": "传导箭头",
+        "description": "层级间向下传导箭头"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -9065,7 +10292,10 @@ export const pages = [
           "text004": "亿",
           "text005": "%"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "hlStyle",
@@ -9090,7 +10320,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -9100,7 +10333,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "itemCount",
@@ -9110,7 +10346,10 @@ export const pages = [
         "min": 3,
         "max": 5,
         "step": 1,
-        "desc": "展示的地区条目数量"
+        "desc": "展示的地区条目数量",
+        "publicKey": "itemCount",
+        "publicLabel": "条目数量",
+        "description": "展示的地区条目数量"
       },
       {
         "key": "chartVariant",
@@ -9127,14 +10366,20 @@ export const pages = [
             "柱状"
           ]
         ],
-        "desc": "环形图或柱状图"
+        "desc": "环形图或柱状图",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "环形图或柱状图"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一地区"
+        "desc": "是否高亮某一地区",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一地区"
       },
       {
         "key": "focusIndex",
@@ -9145,21 +10390,30 @@ export const pages = [
         "max": 5,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮地区的序号"
+        "desc": "被高亮地区的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮地区的序号"
       },
       {
         "key": "showPercent",
         "label": "百分比",
         "type": "toggle",
         "default": true,
-        "desc": "右侧百分比徽章"
+        "desc": "右侧百分比徽章",
+        "publicKey": "showPercent",
+        "publicLabel": "百分比",
+        "description": "右侧百分比徽章"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "regions",
@@ -9197,7 +10451,10 @@ export const pages = [
             "color": "#9aa0a6"
           }
         ],
-        "desc": "地区：名称 / 金额 / 占比 / 颜色"
+        "desc": "地区：名称 / 数值 / 占比 / 颜色",
+        "publicKey": "regions",
+        "publicLabel": "地区",
+        "description": "地区：名称 / 数值 / 占比 / 颜色"
       }
     ],
     "defaultProps": {
@@ -9274,7 +10531,10 @@ export const pages = [
           "c",
           "d"
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "areaData",
+        "publicLabel": "areaData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -9299,7 +10559,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -9309,7 +10572,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -9319,7 +10585,10 @@ export const pages = [
         "min": 1,
         "max": 4,
         "step": 1,
-        "desc": "自适应图片槽数量(按上传图片比例)"
+        "desc": "自适应图片槽数量(按上传图片比例)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "自适应图片槽数量(按上传图片比例)"
       },
       {
         "key": "mediaLayout",
@@ -9336,21 +10605,30 @@ export const pages = [
             "等比网格"
           ]
         ],
-        "desc": "特写网格(首图大) / 等比网格"
+        "desc": "特写网格(首图大) / 等比网格",
+        "publicKey": "mediaLayout",
+        "publicLabel": "排布构图",
+        "description": "特写网格(首图大) / 等比网格"
       },
       {
         "key": "showCaptions",
         "label": "浮层标注",
         "type": "toggle",
         "default": true,
-        "desc": "图片底部城市/占比标注"
+        "desc": "图片底部城市/占比标注",
+        "publicKey": "showCaptions",
+        "publicLabel": "浮层标注",
+        "description": "图片底部城市/占比标注"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张图片"
+        "desc": "是否高亮某一张图片",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张图片"
       },
       {
         "key": "focusIndex",
@@ -9361,14 +10639,20 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "mediaCount",
-        "desc": "被高亮图片的序号"
+        "desc": "被高亮图片的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮图片的序号"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "items",
@@ -9404,7 +10688,10 @@ export const pages = [
             "rank": "04"
           }
         ],
-        "desc": "每张图的浮层标注：名次 / 城市 / 英文 / 金额 / 占比"
+        "desc": "每张图的浮层标注：名次 / 城市 / 英文 / 数值 / 占比",
+        "publicKey": "items",
+        "publicLabel": "地区",
+        "description": "每张图的浮层标注：名次 / 城市 / 英文 / 数值 / 占比"
       }
     ],
     "defaultProps": {
@@ -9478,7 +10765,10 @@ export const pages = [
           "text003": "记录 2024 的资本现场",
           "text004": "把镜头对准签约桌、机房与发布日 —— 拖入你的现场照片，自动排进受控画框"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "framesData",
@@ -9510,7 +10800,10 @@ export const pages = [
             "cap": "团队合影 · 创始团队"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "framesData",
+        "publicLabel": "framesData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -9535,7 +10828,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -9545,7 +10841,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -9555,7 +10854,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "显示图片槽的格数(其余转未曝光占位)"
+        "desc": "显示图片槽的格数(其余转未曝光占位)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片格数",
+        "description": "显示图片槽的格数(其余转未曝光占位)"
       },
       {
         "key": "frameRatio",
@@ -9572,14 +10874,20 @@ export const pages = [
             "竖构图"
           ]
         ],
-        "desc": "画框横 / 竖比例"
+        "desc": "画框横 / 竖比例",
+        "publicKey": "frameRatio",
+        "publicLabel": "画框构图",
+        "description": "画框横 / 竖比例"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一格"
+        "desc": "是否高亮某一格",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一格"
       },
       {
         "key": "focusIndex",
@@ -9589,28 +10897,40 @@ export const pages = [
         "min": 1,
         "max": 4,
         "step": 1,
-        "desc": "被高亮格的序号"
+        "desc": "被高亮格的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点格序号",
+        "description": "被高亮格的序号"
       },
       {
         "key": "showCaptions",
         "label": "逐格说明",
         "type": "toggle",
         "default": true,
-        "desc": "每格编号 / 说明"
+        "desc": "每格编号 / 说明",
+        "publicKey": "showCaptions",
+        "publicLabel": "逐格说明",
+        "description": "每格编号 / 说明"
       },
       {
         "key": "showSprockets",
         "label": "胶片齿孔",
         "type": "toggle",
         "default": true,
-        "desc": "上下齿孔显隐"
+        "desc": "上下齿孔显隐",
+        "publicKey": "showSprockets",
+        "publicLabel": "胶片齿孔",
+        "description": "上下齿孔显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -9689,7 +11009,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -9699,14 +11022,20 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一象限"
+        "desc": "是否高亮某一象限",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一象限"
       },
       {
         "key": "focusIndex",
@@ -9716,7 +11045,10 @@ export const pages = [
         "min": 1,
         "max": 4,
         "step": 1,
-        "desc": "被高亮象限序号(1左上→4右下)"
+        "desc": "被高亮象限序号(1左上→4右下)",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点象限",
+        "description": "被高亮象限序号(1左上→4右下)"
       },
       {
         "key": "chipCount",
@@ -9726,28 +11058,40 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "每个象限展示的示例标签数量"
+        "desc": "每个象限展示的示例标签数量",
+        "publicKey": "chipCount",
+        "publicLabel": "标签数量",
+        "description": "每个象限展示的示例标签数量"
       },
       {
         "key": "showAxisLabels",
         "label": "坐标轴标注",
         "type": "toggle",
         "default": true,
-        "desc": "横纵坐标轴文字"
+        "desc": "横纵坐标轴文字",
+        "publicKey": "showAxisLabels",
+        "publicLabel": "坐标轴标注",
+        "description": "横纵坐标轴文字"
       },
       {
         "key": "showChips",
         "label": "示例标签",
         "type": "toggle",
         "default": true,
-        "desc": "象限内示例公司标签"
+        "desc": "象限内示例对象标签",
+        "publicKey": "showChips",
+        "publicLabel": "示例标签",
+        "description": "象限内示例对象标签"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "cells",
@@ -9795,7 +11139,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "四象限：名称 / 描述 / 示例标签 / 颜色"
+        "desc": "四象限：名称 / 描述 / 示例标签 / 颜色",
+        "publicKey": "cells",
+        "publicLabel": "象限",
+        "description": "四象限：名称 / 描述 / 示例标签 / 颜色"
       }
     ],
     "defaultProps": {
@@ -9883,7 +11230,10 @@ export const pages = [
             "label": "上传"
           }
         ],
-        "desc": "动态 shader 或自定义背景媒体"
+        "desc": "动态 shader 或自定义背景媒体",
+        "publicKey": "backgroundMode",
+        "publicLabel": "背景替换",
+        "description": "动态 shader 或自定义背景媒体"
       },
       {
         "key": "unicornScene",
@@ -9911,7 +11261,10 @@ export const pages = [
         ],
         "dependsOn": "backgroundMode",
         "dependsOnValue": "unicorn",
-        "desc": "选择固定 Unicorn shader 场景"
+        "desc": "选择固定 Unicorn shader 场景",
+        "publicKey": "dynamicVisual",
+        "publicLabel": "动态场景",
+        "description": "选择固定 Unicorn shader 场景"
       },
       {
         "key": "copy",
@@ -9929,7 +11282,10 @@ export const pages = [
           "text008": "去哪了",
           "text009": "2024 美国大额融资 AI 公司 · 全景调研"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "linesData",
@@ -9961,7 +11317,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "linesData",
+        "publicLabel": "linesData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -9986,7 +11345,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -9996,7 +11358,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -10008,7 +11373,10 @@ export const pages = [
         "step": 1,
         "dependsOn": "backgroundMode",
         "dependsOnValue": "media",
-        "desc": "整屏 cover 背景图片槽(0=霓虹渐变底)"
+        "desc": "整屏 cover 背景图片槽(0=霓虹渐变底)",
+        "publicKey": "mediaCount",
+        "publicLabel": "背景图片槽",
+        "description": "整屏 cover 背景图片槽(0=霓虹渐变底)"
       },
       {
         "key": "accentTone",
@@ -10033,7 +11401,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "lineCount",
@@ -10043,35 +11414,50 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "右侧角标导读条数"
+        "desc": "右侧角标导读条数",
+        "publicKey": "lineCount",
+        "publicLabel": "角标导读条数",
+        "description": "右侧角标导读条数"
       },
       {
         "key": "showMasthead",
         "label": "顶部刊头",
         "type": "toggle",
         "default": true,
-        "desc": "顶部刊头"
+        "desc": "顶部刊头",
+        "publicKey": "showMasthead",
+        "publicLabel": "顶部刊头",
+        "description": "顶部刊头"
       },
       {
         "key": "showIssue",
         "label": "期号徽标",
         "type": "toggle",
         "default": true,
-        "desc": "期号徽标"
+        "desc": "期号徽标",
+        "publicKey": "showIssue",
+        "publicLabel": "期号徽标",
+        "description": "期号徽标"
       },
       {
         "key": "showScrim",
         "label": "暗角遮罩",
         "type": "toggle",
         "default": true,
-        "desc": "保证文字可读的暗角遮罩"
+        "desc": "保证文字可读的暗角遮罩",
+        "publicKey": "showScrim",
+        "publicLabel": "暗角遮罩",
+        "description": "保证文字可读的暗角遮罩"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -10151,7 +11537,10 @@ export const pages = [
             "label": "上传"
           }
         ],
-        "desc": "动态 shader 或自定义背景媒体"
+        "desc": "动态 shader 或自定义背景媒体",
+        "publicKey": "backgroundMode",
+        "publicLabel": "背景替换",
+        "description": "动态 shader 或自定义背景媒体"
       },
       {
         "key": "unicornScene",
@@ -10179,7 +11568,10 @@ export const pages = [
         ],
         "dependsOn": "backgroundMode",
         "dependsOnValue": "unicorn",
-        "desc": "选择固定 Unicorn shader 场景"
+        "desc": "选择固定 Unicorn shader 场景",
+        "publicKey": "dynamicVisual",
+        "publicLabel": "动态场景",
+        "description": "选择固定 Unicorn shader 场景"
       },
       {
         "key": "copy",
@@ -10189,7 +11581,10 @@ export const pages = [
           "placeholder001": "整屏背景 · 机房 / 团队 / 资本现场",
           "text001": "CONTENTS"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "progressData",
@@ -10203,7 +11598,10 @@ export const pages = [
           "风险研判",
           "投资展望"
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "progressData",
+        "publicLabel": "progressData",
+        "description": "默认数据内容"
       },
       {
         "key": "chapterData",
@@ -10214,7 +11612,10 @@ export const pages = [
           "en": "INSIDE THE CAPITAL",
           "lead": "镜头拉近到一线——机房、团队、发布会与签约桌，看资本如何在真实场景里落地。"
         },
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "chapterData",
+        "publicLabel": "chapterData",
+        "description": "默认数据内容"
       },
       {
         "key": "mediaCount",
@@ -10226,7 +11627,10 @@ export const pages = [
         "step": 1,
         "dependsOn": "backgroundMode",
         "dependsOnValue": "media",
-        "desc": "整屏背景图片槽(0=霓虹渐变底)"
+        "desc": "整屏背景图片槽(0=霓虹渐变底)",
+        "publicKey": "mediaCount",
+        "publicLabel": "整屏背景图",
+        "description": "整屏背景图片槽(0=霓虹渐变底)"
       },
       {
         "key": "partNumber",
@@ -10236,7 +11640,10 @@ export const pages = [
         "min": 1,
         "max": 6,
         "step": 1,
-        "desc": "大号 Part 编号徽章"
+        "desc": "大号 Part 编号徽章",
+        "publicKey": "partNumber",
+        "publicLabel": "章节编号",
+        "description": "大号 Part 编号徽章"
       },
       {
         "key": "accentTone",
@@ -10261,7 +11668,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调"
+        "desc": "页面主色调",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调"
       },
       {
         "key": "textAlign",
@@ -10278,14 +11688,20 @@ export const pages = [
             "居中"
           ]
         ],
-        "desc": "文案靠左下 / 居中"
+        "desc": "文案靠左下 / 居中",
+        "publicKey": "textAlign",
+        "publicLabel": "文案对齐",
+        "description": "文案靠左下 / 居中"
       },
       {
         "key": "showProgress",
         "label": "章节进度",
         "type": "toggle",
         "default": true,
-        "desc": "右下角章节进度条"
+        "desc": "右下角章节进度条",
+        "publicKey": "showProgress",
+        "publicLabel": "章节进度",
+        "description": "右下角章节进度条"
       },
       {
         "key": "progressCount",
@@ -10295,21 +11711,30 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "进度条段数"
+        "desc": "进度条段数",
+        "publicKey": "progressCount",
+        "publicLabel": "进度段数",
+        "description": "进度条段数"
       },
       {
         "key": "showScrim",
         "label": "暗角遮罩",
         "type": "toggle",
         "default": true,
-        "desc": "保证文字可读的暗角遮罩"
+        "desc": "保证文字可读的暗角遮罩",
+        "publicKey": "showScrim",
+        "publicLabel": "暗角遮罩",
+        "description": "保证文字可读的暗角遮罩"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -10363,7 +11788,10 @@ export const pages = [
           "text005": "亿",
           "text006": "2024 单笔最大融资 / 美元"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "itemsData",
@@ -10401,7 +11829,10 @@ export const pages = [
             "ph": "xAI · 团队 / Logo"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "itemsData",
+        "publicLabel": "itemsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -10426,7 +11857,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -10436,7 +11870,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "itemCount",
@@ -10446,7 +11883,10 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "展示的公司卡片数量"
+        "desc": "展示的公司卡片数量",
+        "publicKey": "itemCount",
+        "publicLabel": "公司卡数量",
+        "description": "展示的公司卡片数量"
       },
       {
         "key": "mediaCount",
@@ -10457,14 +11897,20 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "从左起带图片槽的卡片数(其余转无图态)"
+        "desc": "从左起带图片槽的卡片数(其余转无图态)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "从左起带图片槽的卡片数(其余转无图态)"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一张卡片"
+        "desc": "是否高亮某一张卡片",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张卡片"
       },
       {
         "key": "focusIndex",
@@ -10475,28 +11921,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮卡片的序号"
+        "desc": "被高亮卡片的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮卡片的序号"
       },
       {
         "key": "showMeta",
-        "label": "创始人 / 赛道",
+        "label": "角色 / 分类",
         "type": "toggle",
         "default": true,
-        "desc": "创始人 + 赛道标签行"
+        "desc": "角色 + 分类标签行",
+        "publicKey": "showMeta",
+        "publicLabel": "角色 / 分类",
+        "description": "角色 + 分类标签行"
       },
       {
         "key": "showRank",
         "label": "名次徽章",
         "type": "toggle",
         "default": true,
-        "desc": "左上角名次徽章"
+        "desc": "左上角名次徽章",
+        "publicKey": "showRank",
+        "publicLabel": "名次徽章",
+        "description": "左上角名次徽章"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -10576,7 +12034,10 @@ export const pages = [
           "placeholder001": "算力机房 / GPU 卡墙 / 团队实拍",
           "text009": "P. 03"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "statsData",
@@ -10599,7 +12060,10 @@ export const pages = [
             "label": "公司成立年份"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "statsData",
+        "publicLabel": "statsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -10624,7 +12088,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -10634,7 +12101,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -10644,7 +12114,10 @@ export const pages = [
         "min": 0,
         "max": 1,
         "step": 1,
-        "desc": "自适应单张大图(0=满栏文字跨页)"
+        "desc": "自适应单张大图(0=满栏文字跨页)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "自适应单张大图(0=满栏文字跨页)"
       },
       {
         "key": "imageSide",
@@ -10661,7 +12134,10 @@ export const pages = [
             "右侧"
           ]
         ],
-        "desc": "配图在左 / 右(有图时生效)"
+        "desc": "配图在左 / 右(有图时生效)",
+        "publicKey": "imageSide",
+        "publicLabel": "配图位置",
+        "description": "配图在左 / 右(有图时生效)"
       },
       {
         "key": "accentTone",
@@ -10686,7 +12162,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "statCount",
@@ -10696,28 +12175,40 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "底部数据栏条目数"
+        "desc": "底部数据栏条目数",
+        "publicKey": "itemCount",
+        "publicLabel": "数据栏条目",
+        "description": "底部数据栏条目数"
       },
       {
         "key": "showPullQuote",
         "label": "抽言",
         "type": "toggle",
         "default": true,
-        "desc": "抽言(pull quote)显隐"
+        "desc": "抽言(pull quote)显隐",
+        "publicKey": "showPullQuote",
+        "publicLabel": "抽言",
+        "description": "抽言(pull quote)显隐"
       },
       {
         "key": "showLede",
         "label": "首段导语",
         "type": "toggle",
         "default": true,
-        "desc": "首段导语强调(加粗 + 色条)"
+        "desc": "首段导语强调(加粗 + 色条)",
+        "publicKey": "showLede",
+        "publicLabel": "首段导语",
+        "description": "首段导语强调(加粗 + 色条)"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -10779,7 +12270,10 @@ export const pages = [
           "text002": "钱涌向哪里，",
           "text003": "故事就发生在哪里"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "panelsData",
@@ -10811,7 +12305,10 @@ export const pages = [
             "glyph": "T"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "panelsData",
+        "publicLabel": "panelsData",
+        "description": "默认数据内容"
       },
       {
         "key": "mediaCount",
@@ -10821,14 +12318,20 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "显示图片槽的条数(其余转霓虹占位)"
+        "desc": "显示图片槽的条数(其余转霓虹占位)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽条数",
+        "description": "显示图片槽的条数(其余转霓虹占位)"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一条"
+        "desc": "是否高亮某一条",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一条"
       },
       {
         "key": "focusIndex",
@@ -10838,28 +12341,40 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "被高亮条的序号"
+        "desc": "被高亮条的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮条的序号"
       },
       {
         "key": "showCaptions",
         "label": "现场注解",
         "type": "toggle",
         "default": true,
-        "desc": "每条底部现场注解"
+        "desc": "每条底部现场注解",
+        "publicKey": "showCaptions",
+        "publicLabel": "现场注解",
+        "description": "每条底部现场注解"
       },
       {
         "key": "showHeader",
         "label": "顶部标题",
         "type": "toggle",
         "default": true,
-        "desc": "顶部总标题浮层"
+        "desc": "顶部总标题浮层",
+        "publicKey": "showHeader",
+        "publicLabel": "顶部标题",
+        "description": "顶部总标题浮层"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -10923,7 +12438,10 @@ export const pages = [
           "text005": "综合分",
           "text006": "评分为调研示意（0–100）· 维度权重等权 · 数据为调研整理推演"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "playersData",
@@ -10970,7 +12488,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "playersData",
+        "publicLabel": "playersData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -10995,7 +12516,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -11005,7 +12529,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "itemCount",
@@ -11015,7 +12542,10 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "对比的玩家数量"
+        "desc": "对比的玩家数量",
+        "publicKey": "itemCount",
+        "publicLabel": "玩家数量",
+        "description": "对比的玩家数量"
       },
       {
         "key": "chartVariant",
@@ -11032,14 +12562,20 @@ export const pages = [
             "分组柱"
           ]
         ],
-        "desc": "雷达图 / 分组柱状图"
+        "desc": "雷达图 / 分组柱状图",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "雷达图 / 分组柱状图"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一玩家"
+        "desc": "是否高亮某一玩家",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一玩家"
       },
       {
         "key": "focusIndex",
@@ -11050,28 +12586,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮玩家的序号"
+        "desc": "被高亮玩家的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮玩家的序号"
       },
       {
         "key": "showGrid",
         "label": "雷达网格",
         "type": "toggle",
         "default": true,
-        "desc": "雷达网格 / 刻度环(雷达生效)"
+        "desc": "雷达网格 / 刻度环(雷达生效)",
+        "publicKey": "showGrid",
+        "publicLabel": "雷达网格",
+        "description": "雷达网格 / 刻度环(雷达生效)"
       },
       {
         "key": "showLegend",
         "label": "图例列表",
         "type": "toggle",
         "default": true,
-        "desc": "右侧玩家图例 + 综合分"
+        "desc": "右侧玩家图例 + 综合分",
+        "publicKey": "showLegend",
+        "publicLabel": "图例列表",
+        "description": "右侧玩家图例 + 综合分"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -11151,7 +12699,10 @@ export const pages = [
         "default": {
           "text001": "“"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "mediaCount",
@@ -11161,7 +12712,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "自适应图片槽数量(按上传图片比例)"
+        "desc": "自适应图片槽数量(按上传图片比例)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "自适应图片槽数量(按上传图片比例)"
       },
       {
         "key": "mediaLayout",
@@ -11178,7 +12732,10 @@ export const pages = [
             "并排"
           ]
         ],
-        "desc": "多张图片的排列方式"
+        "desc": "多张图片的排列方式",
+        "publicKey": "mediaLayout",
+        "publicLabel": "多图排布",
+        "description": "多张图片的排列方式"
       },
       {
         "key": "milestoneCount",
@@ -11188,14 +12745,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "时间轴节点数量"
+        "desc": "时间轴节点数量",
+        "publicKey": "milestoneCount",
+        "publicLabel": "里程碑数量",
+        "description": "时间轴节点数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一里程碑"
+        "desc": "是否高亮某一里程碑",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一里程碑"
       },
       {
         "key": "focusIndex",
@@ -11206,21 +12769,30 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "milestoneCount",
-        "desc": "被高亮里程碑的序号"
+        "desc": "被高亮里程碑的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮里程碑的序号"
       },
       {
         "key": "showQuote",
         "label": "引言显示",
         "type": "toggle",
         "default": true,
-        "desc": "底部人物引言"
+        "desc": "底部人物引言",
+        "publicKey": "showQuote",
+        "publicLabel": "引言显示",
+        "description": "底部人物引言"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "milestones",
@@ -11248,7 +12820,10 @@ export const pages = [
             "metric": "估值登顶 · 预计年内上市"
           }
         ],
-        "desc": "里程碑：日期 / 标题 / 数据"
+        "desc": "里程碑：日期 / 标题 / 数据",
+        "publicKey": "milestones",
+        "publicLabel": "里程碑",
+        "description": "里程碑：日期 / 标题 / 数据"
       }
     ],
     "defaultProps": {
@@ -11323,7 +12898,10 @@ export const pages = [
           "text012": "“",
           "text013": "以「AI 安全」为旗号，成为资本最青睐的 OpenAI 头号挑战者——估值一年翻数倍。"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "factsData",
@@ -11351,7 +12929,10 @@ export const pages = [
             "u": "安全对齐"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "factsData",
+        "publicLabel": "factsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -11376,7 +12957,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -11386,7 +12970,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -11396,7 +12983,10 @@ export const pages = [
         "min": 0,
         "max": 1,
         "step": 1,
-        "desc": "肖像图片槽数量(0=霓虹首字母无图态)"
+        "desc": "肖像图片槽数量(0=霓虹首字母无图态)",
+        "publicKey": "mediaCount",
+        "publicLabel": "肖像图片槽",
+        "description": "肖像图片槽数量(0=霓虹首字母无图态)"
       },
       {
         "key": "imageSide",
@@ -11413,7 +13003,10 @@ export const pages = [
             "右侧"
           ]
         ],
-        "desc": "肖像在左 / 右"
+        "desc": "肖像在左 / 右",
+        "publicKey": "imageSide",
+        "publicLabel": "肖像位置",
+        "description": "肖像在左 / 右"
       },
       {
         "key": "accentTone",
@@ -11438,7 +13031,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "statCount",
@@ -11448,28 +13044,40 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "结构化档案数据条数"
+        "desc": "结构化档案数据条数",
+        "publicKey": "statCount",
+        "publicLabel": "档案数据条数",
+        "description": "结构化档案数据条数"
       },
       {
         "key": "showRating",
-        "label": "资本热度",
+        "label": "关注度",
         "type": "toggle",
         "default": true,
-        "desc": "资本热度评级点"
+        "desc": "关注度评级点",
+        "publicKey": "showStatusRating",
+        "publicLabel": "关注度",
+        "description": "关注度评级点"
       },
       {
         "key": "showNote",
         "label": "批注金句",
         "type": "toggle",
         "default": true,
-        "desc": "底部批注金句"
+        "desc": "底部批注金句",
+        "publicKey": "showNote",
+        "publicLabel": "批注金句",
+        "description": "底部批注金句"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -11544,7 +13152,10 @@ export const pages = [
           "text006": "亿",
           "text007": "估值单位：亿美元 · 纵轴为示意比例，数值以标签为准 · 数据为调研整理推演"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "pointsData",
@@ -11570,7 +13181,10 @@ export const pages = [
             "color": "#FFC700"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "pointsData",
+        "publicLabel": "pointsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -11595,7 +13209,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -11605,7 +13222,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "pointCount",
@@ -11615,7 +13235,10 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "展示的估值数据点数量"
+        "desc": "展示的指标数据点数量",
+        "publicKey": "pointCount",
+        "publicLabel": "数据点数量",
+        "description": "展示的指标数据点数量"
       },
       {
         "key": "chartVariant",
@@ -11632,14 +13255,20 @@ export const pages = [
             "柱状"
           ]
         ],
-        "desc": "面积折线 / 柱状"
+        "desc": "面积折线 / 柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "面积折线 / 柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一数据点"
+        "desc": "是否高亮某一数据点",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一数据点"
       },
       {
         "key": "focusIndex",
@@ -11650,28 +13279,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "pointCount",
-        "desc": "被高亮数据点的序号"
+        "desc": "被高亮数据点的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮数据点的序号"
       },
       {
         "key": "showGrowthMarkers",
         "label": "增幅标注",
         "type": "toggle",
         "default": true,
-        "desc": "点 / 柱间增幅标注"
+        "desc": "点 / 柱间增幅标注",
+        "publicKey": "showGrowthMarkers",
+        "publicLabel": "增幅标注",
+        "description": "点 / 柱间增幅标注"
       },
       {
         "key": "showValueLabels",
         "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "各点 / 柱数值标签"
+        "desc": "各点 / 柱数值标签",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "各点 / 柱数值标签"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -11737,7 +13378,10 @@ export const pages = [
           "text006": "强者愈强",
           "text007": "起投估值 ●——● 当前估值 · 横轴 sqrt 示意比例，数值以标签为准（报告 3.2，亿美元）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "rowsData",
@@ -11780,7 +13424,10 @@ export const pages = [
             "color": "#9aa0ff"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "rowsData",
+        "publicLabel": "rowsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -11805,7 +13452,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -11815,7 +13465,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "itemCount",
@@ -11825,7 +13478,10 @@ export const pages = [
         "min": 2,
         "max": 5,
         "step": 1,
-        "desc": "展示的公司哑铃条数"
+        "desc": "展示的公司哑铃条数",
+        "publicKey": "itemCount",
+        "publicLabel": "公司数",
+        "description": "展示的公司哑铃条数"
       },
       {
         "key": "chartVariant",
@@ -11842,14 +13498,20 @@ export const pages = [
             "横向柱"
           ]
         ],
-        "desc": "哑铃区间 / 横向柱状"
+        "desc": "哑铃区间 / 横向柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "哑铃区间 / 横向柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一行"
+        "desc": "是否高亮某一行",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一行"
       },
       {
         "key": "focusIndex",
@@ -11860,35 +13522,50 @@ export const pages = [
         "max": 5,
         "step": 1,
         "maxFromKey": "itemCount",
-        "desc": "被高亮行的序号"
+        "desc": "被高亮行的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮行的序号"
       },
       {
         "key": "showStartDot",
         "label": "起点端点",
         "type": "toggle",
         "default": true,
-        "desc": "起投估值端点显隐（哑铃生效）"
+        "desc": "起投指标端点显隐（哑铃生效）",
+        "publicKey": "showStartDot",
+        "publicLabel": "起点端点",
+        "description": "起投指标端点显隐（哑铃生效）"
       },
       {
         "key": "showMultiplier",
         "label": "倍数徽标",
         "type": "toggle",
         "default": true,
-        "desc": "×倍数徽标显隐（哑铃生效）"
+        "desc": "×倍数徽标显隐（哑铃生效）",
+        "publicKey": "showMultiplier",
+        "publicLabel": "倍数徽标",
+        "description": "×倍数徽标显隐（哑铃生效）"
       },
       {
         "key": "showScale",
         "label": "刻度参考",
         "type": "toggle",
         "default": true,
-        "desc": "底部刻度参考线显隐"
+        "desc": "底部刻度参考线显隐",
+        "publicKey": "showScale",
+        "publicLabel": "刻度参考",
+        "description": "底部刻度参考线显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -11972,7 +13649,10 @@ export const pages = [
           "text006": "估值门槛 ·",
           "text007": "数据为调研整理与推演 · 家数 / 笔数为 2024 ≥1 亿美元 AI 融资玩家的估值分层（示意量级）· 梯形宽度示意各层规模"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "tiersData",
@@ -12034,7 +13714,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "tiersData",
+        "publicLabel": "tiersData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -12059,7 +13742,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -12069,7 +13755,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "tierCount",
@@ -12079,7 +13768,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的估值分层数"
+        "desc": "展示的指标分层数",
+        "publicKey": "tierCount",
+        "publicLabel": "分层数",
+        "description": "展示的指标分层数"
       },
       {
         "key": "chartVariant",
@@ -12096,14 +13788,20 @@ export const pages = [
             "横向柱"
           ]
         ],
-        "desc": "金字塔 / 横向柱状"
+        "desc": "金字塔 / 横向柱状",
+        "publicKey": "chartVariant",
+        "publicLabel": "图表类型",
+        "description": "金字塔 / 横向柱状"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一层"
+        "desc": "是否高亮某一层",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一层"
       },
       {
         "key": "focusIndex",
@@ -12114,28 +13812,40 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "tierCount",
-        "desc": "被高亮层的序号（顶为1）"
+        "desc": "被高亮层的序号（顶为1）",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点层序号",
+        "description": "被高亮层的序号（顶为1）"
       },
       {
         "key": "showCount",
         "label": "家数数字",
         "type": "toggle",
         "default": true,
-        "desc": "层内家数数字"
+        "desc": "层内家数数字",
+        "publicKey": "showCount",
+        "publicLabel": "家数数字",
+        "description": "层内家数数字"
       },
       {
         "key": "showExamples",
         "label": "代表公司",
         "type": "toggle",
         "default": true,
-        "desc": "右栏代表公司芯片"
+        "desc": "右栏代表对象标签",
+        "publicKey": "showExamples",
+        "publicLabel": "代表公司",
+        "description": "右栏代表对象标签"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -12240,7 +13950,10 @@ export const pages = [
             "label": "上传"
           }
         ],
-        "desc": "动态 shader 或自定义背景媒体"
+        "desc": "动态 shader 或自定义背景媒体",
+        "publicKey": "backgroundMode",
+        "publicLabel": "背景替换",
+        "description": "动态 shader 或自定义背景媒体"
       },
       {
         "key": "unicornScene",
@@ -12268,7 +13981,10 @@ export const pages = [
         ],
         "dependsOn": "backgroundMode",
         "dependsOnValue": "unicorn",
-        "desc": "选择固定 Unicorn shader 场景"
+        "desc": "选择固定 Unicorn shader 场景",
+        "publicKey": "dynamicVisual",
+        "publicLabel": "动态场景",
+        "description": "选择固定 Unicorn shader 场景"
       },
       {
         "key": "hlStyle",
@@ -12293,7 +14009,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -12303,7 +14022,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -12315,7 +14037,10 @@ export const pages = [
         "step": 1,
         "dependsOn": "backgroundMode",
         "dependsOnValue": "media",
-        "desc": "整屏 cover 背景图(0=渐变底)"
+        "desc": "整屏 cover 背景图(0=渐变底)",
+        "publicKey": "mediaCount",
+        "publicLabel": "背景图数量",
+        "description": "整屏 cover 背景图(0=渐变底)"
       },
       {
         "key": "textAlign",
@@ -12332,7 +14057,10 @@ export const pages = [
             "居中"
           ]
         ],
-        "desc": "浮层文案对齐方式"
+        "desc": "浮层文案对齐方式",
+        "publicKey": "textAlign",
+        "publicLabel": "文案对齐",
+        "description": "浮层文案对齐方式"
       },
       {
         "key": "accentTone",
@@ -12357,7 +14085,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调"
+        "desc": "页面主色调",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调"
       },
       {
         "key": "statCount",
@@ -12367,21 +14098,30 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "底部数据卡数量"
+        "desc": "底部数据卡数量",
+        "publicKey": "statCount",
+        "publicLabel": "数据卡数量",
+        "description": "底部数据卡数量"
       },
       {
         "key": "showScrim",
         "label": "暗角遮罩",
         "type": "toggle",
         "default": true,
-        "desc": "保证文字可读的暗角"
+        "desc": "保证文字可读的暗角",
+        "publicKey": "showScrim",
+        "publicLabel": "暗角遮罩",
+        "description": "保证文字可读的暗角"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "stats",
@@ -12404,7 +14144,10 @@ export const pages = [
             "label": "跻身头部梯队"
           }
         ],
-        "desc": "底部数据卡：数值 / 单位 / 标签"
+        "desc": "底部数据卡：数值 / 单位 / 标签",
+        "publicKey": "stats",
+        "publicLabel": "数据卡",
+        "description": "底部数据卡：数值 / 单位 / 标签"
       }
     ],
     "defaultProps": {
@@ -12465,7 +14208,10 @@ export const pages = [
           "text005": "大额融资的尽头是算力。xAI 在孟菲斯把十万张 H100 塞进同一个集群，用四个月完成传统需要数年的工程—— 资本、电力与工程速度，正在成为大模型竞赛真正的护城河。",
           "placeholder001": "超算中心 / GPU 集群 / 数据中心实拍"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "pinsData",
@@ -12497,7 +14243,10 @@ export const pages = [
             "color": "#15A7F0"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "pinsData",
+        "publicLabel": "pinsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -12522,7 +14271,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -12532,7 +14284,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -12542,7 +14297,10 @@ export const pages = [
         "min": 0,
         "max": 1,
         "step": 1,
-        "desc": "自适应单张大图(0=纯文案+数据卡)"
+        "desc": "自适应单张大图(0=纯文案+数据卡)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "自适应单张大图(0=纯文案+数据卡)"
       },
       {
         "key": "imageSide",
@@ -12559,7 +14317,10 @@ export const pages = [
             "右侧"
           ]
         ],
-        "desc": "配图在左 / 右(有图时生效)"
+        "desc": "配图在左 / 右(有图时生效)",
+        "publicKey": "imageSide",
+        "publicLabel": "配图位置",
+        "description": "配图在左 / 右(有图时生效)"
       },
       {
         "key": "accentTone",
@@ -12584,7 +14345,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "pinCount",
@@ -12594,14 +14358,20 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "浮层标注 pin 数量"
+        "desc": "浮层标注 pin 数量",
+        "publicKey": "pinCount",
+        "publicLabel": "标注数量",
+        "description": "浮层标注 pin 数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点放大",
         "type": "toggle",
         "default": true,
-        "desc": "是否放大某一标注"
+        "desc": "是否放大某一标注",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点放大",
+        "description": "是否放大某一标注"
       },
       {
         "key": "focusIndex",
@@ -12612,14 +14382,20 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "pinCount",
-        "desc": "被放大标注的序号"
+        "desc": "被放大标注的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被放大标注的序号"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -12700,7 +14476,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -12710,7 +14489,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -12720,7 +14502,10 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "自适应图片槽数量(按上传图片比例)"
+        "desc": "自适应图片槽数量(按上传图片比例)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "自适应图片槽数量(按上传图片比例)"
       },
       {
         "key": "mediaLayout",
@@ -12737,7 +14522,10 @@ export const pages = [
             "等列堆叠"
           ]
         ],
-        "desc": "多张图片的排布构图"
+        "desc": "多张图片的排布构图",
+        "publicKey": "mediaLayout",
+        "publicLabel": "多图构图",
+        "description": "多张图片的排布构图"
       },
       {
         "key": "statCount",
@@ -12747,14 +14535,20 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "左侧数据标签数量"
+        "desc": "左侧数据标签数量",
+        "publicKey": "statCount",
+        "publicLabel": "数据标签",
+        "description": "左侧数据标签数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一张图片"
+        "desc": "是否高亮某一张图片",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张图片"
       },
       {
         "key": "focusIndex",
@@ -12765,14 +14559,20 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "mediaCount",
-        "desc": "被高亮图片的序号"
+        "desc": "被高亮图片的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮图片的序号"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "stats",
@@ -12798,7 +14598,10 @@ export const pages = [
             "color": "#27E021"
           }
         ],
-        "desc": "左侧数据标签：数值 / 单位 / 说明 / 主色"
+        "desc": "左侧数据标签：数值 / 单位 / 说明 / 主色",
+        "publicKey": "stats",
+        "publicLabel": "数据标签",
+        "description": "左侧数据标签：数值 / 单位 / 说明 / 主色"
       },
       {
         "key": "slotLabels",
@@ -12809,7 +14612,10 @@ export const pages = [
           "创始团队 / Logo",
           "GPU 算力示意"
         ],
-        "desc": "各图片槽占位提示文案"
+        "desc": "各图片槽占位提示文案",
+        "publicKey": "slotLabels",
+        "publicLabel": "图片槽提示",
+        "description": "各图片槽占位提示文案"
       }
     ],
     "defaultProps": {
@@ -12878,7 +14684,10 @@ export const pages = [
           "text007": "“",
           "text008": "真正的通用智能，需要一具身体来理解物理世界——这正是具身智能值得长期押注的理由。"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "statsData",
@@ -12901,7 +14710,10 @@ export const pages = [
             "label": "具身智能赛道"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "statsData",
+        "publicLabel": "statsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -12926,7 +14738,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -12936,7 +14751,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -12946,7 +14764,10 @@ export const pages = [
         "min": 0,
         "max": 1,
         "step": 1,
-        "desc": "自适应单张大图(0=纯文案居中)"
+        "desc": "自适应单张大图(0=纯文案居中)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "自适应单张大图(0=纯文案居中)"
       },
       {
         "key": "imageSide",
@@ -12963,7 +14784,10 @@ export const pages = [
             "右侧"
           ]
         ],
-        "desc": "配图在左 / 右(有图时生效)"
+        "desc": "配图在左 / 右(有图时生效)",
+        "publicKey": "imageSide",
+        "publicLabel": "配图位置",
+        "description": "配图在左 / 右(有图时生效)"
       },
       {
         "key": "accentTone",
@@ -12988,7 +14812,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "statCount",
@@ -12998,21 +14825,30 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "浮层数据卡数量"
+        "desc": "浮层数据卡数量",
+        "publicKey": "statCount",
+        "publicLabel": "数据卡数量",
+        "description": "浮层数据卡数量"
       },
       {
         "key": "showQuote",
         "label": "底部金句",
         "type": "toggle",
         "default": true,
-        "desc": "底部金句显隐"
+        "desc": "底部金句显隐",
+        "publicKey": "showQuote",
+        "publicLabel": "底部金句",
+        "description": "底部金句显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -13074,7 +14910,10 @@ export const pages = [
           "text003": "不同的现场切面",
           "text004": "主图之外，再切三个机位——看资金、看团队、看入场券的争夺。"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "thumbsData",
@@ -13100,7 +14939,10 @@ export const pages = [
             "color": "#FFC700"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "thumbsData",
+        "publicLabel": "thumbsData",
+        "description": "默认数据内容"
       },
       {
         "key": "heroData",
@@ -13112,7 +14954,10 @@ export const pages = [
           "note": "签约现场：97 笔大额融资的缩影",
           "glyph": "01"
         },
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "heroData",
+        "publicLabel": "heroData",
+        "description": "默认数据内容"
       },
       {
         "key": "thumbCount",
@@ -13122,7 +14967,10 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "右侧缩略图机位数量"
+        "desc": "右侧缩略图机位数量",
+        "publicKey": "thumbCount",
+        "publicLabel": "缩略图数量",
+        "description": "右侧缩略图机位数量"
       },
       {
         "key": "mediaCount",
@@ -13132,7 +14980,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "显示图片槽的画框数(主图优先)"
+        "desc": "显示图片槽的画框数(主图优先)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽画框数",
+        "description": "显示图片槽的画框数(主图优先)"
       },
       {
         "key": "imageSide",
@@ -13149,14 +15000,20 @@ export const pages = [
             "右侧"
           ]
         ],
-        "desc": "主图在左 / 右"
+        "desc": "主图在左 / 右",
+        "publicKey": "imageSide",
+        "publicLabel": "主图位置",
+        "description": "主图在左 / 右"
       },
       {
         "key": "focusEnabled",
         "label": "选中环",
         "type": "toggle",
         "default": true,
-        "desc": "缩略图选中环"
+        "desc": "缩略图选中环",
+        "publicKey": "focusEnabled",
+        "publicLabel": "选中环",
+        "description": "缩略图选中环"
       },
       {
         "key": "focusIndex",
@@ -13167,21 +15024,30 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "thumbCount",
-        "desc": "被选中缩略图序号"
+        "desc": "被选中缩略图序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "选中序号",
+        "description": "被选中缩略图序号"
       },
       {
         "key": "showHeroCaption",
         "label": "主图注解",
         "type": "toggle",
         "default": true,
-        "desc": "主图底部浮层注解"
+        "desc": "主图底部浮层注解",
+        "publicKey": "showHeroCaption",
+        "publicLabel": "主图注解",
+        "description": "主图底部浮层注解"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -13247,7 +15113,10 @@ export const pages = [
           "text004": "从旧金山的总部到田纳西的超算集群——把这一年的 AI 资本现场，钉在一面拍立得墙上。",
           "text005": "把「资本现场」的实拍照片拖进来 · 0–4 张"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "shotsData",
@@ -13279,7 +15148,10 @@ export const pages = [
             "ph": "创始人 / 人物特写"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "shotsData",
+        "publicLabel": "shotsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -13304,7 +15176,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -13314,7 +15189,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -13324,7 +15202,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "拍立得照片数量(图片槽)"
+        "desc": "拍立得照片数量(图片槽)",
+        "publicKey": "mediaCount",
+        "publicLabel": "照片数量",
+        "description": "拍立得照片数量(图片槽)"
       },
       {
         "key": "mediaLayout",
@@ -13341,14 +15222,20 @@ export const pages = [
             "整齐"
           ]
         ],
-        "desc": "散落倾斜 / 整齐排列"
+        "desc": "散落倾斜 / 整齐排列",
+        "publicKey": "mediaLayout",
+        "publicLabel": "排布方式",
+        "description": "散落倾斜 / 整齐排列"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一张照片"
+        "desc": "是否高亮某一张照片",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张照片"
       },
       {
         "key": "focusIndex",
@@ -13359,28 +15246,40 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "mediaCount",
-        "desc": "被高亮照片的序号"
+        "desc": "被高亮照片的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮照片的序号"
       },
       {
         "key": "showCaptions",
         "label": "手写标签",
         "type": "toggle",
         "default": true,
-        "desc": "照片底部标签显隐"
+        "desc": "照片底部标签显隐",
+        "publicKey": "showCaptions",
+        "publicLabel": "手写标签",
+        "description": "照片底部标签显隐"
       },
       {
         "key": "showTape",
         "label": "彩色胶带",
         "type": "toggle",
         "default": true,
-        "desc": "顶部彩色胶带显隐"
+        "desc": "顶部彩色胶带显隐",
+        "publicKey": "showTape",
+        "publicLabel": "彩色胶带",
+        "description": "顶部彩色胶带显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -13446,7 +15345,10 @@ export const pages = [
           "text002": "最关键的",
           "text003": "几个"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "objectivesData",
@@ -13474,7 +15376,10 @@ export const pages = [
             "en": "BUBBLE OR BEDROCK"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "objectivesData",
+        "publicLabel": "objectivesData",
+        "description": "默认数据内容"
       },
       {
         "key": "chapterData",
@@ -13485,7 +15390,10 @@ export const pages = [
           "en": "RISK & OUTLOOK",
           "tag": "本章导读 · CHAPTER BRIEF"
         },
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "chapterData",
+        "publicLabel": "chapterData",
+        "description": "默认数据内容"
       },
       {
         "key": "partNumber",
@@ -13495,7 +15403,10 @@ export const pages = [
         "min": 1,
         "max": 6,
         "step": 1,
-        "desc": "大号 Part 编号"
+        "desc": "大号 Part 编号",
+        "publicKey": "partNumber",
+        "publicLabel": "章节编号",
+        "description": "大号 Part 编号"
       },
       {
         "key": "accentTone",
@@ -13520,7 +15431,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调"
+        "desc": "页面主色调",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调"
       },
       {
         "key": "panelSide",
@@ -13537,14 +15451,20 @@ export const pages = [
             "右"
           ]
         ],
-        "desc": "accent 面板在左 / 右"
+        "desc": "accent 面板在左 / 右",
+        "publicKey": "panelSide",
+        "publicLabel": "面板侧",
+        "description": "accent 面板在左 / 右"
       },
       {
         "key": "showObjectives",
         "label": "议题清单",
         "type": "toggle",
         "default": true,
-        "desc": "右侧议题清单"
+        "desc": "右侧议题清单",
+        "publicKey": "showObjectives",
+        "publicLabel": "议题清单",
+        "description": "右侧议题清单"
       },
       {
         "key": "objectiveCount",
@@ -13554,14 +15474,20 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "议题条目数量"
+        "desc": "议题条目数量",
+        "publicKey": "itemCount",
+        "publicLabel": "议题条数",
+        "description": "议题条目数量"
       },
       {
         "key": "focusEnabled",
         "label": "当前高亮",
         "type": "toggle",
         "default": true,
-        "desc": "高亮当前议题"
+        "desc": "高亮当前议题",
+        "publicKey": "focusEnabled",
+        "publicLabel": "当前高亮",
+        "description": "高亮当前议题"
       },
       {
         "key": "focusIndex",
@@ -13572,14 +15498,20 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "objectiveCount",
-        "desc": "当前议题序号"
+        "desc": "当前议题序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "当前序号",
+        "description": "当前议题序号"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -13657,7 +15589,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -13667,7 +15602,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "columnCount",
@@ -13677,7 +15615,10 @@ export const pages = [
         "min": 1,
         "max": 2,
         "step": 1,
-        "desc": "对比列数(=1 仅显示首列)"
+        "desc": "对比列数(=1 仅显示首列)",
+        "publicKey": "columnCount",
+        "publicLabel": "列数",
+        "description": "对比列数(=1 仅显示首列)"
       },
       {
         "key": "itemCount",
@@ -13687,14 +15628,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "每列展示的条目数量"
+        "desc": "每列展示的条目数量",
+        "publicKey": "itemCount",
+        "publicLabel": "条目数量",
+        "description": "每列展示的条目数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一列"
+        "desc": "是否高亮某一列",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一列"
       },
       {
         "key": "focusSide",
@@ -13711,21 +15658,30 @@ export const pages = [
             "次列"
           ]
         ],
-        "desc": "被高亮的列"
+        "desc": "被高亮的列",
+        "publicKey": "focusSide",
+        "publicLabel": "重点列",
+        "description": "被高亮的列"
       },
       {
         "key": "showIcons",
         "label": "图标显示",
         "type": "toggle",
         "default": true,
-        "desc": "列首 ✓/✕ 图标"
+        "desc": "列首 ✓/✕ 图标",
+        "publicKey": "showIcons",
+        "publicLabel": "图标显示",
+        "description": "列首 ✓/✕ 图标"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "columns",
@@ -13775,7 +15731,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "对比列：标题 / 副标 / 颜色（每列条目 items 在 defaults 中）"
+        "desc": "对比列：标题 / 副标 / 颜色（每列条目 items 在 defaults 中）",
+        "publicKey": "columns",
+        "publicLabel": "对比列",
+        "description": "对比列：标题 / 副标 / 颜色（每列条目 items 在 defaults 中）"
       }
     ],
     "defaultProps": {
@@ -13857,7 +15816,10 @@ export const pages = [
           "text005": "兑现",
           "text006": "VS"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "sidesData",
@@ -13891,7 +15853,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "sidesData",
+        "publicLabel": "sidesData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -13916,7 +15881,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -13926,7 +15894,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "mediaCount",
@@ -13936,7 +15907,10 @@ export const pages = [
         "min": 0,
         "max": 2,
         "step": 1,
-        "desc": "带图片槽的面板数(其余转霓虹标题态)"
+        "desc": "带图片槽的面板数(其余转霓虹标题态)",
+        "publicKey": "mediaCount",
+        "publicLabel": "图片槽数量",
+        "description": "带图片槽的面板数(其余转霓虹标题态)"
       },
       {
         "key": "pointCount",
@@ -13946,7 +15920,10 @@ export const pages = [
         "min": 0,
         "max": 3,
         "step": 1,
-        "desc": "每侧对位要点数量"
+        "desc": "每侧对位要点数量",
+        "publicKey": "pointCount",
+        "publicLabel": "要点数量",
+        "description": "每侧对位要点数量"
       },
       {
         "key": "focusSide",
@@ -13967,21 +15944,30 @@ export const pages = [
             "右侧"
           ]
         ],
-        "desc": "高亮左 / 右面板"
+        "desc": "高亮左 / 右面板",
+        "publicKey": "focusSide",
+        "publicLabel": "重点侧",
+        "description": "高亮左 / 右面板"
       },
       {
         "key": "showVsBadge",
         "label": "VS 徽章",
         "type": "toggle",
         "default": true,
-        "desc": "中缝 VS 徽章显隐"
+        "desc": "中缝 VS 徽章显隐",
+        "publicKey": "showVsBadge",
+        "publicLabel": "VS 徽章",
+        "description": "中缝 VS 徽章显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒 / 圆环等点缀"
+        "desc": "星芒 / 圆环等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒 / 圆环等点缀"
       }
     ],
     "defaultProps": {
@@ -14062,7 +16048,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -14072,7 +16061,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "chainCount",
@@ -14082,14 +16074,20 @@ export const pages = [
         "min": 1,
         "max": 3,
         "step": 1,
-        "desc": "展示的风险传导链数量"
+        "desc": "展示的状态传导链数量",
+        "publicKey": "chainCount",
+        "publicLabel": "链路数量",
+        "description": "展示的状态传导链数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一条链路"
+        "desc": "是否高亮某一条链路",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一条链路"
       },
       {
         "key": "focusIndex",
@@ -14100,28 +16098,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "chainCount",
-        "desc": "被高亮链路的序号"
+        "desc": "被高亮链路的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮链路的序号"
       },
       {
         "key": "showArrows",
         "label": "箭头连接",
         "type": "toggle",
         "default": true,
-        "desc": "节点间的箭头流向"
+        "desc": "节点间的箭头流向",
+        "publicKey": "showArrows",
+        "publicLabel": "箭头连接",
+        "description": "节点间的箭头流向"
       },
       {
         "key": "showOutcome",
         "label": "结果强调",
         "type": "toggle",
         "default": true,
-        "desc": "末端结果节点高亮"
+        "desc": "末端结果节点高亮",
+        "publicKey": "showOutcome",
+        "publicLabel": "结果强调",
+        "description": "末端结果节点高亮"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "chains",
@@ -14160,7 +16170,10 @@ export const pages = [
             "outcome": "API 收费承压"
           }
         ],
-        "desc": "传导链：标签 / 节点 / 结果 / 颜色"
+        "desc": "传导链：标签 / 节点 / 结果 / 颜色",
+        "publicKey": "chains",
+        "publicLabel": "传导链",
+        "description": "传导链：标签 / 节点 / 结果 / 颜色"
       }
     ],
     "defaultProps": {
@@ -14233,7 +16246,10 @@ export const pages = [
           "text007": "节节收窄",
           "text008": "资本叙事的重心逐级上移：愿景 → 算力 → 兑现 · 阶段为调研整理（报告 4 结论 / 示意）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "stepsData",
@@ -14269,7 +16285,10 @@ export const pages = [
             "color": "#FF9FE2"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "stepsData",
+        "publicLabel": "stepsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -14294,7 +16313,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -14304,7 +16326,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "stepCount",
@@ -14314,7 +16339,10 @@ export const pages = [
         "min": 2,
         "max": 4,
         "step": 1,
-        "desc": "展示的阶段数量"
+        "desc": "展示的阶段数量",
+        "publicKey": "stepCount",
+        "publicLabel": "阶段数",
+        "description": "展示的阶段数量"
       },
       {
         "key": "layoutVariant",
@@ -14331,14 +16359,20 @@ export const pages = [
             "等高"
           ]
         ],
-        "desc": "逐级抬高 / 等高平台"
+        "desc": "逐级抬高 / 等高平台",
+        "publicKey": "layoutVariant",
+        "publicLabel": "基座形态",
+        "description": "逐级抬高 / 等高平台"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一阶段"
+        "desc": "是否高亮某一阶段",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一阶段"
       },
       {
         "key": "focusIndex",
@@ -14349,35 +16383,50 @@ export const pages = [
         "max": 4,
         "step": 1,
         "maxFromKey": "stepCount",
-        "desc": "被高亮阶段的序号"
+        "desc": "被高亮阶段的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮阶段的序号"
       },
       {
         "key": "showGhost",
         "label": "幽灵编号",
         "type": "toggle",
         "default": true,
-        "desc": "背景巨型描边编号显隐"
+        "desc": "背景巨型描边编号显隐",
+        "publicKey": "showGhost",
+        "publicLabel": "幽灵编号",
+        "description": "背景巨型描边编号显隐"
       },
       {
         "key": "showBaseline",
         "label": "底部基线",
         "type": "toggle",
         "default": true,
-        "desc": "阶梯底部基线显隐"
+        "desc": "阶梯底部基线显隐",
+        "publicKey": "showBaseline",
+        "publicLabel": "底部基线",
+        "description": "阶梯底部基线显隐"
       },
       {
         "key": "showPhrase",
         "label": "阶段金句",
         "type": "toggle",
         "default": true,
-        "desc": "阶段金句短语显隐"
+        "desc": "阶段金句短语显隐",
+        "publicKey": "showPhrase",
+        "publicLabel": "阶段金句",
+        "description": "阶段金句短语显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -14455,7 +16504,10 @@ export const pages = [
           "text006": "资本节奏",
           "text007": "每个标记 = 一笔披露融资 · 区间条 = 同年多轮 · 月份为示意（报告案例 · 调研整理）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "lanesData",
@@ -14537,7 +16589,10 @@ export const pages = [
             ]
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "lanesData",
+        "publicLabel": "lanesData",
+        "description": "默认数据内容"
       },
       {
         "key": "monthsData",
@@ -14557,7 +16612,10 @@ export const pages = [
           "N",
           "D"
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "monthsData",
+        "publicLabel": "monthsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -14582,7 +16640,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -14592,7 +16653,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "laneCount",
@@ -14602,14 +16666,20 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "展示的公司泳道数量"
+        "desc": "展示的公司泳道数量",
+        "publicKey": "laneCount",
+        "publicLabel": "公司泳道数",
+        "description": "展示的公司泳道数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一泳道"
+        "desc": "是否高亮某一泳道",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一泳道"
       },
       {
         "key": "focusIndex",
@@ -14620,35 +16690,50 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "laneCount",
-        "desc": "被高亮泳道的序号"
+        "desc": "被高亮泳道的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮泳道的序号"
       },
       {
         "key": "showSpan",
         "label": "多轮区间条",
         "type": "toggle",
         "default": true,
-        "desc": "同年多轮的区间连接条"
+        "desc": "同年多轮的区间连接条",
+        "publicKey": "showSpan",
+        "publicLabel": "多轮区间条",
+        "description": "同年多轮的区间连接条"
       },
       {
         "key": "showAmount",
-        "label": "金额标签",
+        "label": "数值标签",
         "type": "toggle",
         "default": true,
-        "desc": "事件金额标签"
+        "desc": "事件数值标签",
+        "publicKey": "showValueLabels",
+        "publicLabel": "数值标签",
+        "description": "事件数值标签"
       },
       {
         "key": "showQuarterTint",
-        "label": "季度分区",
+        "label": "时间分区",
         "type": "toggle",
         "default": true,
-        "desc": "季度背景分区淡色块"
+        "desc": "时间段背景分区淡色块",
+        "publicKey": "showQuarterTint",
+        "publicLabel": "时间分区",
+        "description": "时间段背景分区淡色块"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -14782,7 +16867,10 @@ export const pages = [
           "text004": "节节攀升",
           "text005": "从基础模型回暖到头部冲刺 IPO，2024 资本沿这条线一路加速 · 数据为调研整理（报告 2.x · 示意）"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "nodesData",
@@ -14826,7 +16914,10 @@ export const pages = [
             "color": "#15A7F0"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "nodesData",
+        "publicLabel": "nodesData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -14851,7 +16942,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -14861,7 +16955,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "nodeCount",
@@ -14871,14 +16968,20 @@ export const pages = [
         "min": 3,
         "max": 6,
         "step": 1,
-        "desc": "地铁线上的里程碑站点数量"
+        "desc": "地铁线上的里程碑站点数量",
+        "publicKey": "nodeCount",
+        "publicLabel": "站点数量",
+        "description": "地铁线上的里程碑站点数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": true,
-        "desc": "是否高亮某一站"
+        "desc": "是否高亮某一站",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一站"
       },
       {
         "key": "focusIndex",
@@ -14889,35 +16992,50 @@ export const pages = [
         "max": 6,
         "step": 1,
         "maxFromKey": "nodeCount",
-        "desc": "被高亮站点的序号"
+        "desc": "被高亮站点的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮站点的序号"
       },
       {
         "key": "alternate",
         "label": "上下交替",
         "type": "toggle",
         "default": true,
-        "desc": "标签在线上 / 线下交替（关=全部在线下）"
+        "desc": "标签在线上 / 线下交替（关=全部在线下）",
+        "publicKey": "alternate",
+        "publicLabel": "上下交替",
+        "description": "标签在线上 / 线下交替（关=全部在线下）"
       },
       {
         "key": "showValue",
         "label": "结论行",
         "type": "toggle",
         "default": true,
-        "desc": "站点金额 / 结论行显隐"
+        "desc": "站点数值 / 结论行显隐",
+        "publicKey": "showValueLabels",
+        "publicLabel": "结论行",
+        "description": "站点数值 / 结论行显隐"
       },
       {
         "key": "showLine",
         "label": "贯穿线",
         "type": "toggle",
         "default": true,
-        "desc": "贯穿全幅的地铁线显隐"
+        "desc": "贯穿全幅的地铁线显隐",
+        "publicKey": "showLine",
+        "publicLabel": "贯穿线",
+        "description": "贯穿全幅的地铁线显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -15009,7 +17127,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -15019,7 +17140,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "stepCount",
@@ -15029,14 +17153,20 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "时间轴阶段数量"
+        "desc": "时间轴阶段数量",
+        "publicKey": "stepCount",
+        "publicLabel": "阶段数量",
+        "description": "时间轴阶段数量"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一阶段"
+        "desc": "是否高亮某一阶段",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一阶段"
       },
       {
         "key": "focusIndex",
@@ -15047,28 +17177,40 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "stepCount",
-        "desc": "被高亮阶段的序号"
+        "desc": "被高亮阶段的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮阶段的序号"
       },
       {
         "key": "showAxis",
         "label": "连接轴线",
         "type": "toggle",
         "default": true,
-        "desc": "贯穿节点的横向轴线"
+        "desc": "贯穿节点的横向轴线",
+        "publicKey": "showAxis",
+        "publicLabel": "连接轴线",
+        "description": "贯穿节点的横向轴线"
       },
       {
         "key": "showRange",
         "label": "时间区间",
         "type": "toggle",
         "default": true,
-        "desc": "节点下方的时间区间标签"
+        "desc": "节点下方的时间区间标签",
+        "publicKey": "showRange",
+        "publicLabel": "时间区间",
+        "description": "节点下方的时间区间标签"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "steps",
@@ -15094,7 +17236,10 @@ export const pages = [
             "desc": "若 AGI 突破未兑现，进入洗牌期，可逢低抄底被低估的技术资产。"
           }
         ],
-        "desc": "时间轴阶段：区间 / 关键词 / 说明 / 主色"
+        "desc": "时间轴阶段：区间 / 关键词 / 说明 / 主色",
+        "publicKey": "steps",
+        "publicLabel": "阶段",
+        "description": "时间轴阶段：区间 / 关键词 / 说明 / 主色"
       }
     ],
     "defaultProps": {
@@ -15151,7 +17296,10 @@ export const pages = [
           "tag": "本章导读 · FINAL CHAPTER",
           "sub": "把全篇收束成一句判断"
         },
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "chapterData",
+        "publicLabel": "chapterData",
+        "description": "默认数据内容"
       },
       {
         "key": "partNumber",
@@ -15162,7 +17310,10 @@ export const pages = [
         "max": 7,
         "step": 1,
         "maxFromKey": "stepCount",
-        "desc": "当前章节编号（同时定位步进位置）"
+        "desc": "当前章节编号（同时定位步进位置）",
+        "publicKey": "partNumber",
+        "publicLabel": "章节编号",
+        "description": "当前章节编号（同时定位步进位置）"
       },
       {
         "key": "accentTone",
@@ -15187,7 +17338,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "stepCount",
@@ -15197,35 +17351,50 @@ export const pages = [
         "min": 3,
         "max": 7,
         "step": 1,
-        "desc": "底部分章步进轨段数"
+        "desc": "底部分章步进轨段数",
+        "publicKey": "stepCount",
+        "publicLabel": "步进段数",
+        "description": "底部分章步进轨段数"
       },
       {
         "key": "showStepper",
         "label": "步进轨",
         "type": "toggle",
         "default": true,
-        "desc": "底部分章步进轨"
+        "desc": "底部分章步进轨",
+        "publicKey": "showStepper",
+        "publicLabel": "步进轨",
+        "description": "底部分章步进轨"
       },
       {
         "key": "showRule",
         "label": "顶部细线",
         "type": "toggle",
         "default": true,
-        "desc": "顶部细分隔线"
+        "desc": "顶部细分隔线",
+        "publicKey": "showRule",
+        "publicLabel": "顶部细线",
+        "description": "顶部细分隔线"
       },
       {
         "key": "showKana",
         "label": "英文小注",
         "type": "toggle",
         "default": true,
-        "desc": "标题下英文小注"
+        "desc": "标题下英文小注",
+        "publicKey": "showKana",
+        "publicLabel": "英文小注",
+        "description": "标题下英文小注"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -15263,7 +17432,10 @@ export const pages = [
           "text003": "从叙事到兑现",
           "text004": "“"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "cardsData",
@@ -15295,7 +17467,10 @@ export const pages = [
             "ph": "人物头像"
           }
         ],
-        "desc": "默认数据内容"
+        "desc": "默认数据内容",
+        "publicKey": "cardsData",
+        "publicLabel": "cardsData",
+        "description": "默认数据内容"
       },
       {
         "key": "hlStyle",
@@ -15320,7 +17495,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -15330,7 +17508,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "cardCount",
@@ -15340,7 +17521,10 @@ export const pages = [
         "min": 2,
         "max": 3,
         "step": 1,
-        "desc": "展示的观点卡数量"
+        "desc": "展示的观点卡数量",
+        "publicKey": "cardCount",
+        "publicLabel": "观点卡数",
+        "description": "展示的观点卡数量"
       },
       {
         "key": "mediaCount",
@@ -15351,14 +17535,20 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "cardCount",
-        "desc": "显示头像槽的卡片数(其余转首字母)"
+        "desc": "显示头像槽的卡片数(其余转首字母)",
+        "publicKey": "mediaCount",
+        "publicLabel": "头像图片槽",
+        "description": "显示头像槽的卡片数(其余转首字母)"
       },
       {
         "key": "focusEnabled",
         "label": "重点突出",
         "type": "toggle",
         "default": false,
-        "desc": "是否高亮某一张卡片"
+        "desc": "是否高亮某一张卡片",
+        "publicKey": "focusEnabled",
+        "publicLabel": "重点突出",
+        "description": "是否高亮某一张卡片"
       },
       {
         "key": "focusIndex",
@@ -15369,21 +17559,30 @@ export const pages = [
         "max": 3,
         "step": 1,
         "maxFromKey": "cardCount",
-        "desc": "被高亮卡片的序号"
+        "desc": "被高亮卡片的序号",
+        "publicKey": "focusIndex",
+        "publicLabel": "重点序号",
+        "description": "被高亮卡片的序号"
       },
       {
         "key": "showRole",
         "label": "职务行",
         "type": "toggle",
         "default": true,
-        "desc": "署名下职务行显隐"
+        "desc": "署名下职务行显隐",
+        "publicKey": "showRole",
+        "publicLabel": "职务行",
+        "description": "署名下职务行显隐"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -15457,7 +17656,10 @@ export const pages = [
           "text012": "《2024 美国大额融资 AI 公司调研报告》",
           "text013": "· 核心结论"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "hlStyle",
@@ -15482,7 +17684,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -15492,7 +17697,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "accentTone",
@@ -15517,7 +17725,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "textAlign",
@@ -15534,42 +17745,60 @@ export const pages = [
             "居中"
           ]
         ],
-        "desc": "文案靠左 / 居中"
+        "desc": "文案靠左 / 居中",
+        "publicKey": "textAlign",
+        "publicLabel": "文案对齐",
+        "description": "文案靠左 / 居中"
       },
       {
         "key": "showGhostMark",
         "label": "背景引号",
         "type": "toggle",
         "default": true,
-        "desc": "背景巨型引号"
+        "desc": "背景巨型引号",
+        "publicKey": "showGhostMark",
+        "publicLabel": "背景引号",
+        "description": "背景巨型引号"
       },
       {
         "key": "showSub",
         "label": "支撑副句",
         "type": "toggle",
         "default": true,
-        "desc": "论断下方支撑副句"
+        "desc": "论断下方支撑副句",
+        "publicKey": "showSub",
+        "publicLabel": "支撑副句",
+        "description": "论断下方支撑副句"
       },
       {
         "key": "showAttribution",
         "label": "底部署名",
         "type": "toggle",
         "default": true,
-        "desc": "底部署名"
+        "desc": "底部署名",
+        "publicKey": "showAttribution",
+        "publicLabel": "底部署名",
+        "description": "底部署名"
       },
       {
         "key": "showRule",
         "label": "署名短线",
         "type": "toggle",
         "default": true,
-        "desc": "署名前装饰短线"
+        "desc": "署名前装饰短线",
+        "publicKey": "showRule",
+        "publicLabel": "署名短线",
+        "description": "署名前装饰短线"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -15628,7 +17857,10 @@ export const pages = [
           "text013": "亿美元",
           "text014": "★"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "hlStyle",
@@ -15653,7 +17885,10 @@ export const pages = [
             "纯文字"
           ]
         ],
-        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
+        "desc": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字",
+        "publicKey": "hlStyle",
+        "publicLabel": "高亮样式",
+        "description": "关键词高亮：玻璃糖果 / 扁平药丸 / 下划线 / 纯文字"
       },
       {
         "key": "hlTilt",
@@ -15663,7 +17898,10 @@ export const pages = [
         "min": 0,
         "max": 4,
         "step": 1,
-        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
+        "desc": "关键词胶囊旋转角度（仅糖果/药丸样式生效）",
+        "publicKey": "hlTilt",
+        "publicLabel": "高亮倾斜",
+        "description": "关键词胶囊旋转角度（仅糖果/药丸样式生效）"
       },
       {
         "key": "accentTone",
@@ -15688,7 +17926,10 @@ export const pages = [
             "粉"
           ]
         ],
-        "desc": "页面主色调(通用命名)"
+        "desc": "页面主色调(通用命名)",
+        "publicKey": "accentTone",
+        "publicLabel": "主色调",
+        "description": "页面主色调(通用命名)"
       },
       {
         "key": "textAlign",
@@ -15705,42 +17946,60 @@ export const pages = [
             "居中"
           ]
         ],
-        "desc": "论断靠左(带印章) / 居中(纯文字)"
+        "desc": "论断靠左(带印章) / 居中(纯文字)",
+        "publicKey": "textAlign",
+        "publicLabel": "论断对齐",
+        "description": "论断靠左(带印章) / 居中(纯文字)"
       },
       {
         "key": "showSeal",
         "label": "数据印章",
         "type": "toggle",
         "default": true,
-        "desc": "右侧圆形数据印章"
+        "desc": "右侧圆形数据印章",
+        "publicKey": "showSeal",
+        "publicLabel": "数据印章",
+        "description": "右侧圆形数据印章"
       },
       {
         "key": "showGhostMark",
         "label": "背景引号",
         "type": "toggle",
         "default": true,
-        "desc": "背景巨型引号"
+        "desc": "背景巨型引号",
+        "publicKey": "showGhostMark",
+        "publicLabel": "背景引号",
+        "description": "背景巨型引号"
       },
       {
         "key": "showSub",
         "label": "支撑副句",
         "type": "toggle",
         "default": true,
-        "desc": "论断下方支撑副句"
+        "desc": "论断下方支撑副句",
+        "publicKey": "showSub",
+        "publicLabel": "支撑副句",
+        "description": "论断下方支撑副句"
       },
       {
         "key": "showAttribution",
         "label": "署名",
         "type": "toggle",
         "default": true,
-        "desc": "底部署名"
+        "desc": "底部署名",
+        "publicKey": "showAttribution",
+        "publicLabel": "署名",
+        "description": "底部署名"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -15787,7 +18046,10 @@ export const pages = [
         "default": {
           "text001": "“"
         },
-        "desc": "页面中的固定可见文案、单位和图片槽提示"
+        "desc": "页面中的固定可见文案、单位和图片槽提示",
+        "publicKey": "copy",
+        "publicLabel": "可见文案",
+        "description": "页面中的固定可见文案、单位和图片槽提示"
       },
       {
         "key": "mediaCount",
@@ -15797,7 +18059,10 @@ export const pages = [
         "min": 0,
         "max": 1,
         "step": 1,
-        "desc": "自适应配图(0=纯金句)"
+        "desc": "自适应配图(0=纯金句)",
+        "publicKey": "mediaCount",
+        "publicLabel": "配图数量",
+        "description": "自适应配图(0=纯金句)"
       },
       {
         "key": "imageSide",
@@ -15814,7 +18079,10 @@ export const pages = [
             "右侧"
           ]
         ],
-        "desc": "配图在左 / 右"
+        "desc": "配图在左 / 右",
+        "publicKey": "imageSide",
+        "publicLabel": "配图位置",
+        "description": "配图在左 / 右"
       },
       {
         "key": "highlightStyle",
@@ -15831,21 +18099,30 @@ export const pages = [
             "下划线"
           ]
         ],
-        "desc": "关键词强调方式"
+        "desc": "关键词强调方式",
+        "publicKey": "highlightStyle",
+        "publicLabel": "强调样式",
+        "description": "关键词强调方式"
       },
       {
         "key": "showAttribution",
         "label": "署名显示",
         "type": "toggle",
         "default": true,
-        "desc": "底部署名"
+        "desc": "底部署名",
+        "publicKey": "showAttribution",
+        "publicLabel": "署名显示",
+        "description": "底部署名"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       }
     ],
     "defaultProps": {
@@ -15882,7 +18159,10 @@ export const pages = [
         "min": 1,
         "max": 2,
         "step": 1,
-        "desc": "展示的金句行数"
+        "desc": "展示的金句行数",
+        "publicKey": "lineCount",
+        "publicLabel": "文案行数",
+        "description": "展示的金句行数"
       },
       {
         "key": "highlightStyle",
@@ -15899,21 +18179,30 @@ export const pages = [
             "下划线"
           ]
         ],
-        "desc": "关键词强调方式"
+        "desc": "关键词强调方式",
+        "publicKey": "highlightStyle",
+        "publicLabel": "强调样式",
+        "description": "关键词强调方式"
       },
       {
         "key": "showIcons",
         "label": "图标显示",
         "type": "toggle",
         "default": true,
-        "desc": "行尾圆形图标"
+        "desc": "行尾圆形图标",
+        "publicKey": "showIcons",
+        "publicLabel": "图标显示",
+        "description": "行尾圆形图标"
       },
       {
         "key": "showDecorations",
         "label": "装饰元素",
         "type": "toggle",
         "default": true,
-        "desc": "星芒等点缀"
+        "desc": "星芒等点缀",
+        "publicKey": "showDecorations",
+        "publicLabel": "装饰元素",
+        "description": "星芒等点缀"
       },
       {
         "key": "lines",
@@ -15935,7 +18224,10 @@ export const pages = [
             "icon": "check"
           }
         ],
-        "desc": "金句：前文 / 关键词 / 后文 / 颜色 / 图标"
+        "desc": "金句：前文 / 关键词 / 后文 / 颜色 / 图标",
+        "publicKey": "lines",
+        "publicLabel": "金句行",
+        "description": "金句：前文 / 关键词 / 后文 / 颜色 / 图标"
       }
     ],
     "defaultProps": {

@@ -6,6 +6,10 @@ import {
   normalizeSlidePropsForContract,
 } from '../src/prop-contract-core.mjs';
 import {
+  resolvePublicPropAliases,
+  toPublicProps,
+} from '../src/control-naming.mjs';
+import {
   GENERATED_THEME_PACKS,
   GENERATED_THEME_PAGES,
 } from '../src/components/themes/generated-metadata.js';
@@ -129,11 +133,13 @@ export function inspectLayout(layout, { compact = false } = {}) {
   const { page, contract, controls, countBindings, defaultProps } = record;
   const theme = getThemePackMetadata(page.themeKey);
   const controlKeys = controls.map(control => control.key).filter(Boolean);
+  const publicControls = controls.map(publicControl);
+  const publicControlKeys = publicControls.map(control => control.publicKey).filter(Boolean);
   const mediaSlots = getMediaSlots(record);
   const copyKeys = getCopyKeys(defaultProps, controls, mediaSlots);
   const arrayKeys = getArrayKeys(defaultProps, mediaSlots);
   const defaultVisibleCounts = Object.fromEntries(countBindings
-    .map(binding => [binding.key, defaultProps[binding.key] ?? controls.find(control => control.key === binding.key)?.default])
+    .map(binding => [binding.publicKey || binding.key, defaultProps[binding.key] ?? controls.find(control => control.key === binding.key)?.default])
     .filter(([, value]) => value !== undefined));
 
   const base = {
@@ -150,7 +156,9 @@ export function inspectLayout(layout, { compact = false } = {}) {
     arrayKeys,
     mediaSlots,
     countBindings,
+    controls: publicControls,
     controlKeys,
+    publicControlKeys,
     defaultVisibleCounts,
   };
 
@@ -166,8 +174,8 @@ export function inspectLayout(layout, { compact = false } = {}) {
       roles: base.roles,
       copyKeys: base.copyKeys.slice(0, 10),
       arrayKeys: base.arrayKeys.slice(0, 8),
-      mediaSlots: base.mediaSlots,
-      countBindings: base.countBindings,
+      mediaSlots: base.mediaSlots.map(compactMediaSlot),
+      countBindings: base.countBindings.map(compactCountBinding),
       defaultVisibleCounts: base.defaultVisibleCounts,
     };
   }
@@ -175,6 +183,7 @@ export function inspectLayout(layout, { compact = false } = {}) {
   return {
     ...base,
     allowedPropKeys: [...new Set([...Object.keys(defaultProps), ...controlKeys])].sort(),
+    allowedPublicPropKeys: [...new Set([...Object.keys(toPublicProps(defaultProps, controls)), ...publicControlKeys])].sort(),
   };
 }
 
@@ -187,21 +196,69 @@ export function normalizeProps(layout, props = {}) {
       errors: [`Unknown layout "${layout}"`],
     };
   }
+  const aliasResult = resolvePublicPropAliases(props, record.controls);
   const warnings = unknownPropKeys(record, props).map(key => `Unknown prop "${key}" for ${layout}`);
   try {
-    const propsWithCountSafety = normalizeSlidePropsForContract(layout, props, record.contract);
+    const propsWithCountSafety = normalizeSlidePropsForContract(layout, aliasResult.props, record.contract);
+    const propsWithDefaults = mergeDefaultArrayTails(propsWithCountSafety, record.defaultProps, aliasResult.props);
     return {
-      props: mergeDefaultArrayTails(propsWithCountSafety, record.defaultProps, props),
+      props: propsWithDefaults,
+      publicProps: toPublicProps(propsWithDefaults, record.controls),
+      appliedAliases: aliasResult.appliedAliases,
       warnings,
       errors: [],
     };
   } catch (error) {
     return {
       props: props || {},
+      publicProps: toPublicProps(props || {}, record.controls),
+      appliedAliases: aliasResult.appliedAliases,
       warnings,
-      errors: [error.message],
+      errors: [publicErrorMessage(error.message, record.controls)],
     };
   }
+}
+
+function publicControl(control) {
+  return {
+    key: control.key,
+    publicKey: control.publicKey || control.key,
+    label: control.label || control.publicLabel || control.key,
+    type: control.type,
+    default: control.default,
+    min: control.min,
+    max: control.max,
+  };
+}
+
+function compactMediaSlot(slot) {
+  return {
+    field: slot.field,
+    countKey: slot.countKey,
+    publicCountKey: slot.publicCountKey || slot.countKey,
+    max: slot.max,
+    acceptedKinds: slot.acceptedKinds,
+    initialSrcSupported: slot.initialSrcSupported,
+  };
+}
+
+function compactCountBinding(binding) {
+  return {
+    key: binding.key,
+    publicKey: binding.publicKey || binding.key,
+    label: binding.label,
+    min: binding.min,
+    max: binding.max,
+  };
+}
+
+function publicErrorMessage(message, controls = []) {
+  let next = String(message || '');
+  for (const control of controls || []) {
+    if (!control?.key || !control.publicKey || control.key === control.publicKey) continue;
+    next = next.replaceAll(control.key, control.publicKey);
+  }
+  return next;
 }
 
 export function getMediaSlotsForLayout(layout) {
@@ -335,6 +392,7 @@ export function getAllowedPropKeys(layout) {
   return new Set([
     ...Object.keys(record.defaultProps || {}),
     ...record.controls.map(control => control.key).filter(Boolean),
+    ...record.controls.map(control => control.publicKey).filter(Boolean),
   ]);
 }
 
@@ -342,6 +400,7 @@ export function unknownPropKeys(record, props = {}) {
   const allowed = new Set([
     ...Object.keys(record.defaultProps || {}),
     ...record.controls.map(control => control.key).filter(Boolean),
+    ...record.controls.map(control => control.publicKey).filter(Boolean),
   ]);
   return Object.keys(props || {}).filter(key => !allowed.has(key));
 }
@@ -405,10 +464,13 @@ function mediaSlot(field, countKey, controls, defaultProps, source, record, { wr
     field,
     fieldPath: `props.${field}`,
     countKey: countKey || fieldControl?.countKey || null,
+    publicCountKey: countControl?.publicKey || countKey || fieldControl?.countKey || null,
     defaultCount: defaultCount ?? null,
     min: source.min ?? countControl?.min ?? null,
     max: source.max ?? countControl?.max ?? null,
     controlKey: fieldControl?.key || null,
+    publicControlKey: fieldControl?.publicKey || fieldControl?.key || null,
+    label: fieldControl?.label || countControl?.label || null,
     acceptedKinds,
     valueShape: acceptedKinds.includes('video') ? 'string | {src,kind,type}' : 'string | {src}',
     initialSrcSupported: writeMode === 'initialProps',
@@ -424,10 +486,13 @@ function countOnlyMediaSlot(control, defaultProps, record) {
     field: null,
     fieldPath: null,
     countKey: control.key,
+    publicCountKey: control.publicKey || control.key,
     defaultCount: defaultProps?.[control.key] ?? control.default ?? null,
     min: control.min ?? null,
     max: control.max ?? null,
     controlKey: control.key,
+    publicControlKey: control.publicKey || control.key,
+    label: control.label || null,
     acceptedKinds,
     valueShape: null,
     initialSrcSupported: false,

@@ -1,5 +1,9 @@
 import React from 'react';
 import { useSlideViewModel } from '../../view-model/context.jsx';
+import {
+  normalizeControlValue,
+  normalizePublicControls,
+} from '../../control-naming.mjs';
 import { GENERATED_THEME_PAGES, GENERATED_THEME_PACKS } from './generated-metadata.js';
 import { ICONS as THEME03_DECOR_ICONS } from './theme03/source/src/icons.js';
 import { PRESET_3D as THEME03_PRESET_3D } from './theme03/source/src/preset3d.js';
@@ -109,7 +113,7 @@ export function makeImportedThemePage(layoutKey) {
 }
 
 function normalizeControls(controls, defaults, page) {
-  return (controls || [])
+  return normalizePublicControls((controls || [])
     .map(control => {
       const key = control.key || control.prop;
       if (!key) return null;
@@ -117,26 +121,27 @@ function normalizeControls(controls, defaults, page) {
       if (REMOVED_CONTROL_TYPES.has(String(control.type || type || '').toLowerCase())) return null;
       const next = {
         key,
-        label: genericControlText(control.label || key),
+        label: control.label || key,
         type,
         default: serializeValue(control.default ?? control.def ?? defaults[key]),
         min: serializeValue(resolveValue(control.min, defaults)),
         max: serializeValue(resolveValue(control.max, defaults)),
         step: serializeValue(control.step),
-        options: genericControlValue(serializeValue(control.options)),
+        options: normalizeControlValue(serializeValue(control.options)),
         countKey: serializeValue(control.countKey),
         countIndex: serializeValue(control.countIndex),
         maxFromKey: serializeValue(control.maxFromKey),
         dependsOn: serializeValue(control.dependsOn),
         dependsOnValue: serializeValue(control.dependsOnValue),
         dependsOnValues: serializeValue(control.dependsOnValues),
+        desc: serializeValue(control.desc || control.description || control.describe),
       };
       if (type === 'select' && (control.display === 'color' || control.type === 'color' || control.type === 'palette' || isThemeSwatchControl(page, key))) {
         next.display = 'color';
       }
       return next;
     })
-    .filter(Boolean);
+    .filter(Boolean), { layout: page?.key, themeKey: page?.themeKey });
 }
 
 function isThemeSwatchControl(page, key) {
@@ -151,28 +156,6 @@ function normalizeType(type) {
   if (['enum', 'radio', 'select', 'segment', 'color', 'palette', 'labelType'].includes(type)) return 'select';
   if (['toggle', 'boolean', 'focus'].includes(type)) return 'toggle';
   return type || 'range';
-}
-
-function genericControlText(value) {
-  if (typeof value !== 'string') return value;
-  return value
-    .replaceAll('联系方式数量', '信息条目数量')
-    .replaceAll('联系方式', '次级文案')
-    .replaceAll('投资人类型占比', '分类占比')
-    .replaceAll('投资人类型数', '分类数量')
-    .replaceAll('投资人类型', '分类类型')
-    .replaceAll('平均单笔融资金额', '平均指标')
-    .replaceAll('融资金额', '数值指标')
-    .replaceAll('投资人', '角色')
-    .replaceAll('AI Capital Lab', '研究机构')
-    .replaceAll('AI Capital', '研究机构');
-}
-
-function genericControlValue(value) {
-  if (typeof value === 'string') return genericControlText(value);
-  if (Array.isArray(value)) return value.map(genericControlValue);
-  if (!value || typeof value !== 'object') return value;
-  return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, genericControlValue(item)]));
 }
 
 function resolveValue(value, defaults) {

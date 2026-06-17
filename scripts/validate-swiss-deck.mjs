@@ -55,12 +55,16 @@ const pdfExportEnd = pdfExportStart >= 0 ? html.indexOf('window.__exportDeckPptx
 const pdfExportSource = pdfExportStart >= 0 && pdfExportEnd > pdfExportStart
   ? html.slice(pdfExportStart, pdfExportEnd)
   : '';
-if (!/runBrowserPrint\s*\(/.test(pdfExportSource) || !/function runBrowserPrint\(\)[\s\S]*?window\.print\(\)/.test(html)) {
-  errors.push('PDF export must use the browser print flow.');
+if (!/\/api\/export-pdf/.test(pdfExportSource) || !/startServerExportDownload\s*\(/.test(pdfExportSource)) {
+  errors.push('PDF export must use the local screenshot PDF service and trigger a browser download.');
 }
 
-if (/(htmlToImage|captureSlide|buildPdfFromJpegs|toJpeg|toPng|downloadBlob)/.test(pdfExportSource)) {
-  errors.push('PDF export must not use screenshot capture, generated PDF blobs, or download blob flows.');
+if (/runBrowserPrint\s*\(|window\.print\s*\(/.test(pdfExportSource)) {
+  errors.push('PDF export must not use the browser print flow as its default path.');
+}
+
+if (!/buildPdfExportSnapshot/.test(pdfExportSource)) {
+  errors.push('PDF export must send the current deck state to the screenshot PDF service.');
 }
 
 if (!html.includes('deck-export-cancel')) {
