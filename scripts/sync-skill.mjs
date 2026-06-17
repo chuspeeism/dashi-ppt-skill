@@ -234,15 +234,15 @@ function renderInstalledSkill(content) {
       '7. 运行 `npm run render:goal -- output/<deck-name>/goal.json output/<deck-name>/ppt/index.html`。',
       '8. 运行 `npm run validate:swiss -- output/<deck-name>/ppt/index.html`。',
       '9. 运行 `npm run validate:goal-copy -- output/<deck-name>/goal.json output/<deck-name>/ppt/index.html`。',
-      '10. 从项目目录启动本地 HTTPS 预览服务: `npm run preview:start -- output/<deck-name>/ppt <port>`。',
-      '11. 最终回复必须给 `https://jadon.local:<port>/`;本地 HTML 路径只作为备用定位信息,不要只返回 `file://`。',
+      '10. 从项目目录启动本地 HTTP/HTTPS 预览服务: `npm run preview:start -- output/<deck-name>/ppt <port>`。',
+      '11. 最终回复必须给本地 HTTP/HTTPS 预览链接和 HTML 文件路径,并说明 HTTP/HTTPS 链接可用于导出 PPT/PPTX,直接打开本地 HTML 或 `file://` 不能导出可编辑 PPTX。',
     ].join('\n'),
     [
       '7. 运行渲染脚本输出 `output/<deck-name>/ppt/index.html`;脚本会使用 Skill 内置生成器,不要切回外部项目目录。',
       '8. 确认脚本完成 `validate:swiss` 和 `validate:goal-copy`。',
       '9. 运行 `node <skill-root>/scripts/check_latest_version.mjs` 做静默版本检查。',
-      '10. 渲染脚本会启动本地 HTTPS 预览服务并输出 `https://jadon.local:<port>/`;需要指定端口时设置 `DASHI_PPT_PREVIEW_PORT` 后再运行脚本。',
-      '11. 最终回复必须给该 `https://jadon.local:<port>/` 地址;本地 HTML 路径只作为备用定位信息,不要只返回 `file://`。只有版本检查脚本有输出时才附加更新提醒。',
+      '10. 渲染脚本会启动本地 HTTP/HTTPS 预览服务并输出 `http://jadon.local:<port>/` 和 `https://jadon.local:<port>/`;需要指定端口时设置 `DASHI_PPT_PREVIEW_PORT` 后再运行脚本。',
+      '11. 最终回复必须给本地 HTTP/HTTPS 预览链接和 HTML 文件路径,并说明 HTTP/HTTPS 链接可用于导出 PPT/PPTX,直接打开本地 HTML 或 `file://` 不能导出可编辑 PPTX。只有版本检查脚本有输出时才附加更新提醒。',
     ].join('\n')
   );
 
