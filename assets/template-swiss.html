@@ -343,17 +343,14 @@
       <select id="preview-transition">
         <option value="none">无动画</option>
         <option value="liquidMorph">液态形变</option>
-        <option value="pixelReveal">Pixel D1 行扫</option>
-        <option value="pixelStretch">Pixel D2 拉伸</option>
-        <option value="pixelZoom">Pixel D3 缩放</option>
-        <option value="pixelTight">Pixel D4 密集</option>
-        <option value="pixelBarsY">Pixel D5 竖条</option>
-        <option value="pixelBarsX">Pixel D6 横条</option>
-        <option value="sliceReveal">Slice D1 混合</option>
-        <option value="sliceHorizontal">Slice D2 横切</option>
-        <option value="sliceGallery">Slice D3 画廊</option>
-        <option value="containerClip">Codrops 切入</option>
-        <option value="containerSlide">Codrops 横滑</option>
+        <option value="containerClip">切入</option>
+        <option value="containerSlide">横滑</option>
+        <option value="pixelReveal">行扫</option>
+        <option value="pixelZoom">缩放</option>
+        <option value="pixelBarsY">竖条</option>
+        <option value="sliceReveal">混合</option>
+        <option value="sliceHorizontal">横切</option>
+        <option value="sliceGallery">画廊</option>
       </select>
     </div>
     <div class="preview-field is-hidden" id="preview-transition-color-field">
@@ -414,18 +411,14 @@
 <script>
 (function(){
 	  window.__pageTransitionModes = [
-	    'none', 'liquidMorph',
-	    'pixelReveal', 'pixelStretch', 'pixelZoom', 'pixelTight', 'pixelBarsY', 'pixelBarsX',
+	    'none', 'liquidMorph', 'containerClip', 'containerSlide',
+	    'pixelReveal', 'pixelZoom', 'pixelBarsY',
 	    'sliceReveal', 'sliceHorizontal', 'sliceGallery',
-	    'containerClip', 'containerSlide'
 	  ];
   const transitionColorDefaults = {
     pixelReveal:'#05070b',
-    pixelStretch:'#05070b',
     pixelZoom:'#05070b',
-    pixelTight:'#05070b',
     pixelBarsY:'#05070b',
-    pixelBarsX:'#05070b',
     sliceReveal:'#111111',
     sliceHorizontal:'#f7f7f2',
     sliceGallery:'#f7f7f2',
@@ -5336,11 +5329,8 @@ refreshRailCatalog();
 	  window.__prepareTransitionClone = prepareTransitionClone;
 		  const pixelTransitionConfigs = {
 		    pixelReveal: {variant:'demo1-row-grid', rows:8, columns:14, axis:'scale', originIn:ctx => ctx.direction > 0 ? '50% 0%' : '50% 100%', originOut:ctx => ctx.direction > 0 ? '50% 100%' : '50% 0%', from:'row-random', showDuration:.34, hideDuration:.34, revealGap:.02, current:{y:-15, scale:.98, opacity:.55}, next:{y:-18, scale:1.02}},
-		    pixelStretch: {variant:'demo2-side-stretch', rows:9, columns:17, axis:'scale', originIn:ctx => ctx.direction > 0 ? '0% 50%' : '100% 50%', originOut:ctx => ctx.direction > 0 ? '100% 50%' : '0% 50%', from:'columns', showDuration:.22, hideDuration:.28, revealGap:.02, current:{scaleX:1.35, opacity:.35}, next:{scaleX:.72, scale:1}},
 		    pixelZoom: {variant:'demo3-center-zoom', rows:7, columns:13, axis:'scale', originIn:ctx => ctx.direction > 0 ? '50% 50%' : '0% 0%', originOut:ctx => ctx.direction > 0 ? '50% 50%' : '100% 100%', from:'center', showDuration:.26, hideDuration:.3, revealGap:.02, current:{scale:.76, opacity:.6}, next:{scale:1.18}},
-		    pixelTight: {variant:'demo4-dense-zoom', rows:9, columns:17, axis:'scale', originIn:ctx => ctx.direction > 0 ? '50% 50%' : '100% 0%', originOut:ctx => ctx.direction > 0 ? '50% 50%' : '0% 100%', from:'center-fast', showDuration:.22, hideDuration:.28, revealGap:.02, current:{scale:.74, opacity:.42}, next:{scale:.52}},
 		    pixelBarsY: {variant:'demo5-vertical-bars', rows:20, columns:4, axis:'scaleY', originIn:ctx => ctx.direction > 0 ? '50% 100%' : '50% 0%', originOut:ctx => ctx.direction > 0 ? '50% 0%' : '50% 100%', from:'rows', showDuration:.25, hideDuration:.32, revealGap:.02, current:{y:-10, opacity:.5}, next:{y:10, scale:1.02}},
-		    pixelBarsX: {variant:'demo6-horizontal-bars', rows:6, columns:11, axis:'scaleX', originIn:ctx => ctx.direction > 0 ? '0% 50%' : '100% 50%', originOut:ctx => ctx.direction > 0 ? '100% 50%' : '0% 50%', from:'columns', showDuration:.26, hideDuration:.36, revealGap:.02, current:{x:-8, opacity:.5}, next:{x:8, scale:1.02}},
 		  };
 		  const sliceTransitionConfigs = {
 		    sliceReveal: {variant:'demo1-mixed-origins', count:9, orientation:'vertical', show:'bottom', hide:'bottom', color:'#111', stagger:'forward', showDuration:.36, hideDuration:.36, uncoverGap:.02, nextScale:1.12},
@@ -5350,11 +5340,8 @@ refreshRailCatalog();
 		  const transitionPlayers = {
 		    liquidMorph: playLiquidMorph,
 		    pixelReveal: (ctx, opts) => playPixelGrid(ctx, opts, pixelTransitionConfigs.pixelReveal),
-		    pixelStretch: (ctx, opts) => playPixelGrid(ctx, opts, pixelTransitionConfigs.pixelStretch),
 		    pixelZoom: (ctx, opts) => playPixelGrid(ctx, opts, pixelTransitionConfigs.pixelZoom),
-		    pixelTight: (ctx, opts) => playPixelGrid(ctx, opts, pixelTransitionConfigs.pixelTight),
 		    pixelBarsY: (ctx, opts) => playPixelGrid(ctx, opts, pixelTransitionConfigs.pixelBarsY),
-		    pixelBarsX: (ctx, opts) => playPixelGrid(ctx, opts, pixelTransitionConfigs.pixelBarsX),
 		    sliceReveal: (ctx, opts) => playSliceGrid(ctx, opts, sliceTransitionConfigs.sliceReveal),
 		    sliceHorizontal: (ctx, opts) => playSliceGrid(ctx, opts, sliceTransitionConfigs.sliceHorizontal),
 		    sliceGallery: (ctx, opts) => playSliceGrid(ctx, opts, sliceTransitionConfigs.sliceGallery),

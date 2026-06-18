@@ -14,17 +14,26 @@ const PREVIEW_INDEX = path.join(ROOT, 'output/theme-preview/ppt/index.html');
 const ARTIFACT_ROOT = path.join(ROOT, 'output/page-transition-validation/latest');
 const CHROME_PATH = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const cliUrl = getArg('--url');
-const REMOVED_MODES = ['canvasWipe', 'videoBands', 'videoDisplace', 'videoZoom', 'videoRotate'];
+const REMOVED_MODES = ['canvasWipe', 'videoBands', 'videoDisplace', 'videoZoom', 'videoRotate', 'pixelStretch', 'pixelTight', 'pixelBarsX'];
 const CUSTOM_TRANSITION_COLOR = '#b91c1c';
 const CUSTOM_TRANSITION_COLOR_RGB = 'rgb(185, 28, 28)';
 const MAX_TRANSITION_COLOR_OPTIONS = 9;
+const EXPECTED_TRANSITION_OPTIONS = [
+  { value: 'none', label: '无动画' },
+  { value: 'liquidMorph', label: '液态形变' },
+  { value: 'containerClip', label: '切入' },
+  { value: 'containerSlide', label: '横滑' },
+  { value: 'pixelReveal', label: '行扫' },
+  { value: 'pixelZoom', label: '缩放' },
+  { value: 'pixelBarsY', label: '竖条' },
+  { value: 'sliceReveal', label: '混合' },
+  { value: 'sliceHorizontal', label: '横切' },
+  { value: 'sliceGallery', label: '画廊' },
+];
 const REQUIRED_MODES = [
   { value: 'pixelReveal', family: 'codrops/PixelTransition demo 1 row-random grid', type: 'pixel', reference: 'codrops/PixelTransition', variant: 'demo1-row-grid', minRows: 8, minColumns: 14, minCells: 112, axis: 'scale' },
-  { value: 'pixelStretch', family: 'codrops/PixelTransition demo 2 side stretch grid', type: 'pixel', reference: 'codrops/PixelTransition', variant: 'demo2-side-stretch', minRows: 9, minColumns: 17, minCells: 153, axis: 'scale' },
   { value: 'pixelZoom', family: 'codrops/PixelTransition demo 3 center zoom grid', type: 'pixel', reference: 'codrops/PixelTransition', variant: 'demo3-center-zoom', minRows: 7, minColumns: 13, minCells: 91, axis: 'scale' },
-  { value: 'pixelTight', family: 'codrops/PixelTransition demo 4 dense zoom grid', type: 'pixel', reference: 'codrops/PixelTransition', variant: 'demo4-dense-zoom', minRows: 9, minColumns: 17, minCells: 153, axis: 'scale' },
   { value: 'pixelBarsY', family: 'codrops/PixelTransition demo 5 vertical bar cells', type: 'pixel', reference: 'codrops/PixelTransition', variant: 'demo5-vertical-bars', minRows: 20, minColumns: 4, minCells: 80, axis: 'scaleY' },
-  { value: 'pixelBarsX', family: 'codrops/PixelTransition demo 6 horizontal bar cells', type: 'pixel', reference: 'codrops/PixelTransition', variant: 'demo6-horizontal-bars', minRows: 6, minColumns: 11, minCells: 66, axis: 'scaleX' },
   { value: 'sliceReveal', family: 'codrops/SliceRevealer demo 1 mixed cover/uncover', type: 'slice', reference: 'codrops/SliceRevealer', variant: 'demo1-mixed-origins', minSlices: 7 },
   { value: 'sliceHorizontal', family: 'codrops/SliceRevealer demo 2 horizontal sequence', type: 'slice', reference: 'codrops/SliceRevealer', variant: 'demo2-horizontal-sequence', minSlices: 8, orientation: 'horizontal' },
   { value: 'sliceGallery', family: 'codrops/SliceRevealer demo 3 gallery stagger', type: 'slice', reference: 'codrops/SliceRevealer', variant: 'demo3-gallery-stagger', minSlices: 16 },
@@ -117,14 +126,19 @@ try {
 function runStaticChecks() {
   const html = readFileSync(TEMPLATE, 'utf8');
   const selectSource = sliceBetween(html, '<select id="preview-transition">', '</select>');
-  const options = [...selectSource.matchAll(/<option\s+value=["']([^"']+)["']/g)].map(match => match[1]);
+  const staticOptions = [...selectSource.matchAll(/<option\s+value=["']([^"']+)["'][^>]*>(.*?)<\/option>/g)].map(match => ({
+    value: match[1],
+    label: match[2].replace(/<[^>]+>/g, '').trim(),
+  }));
+  const options = staticOptions.map(option => option.value);
   const failures = [];
+  validateTransitionOptionList(staticOptions, failures, 'Template');
   for (const mode of REQUIRED_MODES) {
     if (!options.includes(mode.value)) failures.push(`Template transition select is missing ${mode.family} mode "${mode.value}".`);
   }
   for (const mode of REMOVED_MODES) {
-    if (options.includes(mode)) failures.push(`Template transition select still exposes removed video mode "${mode}".`);
-    if (new RegExp(`\\b${mode}\\b`).test(html)) failures.push(`Template runtime still contains removed video mode "${mode}".`);
+    if (options.includes(mode)) failures.push(`Template transition select still exposes removed mode "${mode}".`);
+    if (new RegExp(`\\b${mode}\\b`).test(html)) failures.push(`Template runtime still contains removed mode "${mode}".`);
   }
   if (/akella\/videoTransitions|playVideoTexture|page-transition-canvas|transitionTexture/.test(html)) {
     failures.push('Template still contains video texture transition runtime code.');
@@ -533,17 +547,18 @@ async function waitForStageGone(page, timeoutMs) {
 function validateResult(result) {
   const failures = [...(result.staticChecks.failures || [])];
   const optionValues = result.options.map(option => option.value);
+  validateTransitionOptionList(result.options, failures, 'Runtime');
   for (const mode of REQUIRED_MODES) {
     if (!optionValues.includes(mode.value)) failures.push(`Runtime transition select is missing ${mode.family} mode "${mode.value}".`);
   }
   for (const mode of REMOVED_MODES) {
-    if (optionValues.includes(mode)) failures.push(`Runtime transition select still exposes removed video mode "${mode}".`);
+    if (optionValues.includes(mode)) failures.push(`Runtime transition select still exposes removed mode "${mode}".`);
   }
   for (const probe of result.setMode) {
     if (probe.stored !== probe.mode) failures.push(`__setPageTransition("${probe.mode}") stored "${probe.stored}" instead.`);
   }
   for (const probe of result.removedModeProbes) {
-    if (probe.stored === probe.mode || probe.global === probe.mode) failures.push(`Removed video mode "${probe.mode}" can still be stored by __setPageTransition.`);
+    if (probe.stored === probe.mode || probe.global === probe.mode) failures.push(`Removed mode "${probe.mode}" can still be stored by __setPageTransition.`);
   }
   validateColorControl(result.colorControl, failures);
   for (const lifecycle of [...result.lifecycles, ...result.reverseLifecycles]) {
@@ -561,6 +576,20 @@ function validateResult(result) {
   if (result.reducedMotion.currentIndex !== 1 || result.reducedMotion.stageCountAfter !== 0) failures.push('Reduced motion did not switch directly without a transition stage.');
   if (result.consoleErrors.length) failures.push(`Console errors were emitted: ${result.consoleErrors.join(' | ')}`);
   return failures;
+}
+
+function validateTransitionOptionList(options, failures, source) {
+  const actualValues = options.map(option => option.value);
+  const expectedValues = EXPECTED_TRANSITION_OPTIONS.map(option => option.value);
+  if (actualValues.join('|') !== expectedValues.join('|')) {
+    failures.push(`${source} transition select order is "${actualValues.join(', ')}", expected "${expectedValues.join(', ')}".`);
+  }
+  const labels = new Map(options.map(option => [option.value, option.label]));
+  for (const expected of EXPECTED_TRANSITION_OPTIONS) {
+    const label = labels.get(expected.value) || '';
+    if (label !== expected.label) failures.push(`${source} transition option "${expected.value}" label is "${label}", expected "${expected.label}".`);
+    if (/[A-Za-z]/.test(label)) failures.push(`${source} transition option "${expected.value}" label still contains an English prefix: "${label}".`);
+  }
 }
 
 function validateLifecycle(lifecycle, failures) {
