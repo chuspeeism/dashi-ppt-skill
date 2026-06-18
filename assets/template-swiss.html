@@ -243,10 +243,9 @@
   .page-transition-stage [data-transition-role="current"] *{animation:none!important;transition:none!important}
   .page-transition-stage [data-transition-role="next"] *{animation-delay:0ms!important;animation-play-state:paused!important;animation-fill-mode:both!important;transition:none!important}
   .page-transition-stage[data-enter-motion="running"] [data-transition-role="next"] *{animation-play-state:running!important}
-  .page-transition-pixel-grid,.page-transition-slice-grid,.page-transition-canvas,.page-transition-container{position:absolute;inset:0;z-index:6;pointer-events:none}
+  .page-transition-pixel-grid,.page-transition-slice-grid,.page-transition-container{position:absolute;inset:0;z-index:6;pointer-events:none}
   .page-transition-pixel{position:absolute;background:#05070b;box-shadow:0 0 0 1px rgba(255,255,255,.035);will-change:transform,opacity}
   .page-transition-slice{position:absolute;background:#05070b;will-change:transform,opacity}
-  .page-transition-canvas{width:100%;height:100%;z-index:7;opacity:1}
   .page-transition-container{overflow:hidden;will-change:transform,opacity,clip-path}
   .page-transition-container .slide{position:absolute;inset:0}
   .bt-unicorn-frame{background:#05070b}
@@ -347,11 +346,6 @@
         <option value="sliceReveal">Slice D1 混合</option>
         <option value="sliceHorizontal">Slice D2 横切</option>
         <option value="sliceGallery">Slice D3 画廊</option>
-        <option value="canvasWipe">Video D1 圆形</option>
-        <option value="videoBands">Video D2 条带</option>
-        <option value="videoDisplace">Video D3 位移</option>
-        <option value="videoZoom">Video D4 缩放</option>
-        <option value="videoRotate">Video D5 旋转</option>
         <option value="containerClip">Codrops 切入</option>
         <option value="containerSlide">Codrops 横滑</option>
       </select>
@@ -407,13 +401,12 @@
 <script src="assets/imported-theme-runtime.js"></script>
 <script>
 (function(){
-  window.__pageTransitionModes = [
-    'none', 'liquidMorph',
-    'pixelReveal', 'pixelStretch', 'pixelZoom', 'pixelTight', 'pixelBarsY', 'pixelBarsX',
-    'sliceReveal', 'sliceHorizontal', 'sliceGallery',
-    'canvasWipe', 'videoBands', 'videoDisplace', 'videoZoom', 'videoRotate',
-    'containerClip', 'containerSlide'
-  ];
+	  window.__pageTransitionModes = [
+	    'none', 'liquidMorph',
+	    'pixelReveal', 'pixelStretch', 'pixelZoom', 'pixelTight', 'pixelBarsY', 'pixelBarsX',
+	    'sliceReveal', 'sliceHorizontal', 'sliceGallery',
+	    'containerClip', 'containerSlide'
+	  ];
   window.__pageTransitionMode = 'none';
   window.__setPageTransition = value => {
     window.__pageTransitionMode = window.__pageTransitionModes.includes(value) ? value : 'none';
@@ -4710,7 +4703,6 @@ refreshRailCatalog();
 	    });
 	    return Promise.race([image, timeout]);
 	  }
-	  window.__captureSlideImageForTransition = captureSlideImage;
 
   const slideCaptureIgnoredTags = new Set(['STYLE', 'SCRIPT', 'NOSCRIPT', 'TEMPLATE']);
 
@@ -5220,10 +5212,10 @@ refreshRailCatalog();
 	  }
 	  window.__prepareTransitionClone = prepareTransitionClone;
 		  const pixelTransitionConfigs = {
-		    pixelReveal: {variant:'demo1-row-grid', rows:8, columns:14, axis:'scale', originIn:'50% 0%', originOut:'50% 100%', from:'row-random', showDuration:.4, hideDuration:.4, current:{y:-15, scale:.98, opacity:.55}, next:{y:-18, scale:1.02}},
-		    pixelStretch: {variant:'demo2-side-stretch', rows:9, columns:17, axis:'scale', originIn:'50% 50%', originOut:'50% 50%', from:'center', showDuration:.25, hideDuration:.32, current:{scaleX:1.35, opacity:.35}, next:{scaleX:.72, scale:1}},
-		    pixelZoom: {variant:'demo3-center-zoom', rows:7, columns:13, axis:'scale', originIn:'50% 50%', originOut:'50% 50%', from:'center', showDuration:.3, hideDuration:.36, current:{scale:.76, opacity:.6}, next:{scale:1.18}},
-		    pixelTight: {variant:'demo4-dense-zoom', rows:9, columns:17, axis:'scale', originIn:'50% 50%', originOut:'50% 50%', from:'center-fast', showDuration:.25, hideDuration:.32, current:{scale:.74, opacity:.42}, next:{scale:.52}},
+		    pixelReveal: {variant:'demo1-row-grid', rows:8, columns:14, axis:'scale', originIn:ctx => ctx.direction > 0 ? '50% 0%' : '50% 100%', originOut:ctx => ctx.direction > 0 ? '50% 100%' : '50% 0%', from:'row-random', showDuration:.4, hideDuration:.4, current:{y:-15, scale:.98, opacity:.55}, next:{y:-18, scale:1.02}},
+		    pixelStretch: {variant:'demo2-side-stretch', rows:9, columns:17, axis:'scale', originIn:ctx => ctx.direction > 0 ? '0% 50%' : '100% 50%', originOut:ctx => ctx.direction > 0 ? '100% 50%' : '0% 50%', from:'columns', showDuration:.25, hideDuration:.32, current:{scaleX:1.35, opacity:.35}, next:{scaleX:.72, scale:1}},
+		    pixelZoom: {variant:'demo3-center-zoom', rows:7, columns:13, axis:'scale', originIn:ctx => ctx.direction > 0 ? '50% 50%' : '0% 0%', originOut:ctx => ctx.direction > 0 ? '50% 50%' : '100% 100%', from:'center', showDuration:.3, hideDuration:.36, current:{scale:.76, opacity:.6}, next:{scale:1.18}},
+		    pixelTight: {variant:'demo4-dense-zoom', rows:9, columns:17, axis:'scale', originIn:ctx => ctx.direction > 0 ? '50% 50%' : '100% 0%', originOut:ctx => ctx.direction > 0 ? '50% 50%' : '0% 100%', from:'center-fast', showDuration:.25, hideDuration:.32, current:{scale:.74, opacity:.42}, next:{scale:.52}},
 		    pixelBarsY: {variant:'demo5-vertical-bars', rows:20, columns:4, axis:'scaleY', originIn:ctx => ctx.direction > 0 ? '50% 100%' : '50% 0%', originOut:ctx => ctx.direction > 0 ? '50% 0%' : '50% 100%', from:'rows', showDuration:.3, hideDuration:.38, current:{y:-10, opacity:.5}, next:{y:10, scale:1.02}},
 		    pixelBarsX: {variant:'demo6-horizontal-bars', rows:6, columns:11, axis:'scaleX', originIn:ctx => ctx.direction > 0 ? '0% 50%' : '100% 50%', originOut:ctx => ctx.direction > 0 ? '100% 50%' : '0% 50%', from:'columns', showDuration:.32, hideDuration:.48, current:{x:-8, opacity:.5}, next:{x:8, scale:1.02}},
 		  };
@@ -5231,13 +5223,6 @@ refreshRailCatalog();
 		    sliceReveal: {variant:'demo1-mixed-origins', count:9, orientation:'vertical', show:'bottom', hide:'bottom', color:'#111', stagger:'forward', showDuration:.48, hideDuration:.42, nextScale:1.12},
 		    sliceHorizontal: {variant:'demo2-horizontal-sequence', count:11, orientation:'horizontal', show:'left', hide:'right', color:'#f7f7f2', stagger:'forward', showDuration:.48, hideDuration:.44, nextScale:1.08},
 		    sliceGallery: {variant:'demo3-gallery-stagger', count:16, orientation:'vertical', show:'top', hide:'top', color:'#f7f7f2', stagger:'center', showDuration:.56, hideDuration:.38, nextScale:1.16},
-		  };
-		  const videoTransitionConfigs = {
-		    canvasWipe: {variant:'demo1-circle', effect:'circle', duration:1.02},
-		    videoBands: {variant:'demo2-bands', effect:'bands', duration:.98},
-		    videoDisplace: {variant:'demo3-displace', effect:'displace', duration:.98},
-		    videoZoom: {variant:'demo4-cross-zoom', effect:'crossZoom', duration:1.02},
-		    videoRotate: {variant:'demo5-rotate-wipe', effect:'rotateWipe', duration:1},
 		  };
 		  const transitionPlayers = {
 		    liquidMorph: playLiquidMorph,
@@ -5250,11 +5235,6 @@ refreshRailCatalog();
 		    sliceReveal: (ctx, opts) => playSliceGrid(ctx, opts, sliceTransitionConfigs.sliceReveal),
 		    sliceHorizontal: (ctx, opts) => playSliceGrid(ctx, opts, sliceTransitionConfigs.sliceHorizontal),
 		    sliceGallery: (ctx, opts) => playSliceGrid(ctx, opts, sliceTransitionConfigs.sliceGallery),
-		    canvasWipe: (ctx, opts) => playVideoTexture(ctx, opts, videoTransitionConfigs.canvasWipe),
-		    videoBands: (ctx, opts) => playVideoTexture(ctx, opts, videoTransitionConfigs.videoBands),
-		    videoDisplace: (ctx, opts) => playVideoTexture(ctx, opts, videoTransitionConfigs.videoDisplace),
-		    videoZoom: (ctx, opts) => playVideoTexture(ctx, opts, videoTransitionConfigs.videoZoom),
-		    videoRotate: (ctx, opts) => playVideoTexture(ctx, opts, videoTransitionConfigs.videoRotate),
 		    containerClip: (ctx, opts) => playContainerMotion(ctx, opts, 'default-clip'),
 		    containerSlide: (ctx, opts) => playContainerMotion(ctx, opts, 'alternative-slide'),
 		  };
@@ -5282,9 +5262,10 @@ refreshRailCatalog();
 	  function createTransitionContext(mode, currentSlide, nextSlide, direction, commit, opts){
 	    const nonBlocking = !!opts.nonBlocking || document.body.dataset.mode === 'edit';
 	    cleanupTransitionStages();
-	    const stage = document.createElement('div');
-	    stage.className = 'page-transition-stage is-active';
-	    stage.dataset.transitionMode = mode;
+		    const stage = document.createElement('div');
+		    stage.className = 'page-transition-stage is-active';
+		    stage.dataset.transitionMode = mode;
+		    stage.dataset.transitionDirection = direction >= 0 ? '1' : '-1';
 	    if(nonBlocking) stage.dataset.editTransition='true';
 	    const current = prepareTransitionClone(currentSlide, 'current');
 	    const next = prepareTransitionClone(nextSlide, "next");
@@ -5343,50 +5324,57 @@ refreshRailCatalog();
 	      tl.eventCallback('onComplete', ctx.finish);
 	    });
 	  }
-	  function playLiquidMorph(ctx, opts){
-	    return playTimeline(ctx, tl => {
-	      const startTargetEnter = ctx.startTargetEnter;
-	      gsap.set(ctx.next, {scale:1.02, filter:'blur(18px)', clipPath:'circle(0% at 50% 52%)', autoAlpha:1});
-	      tl.to(ctx.current, {scale:.985, filter:'blur(12px)', autoAlpha:.18, duration:.45}, 0)
-	        .to(ctx.next, {clipPath:'circle(142% at 50% 52%)', filter:'blur(0px)', scale:1, duration:.58, ease:'power4.inOut'}, 0)
-	        .add(startTargetEnter, 0.23);
-	    }, opts);
-	  }
+		  function playLiquidMorph(ctx, opts){
+		    return playTimeline(ctx, tl => {
+		      const startTargetEnter = ctx.startTargetEnter;
+		      const focusX = ctx.direction > 0 ? '58%' : '42%';
+		      gsap.set(ctx.next, {scale:1.02, xPercent:1.4 * ctx.direction, filter:'blur(18px)', clipPath:`circle(0% at ${focusX} 52%)`, autoAlpha:1});
+		      tl.to(ctx.current, {xPercent:-1.2 * ctx.direction, scale:.985, filter:'blur(12px)', autoAlpha:.18, duration:.45}, 0)
+		        .to(ctx.next, {clipPath:`circle(142% at ${focusX} 52%)`, xPercent:0, filter:'blur(0px)', scale:1, duration:.58, ease:'power4.inOut'}, 0)
+		        .add(startTargetEnter, 0.23);
+		    }, opts);
+		  }
 		  function playPixelGrid(ctx, opts, config){
 		    ctx.stage.dataset.transitionReference = 'codrops/PixelTransition';
 		    ctx.stage.dataset.transitionVariant = config.variant;
 		    const grid = document.createElement('div');
 		    grid.className = 'page-transition-pixel-grid';
-		    grid.dataset.transitionProbe = 'true';
-		    grid.dataset.pixelCover = 'true';
-		    grid.dataset.pixelPhase = 'cover-uncover';
-		    grid.dataset.pixelAxis = config.axis;
-		    const rows = config.rows;
-		    const cols = config.columns;
-		    const cells = [];
-		    for(let row=0; row<rows; row+=1){
-		      for(let col=0; col<cols; col+=1){
+			    grid.dataset.transitionProbe = 'true';
+			    grid.dataset.pixelCover = 'true';
+			    grid.dataset.pixelPhase = 'cover-uncover';
+			    grid.dataset.pixelAxis = config.axis;
+			    grid.dataset.pixelFrom = config.from;
+			    const rows = config.rows;
+			    const cols = config.columns;
+			    const originIn = resolveConfigValue(config.originIn, ctx);
+			    const originOut = resolveConfigValue(config.originOut, ctx);
+			    grid.dataset.pixelOriginIn = originIn;
+			    grid.dataset.pixelOriginOut = originOut;
+			    const cells = [];
+			    for(let row=0; row<rows; row+=1){
+			      for(let col=0; col<cols; col+=1){
 		        const cell = document.createElement('i');
 		        cell.className = 'page-transition-pixel';
 		        cell.dataset.transitionProbe = 'true';
 		        cell.dataset.pixelRow = String(row);
 		        cell.dataset.pixelColumn = String(col);
-		        cell.style.left = `${col * 100 / cols}%`;
-		        cell.style.top = `${row * 100 / rows}%`;
-		        cell.style.width = `${100 / cols + .16}%`;
-		        cell.style.height = `${100 / rows + .18}%`;
-		        cell.style.transformOrigin = resolveConfigValue(config.originIn, ctx);
-		        grid.appendChild(cell);
-		        cells.push(cell);
-		      }
-		    }
-		    ctx.stage.appendChild(grid);
+			        cell.style.left = `${col * 100 / cols}%`;
+			        cell.style.top = `${row * 100 / rows}%`;
+			        cell.style.width = `${100 / cols + .16}%`;
+			        cell.style.height = `${100 / rows + .18}%`;
+			        cell.style.transformOrigin = originIn;
+			        grid.appendChild(cell);
+			        cells.push(cell);
+			      }
+			    }
+			    grid.dataset.pixelFirstIndex = String(firstPixelIndex(cells, rows, cols, config.from, ctx.direction));
+			    ctx.stage.appendChild(grid);
 		    const showVars = pixelScaleVars(config.axis, 0, 1.04);
 		    const hideVars = pixelScaleVars(config.axis, 1.04, 0);
 		    return playTimeline(ctx, tl => {
 		      gsap.set(ctx.current, {zIndex:1, autoAlpha:1, xPercent:0, yPercent:0, scale:1, scaleX:1, scaleY:1});
 		      gsap.set(ctx.next, {zIndex:0, autoAlpha:1, xPercent:resolveNumber(config.next.x, 0) * ctx.direction, yPercent:resolveNumber(config.next.y, 0) * ctx.direction, scale:resolveNumber(config.next.scale, 1.06), scaleX:resolveNumber(config.next.scaleX, 1), filter:'saturate(.82) brightness(.72)'});
-		      gsap.set(cells, {...pixelScaleVars(config.axis, 0, 0), autoAlpha:config.axis === 'scaleX' ? 1 : 0, transformOrigin:resolveConfigValue(config.originIn, ctx)});
+			      gsap.set(cells, {...pixelScaleVars(config.axis, 0, 0), autoAlpha:config.axis === 'scaleX' ? 1 : 0, transformOrigin:originIn});
 		      tl.to(ctx.current, currentPixelVars(config.current, ctx), 0)
 		        .to(cells, {
 		          ...showVars,
@@ -5398,7 +5386,7 @@ refreshRailCatalog();
 		        .set(ctx.current, {autoAlpha:0}, .5)
 		        .set(ctx.next, {zIndex:2}, .5)
 		        .to(ctx.next, {xPercent:0, yPercent:0, scale:1, scaleX:1, filter:'saturate(1) brightness(1)', duration:.54, ease:'power3.out'}, .42)
-		        .set(cells, {transformOrigin:resolveConfigValue(config.originOut, ctx)}, .58)
+			        .set(cells, {transformOrigin:originOut}, .58)
 		        .to(cells, {
 		          ...hideVars,
 		          autoAlpha:config.axis === 'scaleX' ? 1 : 0,
@@ -5414,13 +5402,16 @@ refreshRailCatalog();
 		    ctx.stage.dataset.transitionVariant = config.variant;
 		    const grid = document.createElement('div');
 		    grid.className = 'page-transition-slice-grid';
-		    grid.dataset.transitionProbe = 'true';
-		    grid.dataset.sliceCover = 'true';
-		    grid.dataset.sliceVariant = config.variant;
-		    grid.dataset.sliceOrientation = config.orientation;
-		    grid.dataset.sliceOriginShow = config.show;
-		    grid.dataset.sliceOriginHide = config.hide;
-		    const slices = [];
+			    grid.dataset.transitionProbe = 'true';
+			    grid.dataset.sliceCover = 'true';
+			    grid.dataset.sliceVariant = config.variant;
+			    grid.dataset.sliceOrientation = config.orientation;
+			    const showOrigin = sliceOriginForDirection(config.orientation, config.show, ctx.direction);
+			    const hideOrigin = sliceOriginForDirection(config.orientation, config.hide, ctx.direction);
+			    grid.dataset.sliceOriginShow = showOrigin;
+			    grid.dataset.sliceOriginHide = hideOrigin;
+			    grid.dataset.sliceFirstIndex = String(firstSliceIndex(config.count, config.stagger, ctx.direction));
+			    const slices = [];
 		    for(let index=0; index<config.count; index+=1){
 		      const slice = document.createElement('i');
 		      slice.className = 'page-transition-slice';
@@ -5440,10 +5431,10 @@ refreshRailCatalog();
 		      }
 		      grid.appendChild(slice);
 		      slices.push(slice);
-		    }
-		    ctx.stage.appendChild(grid);
-		    const showFrom = sliceOriginOffset(config.orientation, config.show);
-		    const hideTo = sliceOriginOffset(config.orientation, config.hide);
+			    }
+			    ctx.stage.appendChild(grid);
+			    const showFrom = sliceOriginOffset(config.orientation, showOrigin);
+			    const hideTo = sliceOriginOffset(config.orientation, hideOrigin);
 		    return playTimeline(ctx, tl => {
 		      gsap.set(ctx.current, {zIndex:1, autoAlpha:1, scale:1});
 		      gsap.set(ctx.next, {zIndex:0, autoAlpha:1, scale:config.nextScale, filter:'brightness(.84) saturate(.86)'});
@@ -5452,75 +5443,22 @@ refreshRailCatalog();
 		        .to(slices, {
 		          xPercent:0,
 		          yPercent:0,
-		          duration:config.showDuration,
-		          ease:'power4.inOut',
-		          stagger:index => sliceStagger(index, config.count, config.stagger, false),
-		        }, 0)
+			          duration:config.showDuration,
+			          ease:'power4.inOut',
+			          stagger:index => sliceStagger(index, config.count, config.stagger, ctx.direction, false),
+			        }, 0)
 		        .set(ctx.current, {autoAlpha:0}, .5)
 		        .set(ctx.next, {zIndex:2}, .5)
 		        .to(ctx.next, {scale:1, filter:'brightness(1) saturate(1)', duration:.58, ease:'power3.out'}, .42)
 		        .to(slices, {
 		          xPercent:config.orientation === 'horizontal' ? hideTo : 0,
 		          yPercent:config.orientation === 'vertical' ? hideTo : 0,
-		          duration:config.hideDuration,
-		          ease:'power4.inOut',
-		          stagger:index => sliceStagger(index, config.count, config.stagger, true),
-		        }, .6)
+			          duration:config.hideDuration,
+			          ease:'power4.inOut',
+			          stagger:index => sliceStagger(index, config.count, config.stagger, ctx.direction, true),
+			        }, .6)
 		        .add(ctx.startTargetEnter, .5);
 		    }, opts);
-		  }
-		  async function playVideoTexture(ctx, opts, config){
-		    ctx.stage.dataset.transitionReference = 'akella/videoTransitions';
-		    ctx.stage.dataset.transitionVariant = config.variant;
-		    const canvas = document.createElement('canvas');
-		    canvas.className = 'page-transition-canvas';
-		    canvas.dataset.transitionProbe = 'true';
-		    canvas.dataset.transitionTexture = 'true';
-		    canvas.dataset.transitionEffect = config.effect;
-		    canvas.dataset.currentTexture = 'false';
-		    canvas.dataset.nextTexture = 'false';
-		    canvas.dataset.textureSource = 'pending';
-		    canvas.dataset.transitionFrames = '0';
-		    ctx.stage.appendChild(canvas);
-		    const rect = ctx.stage.getBoundingClientRect();
-		    const minRatio = Math.max(480 / Math.max(1, rect.width), 270 / Math.max(1, rect.height));
-		    const ratio = Math.max(minRatio, Math.min(.72, devicePixelRatio || 1));
-		    canvas.width = Math.max(480, Math.round(rect.width * ratio));
-		    canvas.height = Math.max(270, Math.round(rect.height * ratio));
-		    const drawing = canvas.getContext('2d', {willReadFrequently:true});
-		    if(opts.commitEarly || ctx.nonBlocking) requestAnimationFrame(() => ctx.commit?.());
-		    const restoreStyles = suspendRemoteStyles();
-		    let currentTexture;
-		    let nextTexture;
-		    try {
-		      [currentTexture, nextTexture] = await Promise.all([
-		        captureTransitionTexture(ctx.current, canvas.width, canvas.height),
-		        captureTransitionTexture(ctx.next, canvas.width, canvas.height),
-		      ]);
-		    } finally {
-		      restoreStyles();
-		    }
-		    if(ctx.done) return Promise.resolve();
-		    canvas.dataset.currentTexture = currentTexture.captured ? 'true' : 'false';
-		    canvas.dataset.nextTexture = nextTexture.captured ? 'true' : 'false';
-		    canvas.dataset.textureSource = currentTexture.source === 'html-to-image' && nextTexture.source === 'html-to-image' ? 'html-to-image' : 'fallback';
-		    gsap.set([ctx.current, ctx.next], {autoAlpha:0});
-		    const state = {progress:0};
-		    const render = () => {
-		      renderTextureFrame(drawing, currentTexture.data.data, nextTexture.data.data, canvas.width, canvas.height, state.progress, config.effect, ctx.direction);
-		      canvas.dataset.transitionFrames = String(Number(canvas.dataset.transitionFrames || 0) + 1);
-		    };
-		    const tl = gsap.timeline({defaults:{ease:'power2.inOut'}});
-		    ctx.timeline = tl;
-		    ctx.stage.__transitionTimeline = tl;
-		    render();
-		    return new Promise(resolve => {
-		      ctx.resolve = resolve;
-		      ctx.stage.__transitionResolve = resolve;
-		      tl.to(state, {progress:1, duration:config.duration, ease:'power2.inOut', onUpdate:render}, 0)
-		        .add(ctx.startTargetEnter, .44);
-		      tl.eventCallback('onComplete', ctx.finish);
-		    });
 		  }
 		  function playContainerMotion(ctx, opts, variant){
 		    ctx.stage.dataset.transitionReference = 'blenkcode/codrops-demo';
@@ -5531,113 +5469,41 @@ refreshRailCatalog();
 		    nextContainer.className = 'page-transition-container';
 		    currentContainer.dataset.containerRole = 'current';
 		    nextContainer.dataset.containerRole = 'next';
-		    currentContainer.dataset.containerTransition = 'true';
-		    nextContainer.dataset.containerTransition = 'true';
-		    currentContainer.dataset.containerVariant = variant;
-		    nextContainer.dataset.containerVariant = variant;
-		    currentContainer.appendChild(ctx.current);
-		    nextContainer.appendChild(ctx.next);
-		    ctx.stage.append(currentContainer, nextContainer);
-		    return playTimeline(ctx, tl => {
-		      if(variant === 'alternative-slide'){
-		        gsap.set(currentContainer, {zIndex:1, opacity:1, scale:1, x:'0%', force3D:true});
-		        gsap.set(nextContainer, {zIndex:2, opacity:1, x:'100%', force3D:true});
-		        gsap.set(ctx.next, {autoAlpha:1});
-		        tl.to(currentContainer, {x:'-50%', scale:.8, duration:1.05, ease:'power4.inOut', force3D:true}, 0)
-		          .to(currentContainer, {opacity:.38, duration:.42, ease:'power2.out'}, 0)
-		          .to(nextContainer, {x:'0%', duration:1.05, ease:'power4.inOut', force3D:true}, 0)
-		          .add(ctx.startTargetEnter, .5);
-		        return;
-		      }
-		      gsap.set(currentContainer, {zIndex:1, opacity:1, scale:1, y:'0%', force3D:true});
-		      gsap.set(nextContainer, {zIndex:2, opacity:1, clipPath:'inset(100% 0% 0% 0%)', force3D:true});
-		      gsap.set(ctx.next, {autoAlpha:1, scale:1.04});
-		      tl.to(currentContainer, {y:'-30%', scale:.8, opacity:.4, duration:.86, ease:'power4.inOut', force3D:true}, 0)
-		        .to(nextContainer, {clipPath:'inset(0% 0% 0% 0%)', duration:.86, ease:'power4.inOut', force3D:true}, 0)
+			    currentContainer.dataset.containerTransition = 'true';
+			    nextContainer.dataset.containerTransition = 'true';
+			    currentContainer.dataset.containerVariant = variant;
+			    nextContainer.dataset.containerVariant = variant;
+			    currentContainer.appendChild(ctx.current);
+			    nextContainer.appendChild(ctx.next);
+			    ctx.stage.append(currentContainer, nextContainer);
+			    return playTimeline(ctx, tl => {
+			      if(variant === 'alternative-slide'){
+			        const startSide = ctx.direction > 0 ? 'right' : 'left';
+			        nextContainer.dataset.containerDirectionStart = startSide;
+			        currentContainer.dataset.containerDirectionStart = startSide;
+			        gsap.set(currentContainer, {zIndex:1, opacity:1, scale:1, x:'0%', force3D:true});
+			        gsap.set(nextContainer, {zIndex:2, opacity:1, x:`${100 * ctx.direction}%`, force3D:true});
+			        gsap.set(ctx.next, {autoAlpha:1});
+			        tl.to(currentContainer, {x:`${-50 * ctx.direction}%`, scale:.8, duration:1.05, ease:'power4.inOut', force3D:true}, 0)
+			          .to(currentContainer, {opacity:.38, duration:.42, ease:'power2.out'}, 0)
+			          .to(nextContainer, {x:'0%', duration:1.05, ease:'power4.inOut', force3D:true}, 0)
+			          .add(ctx.startTargetEnter, .5);
+			        return;
+			      }
+			      const clipStart = ctx.direction > 0 ? 'top' : 'bottom';
+			      const startClipPath = ctx.direction > 0 ? 'inset(100% 0% 0% 0%)' : 'inset(0% 0% 100% 0%)';
+			      currentContainer.dataset.containerDirectionStart = ctx.direction > 0 ? 'up' : 'down';
+			      nextContainer.dataset.containerDirectionStart = ctx.direction > 0 ? 'up' : 'down';
+			      currentContainer.dataset.containerClipStart = clipStart;
+			      nextContainer.dataset.containerClipStart = clipStart;
+			      gsap.set(currentContainer, {zIndex:1, opacity:1, scale:1, y:'0%', force3D:true});
+			      gsap.set(nextContainer, {zIndex:2, opacity:1, clipPath:startClipPath, force3D:true});
+			      gsap.set(ctx.next, {autoAlpha:1, scale:1.04});
+			      tl.to(currentContainer, {y:`${-30 * ctx.direction}%`, scale:.8, opacity:.4, duration:.86, ease:'power4.inOut', force3D:true}, 0)
+			        .to(nextContainer, {clipPath:'inset(0% 0% 0% 0%)', duration:.86, ease:'power4.inOut', force3D:true}, 0)
 		        .to(ctx.next, {scale:1, duration:.86, ease:'power3.out'}, 0)
 		        .add(ctx.startTargetEnter, .42);
 		    }, opts);
-		  }
-		  async function captureTransitionTexture(element, width, height){
-		    try {
-		      if(typeof window.__captureSlideImageForTransition === 'function'){
-		        const dataUrl = await window.__captureSlideImageForTransition(element, {
-		          backgroundColor:'#02040c',
-		          cacheBust:false,
-		          pixelRatio:1,
-		          skipFonts:true,
-		          fontEmbedCSS:'',
-		          width:element.offsetWidth || Math.round(width),
-		          height:element.offsetHeight || Math.round(height),
-		        });
-		        const image = await loadTransitionImage(dataUrl);
-		        return drawTransitionImage(image, width, height, true, 'html-to-image');
-		      }
-		    } catch {
-		      return drawDomTransitionTexture(element, width, height);
-		    }
-		    return drawDomTransitionTexture(element, width, height);
-		  }
-		  function suspendRemoteStyles(){
-		    const links = [...document.querySelectorAll('link[rel="stylesheet"][href^="http"]')];
-		    const previous = links.map(link => [link, link.disabled]);
-		    links.forEach(link => { link.disabled = true; });
-		    return () => previous.forEach(([link, disabled]) => { link.disabled = disabled; });
-		  }
-		  function loadTransitionImage(src){
-		    return new Promise((resolve, reject) => {
-		      const image = new Image();
-		      image.onload = () => resolve(image);
-		      image.onerror = reject;
-		      image.src = src;
-		    });
-		  }
-		  function drawTransitionImage(image, width, height, captured, sourceName){
-		    const source = document.createElement('canvas');
-		    source.width = width;
-		    source.height = height;
-		    const sourceContext = source.getContext('2d', {willReadFrequently:true});
-		    sourceContext.drawImage(image, 0, 0, width, height);
-		    return {captured, source:sourceName, data:sourceContext.getImageData(0, 0, width, height)};
-		  }
-		  function drawDomTransitionTexture(element, width, height){
-		    const source = document.createElement('canvas');
-		    source.width = width;
-		    source.height = height;
-		    const sourceContext = source.getContext('2d', {willReadFrequently:true});
-		    const rect = element.getBoundingClientRect();
-		    sourceContext.fillStyle = computedColor(getComputedStyle(element).backgroundColor, '#02040c');
-		    sourceContext.fillRect(0, 0, width, height);
-		    const nodes = [...element.querySelectorAll('*')].filter(node => node instanceof HTMLElement && node.offsetParent !== null);
-		    for(const node of nodes.slice(0, 220)){
-		      const style = getComputedStyle(node);
-		      if(style.visibility === 'hidden' || style.display === 'none' || Number(style.opacity || 1) < .05) continue;
-		      const box = node.getBoundingClientRect();
-		      const x = (box.left - rect.left) / rect.width * width;
-		      const y = (box.top - rect.top) / rect.height * height;
-		      const w = box.width / rect.width * width;
-		      const h = box.height / rect.height * height;
-		      if(w < 2 || h < 2) continue;
-		      const bg = computedColor(style.backgroundColor, '');
-		      if(bg){
-		        sourceContext.globalAlpha = Math.min(1, Number(style.opacity || 1));
-		        sourceContext.fillStyle = bg;
-		        sourceContext.fillRect(x, y, w, h);
-		      }
-		      if(node instanceof HTMLImageElement && node.currentSrc){
-		        try { sourceContext.drawImage(node, x, y, w, h); } catch {}
-		      }
-		      const text = ownText(node).trim();
-		      if(text && Number(style.fontSize.replace('px','')) >= 10){
-		        sourceContext.globalAlpha = Math.min(1, Number(style.opacity || 1));
-		        sourceContext.fillStyle = computedColor(style.color, '#f8fafc');
-		        sourceContext.font = `${Math.max(10, Math.min(48, Number(style.fontSize.replace('px','')) * width / rect.width))}px sans-serif`;
-		        sourceContext.textBaseline = 'top';
-		        sourceContext.fillText(text.slice(0, 80), x, y, Math.max(20, w));
-		      }
-		    }
-		    sourceContext.globalAlpha = 1;
-		    return {captured:false, source:'dom-fallback', data:sourceContext.getImageData(0, 0, width, height)};
 		  }
 		  function pixelScaleVars(axis, from, to){
 		    if(axis === 'scaleX') return {scaleX:to, scaleY:1};
@@ -5659,160 +5525,77 @@ refreshRailCatalog();
 		  function resolveNumber(value, fallback){
 		    return value == null ? fallback : value;
 		  }
+		  function firstPixelIndex(cells, rows, cols, mode, direction){
+		    let bestIndex = 0;
+		    let bestValue = Infinity;
+		    cells.forEach((cell, index) => {
+		      const row = Number(cell.dataset.pixelRow || 0);
+		      const col = Number(cell.dataset.pixelColumn || 0);
+		      const value = pixelOrderBase(row, col, rows, cols, mode, direction);
+		      if(value < bestValue){
+		        bestValue = value;
+		        bestIndex = index;
+		      }
+		    });
+		    return bestIndex;
+		  }
 		  function pixelStagger(index, cells, rows, cols, mode, direction, reverse){
 		    const cell = cells[index];
 		    const row = Number(cell.dataset.pixelRow || 0);
 		    const col = Number(cell.dataset.pixelColumn || 0);
+		    let base = pixelOrderBase(row, col, rows, cols, mode, direction);
+		    if(mode === 'row-random') base += ((row * 17 + col * 13) % 6) * .8;
+		    if(reverse) base = rows + cols - base;
+		    const factor = mode === 'center-fast' ? .008 : .012;
+		    return Math.max(0, base * factor);
+		  }
+		  function pixelOrderBase(row, col, rows, cols, mode, direction){
 		    let base = row + col * .3;
 		    if(mode === 'center' || mode === 'center-fast'){
 		      base = Math.abs(row - (rows - 1) / 2) + Math.abs(col - (cols - 1) / 2);
+		      if(direction < 0) base = rows + cols - base;
 		    } else if(mode === 'rows'){
 		      base = direction > 0 ? row : rows - row - 1;
 		    } else if(mode === 'columns'){
 		      base = direction > 0 ? col : cols - col - 1;
 		    } else if(mode === 'row-random'){
 		      base = direction > 0 ? row : rows - row - 1;
-		      base += gsap.utils.random(0, 5);
 		    }
-		    if(reverse) base = rows + cols - base;
-		    const factor = mode === 'center-fast' ? .008 : .012;
-		    return Math.max(0, base * factor);
+		    return base;
+		  }
+		  function sliceOriginForDirection(orientation, origin, direction){
+		    if(direction > 0) return origin;
+		    if(orientation === 'vertical') return origin === 'top' ? 'bottom' : 'top';
+		    return origin === 'left' ? 'right' : 'left';
 		  }
 		  function sliceOriginOffset(orientation, origin){
 		    if(orientation === 'vertical') return origin === 'top' ? -105 : 105;
 		    return origin === 'left' ? -105 : 105;
 		  }
-		  function sliceStagger(index, count, mode, reverse){
-		    if(mode === 'center'){
-		      const distance = Math.abs((count - 1) / 2 - index);
-		      return (reverse ? count / 2 - distance : distance) * .045;
-		    }
-		    const order = reverse ? count - index - 1 : index;
-		    return order * .045;
-		  }
-		  function renderTextureFrame(context, current, next, width, height, progress, effect, direction){
-		    const out = context.createImageData(width, height);
-		    const output = out.data;
-		    const p = clamp01(progress);
-		    for(let y=0; y<height; y+=1){
-		      const v = y / Math.max(1, height - 1);
-		      for(let x=0; x<width; x+=1){
-		        const u = x / Math.max(1, width - 1);
-		        const target = (y * width + x) * 4;
-		        if(effect === 'crossZoom'){
-		          writeCrossZoomPixel(output, target, current, next, width, height, u, v, p);
-		          continue;
-		        }
-		        const sample = textureSample(effect, u, v, p, direction);
-		        const currentIndex = textureIndex(sample.currentX, sample.currentY, width, height);
-		        const nextIndex = textureIndex(sample.nextX, sample.nextY, width, height);
-		        writeTextureMix(output, target, current, next, currentIndex, nextIndex, sample.mix);
+		  function firstSliceIndex(count, mode, direction){
+		    let bestIndex = 0;
+		    let bestValue = Infinity;
+		    for(let index=0; index<count; index+=1){
+		      const value = sliceOrderBase(index, count, mode, direction);
+		      if(value < bestValue){
+		        bestValue = value;
+		        bestIndex = index;
 		      }
 		    }
-		    context.putImageData(out, 0, 0);
+		    return bestIndex;
 		  }
-		  function textureSample(effect, u, v, p, direction){
-		    if(effect === 'bands'){
-		      const band = Math.floor(v * 8);
-		      const sign = band % 2 ? -1 : 1;
-		      const eased = smoothstep(.05, .95, p);
-		      const wobble = Math.sin(v * 36 + p * Math.PI * 2) * .03;
-		      const mix = smoothstep(.18, .82, p + sign * (u - .5) * .28 + wobble);
-		      return {
-		        currentX:clamp01(u + direction * sign * eased * .5),
-		        currentY:v,
-		        nextX:clamp01(u - direction * sign * (1 - eased) * .5),
-		        nextY:v,
-		        mix,
-		      };
+		  function sliceStagger(index, count, mode, direction, reverse){
+		    let order = sliceOrderBase(index, count, mode, direction);
+		    if(reverse) order = count - order - 1;
+		    return Math.max(0, order * .045);
+		  }
+		  function sliceOrderBase(index, count, mode, direction){
+		    if(mode === 'center'){
+		      const distance = Math.abs((count - 1) / 2 - index);
+		      return direction > 0 ? distance : count / 2 - distance;
 		    }
-		    if(effect === 'displace'){
-		      const tile = ((u * 40) % 1) - .5;
-		      const diag = tile * .16;
-		      return {
-		        currentX:clamp01(u + diag * p + Math.sin(v * 20) * .018 * p),
-		        currentY:clamp01(v + diag * p * .55),
-		        nextX:clamp01(u - diag * (1 - p)),
-		        nextY:clamp01(v - diag * (1 - p) * .55),
-		        mix:p,
-		      };
-		    }
-		    if(effect === 'rotateWipe'){
-		      const spread = .07;
-		      const angle = p * Math.PI * 2 * direction;
-		      const pivotX = .5 - 2 * spread + 4 * spread * p;
-		      const cos = Math.cos(angle);
-		      const sin = Math.sin(angle);
-		      const rotX = (u - pivotX) * cos - (v - .5) * sin + .5;
-		      const col = smoothstep(.5 - spread, .5 + spread, u);
-		      const col1 = smoothstep(.5 + spread, .5 - spread, rotX);
-		      const mix = p > .5 ? 1 - Math.min(1 - col, 1 - col1) : Math.min(col1, col);
-		      return {currentX:u, currentY:v, nextX:u, nextY:v, mix:clamp01(mix)};
-		    }
-		    const cx = u - .5;
-		    const cy = v - .5;
-		    const dist = Math.sqrt(cx * cx + cy * cy);
-		    const circle = 1 - smoothstep(p * 1.05 - .2, p * 1.05 + .2, dist);
-		    const wave = Math.sin(v * 18 + p * Math.PI * 4) * .018 * (1 - Math.abs(circle - .5) * 1.5);
-		    return {
-		      currentX:clamp01(u - cx * circle * .48 - cx * p * .18 + wave * direction),
-		      currentY:clamp01(v - cy * circle * .35 + (1 - circle) * .1 * (1 - p)),
-		      nextX:clamp01(u + cx * (circle - 1) * .5 - wave * direction),
-		      nextY:clamp01(v + cy * (circle - 1) * .38),
-		      mix:clamp01(circle),
-		    };
+		    return direction > 0 ? index : count - index - 1;
 		  }
-		  function writeCrossZoomPixel(output, target, current, next, width, height, u, v, p){
-		    const centerX = .25 + .5 * p;
-		    const centerY = .5;
-		    const strength = Math.sin(Math.PI * p) * .42;
-		    let r = 0;
-		    let g = 0;
-		    let b = 0;
-		    let total = 0;
-		    for(let i=0; i<7; i+=1){
-		      const percent = (i + .5) / 7;
-		      const weight = 4 * (percent - percent * percent);
-		      const sx = clamp01(u + (centerX - u) * percent * strength);
-		      const sy = clamp01(v + (centerY - v) * percent * strength);
-		      const idx = textureIndex(sx, sy, width, height);
-		      r += (current[idx] * (1 - p) + next[idx] * p) * weight;
-		      g += (current[idx + 1] * (1 - p) + next[idx + 1] * p) * weight;
-		      b += (current[idx + 2] * (1 - p) + next[idx + 2] * p) * weight;
-		      total += weight;
-		    }
-		    output[target] = r / total;
-		    output[target + 1] = g / total;
-		    output[target + 2] = b / total;
-		    output[target + 3] = 255;
-		  }
-		  function writeTextureMix(output, target, current, next, currentIndex, nextIndex, mix){
-		    const inv = 1 - clamp01(mix);
-		    output[target] = current[currentIndex] * inv + next[nextIndex] * (1 - inv);
-		    output[target + 1] = current[currentIndex + 1] * inv + next[nextIndex + 1] * (1 - inv);
-		    output[target + 2] = current[currentIndex + 2] * inv + next[nextIndex + 2] * (1 - inv);
-		    output[target + 3] = 255;
-		  }
-		  function computedColor(color, fallback){
-		    if(!color || color === 'transparent') return fallback;
-		    const alpha = color.match(/rgba?\([^)]*,\s*([.\d]+)\)$/)?.[1];
-		    return alpha === '0' ? fallback : color;
-		  }
-		  function ownText(node){
-		    return [...node.childNodes].filter(child => child.nodeType === Node.TEXT_NODE).map(child => child.textContent || '').join(' ');
-		  }
-		  function textureIndex(u, v, width, height){
-	    const x = Math.max(0, Math.min(width - 1, Math.round(u * (width - 1))));
-	    const y = Math.max(0, Math.min(height - 1, Math.round(v * (height - 1))));
-	    return (y * width + x) * 4;
-	  }
-	  function clamp01(value){
-	    return Math.max(0, Math.min(1, value));
-	  }
-	  function smoothstep(edge0, edge1, value){
-	    const t = clamp01((value - edge0) / (edge1 - edge0 || 1));
-	    return t * t * (3 - 2 * t);
-	  }
 	})();
 </script>
 </body>
