@@ -76,6 +76,7 @@ function renderRuntimePackage() {
     devDependencies: {
       tsx: sourcePackage.devDependencies?.tsx || '^4.20.0',
       esbuild: '^0.28.0',
+      'playwright-core': sourcePackage.devDependencies?.['playwright-core'] || '^1.60.0',
     },
   };
 }
@@ -239,14 +240,14 @@ function renderInstalledSkill(content) {
       '8. 运行 `npm run validate:swiss -- output/<deck-name>/ppt/index.html`。',
       '9. 运行 `npm run validate:goal-copy -- output/<deck-name>/goal.json output/<deck-name>/ppt/index.html`。',
       '10. 从项目目录启动本地 HTTP/HTTPS 预览服务: `npm run preview:start -- output/<deck-name>/ppt <port>`。',
-      '11. 最终回复必须给本机 HTTP 导出地址、HTTPS/局域网备用预览地址和 HTML 文件路径,并说明本机 HTTP 链接可用于导出 PPT/PPTX,`http://jadon.local:<port>/` 这类 HTTP LAN/jadon.local 地址可能导致下载失败且不作为导出主入口,直接打开本地 HTML 或 `file://` 不能导出可编辑 PPTX。',
+      '11. 根据最终产物格式交付:HTML 交付时给本机 HTTP 导出地址、HTTPS/局域网备用预览地址和 HTML 文件路径,并说明本机 HTTP 链接可用于导出 PPT/PPTX,`http://jadon.local:<port>/` 这类 HTTP LAN/jadon.local 地址可能导致下载失败且不作为导出主入口,直接打开本地 HTML 或 `file://` 不能导出可编辑 PPTX;PPT/PPTX 交付时先调用本机 HTTP 导出服务输出可编辑 PPTX,最终只给 PPT/PPTX 文件路径或下载结果,不呈现 HTML 预览地址或 HTML 文件路径。',
     ].join('\n'),
     [
       '7. 运行渲染脚本输出 `output/<deck-name>/ppt/index.html`;脚本会使用 Skill 内置生成器,不要切回外部项目目录。',
       '8. 确认脚本完成 `validate:swiss` 和 `validate:goal-copy`。',
       '9. 运行 `node <skill-root>/scripts/check_latest_version.mjs` 做静默版本检查。',
       '10. 渲染脚本会启动本地 HTTP/HTTPS 预览服务并输出本机 HTTP 导出地址 `http://127.0.0.1:<port>/`、HTTPS 预览地址 `https://jadon.local:<port>/` 和 HTTP LAN 备用地址;需要指定端口时设置 `DASHI_PPT_PREVIEW_PORT` 后再运行脚本。',
-      '11. 最终回复必须给本机 HTTP 导出地址、HTTPS/局域网备用预览地址和 HTML 文件路径,并说明本机 HTTP 链接可用于导出 PPT/PPTX,不要把 `http://jadon.local:<port>/` 作为最终 HTTP 导出地址,HTTP LAN/jadon.local 可能导致下载失败,直接打开本地 HTML 或 `file://` 不能导出可编辑 PPTX。只有版本检查脚本有输出时才附加更新提醒。',
+      '11. 根据最终产物格式交付:HTML 交付时给本机 HTTP 导出地址、HTTPS/局域网备用预览地址和 HTML 文件路径,并说明本机 HTTP 链接可用于导出 PPT/PPTX,不要把 `http://jadon.local:<port>/` 作为最终 HTTP 导出地址,HTTP LAN/jadon.local 可能导致下载失败,直接打开本地 HTML 或 `file://` 不能导出可编辑 PPTX;PPT/PPTX 交付时调用本机 HTTP 导出服务 `/api/export-editable-pptx` 输出可编辑 PPTX,最终只给 PPT/PPTX 文件路径或下载结果,不呈现 HTML 预览地址或 HTML 文件路径。只有版本检查脚本有输出时才附加更新提醒。',
     ].join('\n')
   );
 
@@ -270,10 +271,10 @@ function syncDistributionFiles() {
 function renderAgentMetadata() {
   return `interface:
   display_name: "DashAI PPT"
-  short_description: "Generate editable HTML PPT decks"
+  short_description: "Generate editable HTML/PPTX decks"
   icon_small: "./assets/skill/dashiai-ppt-small.png"
   icon_large: "./assets/skill/dashiai-ppt.png"
-  default_prompt: "Use $dashiai-ppt to turn my presentation goal into an editable HTML PPT deck."
+  default_prompt: "Use $dashiai-ppt to turn my presentation goal into an editable HTML or PPTX deck."
 `;
 }
 

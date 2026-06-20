@@ -275,7 +275,12 @@ function testCodexImageGenExportDeliveryGuidance() {
   if (!/HTML 文件路径/.test(skill)) missing.push('final delivery HTML file path requirement');
   if (!/(本机 HTTP|HTTP\/HTTPS)[\s\S]{0,120}(导出|用于导出).*(PPT|PPTX)/.test(skill)) missing.push('HTTP/HTTPS export-capable delivery distinction');
   if (!/(file:\/\/|本地 HTML)[\s\S]{0,120}不能导出可编辑 PPTX/.test(skill)) missing.push('file local HTML cannot export editable PPTX distinction');
+  if (!/最终产物[\s\S]{0,80}HTML[\s\S]{0,40}PPT\/PPTX/.test(skill)) missing.push('ask final artifact HTML or PPT/PPTX guidance');
+  if (!/推荐 HTML[\s\S]{0,80}效果更好[\s\S]{0,40}自定义程度更强/.test(skill)) missing.push('recommended HTML rationale');
+  if (!/PPT\/PPTX[\s\S]{0,120}先制作 HTML[\s\S]{0,120}输出可编辑 PPTX/.test(skill)) missing.push('PPT/PPTX follows HTML-first export flow');
+  if (!/PPT\/PPTX[\s\S]{0,160}不呈现 HTML 预览地址或 HTML 文件路径/.test(skill)) missing.push('PPT/PPTX final reply hides HTML delivery');
   if (!/HTTP\/HTTPS/.test(sync)) missing.push('synced installed skill preserves HTTP/HTTPS wording');
+  if (!/playwright-core/.test(sync)) missing.push('synced runtime keeps PPTX export browser dependency');
   assert(!missing.length, `Codex/image-gen/export delivery guidance missing: ${missing.join(', ')}`);
 }
 
