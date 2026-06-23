@@ -68,7 +68,7 @@ node <skill-root>/scripts/check_latest_version.mjs
 <!-- theme-choice-hints:end -->
 - 不使用旧 token、旧主题、旧图片 slot、旧风格分支或旧入场动画控制。
 - 选页先用 `npm run layout:query -- --theme <themePack> --role <role> --limit 8`;需要图片槽时加 `--needs-media`、`--planned-images <n>`、`--provided-images <n>` 或 `--image-gen`。
-- 字段不清楚、对象/数组/count、图片/媒体:先运行 `npm run inspect:layout -- --compact <layout...>`;写对象、数组、数量或图片 props:运行 `props:safe` 并按 `propShapes` 填 key。
+- 字段不清楚、对象/数组/count、图片/媒体:先运行 `npm run inspect:layout -- --compact <layout...>`;写对象、数组、数量或图片 props:运行 `props:safe`,整份 goal 用 `props:safe -- --goal <file> --write`。
 - 长 deck:先用 `npm run goal:scaffold -- --title <title> --goal <goal> --theme <themePack> --pages <n> --chunk-size 5 --out output/<deck-name>/goal.json` 生成唯一 layout 骨架,再分段补 props。
 - 文案长度:按 `inspect:layout` 的 `copyBudgets` 写;`display` / `metric` 字段只写短词、短句或数字。
 - 可见数组项必须写实文案;被 count/显隐控制隐藏的尾项可保留“请输入文本”占位。
@@ -102,7 +102,7 @@ node <skill-root>/scripts/check_latest_version.mjs
 3. 判断图片意图:无图但需要视觉素材时先问是否预留图片槽;用户给本地素材先 `media:stage`;明确生图时用 image-gen。
 4. 用 `layout:query` 选候选;对象/数组/count/图片 props 用 `inspect:layout` + `props:safe`。
 5. 每页只承载一个主要信息角色。无法安全覆盖的页面优先换 layout,不要改样式字段硬凑。
-6. 把 JSON 写入本次工作目录的 `output/<deck-name>/goal.json`;渲染前运行 `npm run props:safe -- --goal output/<deck-name>/goal.json` 和 goal spec 校验。
+6. 把 JSON 写入本次工作目录的 `output/<deck-name>/goal.json`;渲染前运行 `npm run props:safe -- --goal output/<deck-name>/goal.json --write` 和 goal spec 校验。
 7. 运行 `npm run render:goal -- output/<deck-name>/goal.json output/<deck-name>/ppt/index.html`。
 8. 渲染后核对素材路径,缺失时补最终 `ppt/assets`。
 9. 运行 `npm run validate:swiss -- output/<deck-name>/ppt/index.html`。

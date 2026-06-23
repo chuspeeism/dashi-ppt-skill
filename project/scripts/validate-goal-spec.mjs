@@ -21,6 +21,7 @@ export function validateGoalSpec(spec) {
   const errors = [];
   const slides = Array.isArray(spec?.slides) ? spec.slides : [];
   const mediaUsages = new Map();
+  const layoutUsages = new Map();
 
   if (!slides.length) {
     errors.push('deck field slides: final delivery goal must include non-empty slides with concrete layout values');
@@ -60,6 +61,10 @@ export function validateGoalSpec(spec) {
       return;
     }
 
+    const usages = layoutUsages.get(layout) || [];
+    usages.push(slideNumber);
+    layoutUsages.set(layout, usages);
+
     if (Object.prototype.hasOwnProperty.call(slide, 'media')) {
       errors.push(`slide ${slideNumber} layout ${layoutLabel} field media: slides[].media is not rendered; use props.images or props.media`);
     }
@@ -97,9 +102,18 @@ export function validateGoalSpec(spec) {
     errors.push(`slide ${item.slideNumber} layout ${item.layout} field layout: cover-like layouts must use themeXX_page001-page005`);
   }
 
+  validateUniqueLayouts(layoutUsages, errors);
+
   if (spec?.allowMediaReuse !== true) validateUniqueMediaUsages(mediaUsages, errors);
 
   return errors;
+}
+
+function validateUniqueLayouts(layoutUsages, errors) {
+  for (const [layout, slides] of layoutUsages.entries()) {
+    if (slides.length <= 1) continue;
+    errors.push(`deck field slides: duplicate layout ${layout} used on slides ${slides.join(', ')}; choose a unique layout for each slide`);
+  }
 }
 
 function validateMediaIntent(slide, slideNumber, layout, props, errors) {

@@ -39,6 +39,7 @@ const tests = [
   ['preview panel handles type: images as an image list control', testImagesControl],
   ['control naming stays generic across user and agent contracts', testControlNaming],
   ['theme12 shared chrome stays deck-neutral', testTheme12SharedChromeNeutral],
+  ['theme11 image slots persist uploaded media through deck state', testTheme11ImageSlotStateBridge],
 ];
 
 const failures = [];
@@ -172,6 +173,20 @@ function testWriteSafeProps() {
   })]);
   assert(backgroundMedia.props?.backgroundMode === 'media', 'authored media should switch supported backgroundMode to media');
 
+  const videoMedia = runJson('scripts/write-safe-props.mjs', [
+    'theme11_page063',
+    JSON.stringify({ title: '视频封面' }),
+    '--media',
+    'assets/user-media/hero.mp4',
+    'assets/user-media/poster.png',
+  ]);
+  assert(videoMedia.mediaIntent === 'provided-media', 'expected provided-media media intent');
+  assert(videoMedia.props?.images?.[0]?.src === 'assets/user-media/hero.mp4', 'props:safe --media should keep video src');
+  assert(videoMedia.props?.images?.[0]?.kind === 'video', 'props:safe --media should type video items');
+  assert(videoMedia.props?.images?.[0]?.type === 'video/mp4', 'props:safe --media should infer video mime type');
+  assert(videoMedia.props?.images?.[1]?.kind === 'image', 'props:safe --media should type image items');
+  assert(videoMedia.props?.images?.[1]?.type === 'image/png', 'props:safe --media should infer image mime type');
+
   const tmp = mkdtempSync(path.join(tmpdir(), 'dashi-props-goal-'));
   try {
     const goalPath = path.join(tmp, 'goal.json');
@@ -183,6 +198,28 @@ function testWriteSafeProps() {
     }, null, 2));
     const goalSafe = runJson('scripts/write-safe-props.mjs', ['--goal', goalPath]);
     assert(goalSafe.ok === true && goalSafe.slideCount === 1, 'props:safe --goal should validate a complete goal');
+
+    const writableGoalPath = path.join(tmp, 'writable-goal.json');
+    writeFileSync(writableGoalPath, JSON.stringify({
+      title: 'Writable Props Safe Goal',
+      goal: 'should normalize whole-goal props in place',
+      themePack: 'theme12',
+      slides: [{
+        layout: 'theme12_page003',
+        props: {
+          title: '夜场招商',
+          media: ['assets/user-media/recap.mp4'],
+        },
+      }],
+    }, null, 2));
+    const writtenSafe = runJson('scripts/write-safe-props.mjs', ['--goal', writableGoalPath, '--write']);
+    const writtenGoal = JSON.parse(readFileSync(writableGoalPath, 'utf8'));
+    const writtenMedia = writtenGoal.slides?.[0]?.props?.media?.[0];
+    assert(writtenSafe.written === writableGoalPath, 'props:safe --goal --write should report the written file');
+    assert(writtenMedia?.src === 'assets/user-media/recap.mp4', 'props:safe --write should normalize video media src');
+    assert(writtenMedia?.kind === 'video', 'props:safe --write should normalize video media kind');
+    assert(writtenMedia?.type === 'video/mp4', 'props:safe --write should infer video mime type');
+    execFileSync('node', ['scripts/validate-goal-spec.mjs', writableGoalPath], { cwd: ROOT, stdio: 'pipe' });
 
     const badGoalPath = path.join(tmp, 'bad-goal.json');
     writeFileSync(badGoalPath, JSON.stringify({
@@ -813,6 +850,16 @@ function testValidateGoalSpec() {
       ],
     }, ['cover', 'theme01_page001', 'theme01_page002']);
 
+    expectGoalFailure(tmp, 'duplicate-layout.json', {
+      title: 'Duplicate Layout',
+      goal: 'should fail',
+      themePack: 'theme01',
+      slides: [
+        { layout: 'theme01_page020', props: { title: '第一页' } },
+        { layout: 'theme01_page020', props: { title: '第二页' } },
+      ],
+    }, ['duplicate layout', 'theme01_page020']);
+
     expectGoalFailure(tmp, 'html-prop.json', {
       title: 'HTML Prop',
       goal: 'should fail',
@@ -826,7 +873,7 @@ function testValidateGoalSpec() {
       themePack: 'theme01',
       slides: [
         { layout: 'theme01_page020', props: { title: '媒体一', images: ['assets/user-media/a.png'] } },
-        { layout: 'theme01_page020', props: { title: '媒体二', images: ['assets/user-media/a.png'] } },
+        { layout: 'theme01_page026', props: { title: '媒体二', images: ['assets/user-media/a.png'] } },
       ],
     }, ['media asset', 'assets/user-media/a.png', 'used 2 times']);
 
@@ -906,7 +953,7 @@ function testValidateGoalSpec() {
       allowMediaReuse: true,
       slides: [
         { layout: 'theme01_page020', props: { title: '复用一', images: ['x.png'] } },
-        { layout: 'theme01_page020', props: { title: '复用二', images: ['x.png'] } },
+        { layout: 'theme01_page026', props: { title: '复用二', images: ['x.png'] } },
       ],
     }, null, 2));
     execFileSync('node', ['scripts/validate-goal-spec.mjs', explicitReusePath], { cwd: ROOT, stdio: 'pipe' });
@@ -1038,6 +1085,16 @@ function testTheme12SharedChromeNeutral() {
   assert(!swBase.includes('声浪 SOUNDWAVE'), 'theme12 shared Bar/Footer should not hardcode SoundWave brand');
   assert(!swBase.includes('Independent Music OS</div>'), 'theme12 shared Footer should not hardcode music OS footer');
   assert(swBase.includes('CREATIVE SYSTEM'), 'theme12 shared chrome should keep a neutral default label');
+}
+
+function testTheme11ImageSlotStateBridge() {
+  const source = readFileSync(path.join(ROOT, 'src/components/themes/theme11/source/ignBase.jsx'), 'utf8');
+  const runtime = readFileSync(path.join(ROOT, 'src/components/themes/client-runtime.jsx'), 'utf8');
+  assert(/IgnisImageSlotMediaContext/.test(source), 'theme11 ImageSlot must expose a media context');
+  assert(/useContext\(IgnisImageSlotMediaContext\)/.test(source), 'theme11 ImageSlot must read the media context');
+  assert(/mediaBridge[\s\S]{0,120}\.set\?\./.test(source), 'theme11 ImageSlot uploads must write to deck media state');
+  assert(/IgnisImageSlotMediaContext/.test(runtime), 'client runtime must import the theme11 media context');
+  assert(/theme11ImageSlotMediaContext\.Provider/.test(runtime), 'client runtime must provide the theme11 media context');
 }
 
 function assertNoSerializedReactDefaults(value, pathName, offenders) {

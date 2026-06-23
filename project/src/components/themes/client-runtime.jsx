@@ -7,6 +7,7 @@ import { KxImageSlotMediaContext as theme06KxImageSlotMediaContext } from './the
 import { AdaptiveImageSlotMediaContext as theme08AdaptiveImageSlotMediaContext } from './theme08/source/components/AclPrimitives.jsx';
 import { ImageStripMediaContext as theme09ImageStripMediaContext } from './theme09/source/slides/ImageStrip.jsx';
 import { DeckImageSlotMediaContext as theme10DeckImageSlotMediaContext } from './theme10/source/components/DeckImageSlot.jsx';
+import { IgnisImageSlotMediaContext as theme11ImageSlotMediaContext } from './theme11/source/ignBase.jsx';
 import { runtimePages as theme01Pages } from './theme01/runtime.jsx';
 import { runtimePages as theme02Pages } from './theme02/runtime.jsx';
 import { runtimePages as theme03Pages } from './theme03/runtime.jsx';
@@ -350,17 +351,37 @@ function withImageProviders(element, mediaApi) {
     drop: (index, file) => mediaApi.acceptFile('images', index, file),
   };
   const keyedValue = createKeyedImageBridge(mediaApi);
+  const theme11Value = createTheme11ImageBridge(mediaApi);
   return React.createElement(theme01ImageSlotActions.Provider, { value: theme01Value },
     React.createElement(theme03ImageSlotMediaContext.Provider, { value: theme03Value },
       React.createElement(theme06KxImageSlotMediaContext.Provider, { value: keyedValue },
         React.createElement(theme08AdaptiveImageSlotMediaContext.Provider, { value: keyedValue },
           React.createElement(theme09ImageStripMediaContext.Provider, { value: keyedValue },
-            React.createElement(theme10DeckImageSlotMediaContext.Provider, { value: keyedValue }, element),
+            React.createElement(theme10DeckImageSlotMediaContext.Provider, { value: keyedValue },
+              React.createElement(theme11ImageSlotMediaContext.Provider, { value: theme11Value }, element),
+            ),
           ),
         ),
       ),
     ),
   );
+}
+
+function createTheme11ImageBridge(mediaApi) {
+  const indexes = new Map();
+  let nextIndex = 0;
+  const resolve = slotId => {
+    const key = String(slotId || `slot-${nextIndex}`);
+    if (!indexes.has(key)) indexes.set(key, nextIndex++);
+    return indexes.get(key);
+  };
+  return {
+    resolve,
+    get: index => mediaApi.get('images', index),
+    set: (index, value) => mediaApi.set('images', index, value),
+    pick: index => mediaApi.pick('images', index),
+    drop: (index, file) => mediaApi.acceptFile('images', index, file),
+  };
 }
 
 function createKeyedImageBridge(mediaApi) {

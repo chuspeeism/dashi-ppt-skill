@@ -1368,6 +1368,10 @@ export const pages = [
           {
             "value": 2,
             "label": "2 栏"
+          },
+          {
+            "value": "grid",
+            "label": "网格"
           }
         ],
         "desc": "卡片网格的列数",

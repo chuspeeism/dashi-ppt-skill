@@ -16,6 +16,7 @@
  * set per-slide on the root element — nothing leaks to the host document root.
  * -------------------------------------------------------------------------- */
 let __ignInjected = false;
+export const IgnisImageSlotMediaContext = React.createContext(null);
 function ensureBase() {
   if (__ignInjected || typeof document === 'undefined') return;
   __ignInjected = true;
@@ -120,9 +121,20 @@ export function ImageSlot({ src, placeholder = '图片', mode = 'ratio', height,
   const [picked, setPicked] = React.useState(null);
   const [drag, setDrag] = React.useState(false);
   const inputRef = React.useRef(null);
-  const media = normalizeMedia(picked || src);
+  const mediaBridge = React.useContext(IgnisImageSlotMediaContext);
+  const slotId = React.useId();
+  const bridgeIndex = mediaBridge?.resolve?.(slotId);
+  const bridged = Number.isFinite(bridgeIndex) ? mediaBridge?.get?.(bridgeIndex) : null;
+  const media = normalizeMedia(bridged || picked || src);
   const eff = media?.src;
   const onLoad = (e) => setRatio(`${e.target.naturalWidth} / ${e.target.naturalHeight}`);
+  const commitPicked = (value) => {
+    if (mediaBridge && Number.isFinite(bridgeIndex)) {
+      mediaBridge.set?.(bridgeIndex, value);
+      return;
+    }
+    setPicked(value);
+  };
   const ingest = (f) => {
     if (!f || !/^(image|video)\//.test(f.type || '')) return;
     const rd = new FileReader();
@@ -134,14 +146,14 @@ export function ImageSlot({ src, placeholder = '图片', mode = 'ratio', height,
         video.onloadedmetadata = () => {
           const nextRatio = video.videoWidth && video.videoHeight ? `${video.videoWidth} / ${video.videoHeight}` : null;
           setRatio(nextRatio);
-          setPicked({ src: url, kind: 'video', type: f.type });
+          commitPicked({ src: url, kind: 'video', type: f.type, ratio: video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : null });
         };
-        video.onerror = () => setPicked({ src: url, kind: 'video', type: f.type });
+        video.onerror = () => commitPicked({ src: url, kind: 'video', type: f.type });
         video.src = url;
         return;
       }
       setRatio(null);
-      setPicked({ src: url, kind: 'image', type: f.type });
+      commitPicked({ src: url, kind: 'image', type: f.type });
     };
     rd.readAsDataURL(f);
   };

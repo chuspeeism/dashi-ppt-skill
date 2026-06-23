@@ -227,9 +227,10 @@ export function normalizeProps(layout, props = {}) {
   try {
     const propsWithCountSafety = normalizeSlidePropsForContract(layout, props, record.contract);
     const propsWithDefaults = mergeDefaultArrayTails(propsWithCountSafety, record.defaultProps, aliasResult.props);
+    const propsWithMedia = normalizeMediaItems(propsWithDefaults, getMediaSlots(record));
     return {
-      props: propsWithDefaults,
-      publicProps: toPublicProps(propsWithDefaults, record.controls),
+      props: propsWithMedia,
+      publicProps: toPublicProps(propsWithMedia, record.controls),
       appliedAliases: aliasResult.appliedAliases,
       warnings,
       errors: [],
@@ -339,6 +340,16 @@ export function getCopyBudgetsForLayout(layout) {
   return getCopyBudgets(record.defaultProps, copyKeys);
 }
 
+export function typedMediaItemForSource(source) {
+  const src = String(source || '').trim();
+  const kind = looksLikeVideoSrc(src) ? 'video' : 'image';
+  return {
+    src,
+    kind,
+    type: mimeForMediaSource(src, kind),
+  };
+}
+
 function mergeDefaultArrayTails(props, defaults, authoredProps = props) {
   const next = { ...(props || {}) };
   for (const [key, value] of Object.entries(props || {})) {
@@ -351,6 +362,33 @@ function mergeDefaultArrayTails(props, defaults, authoredProps = props) {
     ];
   }
   return next;
+}
+
+function normalizeMediaItems(props, mediaSlots = []) {
+  const next = { ...(props || {}) };
+  for (const slot of mediaSlots || []) {
+    if (!slot?.field || !Array.isArray(next[slot.field])) continue;
+    next[slot.field] = next[slot.field].map(normalizeMediaItem);
+  }
+  return next;
+}
+
+function normalizeMediaItem(item) {
+  if (typeof item === 'string') {
+    const src = item.trim();
+    return looksLikeVideoSrc(src) ? typedMediaItemForSource(src) : item;
+  }
+  if (!item || typeof item !== 'object' || Array.isArray(item)) return item;
+  if (typeof item.src !== 'string' || !item.src.trim()) return item;
+  const src = item.src.trim();
+  const kind = normalizeMediaKind(item.kind) || (looksLikeVideoSrc(src) ? 'video' : '');
+  if (kind !== 'video') return item;
+  return {
+    ...item,
+    src,
+    kind: 'video',
+    type: item.type || mimeForMediaSource(src, 'video'),
+  };
 }
 
 export function getLayoutRecord(layout) {
@@ -692,6 +730,28 @@ function normalizeMediaKind(kind) {
   if (['video', 'videos', 'movie', 'movies'].includes(value)) return 'video';
   if (['mixed', 'media', 'any'].includes(value)) return 'mixed';
   return value;
+}
+
+function looksLikeVideoSrc(src) {
+  return /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(String(src || '').trim())
+    || String(src || '').startsWith('data:video/');
+}
+
+function mimeForMediaSource(src, kind) {
+  const ext = path.extname(String(src || '').split(/[?#]/)[0]).toLowerCase();
+  return {
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.webp': 'image/webp',
+    '.gif': 'image/gif',
+    '.svg': 'image/svg+xml',
+    '.mp4': 'video/mp4',
+    '.m4v': 'video/mp4',
+    '.mov': 'video/quicktime',
+    '.webm': 'video/webm',
+    '.ogv': 'video/ogg',
+  }[ext] || (kind === 'video' ? 'video/mp4' : 'image/*');
 }
 
 function slotAcceptsKind(slot, kind) {

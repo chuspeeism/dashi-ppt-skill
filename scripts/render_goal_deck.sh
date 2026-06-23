@@ -26,7 +26,7 @@ if [[ ! -d node_modules || package.json -nt node_modules/.package-lock.json || p
 npm install
 fi
 mkdir -p "$(dirname "$OUT_PATH")"
-npm run props:safe -- --goal "$SPEC_PATH"
+npm run props:safe -- --goal "$SPEC_PATH" --write
 npm run validate:goal-spec -- "$SPEC_PATH"
 npm run render:goal -- "$SPEC_PATH" "$OUT_PATH"
 npm run validate:swiss -- "$OUT_PATH"

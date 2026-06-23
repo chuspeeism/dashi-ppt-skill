@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import {
   compactJson,
   getPreferredMediaSlot,
   normalizeProps,
+  typedMediaItemForSource,
 } from './skill-workflow-utils.mjs';
 import { validateGoalSpec } from './validate-goal-spec.mjs';
 
@@ -15,7 +16,7 @@ if (argv.includes('--help') || argv.includes('-h')) {
 }
 
 if (argv[0] === '--goal') {
-  runGoal(argv[1]);
+  runGoal(argv[1], parseGoalOptions(argv.slice(2)));
 } else {
   runSingle(argv);
 }
@@ -77,7 +78,7 @@ function runSingle(args) {
   if (result.errors?.length) process.exit(1);
 }
 
-function runGoal(goalArg) {
+function runGoal(goalArg, options = {}) {
   if (!goalArg) {
     printUsage();
     process.exit(2);
@@ -90,13 +91,16 @@ function runGoal(goalArg) {
     process.exit(2);
   }
 
-  const goalSpecErrors = validateGoalSpec(spec);
   const slides = Array.isArray(spec.slides) ? spec.slides : [];
+  const normalizedSlides = [];
   const slideResults = slides.map((slide, index) => {
     const layout = slide?.layout;
     const normalized = layout
       ? normalizeProps(layout, slide?.props || {})
       : { warnings: [], errors: ['missing layout'] };
+    normalizedSlides.push(layout && !normalized.errors?.length
+      ? { ...slide, props: normalized.props }
+      : slide);
     return {
       slide: index + 1,
       layout: layout || null,
@@ -106,11 +110,16 @@ function runGoal(goalArg) {
       ...(normalized.errors?.length ? { errors: normalized.errors } : {}),
     };
   });
+  const normalizedSpec = Array.isArray(spec.slides) ? { ...spec, slides: normalizedSlides } : spec;
+  const goalSpecErrors = validateGoalSpec(normalizedSpec);
   const propErrors = slideResults.flatMap(item => (item.errors || []).map(error => `slide ${item.slide} ${item.layout || '<missing>'}: ${error}`));
+  const ok = goalSpecErrors.length === 0 && propErrors.length === 0;
+  if (ok && options.write) writeFileSync(goalArg, compactJson(normalizedSpec));
   const result = {
     goal: goalArg,
     slideCount: slides.length,
-    ok: goalSpecErrors.length === 0 && propErrors.length === 0,
+    ok,
+    ...(ok && options.write ? { written: goalArg } : {}),
     goalSpecErrorCount: goalSpecErrors.length,
     propErrorCount: propErrors.length,
     warningCount: slideResults.reduce((sum, item) => sum + item.warningCount, 0),
@@ -125,7 +134,7 @@ function runGoal(goalArg) {
 function printUsage() {
   console.error('Usage:');
   console.error('  node scripts/write-safe-props.mjs <layout> <props-json-or-file> [--images <path...>] [--media <path...>]');
-  console.error('  node scripts/write-safe-props.mjs --goal <goal-spec.json>');
+  console.error('  node scripts/write-safe-props.mjs --goal <goal-spec.json> [--write]');
 }
 
 function parseMediaInput(args) {
@@ -135,9 +144,15 @@ function parseMediaInput(args) {
     if (item !== '--images' && item !== '--media') continue;
     result.kind = item === '--media' ? 'media' : 'images';
     for (let valueIndex = index + 1; valueIndex < args.length && !args[valueIndex].startsWith('--'); valueIndex += 1) {
-      result.items.push(args[valueIndex]);
+      result.items.push(result.kind === 'media' ? typedMediaItemForSource(args[valueIndex]) : args[valueIndex]);
       index = valueIndex;
     }
   }
   return result;
+}
+
+function parseGoalOptions(args) {
+  return {
+    write: args.includes('--write'),
+  };
 }
