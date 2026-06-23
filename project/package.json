@@ -14,6 +14,7 @@
     "render:goal": "tsx scripts/render-goal-deck.jsx",
     "preview:https": "node scripts/serve-preview-https.mjs",
     "preview:start": "node scripts/start-preview-server.mjs",
+    "test:theme01-page69-text": "tsx scripts/test-theme01-page69-text-slots.mjs",
     "validate:swiss": "node scripts/validate-swiss-deck.mjs",
     "validate:goal-copy": "node scripts/validate-goal-copy.mjs"
   },

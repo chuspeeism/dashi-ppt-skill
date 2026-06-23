@@ -73,7 +73,7 @@ function Sticker({ term, note, tone, big, rot, on, ac }) {
   const noteFg = tone === 'dark' && !on ? hexA('#ffffff', 0.66) : hexA('#1a1a1f', 0.6);
   const size = (big ? 56 : 46) * (on ? 1.22 : 1);
   return (
-    <div style={{
+    <div data-theme01-page69-sticker="" data-editable-skip="true" style={{
       display: 'inline-flex', flexDirection: 'column', gap: 4,
       padding: big ? '16px 28px' : '13px 22px', borderRadius: 16,
       background: bg, transform: `rotate(${rot}deg)`,
@@ -84,8 +84,8 @@ function Sticker({ term, note, tone, big, rot, on, ac }) {
           ? `0 16px 34px ${hexA(ac, 0.4)}, 0 5px 14px rgba(26,26,31,.22)`
           : '0 16px 32px rgba(26,26,31,.26), 0 5px 12px rgba(26,26,31,.16)',
     }}>
-      <span style={{ fontSize: size, fontWeight: 900, lineHeight: 1, letterSpacing: '.01em', color: fg, whiteSpace: 'nowrap' }}>{term}</span>
-      <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 18, letterSpacing: '.08em',
+      <span data-theme01-page69-term="" style={{ fontSize: size, fontWeight: 900, lineHeight: 1, letterSpacing: '.01em', color: fg, whiteSpace: 'nowrap' }}>{term}</span>
+      <span data-theme01-page69-note="" style={{ fontFamily: "'Space Mono', monospace", fontSize: 18, letterSpacing: '.08em',
         textTransform: 'uppercase', color: noteFg, whiteSpace: 'nowrap' }}>{note}</span>
     </div>
   );
