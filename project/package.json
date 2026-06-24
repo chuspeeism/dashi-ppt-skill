@@ -15,7 +15,8 @@
     "preview:https": "node scripts/serve-preview-https.mjs",
     "preview:start": "node scripts/start-preview-server.mjs",
     "validate:swiss": "node scripts/validate-swiss-deck.mjs",
-    "validate:goal-copy": "node scripts/validate-goal-copy.mjs"
+    "validate:goal-copy": "node scripts/validate-goal-copy.mjs",
+    "test:theme02-upload-compression": "node scripts/test-theme02-upload-compression.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",

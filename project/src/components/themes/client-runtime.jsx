@@ -24,6 +24,8 @@ import { runtimePages as theme12Pages } from './theme12/runtime.jsx';
 const mountedRoots = new WeakMap();
 const rootMediaApis = new WeakMap();
 const releaseInactiveThemeKeys = new Set(['theme03', 'theme10']);
+const IMAGE_UPLOAD_MAX_DIM = 1400;
+const IMAGE_UPLOAD_QUALITY = 0.78;
 const runtimePages = [
   ...theme01Pages,
   ...theme02Pages,
@@ -132,13 +134,49 @@ function readMediaFile(file) {
         return;
       }
       const img = new Image();
-      img.onload = () => resolve({ src, type: file.type, kind: 'image', ratio: img.naturalWidth / img.naturalHeight });
+      img.onload = async () => {
+        const ratio = img.naturalWidth / img.naturalHeight;
+        const compressed = await compressImageFile(file, img.naturalWidth, img.naturalHeight, src);
+        resolve({ src: compressed.src, type: compressed.type, kind: 'image', ratio });
+      };
       img.onerror = () => resolve({ src, type: file.type, kind: 'image', ratio: null });
       img.src = src;
     };
     reader.onerror = () => resolve(null);
     reader.readAsDataURL(file);
   });
+}
+
+async function compressImageFile(file, naturalWidth, naturalHeight, originalSrc) {
+  if (!file || file.type === 'image/svg+xml' || file.type === 'image/gif') {
+    return { src: originalSrc, type: file?.type || 'image' };
+  }
+  const maxSide = Math.max(Number(naturalWidth) || 0, Number(naturalHeight) || 0);
+  if (!maxSide || (maxSide <= IMAGE_UPLOAD_MAX_DIM && originalSrc.length < 1_500_000)) {
+    return { src: originalSrc, type: file.type };
+  }
+  try {
+    const bitmap = await createImageBitmap(file);
+    try {
+      const scale = Math.min(1, IMAGE_UPLOAD_MAX_DIM / Math.max(bitmap.width, bitmap.height));
+      const width = Math.max(1, Math.round(bitmap.width * scale));
+      const height = Math.max(1, Math.round(bitmap.height * scale));
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return { src: originalSrc, type: file.type };
+      ctx.drawImage(bitmap, 0, 0, width, height);
+      const src = canvas.toDataURL('image/webp', IMAGE_UPLOAD_QUALITY);
+      return src && src.length < originalSrc.length
+        ? { src, type: 'image/webp' }
+        : { src: originalSrc, type: file.type };
+    } finally {
+      bitmap.close?.();
+    }
+  } catch {
+    return { src: originalSrc, type: file.type };
+  }
 }
 
 function mediaItem(value) {
