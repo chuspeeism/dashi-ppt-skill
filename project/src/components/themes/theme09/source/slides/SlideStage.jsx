@@ -57,6 +57,9 @@ function SlideStage(props){
   const cs = chips.slice(0, Math.max(0, Math.min(chipCount, chips.length)));
   const fIdx = Math.max(0, Math.min(focusIndex, Math.max(0, cs.length - 1)));
   const lbl = (i)=> deckLabel(labelType, i, { keyword:'PT' });
+  const hasThumbs = nImg > 1;
+  const stageCoreHeight = hasThumbs ? (showSpotlight ? 732 : 668) : (showSpotlight ? 628 : 560);
+  const mainImageHeight = hasThumbs ? 520 : 560;
   // 四角定位
   const POS = [
     { top:18,  left:0 }, { top:18,  right:0 }, { bottom:18, left:0 }, { bottom:18, right:0 },
@@ -84,10 +87,10 @@ function SlideStage(props){
         )}
 
         {/* 中央主图 + 浮动片 */}
-        <div className="dk-anim d1" style={{position:'relative', width:'min(1180px, 96%)', display:'flex', flexDirection:'column', alignItems:'center', gap:16, zIndex:2}}>
-          <div style={{position:'relative', width:'100%', display:'flex', justifyContent:'center'}}>
+        <div className="dk-anim d1" style={{position:'relative', width:'min(1180px, 96%)', height:stageCoreHeight, display:'flex', flexDirection:'column', alignItems:'center', gap:16, zIndex:2}}>
+          <div style={{position:'relative', width:'100%', height:mainImageHeight, display:'flex', justifyContent:'center', alignItems:'center'}}>
             {ImageStrip && (
-              <ImageStrip idPrefix="stage-main" count={1} width={1000} maxH={560} theme={props.theme}
+              <ImageStrip idPrefix="stage-main" count={1} width={1000} maxH={mainImageHeight} theme={props.theme}
                 placeholders={[{ ratio:1.6, label:'焦点主体 / hero subject' }]} />
             )}
             {/* 浮动标注片（四角） */}
@@ -118,9 +121,10 @@ function SlideStage(props){
           )}
 
           {/* 缩略行 */}
-          {nImg > 1 && ImageStrip && (
-            <div style={{width:'100%', marginTop:4}}>
-              <ImageStrip idPrefix="stage-thumb" count={nImg-1} width={1000} maxH={130} theme={props.theme}
+          {hasThumbs && ImageStrip && (
+            <div data-dashi-theme09-stage-thumbs="true" style={{position:'absolute', left:0, right:0, bottom:34, height:120, overflow:'hidden',
+                display:'flex', justifyContent:'center', alignItems:'flex-start'}}>
+              <ImageStrip idPrefix="stage-thumb" count={nImg-1} width={1000} maxH={120} theme={props.theme}
                 placeholders={[{ ratio:1.5, label:'细节 / detail' }, { ratio:1.5, label:'场景 / scene' }]} />
             </div>
           )}
@@ -144,8 +148,8 @@ export default SlideStage;
 export const slideSpec = { defaults: defaultProps, slot:'stage', name:'焦点舞台 · Stage', controls:[
   { prop:'imgCount', type:'slider', label:'图片槽数量', default:1, min:1, max:3, step:1 },
   { prop:'chipCount', type:'slider', label:'数量', default:3, min:0, max:4, step:1, desc:'浮动标注片' },
-  { prop:'showSpotlight', type:'toggle', label:'装饰文案', default:true, desc:'聚光 + 倒影' },
+  { prop:'showSpotlight', type:'toggle', label:'装饰元素', default:true, desc:'聚光 + 倒影' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.chipCount-1), step:1, showIf:(p)=>p.focus && p.chipCount>0 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.chipCount-1), maxFromKey:'chipCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus && p.chipCount>0 },
 ]};

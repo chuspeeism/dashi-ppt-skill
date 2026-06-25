@@ -11,7 +11,7 @@ import { useDeckStyles, deckTheme, deckLabel, SlideHead } from './DeckKit.jsx';
 
    ── 可调参数（Props） ──────────────────────────────────────────────────────
    | prop        | 类型                   | 默认 | 说明                          |
-   | itemCount   | number (2–6)           | 4    | 计量条数量（截取 items）      |
+   | itemCount   | number (2–6)           | 6    | 计量条数量（截取 items）      |
    | showTarget  | boolean                | true | 目标刻度线（装饰）            |
    | showValue   | boolean                | true | 末端读数                      |
    | focus       | boolean                | true | 高亮某条                      |
@@ -23,7 +23,7 @@ import { useDeckStyles, deckTheme, deckLabel, SlideHead } from './DeckKit.jsx';
    本页全部可见文案 / 数据 / 图片槽默认值集中于此，直接编辑即可换内容；
    组件内部以 { ...defaultProps, ...props } 合并，外部传同名 props 逐项覆盖。 */
 export const defaultProps = {
-  itemCount: 4,
+  itemCount: 6,
   showTarget: true,
   showValue: true,
   focus: true,
@@ -123,10 +123,10 @@ export default SlideMeter;
 
 /* ── 模板参数 schema（自描述 · 迁移即带控件；Tweaks 由此自动生成） ── */
 export const slideSpec = { defaults: defaultProps, slot:'meter', name:'计量条 · Meter', controls:[
-  { prop:'itemCount', type:'slider', label:'数量', default:4, min:2, max:6, step:1 },
-  { prop:'showTarget', type:'toggle', label:'装饰文案', default:true, desc:'目标刻度线' },
+  { prop:'itemCount', type:'slider', label:'数量', default:6, min:2, max:6, step:1 },
+  { prop:'showTarget', type:'toggle', label:'装饰元素', default:true, desc:'目标刻度线' },
   { prop:'showValue', type:'toggle', label:'末端读数', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

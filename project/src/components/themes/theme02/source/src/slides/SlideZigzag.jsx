@@ -21,7 +21,7 @@
  */
 import React from 'react';
 import { ThemeStyle, THEME_CLASS, cx } from '../gxnTheme.js';
-import { SlideHeader } from '../gxnPrimitives.jsx';
+import { SlideHeader, MediaView, mediaItem } from '../gxnPrimitives.jsx';
 
 export const slideZigzagDefaults = {
   kicker: 'EDITORIAL · 图文叙事',
@@ -70,7 +70,8 @@ export const slideZigzagControls = [
 ];
 
 function Row({ i, src, row, fit, imageRight, isFocus, dim, showCopy, showStat, onActivate, onClear }) {
-  const filled = !!src;
+  const media = mediaItem(src);
+  const filled = !!media?.src;
   const imageCell = (
     <div className={cx('gxn-panel', isFocus && 'is-focus')}
          style={{ position: 'relative', overflow: 'hidden', padding: filled ? 0 : 10,
@@ -79,7 +80,7 @@ function Row({ i, src, row, fit, imageRight, isFocus, dim, showCopy, showStat, o
            style={{ width: '100%', height: '100%', borderRadius: filled ? 'var(--gxn-radius)' : 16,
                     background: filled ? '#0b0d10' : undefined, border: filled ? 'none' : undefined }}>
         {filled
-          ? <img src={src} alt="" style={{ objectFit: fit }} />
+          ? <MediaView value={media} fit={fit} />
           : <span className="gxn-slot-cap">{row.tag ? row.tag.split('·')[0].trim() : '拖入配图'} · IMAGE</span>}
         {onActivate && (
           <button type="button" className="gxn-slot-btn gxn-slot-add" aria-label="选择图片"

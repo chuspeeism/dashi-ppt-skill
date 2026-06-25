@@ -4,7 +4,7 @@ import { useDeckStyles, SlideHead } from './DeckKit.jsx';
      segCount   : number 2–5  显示赛道数量
      shape      : '环形' | '饼图'
      showRounds : bool  轮次结构面板显隐
-     roundCount : number 2–6  轮次结构柱数量
+     roundCount : number 2–12  轮次结构柱数量
      callout    : bool  核心发现装饰卡显隐
      labelType  : 'number'|'symbol'|'keyword'  图例徽标
      focus      : bool  高亮某赛道
@@ -31,8 +31,10 @@ export const defaultProps = {
     { cn:'其他',        en:'Tooling · Safety', amt:50,  pct:5.1,  color:'#5b6b9a' },
   ],
   rounds: [
-    { lb:'Seed', n:8, avg:1.2 }, { lb:'A', n:12, avg:1.8 }, { lb:'B', n:18, avg:3.5 },
-    { lb:'C', n:15, avg:6.8 }, { lb:'D+', n:22, avg:15.2 }, { lb:'未标明', n:22, avg:18.6 },
+    { lb:'Pre', n:5, avg:0.8 }, { lb:'Seed', n:8, avg:1.2 }, { lb:'A', n:12, avg:1.8 },
+    { lb:'B', n:18, avg:3.5 }, { lb:'C', n:15, avg:6.8 }, { lb:'D', n:13, avg:10.4 },
+    { lb:'E', n:9, avg:14.6 }, { lb:'F', n:6, avg:18.2 }, { lb:'Growth', n:7, avg:20.5 },
+    { lb:'Debt', n:5, avg:12.8 }, { lb:'M&A', n:4, avg:16.4 }, { lb:'未标明', n:22, avg:18.6 },
   ],
 };
 
@@ -48,8 +50,10 @@ function SlideCross(props){
   const big = segs.reduce((p,s,i)=> s.amt>segs[p].amt?i:p, 0);
   const fIdx = focus ? Math.max(0, Math.min(focusIndex, segs.length-1)) : big;
 
-  const shownRounds = rounds.slice(0, Math.max(2, Math.min(roundCount, rounds.length)));
+  const shownRounds = rounds.slice(0, Math.max(2, Math.min(roundCount, rounds.length, 12)));
   const maxN = Math.max(...shownRounds.map(r=>r.n));
+  const compactRounds = shownRounds.length > 8;
+  const denseRounds = shownRounds.length > 6;
 
   // conic-gradient 扇区
   let acc = 0; const stops = [];
@@ -134,18 +138,18 @@ function SlideCross(props){
 
         {/* rounds panel */}
         {showRounds && (
-          <div className="dk-glass dk-anim d3" style={{flexShrink:0, borderRadius:26, padding:'22px 40px 26px'}}>
-            <div style={{display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom:16}}>
-              <span style={{fontSize:'var(--type-sub)', fontWeight:700}}>融资轮次结构</span>
+          <div className="dk-glass dk-anim d3" style={{flexShrink:0, borderRadius:26, padding:compactRounds?'16px 30px 18px':'22px 40px 26px'}}>
+            <div style={{display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom:compactRounds?10:16}}>
+              <span style={{fontSize:compactRounds?'var(--type-body)':'var(--type-sub)', fontWeight:700}}>融资轮次结构</span>
               <span style={{fontFamily:'var(--font-mono)', fontSize:'var(--type-tiny)', color:'var(--ink-faint)'}}>柱高 · 事件笔数　数字 · 平均单笔($亿)</span>
             </div>
-            <div style={{display:'flex', alignItems:'flex-end', gap:30, height:140}}>
+            <div style={{display:'flex', alignItems:'flex-end', gap:compactRounds?12:(denseRounds?18:30), height:compactRounds?122:140}}>
               {shownRounds.map((r,i)=>(
-                <div key={i} style={{flex:1, display:'flex', flexDirection:'column', alignItems:'center', gap:10, height:'100%', justifyContent:'flex-end'}}>
-                  <span style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:24, color: r.avg>=15?'var(--mint)':'#cfe0ff'}}>{r.avg}</span>
-                  <div style={{width:'100%', maxWidth:90, height:(r.n/maxN*88)+'px', borderRadius:'8px 8px 0 0',
+                <div key={i} style={{flex:'1 1 0', minWidth:0, display:'flex', flexDirection:'column', alignItems:'center', gap:compactRounds?6:10, height:'100%', justifyContent:'flex-end'}}>
+                  <span style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:compactRounds?18:24, lineHeight:1, color: r.avg>=15?'var(--mint)':'#cfe0ff'}}>{r.avg}</span>
+                  <div style={{width:'100%', maxWidth:compactRounds?58:(denseRounds?72:90), height:(r.n/maxN*(compactRounds?72:88))+'px', borderRadius:'8px 8px 0 0',
                                background: r.avg>=15?'linear-gradient(180deg,#46e3c6,#1fb89b)':'linear-gradient(180deg,#5a8dff,#1d49d6)'}}></div>
-                  <span style={{fontSize:'var(--type-tiny)', color:'var(--ink-dim)', fontWeight:600}}>{r.lb}</span>
+                  <span style={{fontSize:compactRounds?16:'var(--type-tiny)', lineHeight:1, color:'var(--ink-dim)', fontWeight:600, whiteSpace:'nowrap'}}>{r.lb}</span>
                 </div>
               ))}
             </div>
@@ -163,9 +167,9 @@ export const slideSpec = { defaults: defaultProps, slot:'cross', name:'横向透
   { prop:'segCount', type:'slider', label:'数量', default:5, min:2, max:5, step:1 },
   { prop:'shape', type:'radio', label:'图形', default:'环形', options:['环形','饼图'] },
   { prop:'showRounds', type:'toggle', label:'结构面板', default:true },
-  { prop:'roundCount', type:'slider', label:'结构条目数', default:6, min:2, max:6, step:1, showIf:(p)=>p.showRounds },
+  { prop:'roundCount', type:'slider', label:'结构条目数', default:6, min:2, max:12, step:1, showIf:(p)=>p.showRounds },
   { prop:'callout', type:'toggle', label:'解读卡', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.segCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.segCount-1, maxFromKey:'segCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

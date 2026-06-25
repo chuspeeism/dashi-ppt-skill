@@ -60,9 +60,10 @@ function SlideSpotlight(props){
   const hasImg = imgCount > 0;
   const shownStats = stats.slice(0, Math.max(0, Math.min(statCount, stats.length)));
   const fIdx = Math.max(0, Math.min(focusIndex, Math.max(0, shownStats.length - 1)));
+  const imageSide = imgSide === '右' || imgSide === 'right' ? 'right' : 'left';
 
   const imagePanel = hasImg ? (
-    <div className="dk-anim d2" style={{minWidth:0, display:'flex', flexDirection:'column', justifyContent:'center'}}>
+    <div className="dk-anim d2" data-dashi-theme09-spotlight-image-panel="true" style={{minWidth:0, display:'flex', flexDirection:'column', justifyContent:'center'}}>
       {ImageStrip &&
         <ImageStrip idPrefix="spotlight" count={imgCount} width={720} maxH={640} gap={18}
           placeholders={[
@@ -75,7 +76,7 @@ function SlideSpotlight(props){
   ) : null;
 
   const textPanel = (
-    <div style={{minWidth:0, display:'flex', flexDirection:'column', justifyContent:'center'}}>
+    <div data-dashi-theme09-spotlight-text-panel="true" style={{minWidth:0, display:'flex', flexDirection:'column', justifyContent:'center'}}>
       <span className="dk-anim d1" style={{fontFamily:'var(--font-mono)', fontSize:16, letterSpacing:'.18em',
           color:ACC, textTransform:'uppercase', marginBottom:18}}>{kicker}</span>
       <h3 className="dk-chrome dk-anim d1" style={{fontFamily:'var(--font-cn)', fontWeight:900,
@@ -98,7 +99,7 @@ function SlideSpotlight(props){
       <div style={{flex:'1 1 0', minHeight:0, display:'flex', flexDirection:'column', marginTop:24}}>
         <div style={{flex:'1 1 0', minHeight:0, display:'grid',
               gridTemplateColumns: hasImg ? '1fr 1fr' : '1fr', gap:64, alignItems:'center'}}>
-          {hasImg && imgSide==='left' ? <>{imagePanel}{textPanel}</> : <>{textPanel}{hasImg && imagePanel}</>}
+          {hasImg && imageSide==='left' ? <>{imagePanel}{textPanel}</> : <>{textPanel}{hasImg && imagePanel}</>}
         </div>
 
         {/* 数据条 */}
@@ -139,9 +140,9 @@ export default SlideSpotlight;
 /* ── 模板参数 schema（自描述 · 迁移即带控件；Tweaks 由此自动生成） ── */
 export const slideSpec = { defaults: defaultProps, slot:'spotlight', name:'专题洞察 · Spotlight', controls:[
   { prop:'imgCount', type:'slider', label:'图片槽数量', default:2, min:0, max:4, step:1 },
-  { prop:'imgSide', type:'radio', label:'图片位置', default:'左', options:['左','右'], map:(v)=>v==='右'?'right':'left', showIf:(p)=>p.imgCount>0 },
+  { prop:'imgSide', type:'radio', label:'图片位置', default:'left', options:[['left','左'],['right','右']], showIf:(p)=>p.imgCount>0 },
   { prop:'statCount', type:'slider', label:'数量', default:3, min:0, max:3, step:1, desc:'关键数字数' },
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.statCount-1, step:1, showIf:(p)=>p.focus&&p.statCount>0 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.statCount-1, maxFromKey:'statCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus&&p.statCount>0 },
 ]};

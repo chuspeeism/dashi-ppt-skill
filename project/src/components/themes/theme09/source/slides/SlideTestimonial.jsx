@@ -1,5 +1,5 @@
 import { useDeckStyles, deckTheme, SlideShell } from './DeckKit.jsx';
-import ImageStrip from './ImageStrip.jsx';
+import ImageStrip, { FillSlot } from './ImageStrip.jsx';
 /* ============================================================================
    SlideTestimonial — 人物证言（肖像 + 大引言 · 署名卡 + 资历标签）
    独立组件：仅靠 props 控制内容与样式；render 时自注入 DeckKit 基座样式。
@@ -30,6 +30,7 @@ export const defaultProps = {
   role: '企业服务 合伙人',
   org: 'Enterprise Fund',
   credCount: 3,
+  mediaFit: '原始比例',
   showMark: true,
   focus: true,
   badge: '09',
@@ -45,17 +46,21 @@ function SlideTestimonial(props){
   const navy = T.navy900 || '#050b22';
 
   const {
-    imgSide, quote, name, role, org, credCount, showMark,
+    imgSide, quote, name, role, org, credCount, mediaFit, showMark,
     focus, badge, kicker, creds,
   } = { ...defaultProps, ...props };
 
   const cd = creds.slice(0, Math.max(0, Math.min(credCount, creds.length)));
+  const imageSide = imgSide === '右' || imgSide === 'right' ? 'right' : 'left';
+  const fillMode = mediaFit === '自适应' || mediaFit === 'cover';
 
   const portrait = (
-    <div className="dk-anim d1" style={{flex:'0 0 38%', minWidth:0, position:'relative', borderRadius:'var(--dk-radius)', overflow:'hidden',
+    <div className="dk-anim d1" data-dashi-theme09-testimonial-portrait="true" data-dashi-theme09-testimonial-media-fit={fillMode?'cover':'ratio'} style={{flex:'0 0 38%', minWidth:0, position:'relative', borderRadius:'var(--dk-radius)', overflow:'hidden',
           display:'flex', alignItems:'center', justifyContent:'center',
           boxShadow: focus?`0 28px 64px ${hexA(ACC,.26)}, 0 0 0 2px ${hexA(ACC,.7)}`:'0 24px 56px rgba(3,8,30,.5)'}}>
-      {ImageStrip && (
+      {fillMode && FillSlot ? (
+        <FillSlot idPrefix="testimonial" idx={0} placeholder="人物肖像 / portrait" accent={ACC} radius="var(--dk-radius)" theme={props.theme} />
+      ) : ImageStrip && (
         <ImageStrip idPrefix="testimonial" count={1} width={680} maxH={780} theme={props.theme}
           placeholders={[{ ratio:0.8, label:'人物肖像 / portrait' }]} />
       )}
@@ -63,7 +68,7 @@ function SlideTestimonial(props){
   );
 
   const body = (
-    <div style={{flex:'1 1 0', minWidth:0, display:'flex', flexDirection:'column', justifyContent:'center'}}>
+    <div data-dashi-theme09-testimonial-body="true" style={{flex:'1 1 0', minWidth:0, display:'flex', flexDirection:'column', justifyContent:'center'}}>
       <div className="dk-anim" style={{display:'flex', alignItems:'center', gap:16, marginBottom:20}}>
         <span style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:'var(--type-sub)', color:ACC}}>{badge}</span>
         <span style={{height:2, width:64, background:ACC}}></span>
@@ -106,7 +111,7 @@ function SlideTestimonial(props){
     <SlideShell orbs={[{ w:520, h:520, right:-160, bottom:-180,
         color:`radial-gradient(circle at 50% 50%, ${hexA(BLUE,.18)}, ${hexA(BLUE,0)} 70%)` }]}>
       <div style={{flex:'1 1 0', minHeight:0, display:'flex', gap:54, alignItems:'stretch'}}>
-        {imgSide==='left' ? <>{portrait}{body}</> : <>{body}{portrait}</>}
+        {imageSide==='left' ? <>{portrait}{body}</> : <>{body}{portrait}</>}
       </div>
     </SlideShell>
   );
@@ -125,7 +130,8 @@ export default SlideTestimonial;
 /* ── 模板参数 schema（自描述 · 迁移即带控件；Tweaks 由此自动生成） ── */
 export const slideSpec = { defaults: defaultProps, slot:'testimonial', name:'人物证言 · Testimonial', controls:[
   { prop:'imgSide', type:'radio', label:'图片位置', default:'左', options:['左','右'], map:(v)=>v==='右'?'right':'left' },
-  { prop:'credCount', type:'slider', label:'数量', default:3, min:0, max:3, step:1, desc:'资历标签数' },
+  { prop:'credCount', type:'slider', label:'富文本数量', default:3, min:0, max:3, step:1, desc:'资历标签数' },
+  { prop:'mediaFit', type:'radio', label:'媒体填充类型', default:'原始比例', options:['原始比例','自适应'] },
   { prop:'showMark', type:'toggle', label:'引号装饰', default:true },
-  { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
+  { prop:'focus', type:'focus', label:'描边高亮', default:true },
 ]};

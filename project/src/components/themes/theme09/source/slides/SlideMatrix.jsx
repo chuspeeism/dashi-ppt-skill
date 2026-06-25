@@ -64,7 +64,7 @@ function SlideMatrix(props){
   const cols = columns.slice(0, Math.max(2, Math.min(colCount, columns.length)));
   const data = rows.slice(0, Math.max(2, Math.min(rowCount, rows.length)));
   const fIdx = Math.max(0, Math.min(focusIndex, data.length - 1));
-  const hCol = highlightCol; // -1..cols.length-1（针对 cols 索引）
+  const hCol = (highlightCol>=0 && highlightCol<cols.length) ? highlightCol : -1;
 
   const lbl = (i)=> deckLabel(labelType, i, { keyword:'CO' });
   // 名称列 + 数据列：grid 模板
@@ -77,7 +77,8 @@ function SlideMatrix(props){
         badge={labelType==='keyword'?'GRID':labelType==='symbol'?'◆':badge} />
 
       <div style={{flex:'1 1 0', minHeight:0, display:'flex', flexDirection:'column', marginTop:26}}>
-        <div className="dk-glass dk-anim d1" style={{flex:'1 1 0', minHeight:0, borderRadius:'var(--dk-radius)',
+        <div data-dashi-theme09-matrix-highlight-col={hCol}
+          className="dk-glass dk-anim d1" style={{flex:'1 1 0', minHeight:0, borderRadius:'var(--dk-radius)',
               padding:'10px 16px', display:'flex', flexDirection:'column', overflow:'hidden'}}>
 
           {/* 表头 */}
@@ -177,9 +178,9 @@ export const slideSpec = { defaults: defaultProps, slot:'matrix', name:'对比�
   { prop:'rowCount', type:'slider', label:'行数量', default:6, min:2, max:6, step:1 },
   { prop:'colCount', type:'slider', label:'列数量', default:5, min:2, max:6, step:1 },
   { prop:'heat', type:'toggle', label:'热力着色', default:true },
-  { prop:'highlightCol', type:'slider', label:'高亮列 (-1 关闭)', default:0, min:-1, max:(p)=>p.colCount-1, step:1 },
+  { prop:'highlightCol', type:'slider', label:'高亮列 (-1 关闭)', default:0, min:-1, max:(p)=>p.colCount-1, maxFromKey:'colCount', maxFromKeyOffset:-1, step:1 },
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.rowCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.rowCount-1, maxFromKey:'rowCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

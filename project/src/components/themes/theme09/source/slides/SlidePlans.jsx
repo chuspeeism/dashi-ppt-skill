@@ -145,5 +145,5 @@ export const slideSpec = { defaults: defaultProps, slot:'plans', name:'方案对
   { prop:'rowCount', type:'slider', label:'行数量', default:5, min:2, max:6, step:1, desc:'维度数' },
   { prop:'showBadge', type:'toggle', label:'装饰文案', default:true, desc:'推荐徽标' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.planCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.planCount-1, maxFromKey:'planCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

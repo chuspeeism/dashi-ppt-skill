@@ -4,7 +4,7 @@ import { FillSlot } from './ImageStrip.jsx';
    SlideMasonry — 瀑布影像（竖向多列瀑布流 · 错落参差）
    标准 ES Module。图片用 FillSlot（满版裁切，按各格设计高度铺满）。
    与 Gallery / Mosaic（横向 justified 单行）刻意区分：本页是 Pinterest 式「竖向
-   瀑布」—— 多列等宽、各格高度参差，贪心装箱后整体缩放贴合版心，永不溢出。
+   瀑布」—— 多列等宽、各格高度参差，按槽位序号行优先摆放后整体缩放贴合版心，永不溢出。
 
    ── 可调参数（Props） ──────────────────────────────────────────────────────
    | prop        | 类型                          | 默认值 | 说明                              |
@@ -59,51 +59,50 @@ function SlideMasonry(props){
   const fIdx = Math.max(0, Math.min(focusIndex, n - 1));
   const lbl = (i)=> deckLabel(labelType, i, { keyword:'NO' });
 
-  // 各格高度权重（确定性参差）→ 贪心装箱进 cols 列 → 整体缩放贴合版心
-  const W = [1.32, 0.86, 1.08, 1.46, 0.92, 1.18, 1.0, 1.26];
   const gap = 16, availH = 752;
-  const bins = Array.from({length:cols}, ()=>({ list:[], sum:0 }));
-  data.forEach((_,i)=>{
-    let m = 0; for(let c=1;c<cols;c++) if(bins[c].sum < bins[m].sum) m = c;
-    bins[m].list.push(i); bins[m].sum += W[i % W.length];
-  });
-  let scale = Infinity;
-  bins.forEach(b=>{ if(b.list.length){ const s = (availH - gap*(b.list.length-1)) / b.sum; if(s < scale) scale = s; } });
-  if(!isFinite(scale)) scale = availH;
+  const rowCount = Math.ceil(n / cols);
+  const rowH = rowCount === 1
+    ? Math.min(520, availH)
+    : Math.floor((availH - gap*(rowCount-1)) / rowCount);
 
   return (
     <SlideShell orbs={[{ w:500, h:500, left:-150, bottom:-170,
         color:`radial-gradient(circle at 50% 50%, ${hexA(BLUE,.18)}, ${hexA(BLUE,0)} 70%)` }]}>
       <SlideHead no={head.no} en={head.en} cn={head.cn} badge={head.no} />
 
-      <div className="dk-anim d1" style={{flex:'1 1 0', minHeight:0, marginTop:22, display:'flex', gap, justifyContent:'center', alignItems:'flex-start'}}>
-        {bins.map((b,ci)=>(
-          <div key={ci} style={{flex:'1 1 0', minWidth:0, display:'flex', flexDirection:'column', gap}}>
-            {b.list.map((i)=>{
-              const hot = focus && i===fIdx;
-              const it = data[i];
-              const h = Math.round(W[i % W.length] * scale);
-              return (
-                <div key={i} style={{position:'relative', width:'100%', height:h, borderRadius:16, overflow:'hidden',
-                      boxShadow: hot ? `0 0 0 3px ${ACC}, 0 26px 60px ${hexA(ACC,.3)}`
-                                     : '0 18px 44px rgba(3,8,30,.5), inset 0 0 0 1px rgba(255,255,255,.1)'}}>
-                  <FillSlot idPrefix="masonry" idx={i} placeholder={(it.label||'图片')+' / '+(i+1)} accent={ACC} radius={16} theme={props.theme} />
-                  <span style={{position:'absolute', top:11, left:11, zIndex:4, minWidth:34, height:34, padding:'0 8px', borderRadius:9,
-                      display:'inline-flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontWeight:900,
-                      fontSize:15, color: hot?navy:'#fff', background: hot?ACC:'rgba(5,11,34,.55)',
-                      border:`1px solid ${hot?ACC:'rgba(255,255,255,.3)'}`, backdropFilter:'blur(4px)', pointerEvents:'none'}}>{lbl(i)}</span>
-                  {showCaption && (
-                    <div style={{position:'absolute', left:0, right:0, bottom:0, zIndex:3, pointerEvents:'none', padding:'30px 14px 12px',
-                        background:'linear-gradient(0deg, rgba(3,7,24,.82) 0%, rgba(3,7,24,.3) 60%, rgba(3,7,24,0) 100%)'}}>
-                      <div style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:'var(--type-small)', color: hot?ACC:'#fff', lineHeight:1.1}}>{it.label}</div>
-                      <div style={{fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'.06em', color:'var(--ink-dim)', marginTop:2}}>{it.sub}</div>
-                    </div>
-                  )}
+      <div
+        className="dk-anim d1"
+        data-dashi-theme09-masonry-grid="true"
+        style={{flex:'1 1 0', minHeight:0, height:availH, marginTop:22, display:'grid', gridTemplateColumns:`repeat(${cols}, minmax(0, 1fr))`,
+          gridAutoRows:rowH, gap, alignItems:'stretch', alignContent:'center'}}
+      >
+        {data.map((it,i)=>{
+          const hot = focus && i===fIdx;
+          return (
+            <div
+              key={i}
+              data-dashi-theme09-masonry-slot={i}
+              data-dashi-theme09-masonry-col={i % cols}
+              data-dashi-theme09-masonry-row={Math.floor(i / cols)}
+              style={{position:'relative', width:'100%', height:'100%', minHeight:0, borderRadius:16, overflow:'hidden',
+                    boxShadow: hot ? `0 0 0 3px ${ACC}, 0 26px 60px ${hexA(ACC,.3)}`
+                                   : '0 18px 44px rgba(3,8,30,.5), inset 0 0 0 1px rgba(255,255,255,.1)'}}
+            >
+              <FillSlot idPrefix="masonry" idx={i} placeholder={(it.label||'图片')+' / '+(i+1)} accent={ACC} radius={16} theme={props.theme} />
+              <span style={{position:'absolute', top:11, left:11, zIndex:4, minWidth:34, height:34, padding:'0 8px', borderRadius:9,
+                  display:'inline-flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontWeight:900,
+                  fontSize:15, color: hot?navy:'#fff', background: hot?ACC:'rgba(5,11,34,.55)',
+                  border:`1px solid ${hot?ACC:'rgba(255,255,255,.3)'}`, backdropFilter:'blur(4px)', pointerEvents:'none'}}>{lbl(i)}</span>
+              {showCaption && (
+                <div style={{position:'absolute', left:0, right:0, bottom:0, zIndex:3, pointerEvents:'none', padding:'30px 14px 12px',
+                    background:'linear-gradient(0deg, rgba(3,7,24,.82) 0%, rgba(3,7,24,.3) 60%, rgba(3,7,24,0) 100%)'}}>
+                  <div style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:'var(--type-small)', color: hot?ACC:'#fff', lineHeight:1.1}}>{it.label}</div>
+                  <div style={{fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'.06em', color:'var(--ink-dim)', marginTop:2}}>{it.sub}</div>
                 </div>
-              );
-            })}
-          </div>
-        ))}
+              )}
+            </div>
+          );
+        })}
       </div>
     </SlideShell>
   );
@@ -124,5 +123,5 @@ export const slideSpec = { defaults: defaultProps, slot:'masonry', name:'瀑布�
   { prop:'showCaption', type:'toggle', label:'装饰文案', default:true, desc:'叠印图说' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.imgCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.imgCount-1, maxFromKey:'imgCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

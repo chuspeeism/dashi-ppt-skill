@@ -55,6 +55,7 @@ function SlideStat(props){
   const cols = Math.max(2, Math.min(columns, 3));
   const fIdx = Math.max(0, Math.min(focusIndex, data.length - 1));
   const lbl = (i)=> deckLabel(labelType, i, { keyword:'KPI' });
+  const compact = cols === 2 && data.length > 4;
 
   return (
     <SlideShell orbs={[{ w:520, h:520, right:-160, top:-160,
@@ -62,37 +63,37 @@ function SlideStat(props){
       <SlideHead no={badge} en="Key Metrics" cn="关键指标 · 全景速览"
         badge={labelType==='keyword'?'STAT':labelType==='symbol'?'◆':badge} />
 
-      <div style={{flex:'1 1 0', minHeight:0, display:'grid', marginTop:26,
-            gridTemplateColumns:`repeat(${cols}, minmax(0,1fr))`, gridAutoRows:'1fr', gap:22}}>
+      <div data-dashi-theme09-stat-density={compact?'compact':'regular'} style={{flex:'1 1 0', minHeight:0, display:'grid', marginTop:compact?18:26,
+            gridTemplateColumns:`repeat(${cols}, minmax(0,1fr))`, gridAutoRows:'1fr', gap:compact?14:22}}>
         {data.map((s,i)=>{
           const hot = focus && i===fIdx;
           return (
-            <div key={i} className={'dk-glass dk-anim d'+Math.min(i+1,6)} style={{minHeight:0, borderRadius:'var(--dk-radius)',
-                  padding:'28px 32px', display:'flex', flexDirection:'column', justifyContent:'space-between', position:'relative', overflow:'hidden',
+            <div key={i} data-dashi-theme09-stat-card="true" className={'dk-glass dk-anim d'+Math.min(i+1,6)} style={{minHeight:0, borderRadius:'var(--dk-radius)',
+                  padding:compact?'14px 20px':'28px 32px', display:'flex', flexDirection:'column', justifyContent:'space-between', gap:compact?7:0, position:'relative', overflow:'hidden',
                   boxShadow: hot?`0 34px 80px ${hexA(ACC,.28)}, 0 0 0 2px ${ACC}`:'0 22px 54px rgba(3,8,30,.42)'}}>
               {/* 角标 */}
               <div style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-                <span style={{fontFamily:'var(--font-mono)', fontSize:14, letterSpacing:'.06em', color: hot?ACC:'var(--ink-faint)',
-                    border:`1px solid ${hot?hexA(ACC,.5):'rgba(255,255,255,.16)'}`, borderRadius:8, padding:'4px 11px'}}>{lbl(i)}</span>
-                <span style={{fontFamily:'var(--font-mono)', fontSize:13, letterSpacing:'.08em', color:'var(--ink-faint)'}}>{s.en}</span>
+                <span style={{fontFamily:'var(--font-mono)', fontSize:compact?12:14, letterSpacing:'.06em', color: hot?ACC:'var(--ink-faint)',
+                    border:`1px solid ${hot?hexA(ACC,.5):'rgba(255,255,255,.16)'}`, borderRadius:8, padding:compact?'3px 8px':'4px 11px'}}>{lbl(i)}</span>
+                <span style={{fontFamily:'var(--font-mono)', fontSize:compact?11:13, letterSpacing:'.08em', color:'var(--ink-faint)'}}>{s.en}</span>
               </div>
 
               {/* 数字 */}
-              <div style={{margin:'10px 0'}}>
+              <div style={{margin:compact?'3px 0':'10px 0'}}>
                 <div style={{display:'flex', alignItems:'baseline', gap:8, whiteSpace:'nowrap'}}>
-                  <span className={hot?'':'dk-ink-grad'} style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:84, lineHeight:.82,
+                  <span className={hot?'':'dk-ink-grad'} style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:compact?52:84, lineHeight:compact ? .86 : .82,
                       color: hot?ACC:undefined, textShadow: hot?`0 0 30px ${hexA(ACC,.45)}`:'none'}}>{s.value}</span>
-                  <span style={{fontFamily:'var(--font-display)', fontWeight:700, fontSize:30, color:'var(--ink-dim)'}}>{s.unit}</span>
+                  <span style={{fontFamily:'var(--font-display)', fontWeight:700, fontSize:compact?22:30, color:'var(--ink-dim)'}}>{s.unit}</span>
                 </div>
-                <div style={{fontFamily:'var(--font-cn)', fontWeight:800, fontSize:'var(--type-sub)', color:'#fff', marginTop:8}}>{s.label}</div>
+                <div style={{fontFamily:'var(--font-cn)', fontWeight:800, fontSize:compact?21:'var(--type-sub)', color:'#fff', marginTop:compact?4:8, lineHeight:1.12}}>{s.label}</div>
               </div>
 
               {/* 迷你图 + delta */}
-              <div style={{display:'flex', alignItems:'flex-end', justifyContent:'space-between', gap:16}}>
-                <span style={{fontSize:'var(--type-tiny)', color:'var(--ink-dim)', display:'inline-flex', alignItems:'center', gap:8}}>
+              <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', gap:compact?10:16, minHeight:compact?34:56}}>
+                <span style={{fontSize:compact?15:'var(--type-tiny)', lineHeight:1.25, color:'var(--ink-dim)', display:'inline-flex', alignItems:'center', gap:8, minWidth:0}}>
                   <span style={{width:8, height:8, borderRadius:'50%', background:ACC, flexShrink:0}}></span>{s.delta}
                 </span>
-                <Mini type={miniChart} s={s} color={hot?ACC:BLUE} accent={ACC} hexA={hexA} />
+                <Mini type={miniChart} s={s} color={hot?ACC:BLUE} accent={ACC} hexA={hexA} compact={compact} />
               </div>
             </div>
           );
@@ -100,10 +101,10 @@ function SlideStat(props){
       </div>
 
       {showAside && (
-        <div className="dk-glass-dark dk-anim d5" style={{marginTop:18, flexShrink:0, borderRadius:20, padding:'15px 30px',
-              display:'flex', alignItems:'center', gap:22}}>
-          <span style={{flexShrink:0, fontFamily:'var(--font-mono)', fontSize:14, letterSpacing:'.12em', color:ACC}}>口径说明</span>
-          <p style={{fontSize:'var(--type-tiny)', lineHeight:1.5, color:'var(--ink-dim)', textWrap:'pretty'}}>
+        <div className="dk-glass-dark dk-anim d5" style={{marginTop:compact?12:18, flexShrink:0, borderRadius:20, padding:compact?'10px 22px':'15px 30px',
+              display:'flex', alignItems:'center', gap:compact?16:22}}>
+          <span style={{flexShrink:0, fontFamily:'var(--font-mono)', fontSize:compact?12:14, letterSpacing:'.12em', color:ACC}}>口径说明</span>
+          <p style={{fontSize:compact?15:'var(--type-tiny)', lineHeight:compact?1.35:1.5, color:'var(--ink-dim)', textWrap:'pretty'}}>
             统计口径：2024 全年公开披露的单笔 <b style={{color:'#fff'}}>≥1 亿美元</b> 融资事件；金额单位为亿美元，占比基于赛道资金分布。数据为调研整理，仅供研究参考。
           </p>
         </div>
@@ -121,21 +122,22 @@ function SlideStat(props){
 }
 
 /* 迷你图：环 / 柱 / 线 / 无 */
-function Mini({ type, s, color, accent, hexA }){
+function Mini({ type, s, color, accent, hexA, compact }){
   if(type === '无') return null;
   if(type === '迷你环'){
-    const R=26, C=2*Math.PI*R, p=Math.max(0,Math.min(s.pct||0,100))/100;
+    const size = compact ? 44 : 64;
+    const R=compact?18:26, C=2*Math.PI*R, p=Math.max(0,Math.min(s.pct||0,100))/100;
     return (
-      <svg width="64" height="64" viewBox="0 0 64 64" style={{flexShrink:0}}>
+      <svg width={size} height={size} viewBox="0 0 64 64" style={{flexShrink:0}}>
         <circle cx="32" cy="32" r={R} fill="none" stroke="rgba(255,255,255,.14)" strokeWidth="7" />
         <circle cx="32" cy="32" r={R} fill="none" stroke={color} strokeWidth="7" strokeLinecap="round"
           strokeDasharray={`${C*p} ${C}`} transform="rotate(-90 32 32)" />
-        <text x="32" y="36" textAnchor="middle" fontFamily="var(--font-display)" fontWeight="800" fontSize="16" fill="#fff">{Math.round(s.pct||0)}</text>
+        <text x="32" y="36" textAnchor="middle" fontFamily="var(--font-display)" fontWeight="800" fontSize={compact?13:16} fill="#fff">{Math.round(s.pct||0)}</text>
       </svg>
     );
   }
   const spark = (s.spark && s.spark.length) ? s.spark : [1];
-  const max = Math.max(...spark), W=120, H=56, n=spark.length;
+  const max = Math.max(...spark), W=compact?86:120, H=compact?34:56, n=spark.length;
   if(type === '迷你线'){
     const path = spark.map((v,i)=>`${i?'L':'M'} ${(i/(n-1||1))*W} ${H-(v/max)*H*0.9-4}`).join(' ');
     return (
@@ -168,5 +170,5 @@ export const slideSpec = { defaults: defaultProps, slot:'stat', name:'关键指�
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

@@ -7,6 +7,7 @@
    ── 可调参数（Props） ──────────────────────────────────────────────────────
    | prop      | 类型                          | 默认值 | 说明                              |
    | imgCount  | number (1–3)                  | 3      | 图片槽数量（1 主图 + 至多 2 小图）|
+   | layout    | '图左文右'|'图右文左'         | 图左文右 | 左右布局                          |
    | showPull  | boolean                       | true   | 抽言条（装饰文案）                |
    | focus     | boolean                       | true   | 强调（主图描边 + 抽言上色）       |
    | body      | string[]                      | 见下   | 正文段落                          |
@@ -22,6 +23,7 @@ import { FillSlot } from './ImageStrip.jsx';
    组件内部以 { ...defaultProps, ...props } 合并，外部传同名 props 逐项覆盖。 */
 export const defaultProps = {
   imgCount: 3,
+  layout: '图左文右',
   showPull: true,
   focus: true,
   badge: '03',
@@ -43,19 +45,26 @@ function SlideZine(props){
   const BLUE = T.blue || '#4a86ff';
 
   const {
-    imgCount, showPull, focus, badge, kicker, headline, headlineEN,
+    imgCount, layout, showPull, focus, badge, kicker, headline, headlineEN,
     body, pull, captions,
   } = { ...defaultProps, ...props };
 
   const n = Math.max(1, Math.min(imgCount, 3));
-  const smalls = n - 1;
+  const imageFirst = layout !== '图右文左';
 
   return (
     <SlideShell orbs={[{ w:520, h:520, right:-160, top:-150,
         color:`radial-gradient(circle at 50% 50%, ${hexA(BLUE,.18)}, ${hexA(BLUE,0)} 70%)` }]}>
-      <div style={{flex:'1 1 0', minHeight:0, display:'flex', gap:44}}>
+      <div
+        data-dashi-theme09-zine-layout={imageFirst ? 'left' : 'right'}
+        style={{flex:'1 1 0', minHeight:0, display:'flex', flexDirection:imageFirst?'row':'row-reverse', gap:44}}
+      >
         {/* 左：竖长主图 */}
-        <div className="dk-anim d1" style={{flex:'0.92 1 0', minWidth:0, position:'relative', borderRadius:'var(--dk-radius)', overflow:'hidden',
+        <div
+          className="dk-anim d1"
+          data-dashi-theme09-zine-slot="0"
+          data-dashi-theme09-zine-visible="true"
+          style={{flex:'0.92 1 0', minWidth:0, position:'relative', borderRadius:'var(--dk-radius)', overflow:'hidden',
               boxShadow: focus?`0 28px 64px ${hexA(ACC,.24)}, 0 0 0 2px ${hexA(ACC,.7)}`:'0 24px 56px rgba(3,8,30,.5)'}}>
           <FillSlot idPrefix="zine" idx={0} placeholder={captions[0]} accent={ACC} theme={props.theme} />
           <span style={{position:'absolute', left:18, bottom:18, zIndex:3, fontFamily:'var(--font-mono)', fontSize:13, letterSpacing:'.1em',
@@ -84,10 +93,16 @@ function SlideZine(props){
 
           {/* 右下：小图 + 抽言 */}
           <div style={{marginTop:'auto', paddingTop:22, display:'flex', gap:20, alignItems:'stretch'}}>
-            {smalls > 0 && Array.from({length:smalls}).map((_,k)=>(
-              <div key={k} className={'dk-anim d'+Math.min(k+3,6)} style={{flex:'0 0 26%', position:'relative', minWidth:0, height:200,
-                    borderRadius:16, overflow:'hidden', boxShadow:'0 18px 44px rgba(3,8,30,.45)'}}>
-                <FillSlot idPrefix="zine" idx={k+1} placeholder={captions[k+1]||'图 / image'} accent={ACC} theme={props.theme} />
+            {[1, 2].map((slotIdx)=>(
+              <div
+                key={slotIdx}
+                className={'dk-anim d'+Math.min(slotIdx+2,6)}
+                data-dashi-theme09-zine-slot={slotIdx}
+                data-dashi-theme09-zine-visible={slotIdx < n ? 'true' : 'false'}
+                style={{display:slotIdx < n?'block':'none', flex:'0 0 26%', position:'relative', minWidth:0, height:200,
+                    borderRadius:16, overflow:'hidden', boxShadow:'0 18px 44px rgba(3,8,30,.45)'}}
+              >
+                <FillSlot idPrefix="zine" idx={slotIdx} placeholder={captions[slotIdx]||'图 / image'} accent={ACC} theme={props.theme} />
               </div>
             ))}
             {showPull && (
@@ -114,6 +129,7 @@ export default SlideZine;
 
 export const slideSpec = { defaults: defaultProps, slot:'zine', name:'杂志跨页 · Zine', controls:[
   { prop:'imgCount', type:'slider', label:'图片槽数量', default:3, min:1, max:3, step:1 },
+  { prop:'layout', type:'radio', label:'左右布局', default:'图左文右', options:['图左文右','图右文左'] },
   { prop:'showPull', type:'toggle', label:'装饰文案', default:true, desc:'抽言条' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
 ]};

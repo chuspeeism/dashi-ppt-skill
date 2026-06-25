@@ -206,14 +206,19 @@ export function ImageSlot({ src, placeholder = '图片', mode = 'ratio', height,
 
 function normalizeMedia(value) {
   if (!value) return null;
-  if (typeof value === 'string') return { src: value, kind: value.startsWith('data:video/') ? 'video' : 'image' };
+  if (typeof value === 'string') return { src: value, kind: looksLikeVideoSrc(value) ? 'video' : 'image' };
   if (typeof value === 'object' && value.src) {
     return {
       ...value,
-      kind: value.kind || (String(value.type || value.src).startsWith('video/') || String(value.src).startsWith('data:video/') ? 'video' : 'image'),
+      kind: value.kind || (String(value.type || value.src).startsWith('video/') || looksLikeVideoSrc(value.src) ? 'video' : 'image'),
     };
   }
   return null;
+}
+
+function looksLikeVideoSrc(src) {
+  return String(src || '').startsWith('data:video/')
+    || /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(String(src || ''));
 }
 
 /* ---- small util: clamp a prop into [min,max] ------------------------------- */

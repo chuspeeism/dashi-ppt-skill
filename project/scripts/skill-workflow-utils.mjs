@@ -700,23 +700,11 @@ function mediaObjectHasSource(value) {
 }
 
 function acceptedMediaKinds(record, field, fieldControl) {
-  const type = String(fieldControl?.type || '').toLowerCase();
-  const key = String(field || '').toLowerCase();
-  if (type === 'media' || key === 'media') return ['image', 'video'];
-  if (record?.page?.themeKey === 'theme05' && /^(images|media)$/i.test(field)) return ['image', 'video'];
-  if (record?.page?.themeKey === 'theme06' && /^(images|media)$/i.test(field)) return ['image', 'video'];
-  if (record?.page?.key === 'theme07_page071' && /^(images|media)$/i.test(field)) return ['image', 'video'];
-  if (record?.page?.themeKey === 'theme08' && key === 'images') return ['image', 'video'];
-  if (record?.page?.themeKey === 'theme11' && /^(images|media)$/i.test(field)) return ['image', 'video'];
-  return ['image'];
+  return ['image', 'video'];
 }
 
 function countOnlyAcceptedMediaKinds(record, control) {
-  const text = `${control.key || ''} ${control.label || ''} ${control.desc || control.description || ''}`;
-  if (record?.page?.themeKey === 'theme06' && /mediaSlotCount/i.test(control.key || '')) return ['image', 'video'];
-  if (record?.page?.themeKey === 'theme08' && /mediaCount/.test(control.key || '')) return ['image', 'video'];
-  if (/video|视频|媒体/i.test(text)) return ['image', 'video'];
-  return ['image'];
+  return ['image', 'video'];
 }
 
 function hostMediaFields(record, control) {

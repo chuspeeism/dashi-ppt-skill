@@ -21,7 +21,7 @@
  */
 import React from 'react';
 import { ThemeStyle, THEME_CLASS, cx } from '../gxnTheme.js';
-import { SlideHeader } from '../gxnPrimitives.jsx';
+import { SlideHeader, MediaView, mediaItem } from '../gxnPrimitives.jsx';
 
 export const slideMosaicDefaults = {
   kicker: 'GALLERY · 案例拼贴',
@@ -81,12 +81,13 @@ const LAYOUTS = {
 
 function MosaicSlot({ i, src, caption, showCaption, isFocus, onActivate, onClear, area }) {
   const [r1, c1, r2, c2] = area;
-  const filled = !!src;
+  const media = mediaItem(src);
+  const filled = !!media?.src;
   return (
     <div className={cx('gxn-slot', filled && 'is-filled', isFocus && 'is-focus')}
          style={{ gridRow: `${r1} / ${r2}`, gridColumn: `${c1} / ${c2}`, borderRadius: 18 }}>
       {filled
-        ? <img src={src} alt="" style={{ objectFit: 'cover' }} />
+        ? <MediaView value={media} fit="cover" />
         : <span className="gxn-slot-cap">{caption || '拖入图片 · IMAGE'}</span>}
       {filled && showCaption && caption && (
         <div className="gxn-slot-overlay">

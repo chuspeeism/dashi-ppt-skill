@@ -21,16 +21,21 @@ export const ImageSlotMediaContext = React.createContext(null);
 
 function normalizeMediaItem(value) {
   if (!value) return null;
-  if (typeof value === "string") return { src: value, kind: value.startsWith("data:video/") ? "video" : "image" };
+  if (typeof value === "string") return { src: value, kind: looksLikeVideoSrc(value) ? "video" : "image" };
   if (typeof value === "object" && (value.src || value.u)) {
     const src = value.src || value.u;
     return {
       ...value,
       src,
-      kind: value.kind || (String(value.type || src).startsWith("video/") || String(src).startsWith("data:video/") ? "video" : "image"),
+      kind: value.kind || (String(value.type || src).startsWith("video/") || looksLikeVideoSrc(src) ? "video" : "image"),
     };
   }
   return null;
+}
+
+function looksLikeVideoSrc(src) {
+  return String(src || "").startsWith("data:video/")
+    || /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(String(src || ""));
 }
 
 export function ImageSlot({
@@ -43,7 +48,7 @@ export function ImageSlot({
   caption = "图片 / IMAGE",
   index,
   editable = true,
-  kind = src && String(src).startsWith("data:video/") ? "video" : "image",
+  kind = src && looksLikeVideoSrc(src) ? "video" : "image",
   onUpload,          // (dataUrl, naturalRatio) => void
 }) {
   const [hover, setHover] = React.useState(false);
@@ -241,7 +246,7 @@ export function ImageGallery({
           <ImageSlot key={i} index={i} src={(data[i] && data[i].src) || null} ratio={r}
             width={Math.round(w)} height={Math.round(heights[i])} radius={radius}
             caption={caption} editable={editable}
-            kind={(data[i] && data[i].kind) || (data[i]?.src && String(data[i].src).startsWith("data:video/") ? "video" : "image")}
+            kind={(data[i] && data[i].kind) || (data[i]?.src && looksLikeVideoSrc(data[i].src) ? "video" : "image")}
             onUpload={(src, ratio, meta) => setAt(i, { src, ratio, ...(meta || {}) })} />
         ))}
       </div>
@@ -259,7 +264,7 @@ export function ImageGallery({
           key={i}
           index={i}
           src={(data[i] && data[i].src) || null}
-          kind={(data[i] && data[i].kind) || (data[i]?.src && String(data[i].src).startsWith("data:video/") ? "video" : "image")}
+          kind={(data[i] && data[i].kind) || (data[i]?.src && looksLikeVideoSrc(data[i].src) ? "video" : "image")}
           ratio={r}
           width={Math.round(h * r)}
           height={Math.round(h)}

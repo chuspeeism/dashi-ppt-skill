@@ -101,5 +101,5 @@ export const slideSpec = { defaults: defaultProps, slot:'contents', name:'目录
   { prop:'cardCount', type:'slider', label:'卡片数量', default:4, min:2, max:7, step:1 },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:1, min:0, max:(p)=>p.cardCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:1, min:0, max:(p)=>p.cardCount-1, maxFromKey:'cardCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

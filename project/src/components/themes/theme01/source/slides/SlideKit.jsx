@@ -101,16 +101,21 @@ export const ImageSlotActions = React.createContext(null);
 
 function mediaItem(value) {
   if (!value) return null;
-  if (typeof value === 'string') return { src: value, kind: value.startsWith('data:video/') ? 'video' : 'image' };
+  if (typeof value === 'string') return { src: value, kind: looksLikeVideoSrc(value) ? 'video' : 'image' };
   if (typeof value === 'object' && (value.src || value.u)) {
     const src = value.src || value.u;
     return {
       ...value,
       src,
-      kind: value.kind || (String(value.type || src).startsWith('video/') || String(src).startsWith('data:video/') ? 'video' : 'image'),
+      kind: value.kind || (String(value.type || src).startsWith('video/') || looksLikeVideoSrc(src) ? 'video' : 'image'),
     };
   }
   return null;
+}
+
+function looksLikeVideoSrc(src) {
+  return String(src || '').startsWith('data:video/')
+    || /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(String(src || ''));
 }
 
 export function ImageSlot({

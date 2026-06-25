@@ -137,10 +137,10 @@
   #slide-rail-list::-webkit-scrollbar-track{background:transparent}
   #slide-rail-list::-webkit-scrollbar-thumb{background:var(--pp-rail);border-radius:999px;border:2px solid transparent;background-clip:content-box}
   .rail-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:10px;align-items:start;width:100%;min-width:0}
-  .rail-card{position:relative;display:grid;gap:0;width:100%;min-width:0;max-width:100%;padding:2px;border:0;border-radius:9px;background:transparent;color:var(--pp-fg);cursor:pointer;text-align:left;outline:1px solid transparent;transition:opacity .16s,transform .2s}
+  .rail-card{position:relative;display:grid;gap:0;width:100%;min-width:0;max-width:100%;padding:2px;border:3px solid transparent;border-radius:12px;background:transparent;color:var(--pp-fg);cursor:pointer;text-align:left;outline:1px solid transparent;transition:opacity .16s,transform .2s,border-color .16s,box-shadow .16s}
   .rail-card:hover .rail-thumb-frame{box-shadow:0 0 0 1px var(--pp-fg2)}
-  .rail-card[aria-current="true"]{background:transparent;color:var(--pp-fg);outline-color:transparent}
-  .rail-card[aria-current="true"] .rail-thumb-frame{box-shadow:0 0 0 2px var(--pp-blue),0 4px 14px var(--pp-blue-soft)}
+  .rail-card[aria-current="true"]{background:transparent;color:var(--pp-fg);border-color:var(--pp-blue);outline-color:transparent;box-shadow:0 6px 18px var(--pp-blue-soft)}
+  .rail-card[aria-current="true"] .rail-thumb-frame{box-shadow:0 0 0 1px var(--pp-border)}
   .rail-card.is-dragging{opacity:.45;cursor:grabbing}
   .rail-thumb-frame{position:relative;width:100%;min-width:0;max-width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:8px;background:var(--paper);box-shadow:0 0 0 1px var(--pp-border);transition:box-shadow .16s;contain:layout paint style}
   .rail-thumb{position:absolute;inset:0;width:100%;min-width:0;max-width:100%;height:100%;overflow:hidden;pointer-events:none;background:var(--paper);contain:layout paint style}
@@ -3927,7 +3927,7 @@ refreshRailCatalog();
         group.className = 'preview-prop-choice-group' + (isColor ? ' is-color' : '');
         group.setAttribute('role', 'group');
         group.setAttribute('aria-label', control.label || control.key);
-        const options = normalizePropOptions(control.options);
+        const options = propOptions(control);
         if(isColor){
           group.style.setProperty('--pp-color-cols', '3');
         }else{
@@ -3966,7 +3966,7 @@ refreshRailCatalog();
         const select = document.createElement('select');
         select.setAttribute('aria-label', control.label || control.key);
         makePreviewControlKeyboardNeutral(select, {blurOnPointer:false});
-        normalizePropOptions(control.options).forEach(item => {
+        propOptions(control).forEach(item => {
           const option = document.createElement('option');
           option.value = propOptionDomValue(item.value);
           option.__propValue = item.value;
@@ -3985,7 +3985,7 @@ refreshRailCatalog();
         group.className = 'preview-prop-icon-grid';
         group.setAttribute('role', 'group');
         group.setAttribute('aria-label', control.label || control.key);
-        [{value:'', label:'无'}, ...normalizePropOptions(control.options)].forEach(item => {
+        [{value:'', label:'无'}, ...propOptions(control)].forEach(item => {
           const button = document.createElement('button');
           button.type = 'button';
           button.className = 'preview-prop-icon-choice';
@@ -4093,7 +4093,7 @@ refreshRailCatalog();
 
   function normalizePropControlType(type, control = {}){
     if(control?.display === 'tab' || type === 'segment' || type === 'selection' || type === 'select' || type === 'color'){
-      const optionCount = normalizePropOptions(control.options).length;
+      const optionCount = propOptions(control).length;
       if(control?.display !== 'color' && optionCount > 0 && optionCount <= 5) return 'segment';
       return 'select';
     }
@@ -4329,6 +4329,16 @@ refreshRailCatalog();
     return raw.replace(/\bYES\b/g, '是').replace(/\bNO\b/g, '否').replace(/\b8-bit\b/gi, '像素');
   }
 
+  function propOptions(control){
+    const options = normalizePropOptions(control?.options);
+    if(options.length || control?.key !== 'labelType') return options;
+    return [
+      {value:'number', label:'数字', image:''},
+      {value:'symbol', label:'符号', image:''},
+      {value:'keyword', label:'关键词', image:''},
+    ];
+  }
+
   function isPaletteOption(item){
     return item.length > 1 && item.every(value => /^#[0-9a-f]{3,8}$/i.test(String(value || '')));
   }
@@ -4370,7 +4380,7 @@ refreshRailCatalog();
     if(controlType === 'toggle') return value === true || value === 'true' || value === 1 || value === '1';
     if(controlType === 'range') return Number.isFinite(Number(value)) ? Number(value) : Number(control.min ?? 0);
     if(controlType === 'select' || controlType === 'segment'){
-      const options = normalizePropOptions(control.options);
+      const options = propOptions(control);
       let match = options.find(item => String(item.value) === String(value));
       if(!match && control.display === 'color'){
         match = options.find(item => Array.isArray(item.value) && String(item.value[0]) === String(value));
@@ -4379,7 +4389,7 @@ refreshRailCatalog();
     }
     if(controlType === 'icons'){
       if(value == null || value === '') return null;
-      const match = normalizePropOptions(control.options).find(item => String(item.value) === String(value));
+      const match = propOptions(control).find(item => String(item.value) === String(value));
       return match ? match.value : String(value);
     }
     if(controlType === 'image-list') return Array.isArray(value) ? value : [];

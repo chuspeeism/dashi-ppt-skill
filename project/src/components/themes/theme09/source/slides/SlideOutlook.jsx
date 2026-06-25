@@ -53,6 +53,7 @@ function SlideOutlook(props){
     itemCount, focus, focusIndex, labelType, showAside, groups, phases,
   } = { ...defaultProps, ...props };
 
+  const focusGroup = focusIndex === '右侧' || focusIndex === 'right' || focusIndex === 1 || focusIndex === '1' ? 1 : 0;
   const sym = (i)=> deckLabel(labelType, i, { keyword:'PT' });
 
   return (
@@ -66,10 +67,10 @@ function SlideOutlook(props){
         <div style={{flex:'1 1 0', minHeight:0, display:'grid', gridTemplateColumns:'1fr 1fr', gap:26}}>
           {groups.map((g,gi)=>{
             const c = g.tone === 'caution' ? NEG : POS;
-            const hot = focus && gi===focusIndex;
+            const hot = focus && gi===focusGroup;
             const its = g.items.slice(0, Math.max(1, Math.min(itemCount, g.items.length)));
             return (
-              <div key={gi} className={'dk-glass dk-anim d'+(gi+1)} style={{
+              <div key={gi} data-dashi-theme09-outlook-group={gi} data-dashi-theme09-outlook-hot={hot ? 'true' : 'false'} className={'dk-glass dk-anim d'+(gi+1)} style={{
                 borderRadius:'var(--dk-radius)', padding:'30px 34px', display:'flex', flexDirection:'column',
                 boxShadow: hot ? `0 34px 80px ${hexA(c,.28)}, 0 0 0 2px ${c}` : '0 22px 54px rgba(3,8,30,.42)'}}>
                 {/* 组头 */}

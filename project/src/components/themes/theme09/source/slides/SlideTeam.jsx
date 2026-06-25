@@ -144,5 +144,5 @@ export const slideSpec = { defaults: defaultProps, slot:'team', name:'研究团�
   { prop:'imgCount', type:'slider', label:'图片槽数量', default:4, min:0, max:6, step:1 },
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.memberCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.memberCount-1, maxFromKey:'memberCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

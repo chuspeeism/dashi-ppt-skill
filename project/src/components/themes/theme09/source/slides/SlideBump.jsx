@@ -41,6 +41,7 @@ export const defaultProps = {
       { label:'数据平台',   ranks:[6,5,5,5,4,4] },
       { label:'医疗 AI',    ranks:[7,7,6,6,6,5] },
       { label:'机器人',     ranks:[4,6,7,7,7,7] },
+      { label:'AI 芯片',    ranks:[8,8,8,8,8,8] },
     ],
 };
 
@@ -64,7 +65,8 @@ function SlideBump(props){
     .map((s,i)=>({ ...s, ranks:s.ranks.slice(0,pc), col:PAL[i%PAL.length], idx:i }));
   const n = data.length;
   const fIdx = Math.max(0, Math.min(focusIndex, n-1));
-  const lbl = (i)=> deckLabel(labelType, i, { keyword:'T' });
+  const labelKind = labelType === '符号' ? 'symbol' : labelType === '关键词' ? 'keyword' : labelType === '数字' ? 'number' : labelType;
+  const lbl = (rank)=> deckLabel(labelKind, rank - 1, { keyword:'T', number:rank });
 
   const W = 1640, H = 560, padL = 250, padR = 250, padT = 64, padB = 50;
   const plotW = W - padL - padR, plotH = H - padT - padB;
@@ -85,6 +87,7 @@ function SlideBump(props){
 
   const fd = data[fIdx];
   const delta = fd.ranks[0] - fd.ranks[pc-1]; // 正=名次上升
+  const deltaText = delta>0 ? `↑ 升 ${delta} 位` : delta<0 ? `↓ 降 ${-delta} 位` : '持平';
 
   return (
     <SlideShell orbs={[{ w:520, h:520, left:-160, top:-150,
@@ -110,14 +113,17 @@ function SlideBump(props){
             {/* 节点徽标 */}
             {showBadge && data.map((s)=>{
               const hot = focus && s.idx===fIdx;
-              return s.ranks.map((r,k)=>(
+              return s.ranks.map((r,k)=>{
+                const badge = lbl(r);
+                return (
                 <g key={s.idx+'-'+k} opacity={focus&&!hot?.4:1}>
                   <circle cx={X(k)} cy={Y(r)} r={hot?17:12} fill={hot?s.col:'#0a1230'} stroke={s.col} strokeWidth={hot?3:2.5} />
-                  <text x={X(k)} y={Y(r)+1} textAnchor="middle" dominantBaseline="central"
+                  <text data-dashi-theme09-bump-badge-label={badge} x={X(k)} y={Y(r)+1} textAnchor="middle" dominantBaseline="central"
                     fontFamily="var(--font-display)" fontWeight="900" fontSize={hot?18:13}
-                    fill={hot?'#08122e':'#fff'}>{r}</text>
+                    fill={hot?'#08122e':'#fff'}>{badge}</text>
                 </g>
-              ));
+                );
+              });
             })}
             {/* 两端赛道名 */}
             {data.map((s)=>{
@@ -139,7 +145,7 @@ function SlideBump(props){
             <span style={{flexShrink:0, fontFamily:'var(--font-mono)', fontSize:14, letterSpacing:'.12em', color:ACC, writingMode:'vertical-rl', textOrientation:'upright'}}>轨迹</span>
             <p style={{flex:'1 1 0', fontSize:'var(--type-small)', lineHeight:1.5, color:'rgba(255,255,255,.86)', textWrap:'pretty'}}>
               <b style={{color:fd.col}}>{fd.label}</b> 自 {pds[0]} 第 {fd.ranks[0]} 名{delta>0?'稳步攀升至':delta<0?'回落至':'保持'} {pds[pc-1]} 第 <b style={{color:'#fff'}}>{fd.ranks[pc-1]}</b> 名
-              （{delta>0?'↑ 升 '+delta:delta<0?'↓ 降 '+(-delta):'持平'} 位）；资本注意力在多期内显著重排，头部赛道更替加速。
+              （{deltaText}）；资本注意力在多期内显著重排，头部赛道更替加速。
             </p>
             <div style={{flexShrink:0, textAlign:'center'}}>
               <div style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:54, lineHeight:.9, color:delta>0?ACC:delta<0?WARN:BLUE}}>{delta>0?'↑'+delta:delta<0?'↓'+(-delta):'='}</div>
@@ -168,5 +174,5 @@ export const slideSpec = { defaults: defaultProps, slot:'bump', name:'名次轨�
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true, desc:'升降解读' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

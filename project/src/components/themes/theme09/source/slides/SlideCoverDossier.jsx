@@ -179,5 +179,5 @@ export const slideSpec = { defaults: defaultProps, slot:'coverdossier', name:'�
   { prop:'showStamp', type:'toggle', label:'钢印章', default:true, desc:'装饰' },
   { prop:'showChip', type:'toggle', label:'质感方块', default:true, desc:'玻璃芯片装饰' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.fieldCount-1), step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.fieldCount-1), maxFromKey:'fieldCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

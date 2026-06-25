@@ -144,9 +144,9 @@ export default SlideStaircase;
 export const slideSpec = { defaults: defaultProps, slot:'stair', name:'阶梯递进 · Staircase', controls:[
   { prop:'stepCount', type:'slider', label:'数量', default:5, min:3, max:6, step:1 },
   { prop:'direction', type:'radio', label:'排序', default:'升序', options:['升序','原序'] },
-  { prop:'showRidge', type:'toggle', label:'装饰文案', default:true, desc:'上升轮廓线' },
+  { prop:'showRidge', type:'toggle', label:'装饰线', default:true, desc:'上升轮廓线' },
   { prop:'showValue', type:'toggle', label:'阶面数值', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:4, min:0, max:(p)=>p.stepCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:4, min:0, max:(p)=>p.stepCount-1, maxFromKey:'stepCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

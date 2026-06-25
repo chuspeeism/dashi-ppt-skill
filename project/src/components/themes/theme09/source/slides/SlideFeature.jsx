@@ -59,11 +59,12 @@ function SlideFeature(props){
   const data = points.slice(0, Math.max(0, Math.min(pointCount, points.length)));
   const fIdx = Math.max(0, Math.min(focusIndex, Math.max(0, data.length - 1)));
   const nImg = Math.max(1, Math.min(imgCount, 4));
+  const imageSide = imgSide === '右' || imgSide === 'right' ? 'right' : 'left';
   const lbl = (i)=> deckLabel(labelType, i, { keyword:'PT' });
   const cap = (focus && data[fIdx]) ? data[fIdx] : data[0];
 
   const imgPanel = (
-    <div className="dk-anim d1" style={{flex:'1.32 1 0', minWidth:0, position:'relative', display:'flex',
+    <div data-dashi-theme09-feature-image-panel="true" className="dk-anim d1" style={{flex:'1.32 1 0', minWidth:0, position:'relative', display:'flex',
           flexDirection:'column', gap:16}}>
       <div style={{position:'relative', flex:'1 1 0', minHeight:0, borderRadius:20, overflow:'hidden',
             boxShadow:'0 26px 60px rgba(3,8,30,.5)'}}>
@@ -93,7 +94,7 @@ function SlideFeature(props){
   );
 
   const textCol = (
-    <div style={{flex:'1 1 0', minWidth:0, display:'flex', flexDirection:'column', justifyContent:'center'}}>
+    <div data-dashi-theme09-feature-text-col="true" style={{flex:'1 1 0', minWidth:0, display:'flex', flexDirection:'column', justifyContent:'center'}}>
       <div className="dk-anim" style={{display:'flex', alignItems:'center', gap:16, marginBottom:18}}>
         <span style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:'var(--type-sub)', color:ACC}}>{badge}</span>
         <span style={{fontFamily:'var(--font-mono)', fontSize:14, letterSpacing:'.2em', color:'var(--ink-dim)'}}>{kicker}</span>
@@ -132,7 +133,7 @@ function SlideFeature(props){
     <SlideShell orbs={[{ w:520, h:520, right:-160, top:-150,
         color:`radial-gradient(circle at 50% 50%, ${hexA(BLUE,.2)}, ${hexA(BLUE,0)} 70%)` }]}>
       <div style={{flex:'1 1 0', minHeight:0, display:'flex', gap:48, alignItems:'stretch'}}>
-        {imgSide==='left' ? <>{imgPanel}{textCol}</> : <>{textCol}{imgPanel}</>}
+        {imageSide==='left' ? <>{imgPanel}{textCol}</> : <>{textCol}{imgPanel}</>}
       </div>
     </SlideShell>
   );
@@ -156,5 +157,5 @@ export const slideSpec = { defaults: defaultProps, slot:'feature', name:'图说�
   { prop:'showCaption', type:'toggle', label:'装饰文案', default:true, desc:'图底字幕条' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.pointCount-1), step:1, showIf:(p)=>p.focus && p.pointCount>0 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.pointCount-1), maxFromKey:'pointCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus && p.pointCount>0 },
 ]};

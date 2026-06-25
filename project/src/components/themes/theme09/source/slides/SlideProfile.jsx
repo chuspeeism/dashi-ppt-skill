@@ -244,5 +244,5 @@ export const slideSpec = { defaults: defaultProps, slot:'pf-profile', name:'关�
   { prop:'imgCount', type:'slider', label:'图片槽数量', default:1, min:0, max:2, step:1 },
   { prop:'showBarcode', type:'toggle', label:'条形码装饰', default:true },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.skillCount-1, step:1, showIf:(p)=>p.focus&&p.skillCount>0 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.skillCount-1, maxFromKey:'skillCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus&&p.skillCount>0 },
 ]};

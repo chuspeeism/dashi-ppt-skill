@@ -18,14 +18,19 @@ export const ImageStripMediaContext = React.createContext(null);
 
 function normalizeMediaItem(value){
   if(!value) return null;
-  if(typeof value === 'string') return { src:value, kind:value.startsWith('data:video/') ? 'video' : 'image' };
+  if(typeof value === 'string') return { src:value, kind:looksLikeVideoSrc(value) ? 'video' : 'image' };
   if(typeof value === 'object'){
     const src = value.src || value.url || value.u;
     if(!src) return null;
-    const kind = value.kind || (String(value.type || src).startsWith('video/') || String(src).startsWith('data:video/') ? 'video' : 'image');
+    const kind = value.kind || (String(value.type || src).startsWith('video/') || looksLikeVideoSrc(src) ? 'video' : 'image');
     return { ...value, src, kind };
   }
   return null;
+}
+
+function looksLikeVideoSrc(src){
+  return String(src || '').startsWith('data:video/')
+    || /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(String(src || ''));
 }
 
 function mediaToSlotData(value){
@@ -43,7 +48,7 @@ function slotDataToMedia(data){
   if(!data?.url) return null;
   return {
     src:data.url,
-    kind:data.kind || (String(data.type || data.url).startsWith('video/') || String(data.url).startsWith('data:video/') ? 'video' : 'image'),
+    kind:data.kind || (String(data.type || data.url).startsWith('video/') || looksLikeVideoSrc(data.url) ? 'video' : 'image'),
     type:data.type,
     ratio:data.aspect || null,
     ar:data.aspect || null,
@@ -142,7 +147,13 @@ function ImageStrip(props){
   const rowH = Math.min(maxH, availW / sumA);
 
   return (
-    <div style={{display:'flex', gap, justifyContent:'center', alignItems:'flex-start', width:'100%'}}>
+    <div
+      data-dashi-theme09-image-strip="true"
+      style={{
+        display:'flex', flexWrap:'nowrap', gap, justifyContent:'center', alignItems:'flex-start',
+        width:'100%', maxWidth:width, height:Math.round(rowH), overflow:'hidden',
+      }}
+    >
       {aspects.map((asp, i)=>(
         <ImageSlotCell
           key={i}
@@ -176,7 +187,7 @@ function ImageSlotCell({ data, aspect, height, placeholder, onFile, onClear }){
       onDrop={(e)=>{e.preventDefault(); e.stopPropagation(); setDrag(false); onFile(e.dataTransfer.files[0]);}}
       onClick={openPicker}
       style={{
-        position:'relative', width:w, height:Math.round(height), flexShrink:0,
+        position:'relative', width:w, height:Math.round(height), flex:`0 1 ${w}px`, minWidth:0,
         borderRadius:20, overflow:'hidden', cursor:'pointer',
         background: data ? '#0a1230'
           : 'repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 14px, rgba(255,255,255,.02) 14px 28px)',

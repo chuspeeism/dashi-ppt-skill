@@ -704,15 +704,16 @@ function defaultsFromSpec(spec) {
 function withTheme09Controls(controls = []) {
   return controls.map(control => {
     const key = control?.prop || control?.key;
-    if (key !== 'focusIndex') return control;
+    const next = inferControlBounds(control);
+    if (key !== 'focusIndex') return next;
     return {
-      ...inferFocusIndexBounds(control),
-      displayOffset: control.displayOffset ?? 1,
+      ...next,
+      displayOffset: next.displayOffset ?? 1,
     };
   });
 }
 
-function inferFocusIndexBounds(control) {
+function inferControlBounds(control) {
   if (control.maxFromKey || control.maxByKey || control.maxByValue) return control;
   const maxSource = typeof control.max === 'function' ? String(control.max) : '';
   const fromKeyMatch = maxSource.match(/p\.([A-Za-z0-9_$]+)\s*-\s*1/);

@@ -136,8 +136,8 @@ export default SlideScoreboard;
 export const slideSpec = { defaults: defaultProps, slot:'scoreboard', name:'计分榜 · Scoreboard', controls:[
   { prop:'itemCount', type:'slider', label:'数量', default:4, min:2, max:5, step:1 },
   { prop:'showDelta', type:'toggle', label:'同比片', default:true },
-  { prop:'showScan', type:'toggle', label:'装饰文案', default:true, desc:'LED 扫描线质感' },
+  { prop:'showScan', type:'toggle', label:'装饰元素', default:true, desc:'LED 扫描线质感' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

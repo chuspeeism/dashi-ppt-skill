@@ -116,13 +116,13 @@ function SlideSplit(props){
             {shown.map((s,i)=>{
               const hot = focus && i===fIdx;
               return (
-                <div key={i} style={{display:'flex', flexDirection:'column', gap:8, padding:'0 40px',
+                <div key={i} data-dashi-theme09-split-support="true" style={{display:'flex', flexDirection:'column', gap:8, padding:'0 40px',
                       borderLeft: i? `1px solid ${hexA('#fff',.12)}`:'none', minWidth:230}}>
                   <span style={{display:'flex', alignItems:'center', gap:10, fontFamily:'var(--font-mono)',
                       fontSize:13, letterSpacing:'.14em', color: hot?ACC:'var(--ink-faint)', textTransform:'uppercase'}}>
                     <b style={{color: hot?ACC:'var(--ink-faint)'}}>{lab(i)}</b>{s.label}</span>
-                  <span style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:'var(--type-sub)',
-                      color: hot?'#fff':'rgba(255,255,255,.82)'}}>{s.value}</span>
+                  <span data-dashi-theme09-split-support-value="true" style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:'var(--type-sub)',
+                      color: hot?ACC:'rgba(255,255,255,.82)'}}>{s.value}</span>
                 </div>
               );
             })}
@@ -154,5 +154,5 @@ export const slideSpec = { defaults: defaultProps, slot:'split', name:'斜切分
   { prop:'showGhost', type:'toggle', label:'装饰文案', default:true, desc:'幽灵大字' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.supportCount-1), step:1, showIf:(p)=>p.focus && p.supportCount>0 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.supportCount-1), maxFromKey:'supportCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus && p.supportCount>0 },
 ]};

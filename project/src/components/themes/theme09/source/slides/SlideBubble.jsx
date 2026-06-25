@@ -1,4 +1,4 @@
-import { useDeckStyles, deckTheme, deckLabel, SlideShell, SlideHead } from './DeckKit.jsx';
+import { useDeckStyles, deckTheme, SlideShell, SlideHead } from './DeckKit.jsx';
 /* ============================================================================
    SlideBubble — 气泡聚类（圆形装箱 · 面积编码量级）
    独立组件：仅靠 props 控制内容与样式；render 时自注入 DeckKit 基座样式。
@@ -9,12 +9,11 @@ import { useDeckStyles, deckTheme, deckLabel, SlideShell, SlideHead } from './De
    ── 可调参数（Props） ──────────────────────────────────────────────────────
    | prop        | 类型                          | 默认值 | 说明                          |
    | items       | Bubble[]                      | 见下   | 数据源（value 决定面积）      |
-   | itemCount   | number (4–8)                  | 8      | 展示气泡数（截取）            |
+   | itemCount   | number (1–8)                  | 8      | 展示气泡数（截取）            |
    | sort        | '降序'|'原序'                 | 降序   | 按量级排序（影响装箱顺序）    |
    | showValue   | boolean                       | true   | 泡内数值                      |
    | focus       | boolean                       | true   | 高亮某一气泡                  |
    | focusIndex  | number (0-based)              | 0      | 高亮第几个                    |
-   | labelType   | 'number'|'symbol'|'keyword'   | number | 角标徽标样式                  |
    | showAside   | boolean                       | true   | 读图（装饰）                  |
    Bubble = { label, sub, value, tone:'acc'|'blue'|'violet'|'warn' }
    ========================================================================== */
@@ -25,9 +24,8 @@ export const defaultProps = {
   itemCount: 8,
   sort: '降序',
   showValue: true,
-  focus: true,
+  focus: false,
   focusIndex: 0,
-  labelType: 'number',
   showAside: true,
   unit: '亿$',
   head: { no:'09', en:'Bubble · Pack', cn:'体量聚类 · 资本抱团' },
@@ -54,40 +52,52 @@ function SlideBubble(props){
   const TONE = { acc:ACC, blue:BLUE, violet:VIO, warn:WARN };
 
   const {
-    itemCount, sort, showValue, focus, focusIndex, labelType, showAside,
+    itemCount, sort, showValue, focus, focusIndex, showAside,
     unit, head, items,
   } = { ...defaultProps, ...props };
 
   let data = items.slice();
   if(sort==='降序') data.sort((a,b)=> b.value - a.value);
-  data = data.slice(0, Math.max(4, Math.min(itemCount, data.length)));
+  data = data.slice(0, Math.max(1, Math.min(itemCount, data.length)));
   const fIdx = Math.max(0, Math.min(focusIndex, data.length - 1));
-  const lbl = (i)=> deckLabel(labelType, i, { keyword:'B' });
 
   // 半径：面积∝value
   const W = 1500, H = 600, cx = W/2, cy = H/2;
   const maxV = Math.max(...data.map(d=>d.value));
-  const rMax = 178;
-  const sized = data.map((d,i)=> ({ ...d, idx:i, r: Math.max(34, rMax*Math.sqrt(d.value/maxV)) }));
+  const n = data.length;
+  const lowCount = n <= 3;
+  const packMode = n === 1 ? 'single' : n === 2 ? 'pair' : n === 3 ? 'trio' : 'cluster';
+  const rMax = n === 1 ? 235 : n === 2 ? 210 : n === 3 ? 192 : 178;
+  const minR = n === 1 ? 150 : n === 2 ? 88 : n === 3 ? 66 : 34;
+  const sized = data.map((d,i)=> ({ ...d, idx:i, r: Math.max(minR, rMax*Math.sqrt(d.value/maxV)) }));
 
   // 确定性螺旋贪心装箱（大→小）
   const order = sized.slice().sort((a,b)=> b.r - a.r);
-  const placed = [];
-  order.forEach((it, k)=>{
-    if(k===0){ placed.push({ ...it, x:cx, y:cy }); return; }
-    let best=null;
-    for(let rad=0; rad<700 && !best; rad+=9){
-      for(let ang=0; ang<360; ang+=6){
-        const a = ang*Math.PI/180;
-        const x = cx + rad*Math.cos(a)*1.18, y = cy + rad*Math.sin(a);
-        if(x-it.r<8 || x+it.r>W-8 || y-it.r<8 || y+it.r>H-8) continue;
-        let ok=true;
-        for(const p of placed){ if(Math.hypot(x-p.x, y-p.y) < p.r+it.r+8){ ok=false; break; } }
-        if(ok){ best={x,y}; break; }
+  let placed = [];
+  const sparsePositions = {
+    single: [{ x:cx, y:cy }],
+    pair: [{ x:cx-240, y:cy }, { x:cx+245, y:cy }],
+    trio: [{ x:cx, y:cy-135 }, { x:cx-250, y:cy+145 }, { x:cx+250, y:cy+145 }],
+  }[packMode];
+  if(sparsePositions){
+    placed = order.map((it, k)=> ({ ...it, ...sparsePositions[k] }));
+  }else{
+    order.forEach((it, k)=>{
+      if(k===0){ placed.push({ ...it, x:cx, y:cy }); return; }
+      let best=null;
+      for(let rad=0; rad<700 && !best; rad+=9){
+        for(let ang=0; ang<360; ang+=6){
+          const a = ang*Math.PI/180;
+          const x = cx + rad*Math.cos(a)*1.18, y = cy + rad*Math.sin(a);
+          if(x-it.r<8 || x+it.r>W-8 || y-it.r<8 || y+it.r>H-8) continue;
+          let ok=true;
+          for(const p of placed){ if(Math.hypot(x-p.x, y-p.y) < p.r+it.r+8){ ok=false; break; } }
+          if(ok){ best={x,y}; break; }
+        }
       }
-    }
-    placed.push({ ...it, x:(best?best.x:cx), y:(best?best.y:cy) });
-  });
+      placed.push({ ...it, x:(best?best.x:cx), y:(best?best.y:cy) });
+    });
+  }
   const byIdx = {}; placed.forEach(p=> byIdx[p.idx]=p);
 
   // viewBox 收紧到簇的真实包围盒，消除画布空白
@@ -105,7 +115,7 @@ function SlideBubble(props){
 
       <div className="dk-anim d1" style={{flex:'1 1 0', minHeight:0, position:'relative', marginTop:10}}>
         <div style={{position:'absolute', inset:0, display:'grid', placeItems:'center'}}>
-          <svg width="100%" height="100%" viewBox={VB} preserveAspectRatio="xMidYMid meet" style={{maxHeight:'100%'}}>
+          <svg data-dashi-theme09-bubble-pack={packMode} width="100%" height="100%" viewBox={VB} preserveAspectRatio="xMidYMid meet" style={{maxHeight:'100%'}}>
             <defs>
               {Object.entries(TONE).map(([k,c])=>(
                 <radialGradient key={k} id={'bub'+k} cx="38%" cy="32%" r="75%">
@@ -118,23 +128,25 @@ function SlideBubble(props){
             {sized.map((it)=>{
               const p = byIdx[it.idx]; const c = TONE[it.tone]||ACC;
               const hot = focus && it.idx===fIdx, dim = focus && it.idx!==fIdx;
-              const fs = Math.max(15, it.r*0.30);
+              const fs = Math.max(lowCount?28:15, it.r*(lowCount?0.24:0.30));
+              const nameFs = Math.max(lowCount?28:16, it.r*(lowCount?0.23:0.22));
               return (
                 <g key={it.idx} opacity={dim?0.5:1} style={{transition:'opacity .2s'}}>
-                  <circle cx={p.x} cy={p.y} r={it.r} fill={`url(#bub${it.tone||'acc'})`}
+                  {lowCount && <circle cx={p.x} cy={p.y} r={it.r+12} fill="none" stroke={hexA(c,.22)} strokeWidth="4" />}
+                  <circle data-dashi-theme09-bubble-node="true" cx={p.x} cy={p.y} r={it.r} fill={`url(#bub${it.tone||'acc'})`}
                     stroke={hot?c:hexA(c,.5)} strokeWidth={hot?4:2}
                     style={{filter: hot?`drop-shadow(0 0 26px ${hexA(c,.6)})`:'none'}} />
                   {/* 角标 */}
                   <circle cx={p.x - it.r*0.0} cy={p.y - it.r*0.62} r={it.r*0.0} fill="none" />
-                  <text x={p.x} y={p.y - it.r*0.18} textAnchor="middle" fontFamily="var(--font-cn)" fontWeight="900"
-                    fontSize={Math.max(16, it.r*0.22)} fill="#fff">{it.label}</text>
+                  <text data-dashi-theme09-bubble-label="true" x={p.x} y={p.y - it.r*(lowCount?0.20:0.18)} textAnchor="middle" fontFamily="var(--font-cn)" fontWeight="900"
+                    fontSize={nameFs} fill="#fff">{it.label}</text>
                   {showValue && (
-                    <text x={p.x} y={p.y + it.r*0.30} textAnchor="middle" fontFamily="var(--font-display)" fontWeight="900"
+                    <text x={p.x} y={p.y + it.r*(lowCount?0.22:0.30)} textAnchor="middle" fontFamily="var(--font-display)" fontWeight="900"
                       fontSize={fs} fill={hot?'#fff':hexA('#fff',.92)}>{it.value}<tspan fontSize={fs*0.5} fill={hexA('#fff',.7)}> {unit}</tspan></text>
                   )}
-                  {it.r>52 && (
-                    <text x={p.x} y={p.y + it.r*0.56} textAnchor="middle" fontFamily="var(--font-mono)"
-                      fontSize={Math.max(10, it.r*0.12)} fill={hexA('#fff',.6)} letterSpacing=".06em">{it.sub}</text>
+                  {(it.r>52 || lowCount) && (
+                    <text x={p.x} y={p.y + it.r*(lowCount?0.48:0.56)} textAnchor="middle" fontFamily="var(--font-mono)"
+                      fontSize={Math.max(lowCount?16:10, it.r*(lowCount?0.10:0.12))} fill={hexA('#fff',.66)} letterSpacing=".06em">{it.sub}</text>
                   )}
                 </g>
               );
@@ -167,11 +179,10 @@ export default SlideBubble;
 
 /* ── 模板参数 schema（自描述 · 迁移即带控件；Tweaks 由此自动生成） ── */
 export const slideSpec = { defaults: defaultProps, slot:'bubble', name:'气泡聚类 · Bubble', controls:[
-  { prop:'itemCount', type:'slider', label:'数量', default:8, min:4, max:8, step:1, desc:'气泡数' },
+  { prop:'itemCount', type:'slider', label:'数量', default:8, min:1, max:8, step:1, desc:'气泡数' },
   { prop:'sort', type:'radio', label:'排序', default:'降序', options:['降序','原序'] },
   { prop:'showValue', type:'toggle', label:'泡内数值', default:true },
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true, desc:'读图条' },
-  { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
-  { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focus', type:'focus', label:'重点信息 Focus', default:false },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

@@ -1,4 +1,5 @@
 import { useDeckStyles, deckTheme, deckLabel, SlideShell, SlideHead } from './DeckKit.jsx';
+import { ImageStripMediaContext } from './ImageStrip.jsx';
 /* ============================================================================
    SlideOverlayCards — 影像卡集（满版裁切图卡 · 渐隐压暗 + 卡面叠印标题/图说）
    独立组件：仅靠 props 控制内容与样式；render 时自注入 DeckKit 基座样式。
@@ -98,15 +99,30 @@ function SlideOverlayCards(props){
 /* 满版裁切图卡槽：objectFit:cover 铺满卡面（按需裁切），拖入/点击上传 + localStorage 持久化。 */
 function CardFill({ idPrefix, idx, placeholder, accent }){
   const key = `${idPrefix}-${idx}`;
-  const load = ()=>{ try{ const r = localStorage.getItem(key); if(r) return JSON.parse(r); }catch(e){} return null; };
+  const media = React.useContext(ImageStripMediaContext);
+  const hasHostMedia = Boolean(media?.get || media?.set);
+  const loadLocal = ()=>{ try{ const r = localStorage.getItem(key); if(r) return JSON.parse(r); }catch(e){} return null; };
+  const load = ()=> {
+    const hosted = hasHostMedia ? mediaToCardData(media?.get?.(key, idx)) : null;
+    return hosted || loadLocal();
+  };
   const [data, setData] = React.useState(load);
   const [drag, setDrag] = React.useState(false);
   const [hover, setHover] = React.useState(false);
   const inputRef = React.useRef(null);
   const openPicker = (e)=>{ e.stopPropagation(); inputRef.current && inputRef.current.click(); };
-  const save = (d)=>{ setData(d); try{ d?localStorage.setItem(key, JSON.stringify(d)):localStorage.removeItem(key); }catch(e){} };
+  React.useEffect(()=>{ setData(load()); }, [hasHostMedia, media, key, idx]);
+  const save = (d)=>{
+    setData(d);
+    if(media?.set) media.set(key, idx, cardDataToMedia(d));
+    try{ d?localStorage.setItem(key, JSON.stringify(d)):localStorage.removeItem(key); }catch(e){}
+  };
   const ingest = (file)=>{
     if(!file || !/^(image|video)\//.test(file.type || '')) return;
+    if(hasHostMedia && media?.drop){
+      media.drop(key, idx, file);
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (e)=>{ const url = e.target.result;
       if(file.type.startsWith('video/')){
@@ -154,6 +170,38 @@ function CardFill({ idPrefix, idx, placeholder, accent }){
     </div>
   );
 }
+
+function mediaToCardData(value){
+  if(!value) return null;
+  if(typeof value === 'string') return { url:value, aspect:1.5, kind:looksLikeVideoSrc(value) ? 'video' : 'image' };
+  if(typeof value === 'object'){
+    const src = value.src || value.url || value.u;
+    if(!src) return null;
+    return {
+      url:src,
+      aspect:value.aspect || value.ratio || value.ar || 1.5,
+      kind:value.kind || (String(value.type || src).startsWith('video/') || looksLikeVideoSrc(src) ? 'video' : 'image'),
+      type:value.type,
+    };
+  }
+  return null;
+}
+
+function cardDataToMedia(data){
+  if(!data?.url) return null;
+  return {
+    src:data.url,
+    kind:data.kind || (String(data.type || data.url).startsWith('video/') || looksLikeVideoSrc(data.url) ? 'video' : 'image'),
+    type:data.type,
+    ratio:data.aspect || null,
+    ar:data.aspect || null,
+  };
+}
+
+function looksLikeVideoSrc(src){
+  return String(src || '').startsWith('data:video/')
+    || /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(String(src || ''));
+}
 export default SlideOverlayCards;
 
 /* ── 模板参数 schema（自描述 · 迁移即带控件；Tweaks 由此自动生成） ── */
@@ -162,5 +210,5 @@ export const slideSpec = { defaults: defaultProps, slot:'cards', name:'影像卡
   { prop:'showCaption', type:'toggle', label:'装饰文案', default:true, desc:'卡面叠印标题/图说' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.cardCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.cardCount-1, maxFromKey:'cardCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

@@ -24,7 +24,7 @@
  */
 import React from 'react';
 import { ThemeStyle, THEME_CLASS, cx } from '../gxnTheme.js';
-import { SlideHeader } from '../gxnPrimitives.jsx';
+import { SlideHeader, MediaView, mediaItem } from '../gxnPrimitives.jsx';
 
 export const slideMasonryDefaults = {
   kicker: 'GALLERY · 资本图墙',
@@ -66,12 +66,13 @@ export const slideMasonryControls = [
 const WEIGHTS = [1.35, 0.92, 1.12, 0.82, 1.22, 1.0, 0.88, 1.28, 0.96, 1.08];
 
 function Tile({ i, src, cap, fit, isFocus, weight, showCaptions, onActivate, onClear }) {
-  const filled = !!src;
+  const media = mediaItem(src);
+  const filled = !!media?.src;
   return (
     <div className={cx('gxn-slot', filled && 'is-filled', isFocus && 'is-focus')}
          style={{ flex: `${weight} 1 0`, minHeight: 0, borderRadius: 18 }}>
       {filled
-        ? <img src={src} alt="" style={{ objectFit: fit }} />
+        ? <MediaView value={media} fit={fit} />
         : <span className="gxn-slot-cap">{cap || '拖入图片 · IMAGE'}</span>}
       {filled && showCaptions && cap && (
         <div className="gxn-slot-overlay">

@@ -71,25 +71,26 @@ function SlideTier(props){
                   border:`1.5px solid ${hot ? ACC : hexA(c,.5)}`,
                   boxShadow: hot ? `0 26px 64px ${hexA(ACC,.28)}, 0 0 0 1.5px ${ACC}` : '0 16px 40px rgba(3,8,30,.36)'}}>
               {/* 层徽标 */}
-              <span style={{flexShrink:0, fontFamily:'var(--font-mono)', fontSize:14, fontWeight:700, color: hot?ACC:'var(--ink-faint)',
-                  border:`1px solid ${hot?hexA(ACC,.5):'rgba(255,255,255,.18)'}`, borderRadius:8, padding:'4px 10px'}}>{lbl(i)}</span>
+              <span data-dashi-theme09-tier-badge="true" data-dashi-theme09-tier-hot={hot ? 'true' : 'false'} style={{flexShrink:0, fontFamily:'var(--font-mono)', fontSize:14, fontWeight:800, color: hot?'#061833':'rgba(232,245,255,.72)',
+                  background: hot?'rgba(255,255,255,.88)':'rgba(255,255,255,.06)',
+                  border:`1px solid ${hot?'rgba(255,255,255,.78)':'rgba(255,255,255,.18)'}`, borderRadius:8, padding:'4px 10px'}}>{lbl(i)}</span>
               {/* 梯队名 */}
               <div style={{flexShrink:0, minWidth:200}}>
                 <div style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:'var(--type-sub)', color: hot?'#fff':'rgba(255,255,255,.92)', lineHeight:1}}>{t.band}</div>
-                <div style={{fontFamily:'var(--font-mono)', fontSize:13, letterSpacing:'.06em', color: hot?ACC:'var(--ink-faint)', marginTop:4}}>{t.en} · {t.range}</div>
+                <div style={{fontFamily:'var(--font-mono)', fontSize:13, letterSpacing:'.06em', color: hot?'rgba(255,255,255,.82)':'var(--ink-faint)', marginTop:4}}>{t.en} · {t.range}</div>
               </div>
               {/* 代表公司 */}
               <div style={{flex:1, minWidth:0, display:'flex', flexWrap:'wrap', gap:8, justifyContent:'center'}}>
                 {(t.reps||[]).map((r, k) => (
-                  <span key={k} style={{fontFamily:'var(--font-display)', fontWeight:600, fontSize:18, color: hot?'#fff':'var(--ink-dim)',
-                      background:'rgba(255,255,255,.07)', border:'1px solid rgba(255,255,255,.14)', borderRadius:999, padding:'3px 14px', whiteSpace:'nowrap'}}>{r}</span>
+                  <span key={k} data-dashi-theme09-tier-rep="true" data-dashi-theme09-tier-hot={hot ? 'true' : 'false'} style={{fontFamily:'var(--font-display)', fontWeight:700, fontSize:18, color: hot?'#fff':'rgba(232,245,255,.76)',
+                      background:hot?'rgba(5,18,42,.32)':'rgba(255,255,255,.07)', border:`1px solid ${hot?'rgba(255,255,255,.24)':'rgba(255,255,255,.14)'}`, borderRadius:999, padding:'3px 14px', whiteSpace:'nowrap'}}>{r}</span>
                 ))}
               </div>
               {/* 数量 */}
               <div style={{flexShrink:0, display:'flex', alignItems:'baseline', gap:5}}>
-                <span style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:64, lineHeight:.8,
-                    color: hot?ACC:'#fff', textShadow: hot?`0 0 26px ${hexA(ACC,.5)}`:'none'}}>{t.count}</span>
-                <span style={{fontFamily:'var(--font-cn)', fontWeight:700, fontSize:'var(--type-tiny)', color:'var(--ink-dim)'}}>家</span>
+                <span data-dashi-theme09-tier-count="true" data-dashi-theme09-tier-hot={hot ? 'true' : 'false'} style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:64, lineHeight:.8,
+                    color:'#fff', textShadow: hot?`0 2px 10px rgba(2,9,28,.42), 0 0 22px ${hexA(ACC,.34)}`:'none'}}>{t.count}</span>
+                <span style={{fontFamily:'var(--font-cn)', fontWeight:700, fontSize:'var(--type-tiny)', color:hot?'rgba(255,255,255,.9)':'var(--ink-dim)'}}>家</span>
               </div>
             </div>
           );
@@ -132,5 +133,5 @@ export const slideSpec = { defaults: defaultProps, slot:'tier', name:'估值梯�
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

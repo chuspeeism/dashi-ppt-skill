@@ -124,7 +124,7 @@ function SlideCoverMast(props){
             return (
               <div key={i} style={{paddingRight:40, borderLeft: i? `1px solid ${hexA('#fff',.12)}`:'none', paddingLeft: i?40:0}}>
                 <div style={{fontFamily:'var(--font-mono)', fontSize:15, letterSpacing:'.16em', color: hot?ACC:'var(--ink-faint)', textTransform:'uppercase'}}>{String(i+1).padStart(2,'0')} · {m.k}</div>
-                <div style={{fontFamily:'var(--font-display)', fontWeight:800, fontSize:'var(--type-sub)', color: hot?'#fff':'rgba(255,255,255,.84)', marginTop:8}}>{m.v}</div>
+                <div style={{fontFamily:'var(--font-display)', fontWeight:800, fontSize:'var(--type-sub)', color: hot?ACC:'rgba(255,255,255,.84)', textShadow: hot?`0 0 28px ${hexA(ACC,.45)}`:'none', marginTop:8}}>{m.v}</div>
               </div>
             );
           })}
@@ -162,5 +162,5 @@ export const slideSpec = { defaults: defaultProps, slot:'covermast', name:'封�
   { prop:'showGhostYear', type:'toggle', label:'幽灵年份', default:true, desc:'装饰' },
   { prop:'showChip', type:'toggle', label:'质感方块', default:true, desc:'玻璃芯片装饰' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.metaCount-1), step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.metaCount-1), maxFromKey:'metaCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

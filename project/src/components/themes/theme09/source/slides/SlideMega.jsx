@@ -11,7 +11,7 @@
    | tag          | string                        | 见下   | 旋转贴标文字                      |
    | ticker       | string[]                      | 见下   | 底部数据带条目                    |
    | tickerCount  | number (0–6)                  | 4      | 展示数据带条目数（截取）          |
-   | accentNumber | boolean                       | true   | 主数字用强调色（关则金属字）      |
+   | accentNumber | boolean                       | false  | 主数字用强调色（关则金属字）      |
    | showTag      | boolean                       | true   | 旋转贴标（装饰文案）              |
    | focus        | boolean                       | true   | 高亮某条数据带                    |
    | focusIndex   | number (0-based)              | 0      | 高亮第几条                        |
@@ -29,7 +29,7 @@ export const defaultProps = {
   lines: ['单笔 ≥ 1 亿美元的', '大额融资事件'],
   tag: '资本大年',
   tickerCount: 4,
-  accentNumber: true,
+  accentNumber: false,
   showTag: true,
   focus: true,
   focusIndex: 0,
@@ -124,8 +124,8 @@ export default SlideMega;
 
 export const slideSpec = { defaults: defaultProps, slot:'mega', name:'数字海报 · Mega', controls:[
   { prop:'tickerCount', type:'slider', label:'数量', default:4, min:0, max:6, step:1, desc:'数据带条目' },
-  { prop:'accentNumber', type:'toggle', label:'强调主数字', default:true, desc:'关则金属字' },
+  { prop:'accentNumber', type:'toggle', label:'强调主数字', default:false, desc:'关则金属字' },
   { prop:'showTag', type:'toggle', label:'装饰文案', default:true, desc:'旋转贴标' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.tickerCount-1), step:1, showIf:(p)=>p.focus && p.tickerCount>0 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.tickerCount-1), maxFromKey:'tickerCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus && p.tickerCount>0 },
 ]};

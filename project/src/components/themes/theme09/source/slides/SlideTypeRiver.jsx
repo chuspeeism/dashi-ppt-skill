@@ -128,5 +128,5 @@ export const slideSpec = { defaults: defaultProps, slot:'typeriver', name:'标�
   { prop:'showAxis', type:'toggle', label:'装饰文案', default:true, desc:'左侧竖轴' },
   { prop:'showLead', type:'toggle', label:'导语小标', default:true },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:1, min:0, max:(p)=>p.wordCount-1, step:1 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:1, min:0, max:(p)=>p.wordCount-1, maxFromKey:'wordCount', maxFromKeyOffset:-1, displayOffset:1, step:1 },
 ]};

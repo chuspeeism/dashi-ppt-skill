@@ -56,9 +56,9 @@ function SlideBento(props){
 
   // 便当版式：6×6 网格，按格数给出确定性 grid-area（无缝铺满，首格=大特写）
   const LAYOUTS = {
-    3:['1/1/7/4','1/4/4/7','4/4/7/7'],
-    4:['1/1/5/4','1/4/4/7','5/1/7/4','4/4/7/7'],
-    5:['1/1/5/4','1/4/3/7','3/4/5/7','5/1/7/4','5/4/7/7'],
+    3:['1/1/7/4','1/4/3/7','3/4/7/7'],
+    4:['1/1/5/4','1/4/3/7','3/4/5/7','5/1/7/7'],
+    5:['1/1/5/4','1/4/3/7','3/4/5/7','5/1/7/3','5/3/7/7'],
     6:['1/1/5/4','1/4/3/7','3/4/5/7','5/1/7/3','5/3/7/5','5/5/7/7'],
   };
   const areas = LAYOUTS[n];
@@ -74,7 +74,8 @@ function SlideBento(props){
           const hot = focus && i===fIdx;
           const big = i===0;
           return (
-            <div key={i} className={'dk-anim d'+Math.min(i+1,6)} style={{ gridArea:areas[i], position:'relative', borderRadius:big?22:16, overflow:'hidden',
+            <div key={i} data-dashi-theme09-bento-slot={i} data-dashi-theme09-bento-area={areas[i]}
+              className={'dk-anim d'+Math.min(i+1,6)} style={{ gridArea:areas[i], position:'relative', borderRadius:big?22:16, overflow:'hidden',
                   boxShadow: hot ? `0 0 0 3px ${ACC}, 0 30px 70px ${hexA(ACC,.32)}`
                                  : '0 22px 54px rgba(3,8,30,.5), inset 0 0 0 1px rgba(255,255,255,.1)' }}>
               <FillSlot idPrefix="bento" idx={i} placeholder={(it.label||'图片')+' / '+(i+1)} accent={ACC}
@@ -117,5 +118,5 @@ export const slideSpec = { defaults: defaultProps, slot:'bento', name:'影像便
   { prop:'showCaption', type:'toggle', label:'装饰文案', default:true, desc:'叠印图说' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.imgCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.imgCount-1, maxFromKey:'imgCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

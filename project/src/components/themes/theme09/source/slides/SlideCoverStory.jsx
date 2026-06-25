@@ -53,7 +53,8 @@ function SlideCoverStory(props){
   const useUnicorn = backgroundMode === 'unicorn';
   const insets = Math.max(0, Math.min(imgCount - 1, 3)); // 侧栏小图数量
   const tagN = Math.max(0, Math.min(tagCount, tags.length));
-  const left = textPos !== 'right';
+  const textSide = textPos === '右' || textPos === 'right' ? 'right' : 'left';
+  const left = textSide === 'left';
   const lbl = deckLabel(labelType, 0, { keyword:'VOL', number:'01' });
 
   return (
@@ -85,16 +86,16 @@ function SlideCoverStory(props){
       )}
 
       {/* 竖排书脊编号 */}
-      <div style={{position:'absolute', top:0, bottom:0, [left?'right':'left']:34, zIndex:3,
+      <div data-dashi-theme09-coverstory-spine={left ? 'right' : 'left'} style={{position:'absolute', top:0, bottom:0, [left?'right':'left']:34, zIndex:3,
           display:'flex', alignItems:'center'}}>
         <div style={{fontFamily:'var(--font-mono)', fontSize:17, letterSpacing:'.42em', color:'var(--ink-faint)',
-            writingMode:'vertical-rl', textOrientation:'mixed', transform: left?'rotate(180deg)':'none'}}>
+            writingMode:'vertical-rl', textOrientation:'mixed'}}>
           {credit} · NO.{lbl}
         </div>
       </div>
 
       {/* 封面线堆叠 */}
-      <div className="dk-anim d2" style={{position:'absolute', bottom:0, [left?'left':'right']:90, zIndex:3,
+      <div data-dashi-theme09-coverstory-copy={textSide} className="dk-anim d2" style={{position:'absolute', bottom:0, [left?'left':'right']:90, zIndex:3,
           maxWidth:'56%', textAlign: left?'left':'right', padding:'0 0 84px'}}>
         <div style={{fontFamily:'var(--font-mono)', fontSize:18, letterSpacing:'.2em', color:ACC, marginBottom:18}}>{kicker}</div>
         <h1 style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:200, lineHeight:1.05, letterSpacing:'.01em', margin:0}}>

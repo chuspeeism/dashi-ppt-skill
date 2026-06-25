@@ -81,8 +81,8 @@ function SlideBracket(props){
       {showBrace && (
         <svg viewBox="0 0 90 600" preserveAspectRatio="none" style={{width:90, height:'78%'}}>
           <path d={leftToRight
-              ? 'M70 10 C 30 10, 44 290, 14 300 C 44 310, 30 590, 70 590'
-              : 'M20 10 C 60 10, 46 290, 76 300 C 46 310, 60 590, 20 590'}
+              ? 'M20 10 C 60 10, 46 290, 76 300 C 46 310, 60 590, 20 590'
+              : 'M70 10 C 30 10, 44 290, 14 300 C 44 310, 30 590, 70 590'}
             fill="none" stroke={hexA(ACC,.8)} strokeWidth="3" strokeLinecap="round" />
         </svg>
       )}
@@ -134,5 +134,5 @@ export const slideSpec = { defaults: defaultProps, slot:'bracket', name:'归纳�
   { prop:'showBrace', type:'toggle', label:'装饰文案', default:true, desc:'中缝花括号' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

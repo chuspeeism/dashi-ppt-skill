@@ -162,5 +162,5 @@ export const slideSpec = { defaults: defaultProps, slot:'venn', name:'交集视�
   { prop:'showCore', type:'toggle', label:'交集结论', default:true },
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true, desc:'右侧导读' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.setCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.setCount-1, maxFromKey:'setCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

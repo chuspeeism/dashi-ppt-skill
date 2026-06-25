@@ -158,9 +158,9 @@ export default SlideAnnotated;
 /* ── 模板参数 schema（自描述 · 迁移即带控件；Tweaks 由此自动生成） ── */
 export const slideSpec = { defaults: defaultProps, slot:'annotated', name:'批注精读 · Annotated', controls:[
   { prop:'noteCount', type:'slider', label:'数量', default:3, min:2, max:4, step:1 },
-  { prop:'showConnector', type:'toggle', label:'装饰文案', default:true },
+  { prop:'showConnector', type:'toggle', label:'装饰元素', default:true },
   { prop:'showAside', type:'toggle', label:'题注条', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.noteCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.noteCount-1, maxFromKey:'noteCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

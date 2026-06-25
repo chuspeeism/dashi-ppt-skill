@@ -26,7 +26,7 @@ export const defaultProps = {
   itemCount: 5,
   chartType: '径向条',
   showScale: true,
-  focus: true,
+  focus: false,
   focusIndex: 0,
   labelType: 'number',
   showAside: true,
@@ -73,6 +73,9 @@ function SlideRadialBar(props){
   const sw = Math.max(16, Math.min(36, step*0.6 || 30));
   // 极柱角度（自顶 12 点起，顺时针均布）
   const ang = (i)=> -90 + i*(360/data.length);
+  const scaleRings = [0.25, 0.5, 0.75, 1];
+  const scaleStroke = 'rgba(210,230,255,.28)';
+  const spokeStroke = 'rgba(210,230,255,.18)';
 
   return (
     <SlideShell orbs={[{ w:520, h:520, right:-160, bottom:-170,
@@ -83,12 +86,6 @@ function SlideRadialBar(props){
         {/* 极坐标图 */}
         <div className="dk-anim d1" style={{flex:'1.25 1 0', minWidth:0, height:'100%', display:'flex', alignItems:'center', justifyContent:'center'}}>
           <svg viewBox="0 0 640 640" style={{width:'100%', height:'100%', maxHeight:680}}>
-            {/* 刻度网格 */}
-            {showScale && [0.5,1].map((f,k)=>(
-              <path key={k} d={samp(Rmin+(Rmax-Rmin)*f, -90, 270, 96)} fill="none" stroke="rgba(255,255,255,.1)" strokeWidth="1" strokeDasharray="3 7" />
-            ))}
-            {showScale && polar && data.map((_,i)=>{ const [x,y]=pt(Rmax+6, ang(i)); return <line key={'g'+i} x1={cx} y1={cy} x2={x} y2={y} stroke="rgba(255,255,255,.07)" strokeWidth="1" />; })}
-
             {!polar && data.map((d,i)=>{
               const col = TONE[d.tone] || ACC;
               const frac = d.value/max;
@@ -121,6 +118,12 @@ function SlideRadialBar(props){
                 </g>
               );
             })}
+
+            {/* 刻度网格 */}
+            {showScale && scaleRings.map((f,k)=>(
+              <path key={k} data-dashi-theme09-radialbar-scale-ring="true" d={samp(Rmin+(Rmax-Rmin)*f, -90, 270, 96)} fill="none" stroke={scaleStroke} strokeWidth={k===scaleRings.length-1 ? 2 : 1.35} strokeDasharray="5 8" opacity={k===scaleRings.length-1 ? 0.95 : 0.82} />
+            ))}
+            {showScale && polar && data.map((_,i)=>{ const [x,y]=pt(Rmax+6, ang(i)); return <line key={'g'+i} data-dashi-theme09-radialbar-scale-spoke="true" x1={cx} y1={cy} x2={x} y2={y} stroke={spokeStroke} strokeWidth="1.35" strokeDasharray="4 9" />; })}
 
             {/* 圆心：焦点项数值 */}
             <circle cx={cx} cy={cy} r={Rmin-18} fill="rgba(5,11,34,.55)" stroke="rgba(255,255,255,.12)" strokeWidth="1" />
@@ -183,6 +186,6 @@ export const slideSpec = { defaults: defaultProps, slot:'radialbar', name:'径�
   { prop:'showScale', type:'toggle', label:'刻度网格', default:true, desc:'装饰' },
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true, desc:'口径说明' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
-  { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focus', type:'focus', label:'重点信息 Focus', default:false },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

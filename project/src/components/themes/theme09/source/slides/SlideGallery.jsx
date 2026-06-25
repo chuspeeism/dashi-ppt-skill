@@ -115,5 +115,5 @@ export const slideSpec = { defaults: defaultProps, slot:'pf-gallery', name:'企�
   { prop:'tagCount', type:'slider', label:'标签数量', default:4, min:0, max:6, step:1 },
   { prop:'showMeta', type:'toggle', label:'说明与标签', default:true },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.tagCount-1, step:1, showIf:(p)=>p.focus&&p.tagCount>0 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.tagCount-1, maxFromKey:'tagCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus&&p.tagCount>0 },
 ]};

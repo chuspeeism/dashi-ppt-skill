@@ -3,7 +3,7 @@ import { useDeckStyles, SlideHead } from './DeckKit.jsx';
    模板参数：
      granularity : '季度' | '月度'  数据粒度（驱动数据点数量）
      chartType   : '面积' | '折线' | '柱状'
-     showCount   : bool  叠加事件笔数副线（仅季度有数据）
+     showCount   : bool  叠加事件笔数副线
      callout     : bool  趋势解读装饰卡显隐
      labelType   : 'number'|'symbol'|'keyword'  指标徽标
      focus       : bool  高亮峰值数据点
@@ -24,7 +24,7 @@ export const defaultProps = {
     { label:'Q3', amt:318, cnt:31 }, { label:'Q4', amt:206, cnt:22 },
   ],
   month: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
-    .map((m,i)=>({ label:m, amt:[45,58,59,86,105,93,92,118,108,73,81,52][i] })),
+    .map((m,i)=>({ label:m, amt:[45,58,59,86,105,93,92,118,108,73,81,52][i], cnt:[4,5,6,8,10,9,9,12,11,8,9,6][i] })),
 };
 
 function SlideMarket(props){
@@ -45,7 +45,7 @@ function SlideMarket(props){
   const W = 1660, H = 430, padL = 70, padR = 40, padT = 34, padB = 50;
   const plotW = W - padL - padR, plotH = H - padT - padB;
   const maxAmt = isQ ? 350 : 130;
-  const maxCnt = 36;
+  const maxCnt = isQ ? 36 : 14;
   const xAt = (i)=> padL + (data.length===1 ? plotW/2 : (i/(data.length-1))*plotW);
   const yAt = (v)=> padT + plotH - (v/maxAmt)*plotH;
   const yCnt = (v)=> padT + plotH - (v/maxCnt)*plotH;
@@ -97,7 +97,7 @@ function SlideMarket(props){
           {chartType !== '柱状' && <path d={linePath} fill="none" stroke="#6ea0ff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />}
 
           {/* count secondary line */}
-          {showCount && isQ && <>
+          {showCount && <>
             <path d={cntPath} fill="none" stroke="var(--mint)" strokeWidth="3" strokeDasharray="3 8" strokeLinecap="round" />
             {data.map((d,i)=><circle key={i} cx={xAt(i)} cy={yCnt(d.cnt)} r="5" fill="var(--mint)" />)}
           </>}
@@ -121,7 +121,7 @@ function SlideMarket(props){
           ))}
         </svg>
 
-        {showCount && isQ && (
+        {showCount && (
           <div style={{display:'flex', gap:30, padding:'0 30px 6px', fontSize:'var(--type-tiny)', color:'var(--ink-dim)'}}>
             <span style={{display:'inline-flex', alignItems:'center', gap:10}}><i style={{width:24, height:5, borderRadius:3, background:'#6ea0ff'}}></i>融资总额</span>
             <span style={{display:'inline-flex', alignItems:'center', gap:10}}><i style={{width:24, height:0, borderTop:'3px dashed var(--mint)'}}></i>事件笔数</span>

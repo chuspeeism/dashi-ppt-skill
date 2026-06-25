@@ -156,5 +156,5 @@ export const slideSpec = { defaults: defaultProps, slot:'coverterminal', name:'�
   { prop:'showCaret', type:'toggle', label:'光标块', default:true, desc:'装饰' },
   { prop:'showChip', type:'toggle', label:'质感方块', default:true, desc:'玻璃芯片装饰' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.tickerCount-1), step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.tickerCount-1), maxFromKey:'tickerCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

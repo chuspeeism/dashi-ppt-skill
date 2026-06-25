@@ -160,5 +160,5 @@ export const slideSpec = { defaults: defaultProps, slot:'marimekko', name:'市�
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true, desc:'读图条' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.catCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.catCount-1, maxFromKey:'catCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

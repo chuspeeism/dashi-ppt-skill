@@ -224,10 +224,10 @@ export const slideSpec = { defaults: defaultProps, slot:'ledger', name:'数据�
   { prop:'rowCount', type:'slider', label:'行数量', default:6, min:3, max:8, step:1 },
   { prop:'colCount', type:'slider', label:'列数量', default:4, min:2, max:4, step:1 },
   { prop:'sort', type:'radio', label:'排序', default:'降序', options:['降序','升序','原序'] },
-  { prop:'highlightCol', type:'slider', label:'高亮列 (-1 关闭)', default:-1, min:-1, max:(p)=>p.colCount-1, step:1 },
+  { prop:'highlightCol', type:'slider', label:'高亮列 (-1 关闭)', default:-1, min:-1, max:(p)=>p.colCount-1, maxFromKey:'colCount', maxFromKeyOffset:-1, step:1 },
   { prop:'showBar', type:'toggle', label:'行内比例条', default:true },
   { prop:'showTotal', type:'toggle', label:'装饰文案', default:true, desc:'合计/均值行' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.rowCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.rowCount-1, maxFromKey:'rowCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

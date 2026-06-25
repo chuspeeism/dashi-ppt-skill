@@ -28,6 +28,34 @@ export function SlideHeader({ kicker, title, titleEm, subtitle, index, style }) 
   );
 }
 
+export function mediaItem(value) {
+  if (!value) return null;
+  if (typeof value === 'string') return { src: value, kind: looksLikeVideoSrc(value) ? 'video' : 'image' };
+  if (typeof value === 'object' && value.src) {
+    const src = String(value.src || '');
+    return {
+      ...value,
+      src,
+      kind: value.kind || (String(value.type || src).startsWith('video/') || looksLikeVideoSrc(src) ? 'video' : 'image'),
+    };
+  }
+  return null;
+}
+
+export function MediaView({ value, fit = 'cover', style }) {
+  const data = mediaItem(value);
+  if (!data?.src) return null;
+  const nextStyle = { objectFit: fit, ...(style || {}) };
+  return data.kind === 'video'
+    ? <video src={data.src} muted playsInline loop autoPlay preload="metadata" style={nextStyle} />
+    : <img src={data.src} alt="" style={nextStyle} />;
+}
+
+function looksLikeVideoSrc(src) {
+  return String(src || '').startsWith('data:video/')
+    || /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(String(src || ''));
+}
+
 /* ─────────────────────────────────────────────────────────────────────────
  * ImageSlots — user-fillable, ratio-adaptive image area.
  *
@@ -56,12 +84,7 @@ export function ImageSlots({
   const [ratios, setRatios] = React.useState({});
   if (!count || count < 1) return null;
 
-  const get = (i) => {
-    const it = items[i];
-    if (!it) return null;
-    if (typeof it === 'string') return { src: it, kind: it.startsWith('data:video/') ? 'video' : 'image' };
-    return { ...it, kind: it.kind || (String(it.type || it.src || '').startsWith('video/') || String(it.src || '').startsWith('data:video/') ? 'video' : 'image') };
-  };
+  const get = (i) => mediaItem(items[i]);
   const onLoad = (i) => (e) => {
     const r = e.target.naturalWidth / e.target.naturalHeight;
     if (!r || !isFinite(r)) return;

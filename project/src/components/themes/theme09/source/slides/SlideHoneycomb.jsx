@@ -33,14 +33,14 @@ export const defaultProps = {
   showAside: true,
   head: { no:'10', en:'Honeycomb · Cells', cn:'赛道蜂巢 · 热度分布' },
   items: [
-      { label:'大模型',   sub:'Foundation', value:43.3, unit:'%' },
       { label:'算力',     sub:'Compute',    value:18,   unit:'%' },
       { label:'应用层',   sub:'Apps',       value:16,   unit:'%' },
+      { label:'大模型',   sub:'Foundation', value:43.3, unit:'%' },
       { label:'企业服务', sub:'Enterprise', value:12,   unit:'%' },
+      { label:'数据',     sub:'Data',       value:2.5,  unit:'%' },
       { label:'机器人',   sub:'Robotics',   value:4,    unit:'%' },
       { label:'医疗 AI',  sub:'Health',     value:3.7,  unit:'%' },
       { label:'自动驾驶', sub:'AV',         value:3,    unit:'%' },
-      { label:'数据',     sub:'Data',       value:2.5,  unit:'%' },
       { label:'安全',     sub:'Safety',     value:2,    unit:'%' },
       { label:'边缘',     sub:'Edge',       value:1.5,  unit:'%' },
     ],
@@ -90,6 +90,8 @@ function SlideHoneycomb(props){
   const heatCol = (v)=>{ const t = maxV===minV?1:(v-minV)/(maxV-minV); return `rgb(${Math.round(lerp(cDeep[0],cAcc[0],t))},${Math.round(lerp(cDeep[1],cAcc[1],t))},${Math.round(lerp(cDeep[2],cAcc[2],t))})`; };
 
   const top = data[0];
+  const listGap = data.length > 8 ? 6 : data.length > 6 ? 7 : 9;
+  const listFont = data.length > 8 ? '20px' : 'var(--type-small)';
 
   return (
     <SlideShell orbs={[{ w:560, h:560, left:-150, bottom:-160,
@@ -128,14 +130,14 @@ function SlideHoneycomb(props){
               </div>
             </div>
           )}
-          <div className="dk-anim d3" style={{display:'flex', flexDirection:'column', gap:9}}>
-            {data.slice(0,5).map((d,i)=>{
+          <div className="dk-anim d3" style={{display:'flex', flexDirection:'column', gap:listGap}}>
+            {data.map((d,i)=>{
               const hot = focus && i===fIdx;
               return (
-                <div key={i} style={{display:'flex', alignItems:'center', gap:14, opacity:focus&&!hot?.62:1}}>
+                <div key={i} data-dashi-theme09-honeycomb-rank={i} data-dashi-theme09-honeycomb-label={d.label} style={{display:'flex', alignItems:'center', gap:14, opacity:focus&&!hot?.62:1}}>
                   <i style={{width:14, height:14, borderRadius:3, background:heatCol(d.value), flexShrink:0}}></i>
-                  <span style={{fontFamily:'var(--font-cn)', fontWeight:hot?900:600, fontSize:'var(--type-small)', color:hot?'#fff':'rgba(255,255,255,.86)', flex:'1 1 0'}}>{d.label}</span>
-                  <span style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:'var(--type-small)', color:hot?ACC:'rgba(255,255,255,.7)'}}>{d.value}{d.unit}</span>
+                  <span style={{fontFamily:'var(--font-cn)', fontWeight:hot?900:600, fontSize:listFont, color:hot?'#fff':'rgba(255,255,255,.86)', flex:'1 1 0'}}>{d.label}</span>
+                  <span style={{fontFamily:'var(--font-display)', fontWeight:900, fontSize:listFont, color:hot?ACC:'rgba(255,255,255,.7)'}}>{d.value}{d.unit}</span>
                 </div>
               );
             })}
@@ -187,5 +189,5 @@ export const slideSpec = { defaults: defaultProps, slot:'honeycomb', name:'蜂�
   { prop:'showAside', type:'toggle', label:'读图条', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

@@ -19,7 +19,7 @@
  */
 import React from 'react';
 import { ThemeStyle, THEME_CLASS, cx } from '../gxnTheme.js';
-import { SlideHeader } from '../gxnPrimitives.jsx';
+import { SlideHeader, MediaView, mediaItem } from '../gxnPrimitives.jsx';
 
 export const slideCardGridDefaults = {
   kicker: 'CASES · 案例图文',
@@ -59,7 +59,8 @@ export const slideCardGridControls = [
 ];
 
 function Card({ i, src, card, fit, isFocus, dim, showDesc, showTags, onActivate, onClear }) {
-  const filled = !!src;
+  const media = mediaItem(src);
+  const filled = !!media?.src;
   return (
     <article className={cx('gxn-panel', isFocus && 'is-focus')}
              style={{ position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column',
@@ -67,7 +68,7 @@ function Card({ i, src, card, fit, isFocus, dim, showDesc, showTags, onActivate,
       <div className={cx('gxn-slot', filled && 'is-filled')}
            style={{ flex: 1, minHeight: 0, borderRadius: 16 }}>
         {filled
-          ? <img src={src} alt="" style={{ objectFit: fit }} />
+          ? <MediaView value={media} fit={fit} />
           : <span className="gxn-slot-cap">{card.title || '拖入配图 · IMAGE'}</span>}
         {onActivate && (
           <button type="button" className="gxn-slot-btn gxn-slot-add" aria-label="选择图片"

@@ -127,7 +127,7 @@ export default SlideOverview;
 /* ── 模板参数 schema（自描述 · 迁移即带控件；Tweaks 由此自动生成） ── */
 export const slideSpec = { defaults: defaultProps, slot:'overview', name:'报告摘要 · Overview', controls:[
   { prop:'statCount', type:'slider', label:'数量', default:4, min:2, max:4, step:1, desc:'底部指标块数量' },
-  { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
+  { prop:'labelType', type:'labelType', label:'标签类型', default:'number', options:[['number','数字'],['symbol','符号'],['keyword','关键词']] },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.statCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.statCount-1, maxFromKey:'statCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

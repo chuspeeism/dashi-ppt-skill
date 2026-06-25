@@ -13,7 +13,7 @@ import { useDeckStyles, deckTheme, deckLabel, SlideShell, SlideHead } from './De
    | itemCount   | number (3–6)                  | 5      | 展示大类数（截取）            |
    | showChildren| boolean                       | true   | 第三列（子项细分）显隐        |
    | showValue   | boolean                       | true   | 块内数值显隐                  |
-   | focus       | boolean                       | true   | 高亮某一大类整行              |
+   | focus       | boolean                       | false  | 高亮某一大类整行              |
    | focusIndex  | number (0-based)              | 0      | 高亮第几个大类                |
    | labelType   | 'number'|'symbol'|'keyword'   | number | 大类徽标样式                  |
    | showAside   | boolean                       | true   | 根列读数（装饰）              |
@@ -27,7 +27,7 @@ export const defaultProps = {
   itemCount: 5,
   showChildren: true,
   showValue: true,
-  focus: true,
+  focus: false,
   focusIndex: 0,
   labelType: 'number',
   showAside: true,
@@ -63,6 +63,7 @@ function SlideIcicle(props){
   const fIdx = Math.max(0, Math.min(focusIndex, data.length-1));
   const lbl = (i)=> deckLabel(labelType, i, { keyword:'C' });
   const total = data.reduce((a,b)=>a+b.value,0);
+  const categoryColFlex = showChildren ? '0 0 480px' : '1 1 0';
 
   // 自适应：测量大类列实际高度，按各行 value 占比推导字号，避免小行文字被裁
   const colRef = React.useRef(null);
@@ -99,7 +100,7 @@ function SlideIcicle(props){
         </div>
 
         {/* 大类列 */}
-        <div ref={colRef} style={{flex:'0 0 480px', display:'flex', flexDirection:'column', gap:8}}>
+        <div ref={colRef} data-dashi-theme09-icicle-category-col="true" style={{flex:categoryColFlex, minWidth:0, display:'flex', flexDirection:'column', gap:8}}>
           {data.map((g)=>{
             const hot = focus && g.idx===fIdx;
             const rowH = rowHOf(g.value);
@@ -126,7 +127,7 @@ function SlideIcicle(props){
 
         {/* 子项列 */}
         {showChildren && (
-          <div style={{flex:'1 1 0', minWidth:0, display:'flex', flexDirection:'column', gap:8}}>
+          <div data-dashi-theme09-icicle-children-col="true" style={{flex:'1 1 0', minWidth:0, display:'flex', flexDirection:'column', gap:8}}>
             {data.map((g)=>{
               const hot = focus && g.idx===fIdx;
               const ct = (g.children||[]).reduce((a,b)=>a+b.value,0)||1;
@@ -156,7 +157,7 @@ function SlideIcicle(props){
       {/* 列轴标注 */}
       <div style={{display:'flex', gap:10, marginTop:12, fontFamily:'var(--font-mono)', fontSize:13, color:'var(--ink-faint)', letterSpacing:'.08em'}}>
         <span style={{flex:'0 0 200px', textAlign:'center'}}>L0 · 总量</span>
-        <span style={{flex:'0 0 480px', textAlign:'center'}}>L1 · 大类（高度 ∝ 占比）</span>
+        <span data-dashi-theme09-icicle-category-axis="true" style={{flex:categoryColFlex, minWidth:0, textAlign:'center'}}>L1 · 大类（高度 ∝ 占比）</span>
         {showChildren && <span style={{flex:'1 1 0', textAlign:'center'}}>L2 · 子项细分</span>}
       </div>
     </SlideShell>
@@ -178,6 +179,6 @@ export const slideSpec = { defaults: defaultProps, slot:'icicle', name:'层级�
   { prop:'showValue', type:'toggle', label:'数值标注', default:true },
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true, desc:'根列读数' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
-  { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focus', type:'focus', label:'重点信息 Focus', default:false },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

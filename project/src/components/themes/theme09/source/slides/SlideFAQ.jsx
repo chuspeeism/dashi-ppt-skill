@@ -53,6 +53,8 @@ function SlideFAQ(props){
   const cols = Math.max(1, Math.min(columns, 2));
   const shown = items.slice(0, Math.max(3, Math.min(itemCount, items.length)));
   const fIdx = Math.max(0, Math.min(focusIndex, shown.length - 1));
+  const denseSingleCol = cols === 1 && shown.length >= 6;
+  const questionSize = denseSingleCol ? 24 : 'var(--type-sub)';
   const num = (i)=> deckLabel(labelType, i, { keyword:'Q' });
 
   return (
@@ -83,7 +85,7 @@ function SlideFAQ(props){
                 <div style={{minWidth:0, display:'flex', flexDirection:'column', justifyContent:'center'}}>
                   <div style={{display:'flex', gap:10, alignItems:'baseline', marginBottom:10}}>
                     <span style={{flexShrink:0, fontFamily:'var(--font-mono)', fontWeight:700, fontSize:18, color:ACC}}>Q</span>
-                    <span style={{fontFamily:'var(--font-cn)', fontWeight:800, fontSize:'var(--type-sub)',
+                    <span data-dashi-theme09-faq-question="true" style={{fontFamily:'var(--font-cn)', fontWeight:800, fontSize:questionSize,
                         color: hot ? ACC : '#fff', lineHeight:1.2}}>{it.q}</span>
                   </div>
                   <div style={{display:'flex', gap:10, alignItems:'flex-start'}}>
@@ -117,5 +119,5 @@ export const slideSpec = { defaults: defaultProps, slot:'faq', name:'关键问�
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

@@ -13,7 +13,7 @@ import { useDeckStyles, deckTheme, deckLabel, SlideShell } from './DeckKit.jsx';
    | statement    | string                        | 见下   | 主张 / 解读句                     |
    | supports     | {value,unit,label}[]          | 见下   | 支撑指标数据源                    |
    | supportCount | number (0–3)                  | 3      | 实际展示的支撑指标数（截取）      |
-   | accentNumber | boolean                       | true   | 主数字用强调色（关则金属字）      |
+   | accentNumber | boolean                       | false  | 主数字用强调色（关则金属字）      |
    | showGhost    | boolean                       | true   | 背景巨号幽灵数字（装饰文案）      |
    | focus        | boolean                       | true   | 是否高亮某个支撑指标              |
    | focusIndex   | number (0-based)              | 0      | 高亮第几个支撑指标                |
@@ -31,7 +31,7 @@ export const defaultProps = {
   label: '2024 全年 AI 风投总额',
   statement: '相当于美国全年风险投资的近三分之一 —— 资本以前所未有的密度，押注少数能讲好 AGI 故事的团队。',
   supportCount: 3,
-  accentNumber: true,
+  accentNumber: false,
   showGhost: true,
   focus: true,
   focusIndex: 0,
@@ -145,9 +145,9 @@ export default SlideHero;
 /* ── 模板参数 schema（自描述 · 迁移即带控件；Tweaks 由此自动生成） ── */
 export const slideSpec = { defaults: defaultProps, slot:'hero', name:'核心大数字 · Big Number', controls:[
   { prop:'supportCount', type:'slider', label:'数量', default:3, min:0, max:3, step:1, desc:'底部支撑指标数' },
-  { prop:'accentNumber', type:'toggle', label:'强调主数字', default:true, desc:'关则金属字' },
+  { prop:'accentNumber', type:'toggle', label:'强调主数字', default:false, desc:'关则金属字' },
   { prop:'showGhost', type:'toggle', label:'装饰文案', default:true, desc:'背景巨号幽灵数字' },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.supportCount-1), step:1, showIf:(p)=>p.focus && p.supportCount>0 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.supportCount-1), maxFromKey:'supportCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus && p.supportCount>0 },
 ]};

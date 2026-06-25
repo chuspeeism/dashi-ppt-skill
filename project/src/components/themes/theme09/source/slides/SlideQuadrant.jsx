@@ -111,13 +111,16 @@ function SlideQuadrant(props){
               return (
                 <g key={i}>
                   {hot && <circle cx={px(p.x)} cy={py(p.y)} r={r+12} fill="none" stroke={ACC} strokeWidth="2.5" opacity=".8" />}
-                  <circle cx={px(p.x)} cy={py(p.y)} r={r} fill={hexA(hot?ACC:c,.28)} stroke={hot?ACC:c} strokeWidth={hot?3:2}
-                    style={{filter: hot?`drop-shadow(0 0 20px ${hexA(ACC,.7)})`:'none'}} />
+                  <circle data-dashi-theme09-quadrant-node={hot?'focus':'normal'} cx={px(p.x)} cy={py(p.y)} r={r}
+                    fill={hot?c:hexA(c,.28)} stroke={hot?'#fff':c} strokeWidth={hot?3.4:2}
+                    style={{filter: hot?`drop-shadow(0 0 22px ${hexA(c,.78)})`:'none'}} />
                   <text x={px(p.x)} y={py(p.y)+1} textAnchor="middle" dominantBaseline="middle"
                     fontFamily="var(--font-display)" fontWeight="900" fontSize={labelType==='number'?22:18}
-                    fill={hot?'#06210f':'#fff'}>{lbl(i)}</text>
+                    data-dashi-theme09-quadrant-label={hot?'focus':'normal'} fill="#fff"
+                    stroke={hot?'rgba(5,11,34,.55)':'none'} strokeWidth={hot?3:0} paintOrder="stroke">{lbl(i)}</text>
                   <text x={px(p.x)} y={py(p.y)+r+24} textAnchor="middle" fontFamily="var(--font-cn)" fontWeight="700"
-                    fontSize="20" fill={hot?ACC:'rgba(255,255,255,.82)'}>{p.name}</text>
+                    data-dashi-theme09-quadrant-name={hot?'focus':'normal'} fontSize="20" fill={hot?'#fff':'rgba(255,255,255,.82)'}
+                    stroke={hot?'rgba(5,11,34,.45)':'none'} strokeWidth={hot?4:0} paintOrder="stroke">{p.name}</text>
                 </g>
               );
             })}
@@ -184,5 +187,5 @@ export const slideSpec = { defaults: defaultProps, slot:'quadrant', name:'定位
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

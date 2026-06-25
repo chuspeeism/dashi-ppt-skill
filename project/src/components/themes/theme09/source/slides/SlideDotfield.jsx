@@ -16,7 +16,6 @@ import { useDeckStyles, deckTheme, SlideHead } from './DeckKit.jsx';
    | columns    | number (8–16)            | 14   | 每行颗粒数                    |
    | dotShape   | '圆'|'方'|'菱'           | '圆' | 颗粒形状                      |
    | showLegend | boolean                  | true | 图例（点亮/未亮，装饰）       |
-   | focus      | boolean                  | true | 点亮辉光强调                  |
    | readout/caption/unit | …              | —    | 文案（默认=≥1亿事件中大模型占比）|
    ========================================================================== */
 /* ── 页面属性契约 · defaultProps ──────────────────────────────────────────
@@ -28,7 +27,6 @@ export const defaultProps = {
   columns: 14,
   dotShape: '圆',
   showLegend: true,
-  focus: true,
   kicker: 'COUNTING · 一格一笔',
   readout: { value:'97', unit:'笔' },
   caption: '2024 年单笔 ≥ 1 亿美元的融资事件，\n其中点亮者为大模型与基础设施赛道。',
@@ -42,16 +40,26 @@ function SlideDotfield(props){
   const BLUE = T.blue || '#4a86ff';
 
   const {
-    total, active, columns, dotShape, showLegend, focus, kicker,
+    total, active, columns, dotShape, showLegend, kicker,
     readout, caption, legend,
   } = { ...defaultProps, ...props };
 
   const N = Math.max(1, Math.round(total));
   const on = Math.max(0, Math.min(Math.round(active), N));
   const cols = Math.max(8, Math.min(columns, 16));
+  const rows = Math.ceil(N / cols);
+  const dotGap = Math.max(5, Math.min(14, Math.floor(160 / Math.max(cols, rows))));
+  const dotSize = Math.max(10, Math.floor(Math.min(
+    44,
+    (960 - dotGap * (cols - 1)) / cols,
+    (640 - dotGap * (rows - 1)) / rows,
+  )));
   const radius = dotShape==='圆' ? '50%' : dotShape==='菱' ? '6px' : '4px';
   const rot = dotShape==='菱' ? 'rotate(45deg)' : 'none';
   const pct = Math.round((on/N)*100);
+  const readoutValue = String(readout?.value ?? '') === String(defaultProps.readout.value)
+    ? String(N)
+    : (readout?.value ?? String(N));
 
   return (
     <div style={{position:'relative', width:'100%', height:'100%', overflow:'hidden',
@@ -65,16 +73,18 @@ function SlideDotfield(props){
             gap:80, alignItems:'center', marginTop:24}}>
         {/* 点阵 */}
         <div className="dk-anim d1" style={{display:'grid',
-              gridTemplateColumns:`repeat(${cols}, 1fr)`, gap:'min(1.1vw,16px)', alignContent:'center'}}>
+              gridTemplateColumns:`repeat(${cols}, ${dotSize}px)`, gridAutoRows:`${dotSize}px`,
+              gap:dotGap, alignContent:'center', justifyContent:'center', justifySelf:'center',
+              maxWidth:'100%', maxHeight:640, overflow:'hidden'}}>
           {Array.from({length:N}).map((_,i)=>{
             const lit = i < on;
             return (
-              <div key={i} style={{aspectRatio:'1 / 1', borderRadius:radius, transform:rot,
+              <div key={i} style={{width:'100%', height:'100%', borderRadius:radius, transform:rot,
                   background: lit
                     ? `radial-gradient(circle at 35% 30%, ${hexA('#fff',.9)}, ${ACC} 60%)`
                     : hexA('#fff',.07),
                   border: lit ? 'none' : `1px solid ${hexA('#fff',.14)}`,
-                  boxShadow: lit && focus ? `0 0 12px ${hexA(ACC,.55)}` : 'none'}}></div>
+                  boxShadow: lit ? `0 0 12px ${hexA(ACC,.55)}` : 'none'}}></div>
             );
           })}
         </div>
@@ -84,7 +94,7 @@ function SlideDotfield(props){
           <span style={{fontFamily:'var(--font-mono)', fontSize:'var(--type-tiny)', letterSpacing:'.3em', color:ACC, marginBottom:18}}>{kicker}</span>
           <div style={{display:'flex', alignItems:'baseline', gap:14}}>
             <span className="dk-chrome" style={{fontFamily:'var(--font-display)', fontWeight:900,
-                fontSize:240, lineHeight:.8, letterSpacing:'-.02em'}}>{readout.value}</span>
+                fontSize:240, lineHeight:.8, letterSpacing:'-.02em'}}>{readoutValue}</span>
             <span style={{fontFamily:'var(--font-cn)', fontWeight:700, fontSize:'var(--type-sub)', color:'#fff'}}>{readout.unit}</span>
           </div>
           <div style={{display:'flex', alignItems:'center', gap:14, margin:'18px 0 22px'}}>
@@ -123,9 +133,8 @@ export default SlideDotfield;
 /* ── 模板参数 schema（自描述 · 迁移即带控件；Tweaks 由此自动生成） ── */
 export const slideSpec = { defaults: defaultProps, slot:'dotfield', name:'点阵计数 · Dotfield', controls:[
   { prop:'total', type:'slider', label:'总单元数', default:97, min:20, max:140, step:1 },
-  { prop:'active', type:'slider', label:'点亮数量', default:42, min:0, max:(p)=>p.total, step:1 },
+  { prop:'active', type:'slider', label:'点亮数量', default:42, min:0, max:(p)=>p.total, maxFromKey:'total', maxFromKeyOffset:0, step:1 },
   { prop:'columns', type:'slider', label:'每行数量', default:14, min:8, max:16, step:1 },
   { prop:'dotShape', type:'radio', label:'颗粒形状', default:'圆', options:['圆','方','菱'] },
   { prop:'showLegend', type:'toggle', label:'装饰文案', default:true, desc:'图例' },
-  { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
 ]};

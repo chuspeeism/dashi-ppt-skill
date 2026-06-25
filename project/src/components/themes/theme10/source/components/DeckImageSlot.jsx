@@ -119,14 +119,14 @@ function DeckImageSlot({ id, placeholder = 'IMAGE', fit = 'cover', radius = 18, 
 
 function normalizeHostMedia(value) {
   if (!value) return null;
-  if (typeof value === 'string') return { src: value, kind: value.startsWith('data:video/') ? 'video' : 'image' };
+  if (typeof value === 'string') return { src: value, kind: looksLikeVideoSrc(value) ? 'video' : 'image' };
   if (typeof value === 'object') {
     const src = value.src || value.url || value.u;
     if (!src) return null;
     return {
       ...value,
       src,
-      kind: value.kind || (String(value.type || src).startsWith('video/') || String(src).startsWith('data:video/') ? 'video' : 'image'),
+      kind: value.kind || (String(value.type || src).startsWith('video/') || looksLikeVideoSrc(src) ? 'video' : 'image'),
     };
   }
   return null;
@@ -138,10 +138,15 @@ function readStoredMedia(raw) {
     const parsed = JSON.parse(raw);
     if (parsed?.src) return {
       ...parsed,
-      kind: parsed.kind || (String(parsed.type || parsed.src).startsWith('video/') || String(parsed.src).startsWith('data:video/') ? 'video' : 'image'),
+      kind: parsed.kind || (String(parsed.type || parsed.src).startsWith('video/') || looksLikeVideoSrc(parsed.src) ? 'video' : 'image'),
     };
   } catch {}
-  return { src: raw, kind: raw.startsWith('data:video/') ? 'video' : 'image' };
+  return { src: raw, kind: looksLikeVideoSrc(raw) ? 'video' : 'image' };
+}
+
+function looksLikeVideoSrc(src) {
+  return String(src || '').startsWith('data:video/')
+    || /\.(mp4|m4v|mov|webm|ogv)(?:[?#].*)?$/i.test(String(src || ''));
 }
 
 function dslotInjectStyle() {

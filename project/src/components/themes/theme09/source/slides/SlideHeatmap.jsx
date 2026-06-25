@@ -162,10 +162,10 @@ export default SlideHeatmap;
 export const slideSpec = { defaults: defaultProps, slot:'heatmap', name:'月度热力 · Heatmap', controls:[
   { prop:'rowCount', type:'slider', label:'行数量', default:6, min:2, max:6, step:1 },
   { prop:'colCount', type:'slider', label:'列数量', default:12, min:6, max:12, step:1 },
-  { prop:'highlightCol', type:'slider', label:'高亮列（-1关）', default:-1, min:-1, max:(p)=>p.colCount-1, step:1 },
+  { prop:'highlightCol', type:'slider', label:'高亮列（-1关）', default:-1, min:-1, max:(p)=>p.colCount-1, maxFromKey:'colCount', maxFromKeyOffset:-1, step:1 },
   { prop:'showScale', type:'toggle', label:'色阶图例', default:true },
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.rowCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.rowCount-1, maxFromKey:'rowCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

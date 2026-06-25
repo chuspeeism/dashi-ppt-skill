@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { useDeckStyles, deckTheme, deckLabel, SlideShell, SlideHead } from './DeckKit.jsx';
 /* ============================================================================
    SlideSpiral — 螺旋时间轴（阿基米德螺线 · 自内向外的纪程）
@@ -63,7 +64,7 @@ function SlideSpiral(props){
   const fIdx = Math.max(0, Math.min(focusIndex, n - 1));
   const lbl = (i)=> deckLabel(labelType, i, { keyword:'E' });
 
-  const W = 1620, H = 760, cx = W*0.25, cy = H*0.5;
+  const W = 1620, H = 760, cx = W*0.25, cy = H*0.5, listX = W*0.52;
   const r0 = 86, growth = 116;                 // 阿基米德：r = r0 + growth*θ（放大以填满）
   const turns = 2.15;                          // 总圈数
   const thetaStart = 0.55*Math.PI;
@@ -86,24 +87,25 @@ function SlideSpiral(props){
           <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{position:'absolute', inset:0}}>
             <defs>
               <linearGradient id="spiGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor={hexA(ACC,.7)} /><stop offset=".6" stopColor={hexA(BLUE,.5)} /><stop offset="1" stopColor={hexA(VIO,.4)} />
+                <stop offset="0" stopColor={hexA(ACC,1)} /><stop offset=".6" stopColor={hexA(BLUE,.92)} /><stop offset="1" stopColor={hexA(VIO,.88)} />
               </linearGradient>
             </defs>
-            {showSpine && <path d={spinePath} fill="none" stroke="url(#spiGrad)" strokeWidth="3" strokeLinecap="round" strokeDasharray="2 8" />}
+            {showSpine && <path data-dashi-theme09-spiral-spine="true" d={spinePath} fill="none" stroke="url(#spiGrad)" strokeWidth="5"
+              strokeLinecap="round" strokeDasharray="5 9" opacity="1" />}
             {/* 节点 + 引线到卡片 */}
             {data.map((e,i)=>{
               const th=thetaAt(i); const [nx,ny]=ptAt(th); const col=TONE[e.tone]||ACC;
               const hot = focus && i===fIdx, dim = focus && i!==fIdx;
               return (
                 <g key={i} opacity={dim?0.5:1}>
-                  <circle cx={nx} cy={ny} r={hot?18:13} fill={hot?col:navy} stroke={col} strokeWidth="3"
-                    style={{filter: hot?`drop-shadow(0 0 16px ${hexA(col,.8)})`:'none'}} />
-                  <text x={nx} y={ny+(hot?6:5)} textAnchor="middle" fontFamily="var(--font-display)" fontWeight="900" fontSize={hot?16:12} fill={hot?navy:col}>{lbl(i)}</text>
+                  <circle data-dashi-theme09-spiral-node="true" cx={nx} cy={ny} r={hot?18:13} fill={hot?col:hexA(col,.34)} stroke={col} strokeWidth={hot?3.6:3.4}
+                    style={{filter: hot?`drop-shadow(0 0 16px ${hexA(col,.8)})`:`drop-shadow(0 0 10px ${hexA(col,.5)})`}} />
+                  <text x={nx} y={ny+(hot?6:5)} textAnchor="middle" fontFamily="var(--font-display)" fontWeight="900" fontSize={hot?16:12} fill={hot?navy:'#fff'}>{lbl(i)}</text>
                 </g>
               );
             })}
             {/* 圆心枢轴 */}
-            <circle cx={cx} cy={cy} r="62" fill="rgba(5,11,34,.78)" stroke={hexA(ACC,.55)} strokeWidth="1.5" />
+            <circle cx={cx} cy={cy} r="62" fill="rgba(5,11,34,.9)" stroke={hexA(ACC,.82)} strokeWidth="2" />
             {showAside
               ? (<g>
                   <text x={cx} y={cy-4} textAnchor="middle" fontFamily="var(--font-display)" fontWeight="900" fontSize="40" fill="#fff">{hubText.big}</text>
@@ -114,7 +116,7 @@ function SlideSpiral(props){
 
           {/* 事件卡：右侧纵列，按时序，左缘引线锚到节点 */}
           {(()=>{
-            const listX = W*0.52, cardW = W - listX - 40, listTop = 18, gap = (H-44)/n;
+            const cardW = W - listX - 40, listTop = 18, gap = (H-44)/n;
             const cTitleFs = n>=7 ? 28 : n>=6 ? 33 : 'var(--type-sub)';
             const cTextFs  = n>=7 ? 19 : n>=6 ? 22 : 'var(--type-small)';
             const cPad     = n>=7 ? '7px 16px' : '10px 18px';
@@ -124,26 +126,26 @@ function SlideSpiral(props){
               const hot = focus && i===fIdx, dim = focus && i!==fIdx;
               const cardY = listTop + gap*i, cardMidY = cardY + gap/2;
               return (
-                <React.Fragment key={i}>
+                <Fragment key={i}>
                   <svg style={{position:'absolute', inset:0, pointerEvents:'none'}} width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
-                    <path d={`M${nx},${ny} C${(nx+listX)/2},${ny} ${listX-70},${cardMidY} ${listX-8},${cardMidY}`}
-                      fill="none" stroke={hot?col:hexA('#fff',.14)} strokeWidth={hot?2.4:1.4} opacity={dim?0.4:1} />
-                    <circle cx={listX-8} cy={cardMidY} r="4" fill={hot?col:hexA('#fff',.3)} opacity={dim?0.4:1} />
+                    <path data-dashi-theme09-spiral-link="true" d={`M${nx},${ny} C${(nx+listX)/2},${ny} ${listX-70},${cardMidY} ${listX-8},${cardMidY}`}
+                      fill="none" stroke={hot?col:hexA(col,.62)} strokeWidth={hot?2.8:2.1} opacity={dim?0.5:hot?1:0.9} />
+                    <circle cx={listX-8} cy={cardMidY} r="4.5" fill={hot?col:hexA(col,.84)} opacity={dim?0.58:1} />
                   </svg>
                   <div style={{position:'absolute', left:listX, top:cardY, width:cardW, height:gap-12, display:'flex', alignItems:'center', opacity:dim?0.56:1, transition:'opacity .2s'}}>
-                    <div style={{display:'flex', alignItems:'center', gap:14, padding:cPad, borderRadius:14, width:'100%',
-                        background: hot?hexA(col,.14):'rgba(255,255,255,.04)', border:`1px solid ${hot?col:'rgba(255,255,255,.12)'}`,
-                        boxShadow: hot?`0 12px 30px ${hexA(col,.28)}`:'none'}}>
+                    <div data-dashi-theme09-spiral-card="true" style={{display:'flex', alignItems:'center', gap:14, padding:cPad, borderRadius:14, width:'100%',
+                        background: hot?hexA(col,.2):'rgba(42,91,210,.18)', border:`1px solid ${hot?col:'rgba(164,196,255,.34)'}`,
+                        boxShadow: hot?`0 12px 30px ${hexA(col,.28)}`:'inset 0 1px 0 rgba(255,255,255,.08)'}}>
                       <span style={{flexShrink:0, width:cBadge, height:cBadge, borderRadius:12, display:'grid', placeItems:'center',
-                          fontFamily:'var(--font-mono)', fontWeight:700, fontSize:15, color:hot?navy:col,
-                          background:hot?col:hexA(col,.16), border:`1px solid ${hexA(col,.5)}`}}>{e.date}</span>
+                          fontFamily:'var(--font-mono)', fontWeight:700, fontSize:15, color:hot?navy:'#fff',
+                          background:hot?col:hexA(col,.24), border:`1px solid ${hexA(col,.72)}`}}>{e.date}</span>
                       <div style={{minWidth:0}}>
-                        <div style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:cTitleFs, color:hot?'#fff':'rgba(255,255,255,.92)', lineHeight:1.1, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{e.title}</div>
-                        {showValue && <div style={{fontSize:cTextFs, color:'var(--ink-dim)', lineHeight:1.3, marginTop:3, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{e.text}</div>}
+                        <div style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:cTitleFs, color:'#fff', lineHeight:1.1, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{e.title}</div>
+                        {showValue && <div style={{fontSize:cTextFs, color:'rgba(229,239,255,.82)', lineHeight:1.3, marginTop:3, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{e.text}</div>}
                       </div>
                     </div>
                   </div>
-                </React.Fragment>
+                </Fragment>
               );
             });
           })()}
@@ -169,5 +171,5 @@ export const slideSpec = { defaults: defaultProps, slot:'spiral', name:'螺旋�
   { prop:'showAside', type:'toggle', label:'枢轴文案', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

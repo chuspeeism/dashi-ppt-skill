@@ -212,9 +212,9 @@ export default SlideCompare;
 export const slideSpec = { defaults: defaultProps, slot:'compare', name:'多维对比 · Compare', controls:[
   { prop:'rowCount', type:'slider', label:'行数量', default:5, min:2, max:6, step:1 },
   { prop:'columnCount', type:'slider', label:'列数量', default:5, min:2, max:5, step:1 },
-  { prop:'highlightCol', type:'slider', label:'高亮列 (-1 关闭)', default:-1, min:-1, max:(p)=>p.columnCount-1, step:1 },
+  { prop:'highlightCol', type:'slider', label:'高亮列 (-1 关闭)', default:-1, min:-1, max:(p)=>p.columnCount-1, maxFromKey:'columnCount', maxFromKeyOffset:-1, step:1 },
   { prop:'showAside', type:'toggle', label:'装饰文案', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.rowCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>p.rowCount-1, maxFromKey:'rowCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

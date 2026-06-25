@@ -148,5 +148,5 @@ export const slideSpec = { defaults: defaultProps, slot:'filmstrip', name:'影�
   { prop:'showSprockets', type:'toggle', label:'齿孔带', default:true },
   { prop:'showCaption', type:'toggle', label:'装饰文案', default:true, desc:'帧号 + 标签' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.tagCount-1), step:1, showIf:(p)=>p.focus && p.tagCount>0 },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:0, min:0, max:(p)=>Math.max(0,p.tagCount-1), maxFromKey:'tagCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus && p.tagCount>0 },
 ]};

@@ -58,11 +58,12 @@ function SlideImmersive(props){
   const hasRail = showRail && nImg > 1;
 
   const posMap = {
-    '左下': { left:'var(--pad-x)', bottom: hasRail?200:'var(--pad-y)', alignItems:'flex-start', textAlign:'left' },
-    '右下': { right:'var(--pad-x)', bottom: hasRail?200:'var(--pad-y)', alignItems:'flex-start', textAlign:'left' },
-    '居中': { left:'50%', bottom: hasRail?210:120, transform:'translateX(-50%)', alignItems:'center', textAlign:'center' },
+    '左下': { left:'var(--pad-x)', bottom: hasRail?200:'var(--pad-y)' },
+    '右下': { right:'var(--pad-x)', bottom: hasRail?200:'var(--pad-y)' },
+    '居中': { left:'50%', top:'50%', transform:'translate(-50%, -50%)' },
   };
   const pp = posMap[textPos] || posMap['左下'];
+  const centered = textPos === '居中';
   const scrimDir = textPos==='右下' ? 'to left' : textPos==='居中' ? 'to top' : 'to right';
 
   return (
@@ -90,25 +91,27 @@ function SlideImmersive(props){
       </div>
 
       {/* 浮层文字板 */}
-      <div className="dk-anim d2" style={{position:'absolute', maxWidth:760, display:'flex', flexDirection:'column',
-            gap:16, padding:'34px 40px', borderRadius:'var(--dk-radius)',
-            background:'linear-gradient(150deg, rgba(10,18,48,.66), rgba(6,12,34,.5))',
-            backdropFilter:'blur(16px)', WebkitBackdropFilter:'blur(16px)',
-            border:`1px solid ${focus?hexA(ACC,.55):'rgba(255,255,255,.16)'}`,
-            boxShadow: focus?`0 30px 70px rgba(3,8,30,.55), 0 0 0 1px ${hexA(ACC,.3)}`:'0 30px 70px rgba(3,8,30,.55)',
-            ...pp}}>
-        <h2 style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:84, lineHeight:1.02, letterSpacing:'.02em',
-            color:'#fff', textWrap:'balance', margin:0}}>{title}</h2>
-        <div style={{fontFamily:'var(--font-display)', fontWeight:600, fontSize:'var(--type-sub)', letterSpacing:'.06em', color:ACC}}>{titleEN}</div>
-        <p style={{fontSize:'var(--type-body)', lineHeight:1.55, color:'rgba(255,255,255,.88)', textWrap:'pretty', margin:0}}>{paragraph}</p>
-        {tg.length > 0 && (
-          <div style={{display:'flex', gap:10, flexWrap:'wrap', justifyContent: textPos==='居中'?'center':'flex-start', marginTop:6}}>
-            {tg.map((t,i)=>(
-              <span key={i} style={{padding:'7px 16px', borderRadius:999, fontSize:'var(--type-tiny)', fontWeight:600,
-                  color:'#fff', background:hexA(ACC,.16), border:`1px solid ${hexA(ACC,.45)}`}}>{t}</span>
-            ))}
-          </div>
-        )}
+      <div data-dashi-theme09-immersive-copy={textPos} style={{position:'absolute', width:'min(760px, calc(100% - var(--pad-x) * 2))', ...pp}}>
+        <div className="dk-anim d2" data-dashi-theme09-immersive-card={textPos} style={{display:'flex', flexDirection:'column',
+              gap:16, padding:'34px 40px', borderRadius:'var(--dk-radius)',
+              alignItems:centered?'center':'flex-start', textAlign:centered?'center':'left',
+              background:'linear-gradient(150deg, rgba(10,18,48,.66), rgba(6,12,34,.5))',
+              backdropFilter:'blur(16px)', WebkitBackdropFilter:'blur(16px)',
+              border:`1px solid ${focus?hexA(ACC,.55):'rgba(255,255,255,.16)'}`,
+              boxShadow: focus?`0 30px 70px rgba(3,8,30,.55), 0 0 0 1px ${hexA(ACC,.3)}`:'0 30px 70px rgba(3,8,30,.55)'}}>
+          <h2 style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:84, lineHeight:1.02, letterSpacing:'.02em',
+              color:'#fff', textWrap:'balance', margin:0}}>{title}</h2>
+          <div style={{fontFamily:'var(--font-display)', fontWeight:600, fontSize:'var(--type-sub)', letterSpacing:'.06em', color:ACC}}>{titleEN}</div>
+          <p style={{fontSize:'var(--type-body)', lineHeight:1.55, color:'rgba(255,255,255,.88)', textWrap:'pretty', margin:0}}>{paragraph}</p>
+          {tg.length > 0 && (
+            <div style={{display:'flex', gap:10, flexWrap:'wrap', justifyContent: centered?'center':'flex-start', marginTop:6}}>
+              {tg.map((t,i)=>(
+                <span key={i} style={{padding:'7px 16px', borderRadius:999, fontSize:'var(--type-tiny)', fontWeight:600,
+                    color:'#fff', background:hexA(ACC,.16), border:`1px solid ${hexA(ACC,.45)}`}}>{t}</span>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* 底部缩略轨 */}
@@ -207,9 +210,9 @@ export const slideSpec = { defaults: defaultProps, slot:'immersive', name:'全�
   UNICORN_BACKGROUND_CONTROL,
   createUnicornSceneControl(defaultProps.unicornScene),
   { prop:'imgCount', type:'slider', label:'图片槽数量', default:1, min:1, max:4, step:1 },
-  { prop:'textPos', type:'radio', label:'图片位置', default:'左下', options:['左下','右下','居中'] },
+  { prop:'textPos', type:'radio', label:'文案位置', default:'左下', options:['左下','右下','居中'] },
   { prop:'tagCount', type:'slider', label:'数量', default:2, min:0, max:4, step:1, desc:'浮板标签数' },
   { prop:'showScrim', type:'toggle', label:'压暗层', default:true },
-  { prop:'showRail', type:'toggle', label:'装饰文案', default:true, desc:'底部缩略轨' },
-  { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
+  { prop:'showRail', type:'toggle', label:'装饰图片', default:true, desc:'底部缩略轨' },
+  { prop:'focus', type:'focus', label:'描边高亮', default:true },
 ]};

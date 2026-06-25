@@ -82,7 +82,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "metaCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -221,7 +223,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "indexCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -353,7 +357,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "fieldCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -464,7 +470,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "bandCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -523,7 +531,7 @@ export const pages = [
         "label": "同心环数量",
         "type": "slider",
         "default": 4,
-        "min": 2,
+        "min": 1,
         "max": 5,
         "step": 1,
         "publicKey": "ringCount",
@@ -662,7 +670,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "tickerCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -806,7 +816,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -828,7 +852,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "statCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -921,6 +947,8 @@ export const pages = [
         "type": "slider",
         "default": 42,
         "min": 0,
+        "maxFromKey": "total",
+        "maxFromKeyOffset": 0,
         "step": 1,
         "publicKey": "active",
         "publicLabel": "点亮数量"
@@ -970,15 +998,6 @@ export const pages = [
         "publicKey": "showLegend",
         "publicLabel": "装饰文案",
         "description": "图例"
-      },
-      {
-        "key": "focus",
-        "prop": "focus",
-        "label": "重点信息 Focus",
-        "type": "focus",
-        "default": true,
-        "publicKey": "focus",
-        "publicLabel": "重点信息 Focus"
       }
     ],
     "defaultProps": {
@@ -1028,7 +1047,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -1050,7 +1083,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "cardCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -1136,7 +1171,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -1215,7 +1264,7 @@ export const pages = [
         "default": "季度",
         "options": [
           {
-            "value": "时间段",
+            "value": "季度",
             "label": "时间段"
           },
           {
@@ -1274,7 +1323,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -1331,51 +1394,63 @@ export const pages = [
       "month": [
         {
           "label": "1月",
-          "amt": 45
+          "amt": 45,
+          "cnt": 5
         },
         {
           "label": "2月",
-          "amt": 58
+          "amt": 58,
+          "cnt": 6
         },
         {
           "label": "3月",
-          "amt": 59
+          "amt": 59,
+          "cnt": 7
         },
         {
           "label": "4月",
-          "amt": 86
+          "amt": 86,
+          "cnt": 8
         },
         {
           "label": "5月",
-          "amt": 105
+          "amt": 105,
+          "cnt": 9
         },
         {
           "label": "6月",
-          "amt": 93
+          "amt": 93,
+          "cnt": 9
         },
         {
           "label": "7月",
-          "amt": 92
+          "amt": 92,
+          "cnt": 10
         },
         {
           "label": "8月",
-          "amt": 118
+          "amt": 118,
+          "cnt": 10
         },
         {
           "label": "9月",
-          "amt": 108
+          "amt": 108,
+          "cnt": 11
         },
         {
           "label": "10月",
-          "amt": 73
+          "amt": 73,
+          "cnt": 7
         },
         {
           "label": "11月",
-          "amt": 81
+          "amt": 81,
+          "cnt": 8
         },
         {
           "label": "12月",
-          "amt": 52
+          "amt": 52,
+          "cnt": 7
         }
       ],
       "focusIndex": 2
@@ -1450,7 +1525,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -1472,7 +1561,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "seriesCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -1623,7 +1714,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -1645,7 +1750,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 0,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -1724,12 +1831,12 @@ export const pages = [
       {
         "key": "showSpotlight",
         "prop": "showSpotlight",
-        "label": "装饰文案",
+        "label": "装饰元素",
         "type": "toggle",
         "default": true,
         "desc": "聚光 + 倒影",
         "publicKey": "showSpotlight",
-        "publicLabel": "装饰文案",
+        "publicLabel": "装饰元素",
         "description": "聚光 + 倒影"
       },
       {
@@ -1739,7 +1846,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -1761,7 +1882,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 0,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -1851,7 +1974,7 @@ export const pages = [
         "type": "slider",
         "default": 6,
         "min": 2,
-        "max": 6,
+        "max": 12,
         "step": 1,
         "publicKey": "itemCount",
         "publicLabel": "结构条目数"
@@ -1872,7 +1995,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -1894,7 +2031,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "roundCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -1945,6 +2084,11 @@ export const pages = [
       ],
       "rounds": [
         {
+          "lb": "Pre",
+          "n": 5,
+          "avg": 0.8
+        },
+        {
           "lb": "Seed",
           "n": 8,
           "avg": 1.2
@@ -1968,6 +2112,31 @@ export const pages = [
           "lb": "D+",
           "n": 22,
           "avg": 15.2
+        },
+        {
+          "lb": "E",
+          "n": 9,
+          "avg": 14.6
+        },
+        {
+          "lb": "F",
+          "n": 6,
+          "avg": 18.2
+        },
+        {
+          "lb": "Growth",
+          "n": 7,
+          "avg": 20.5
+        },
+        {
+          "lb": "Debt",
+          "n": 5,
+          "avg": 12.8
+        },
+        {
+          "lb": "M&A",
+          "n": 4,
+          "avg": 16.4
         },
         {
           "lb": "未标明",
@@ -2036,7 +2205,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -2058,7 +2241,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -2213,7 +2398,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -2235,7 +2434,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -2396,7 +2597,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -2418,7 +2633,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -2513,7 +2730,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -2535,7 +2766,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -2648,7 +2881,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -2804,7 +3051,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -2826,7 +3087,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -2943,7 +3206,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -2965,7 +3242,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "supportCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -3047,7 +3326,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -3069,7 +3362,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -3184,7 +3479,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -3206,7 +3515,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 0,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -3294,7 +3605,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -3410,7 +3735,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -3432,7 +3771,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -3532,7 +3873,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -3560,9 +3915,7 @@ export const pages = [
           }
         ],
         "publicKey": "focusIndex",
-        "publicLabel": "焦点分组",
-        "displayOffset": 1,
-        "max": 9
+        "publicLabel": "焦点分组"
       }
     ],
     "defaultProps": {
@@ -3666,7 +4019,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -3688,7 +4055,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -3783,7 +4152,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -3805,7 +4188,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -4011,7 +4396,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -4033,7 +4432,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -4196,7 +4597,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -4317,7 +4732,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -4339,7 +4768,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -4474,7 +4905,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -4496,7 +4941,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -4633,7 +5080,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -4655,7 +5116,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 6,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -4756,6 +5219,17 @@ export const pages = [
             7,
             7
           ]
+        },
+        {
+          "label": "AI 芯片",
+          "ranks": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8
+          ]
         }
       ]
     }
@@ -4831,7 +5305,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -4853,7 +5341,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 6,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -4948,7 +5438,7 @@ export const pages = [
         "prop": "accentNumber",
         "label": "强调主数字",
         "type": "toggle",
-        "default": true,
+        "default": false,
         "desc": "关则金属字",
         "publicKey": "accentNumber",
         "publicLabel": "强调主数字",
@@ -4972,7 +5462,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -4994,7 +5498,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "supportCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -5003,7 +5509,7 @@ export const pages = [
       "label": "2024 全年 AI 风投总额",
       "statement": "相当于美国全年风险投资的近三分之一 —— 资本以前所未有的密度，押注少数能讲好 AGI 故事的团队。",
       "supportCount": 3,
-      "accentNumber": true,
+      "accentNumber": false,
       "showGhost": true,
       "focus": true,
       "focusIndex": 0,
@@ -5068,7 +5574,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -5090,7 +5610,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -5183,7 +5705,10 @@ export const pages = [
         "min": -1,
         "step": 1,
         "publicKey": "highlightCol",
-        "publicLabel": "高亮列 (-1 关闭)"
+        "publicLabel": "高亮列 (-1 关闭)",
+        "max": 4,
+        "maxFromKey": "colCount",
+        "maxFromKeyOffset": -1
       },
       {
         "key": "showAside",
@@ -5201,7 +5726,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -5223,7 +5762,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "rowCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -5521,7 +6062,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "wordCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -5633,7 +6176,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -5655,7 +6212,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -5786,7 +6345,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -5808,7 +6381,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 6,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -5926,7 +6501,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -5948,7 +6537,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 7,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -6050,7 +6641,7 @@ export const pages = [
         "label": "数量",
         "type": "slider",
         "default": 8,
-        "min": 4,
+        "min": 1,
         "max": 8,
         "step": 1,
         "desc": "气泡数",
@@ -6098,20 +6689,11 @@ export const pages = [
         "description": "读图条"
       },
       {
-        "key": "labelType",
-        "prop": "labelType",
-        "label": "标签类型",
-        "type": "labelType",
-        "default": "数字",
-        "publicKey": "labelType",
-        "publicLabel": "标签类型"
-      },
-      {
         "key": "focus",
         "prop": "focus",
         "label": "重点信息 Focus",
         "type": "focus",
-        "default": true,
+        "default": false,
         "publicKey": "focus",
         "publicLabel": "重点信息 Focus"
       },
@@ -6126,16 +6708,17 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 7,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
       "itemCount": 8,
       "sort": "降序",
       "showValue": true,
-      "focus": true,
+      "focus": false,
       "focusIndex": 0,
-      "labelType": "number",
       "showAside": true,
       "unit": "亿$",
       "head": {
@@ -6262,7 +6845,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -6284,7 +6881,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -6390,7 +6989,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -6412,7 +7025,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "segCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -6514,7 +7129,7 @@ export const pages = [
         "prop": "itemCount",
         "label": "数量",
         "type": "slider",
-        "default": 4,
+        "default": 6,
         "min": 2,
         "max": 6,
         "step": 1,
@@ -6524,12 +7139,12 @@ export const pages = [
       {
         "key": "showTarget",
         "prop": "showTarget",
-        "label": "装饰文案",
+        "label": "装饰元素",
         "type": "toggle",
         "default": true,
         "desc": "目标刻度线",
         "publicKey": "showTarget",
-        "publicLabel": "装饰文案",
+        "publicLabel": "装饰元素",
         "description": "目标刻度线"
       },
       {
@@ -6548,7 +7163,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -6570,11 +7199,13 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
-      "itemCount": 4,
+      "itemCount": 6,
       "showTarget": true,
       "showValue": true,
       "focus": true,
@@ -6707,7 +7338,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -6729,7 +7374,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -6872,7 +7519,10 @@ export const pages = [
         "min": -1,
         "step": 1,
         "publicKey": "highlightCol",
-        "publicLabel": "高亮列 (-1 关闭)"
+        "publicLabel": "高亮列 (-1 关闭)",
+        "max": 3,
+        "maxFromKey": "colCount",
+        "maxFromKeyOffset": -1
       },
       {
         "key": "heat",
@@ -6910,7 +7560,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -6932,7 +7596,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "rowCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -7081,7 +7747,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -7103,7 +7783,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -7268,11 +7950,11 @@ export const pages = [
       {
         "key": "showConnector",
         "prop": "showConnector",
-        "label": "装饰文案",
+        "label": "装饰元素",
         "type": "toggle",
         "default": true,
         "publicKey": "showConnector",
-        "publicLabel": "装饰文案"
+        "publicLabel": "装饰元素"
       },
       {
         "key": "showAside",
@@ -7290,7 +7972,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -7312,7 +8008,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "noteCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -7416,7 +8114,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -7438,7 +8150,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -7571,7 +8285,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -7593,7 +8321,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 6,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -7765,7 +8495,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -7787,7 +8531,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 6,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -7924,7 +8670,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -7946,7 +8706,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -8079,7 +8841,10 @@ export const pages = [
         "min": -1,
         "step": 1,
         "publicKey": "highlightCol",
-        "publicLabel": "高亮列 (-1 关闭)"
+        "publicLabel": "高亮列 (-1 关闭)",
+        "max": 3,
+        "maxFromKey": "colCount",
+        "maxFromKeyOffset": -1
       },
       {
         "key": "showBar",
@@ -8108,7 +8873,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -8130,7 +8909,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "rowCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -8333,7 +9114,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -8355,7 +9150,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 1,
+        "maxFromKey": "panelCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -8435,7 +9232,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -8457,7 +9268,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -8562,7 +9375,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -8584,7 +9411,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 7,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -8714,7 +9543,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -8736,7 +9579,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -8830,7 +9675,7 @@ export const pages = [
         "prop": "accentNumber",
         "label": "强调主数字",
         "type": "toggle",
-        "default": true,
+        "default": false,
         "desc": "关则金属字",
         "publicKey": "accentNumber",
         "publicLabel": "强调主数字",
@@ -8867,7 +9712,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "tickerCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -8879,7 +9726,7 @@ export const pages = [
       ],
       "tag": "资本大年",
       "tickerCount": 4,
-      "accentNumber": true,
+      "accentNumber": false,
       "showTag": true,
       "focus": true,
       "focusIndex": 0,
@@ -8934,7 +9781,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -8956,7 +9817,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -9081,7 +9944,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -9103,7 +9980,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -9206,6 +10085,16 @@ export const pages = [
             14,
             50
           ]
+        },
+        {
+          "label": "迈阿密",
+          "vals": [
+            42,
+            18,
+            2.8,
+            12,
+            44
+          ]
         }
       ]
     }
@@ -9252,7 +10141,10 @@ export const pages = [
         "min": -1,
         "step": 1,
         "publicKey": "highlightCol",
-        "publicLabel": "高亮列 (-1 关闭)"
+        "publicLabel": "高亮列 (-1 关闭)",
+        "max": 4,
+        "maxFromKey": "colCount",
+        "maxFromKeyOffset": -1
       },
       {
         "key": "showComposite",
@@ -9281,7 +10173,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -9303,7 +10209,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "rowCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -9491,7 +10399,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "setCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -9583,7 +10493,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -9605,7 +10529,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 7,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -9790,7 +10716,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -9885,14 +10813,28 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
         "prop": "focus",
         "label": "重点信息 Focus",
         "type": "focus",
-        "default": true,
+        "default": false,
         "publicKey": "focus",
         "publicLabel": "重点信息 Focus"
       },
@@ -9907,14 +10849,16 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
       "itemCount": 5,
       "chartType": "径向条",
       "showScale": true,
-      "focus": true,
+      "focus": false,
       "focusIndex": 0,
       "labelType": "number",
       "showAside": true,
@@ -10007,7 +10951,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -10029,7 +10987,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 11,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -10174,14 +11134,28 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
         "prop": "focus",
         "label": "重点信息 Focus",
         "type": "focus",
-        "default": true,
+        "default": false,
         "publicKey": "focus",
         "publicLabel": "重点信息 Focus"
       },
@@ -10196,14 +11170,16 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
       "itemCount": 5,
       "showChildren": true,
       "showValue": true,
-      "focus": true,
+      "focus": false,
       "focusIndex": 0,
       "labelType": "number",
       "showAside": true,
@@ -10372,7 +11348,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -10394,7 +11384,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -10504,7 +11496,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -10583,7 +11577,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -10605,7 +11613,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -10694,7 +11704,10 @@ export const pages = [
         "min": -1,
         "step": 1,
         "publicKey": "highlightCol",
-        "publicLabel": "高亮列（-1关）"
+        "publicLabel": "高亮列（-1关）",
+        "max": 11,
+        "maxFromKey": "colCount",
+        "maxFromKeyOffset": -1
       },
       {
         "key": "showScale",
@@ -10721,7 +11734,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -10743,7 +11770,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "rowCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -11046,7 +12075,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -11068,7 +12111,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 8,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -11087,12 +12132,6 @@ export const pages = [
       },
       "items": [
         {
-          "label": "大模型",
-          "sub": "Foundation",
-          "value": 43.3,
-          "unit": "%"
-        },
-        {
           "label": "算力",
           "sub": "Compute",
           "value": 18,
@@ -11102,6 +12141,12 @@ export const pages = [
           "label": "应用层",
           "sub": "Apps",
           "value": 16,
+          "unit": "%"
+        },
+        {
+          "label": "大模型",
+          "sub": "Foundation",
+          "value": 43.3,
           "unit": "%"
         },
         {
@@ -11200,7 +12245,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -11222,7 +12281,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -11342,7 +12403,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -11364,7 +12439,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -11495,7 +12572,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -11517,7 +12608,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -11605,7 +12698,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -11627,7 +12734,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 7,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -11756,7 +12865,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -11778,7 +12901,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 5,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -11901,7 +13026,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -11923,7 +13062,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -11999,12 +13140,12 @@ export const pages = [
       {
         "key": "showScan",
         "prop": "showScan",
-        "label": "装饰文案",
+        "label": "装饰元素",
         "type": "toggle",
         "default": true,
         "desc": "LED 扫描线质感",
         "publicKey": "showScan",
-        "publicLabel": "装饰文案",
+        "publicLabel": "装饰元素",
         "description": "LED 扫描线质感"
       },
       {
@@ -12014,7 +13155,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -12036,7 +13191,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -12135,7 +13292,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -12157,7 +13328,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "cardCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -12253,7 +13426,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -12275,7 +13462,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "colCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -12374,7 +13563,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -12396,7 +13599,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "seriesCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -12551,7 +13756,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -12573,7 +13792,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 7,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -12844,7 +14065,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "rowCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -12979,12 +14202,12 @@ export const pages = [
       {
         "key": "showRidge",
         "prop": "showRidge",
-        "label": "装饰文案",
+        "label": "装饰线",
         "type": "toggle",
         "default": true,
         "desc": "上升轮廓线",
         "publicKey": "showRidge",
-        "publicLabel": "装饰文案",
+        "publicLabel": "装饰线",
         "description": "上升轮廓线"
       },
       {
@@ -13003,7 +14226,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -13025,7 +14262,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "stepCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -13143,7 +14382,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -13165,7 +14418,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -13289,7 +14544,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -13311,7 +14580,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -13424,6 +14695,25 @@ export const pages = [
         "publicLabel": "图片槽数量"
       },
       {
+        "key": "layout",
+        "prop": "layout",
+        "label": "左右布局",
+        "type": "radio",
+        "default": "图左文右",
+        "options": [
+          {
+            "value": "图左文右",
+            "label": "图左文右"
+          },
+          {
+            "value": "图右文左",
+            "label": "图右文左"
+          }
+        ],
+        "publicKey": "layout",
+        "publicLabel": "左右布局"
+      },
+      {
         "key": "showPull",
         "prop": "showPull",
         "label": "装饰文案",
@@ -13446,6 +14736,7 @@ export const pages = [
     ],
     "defaultProps": {
       "imgCount": 3,
+      "layout": "图左文右",
       "showPull": true,
       "focus": true,
       "badge": "03",
@@ -13540,7 +14831,7 @@ export const pages = [
       {
         "key": "textPos",
         "prop": "textPos",
-        "label": "图片位置",
+        "label": "文案位置",
         "type": "radio",
         "default": "左下",
         "options": [
@@ -13558,7 +14849,7 @@ export const pages = [
           }
         ],
         "publicKey": "textPos",
-        "publicLabel": "图片位置"
+        "publicLabel": "文案位置"
       },
       {
         "key": "tagCount",
@@ -13586,22 +14877,22 @@ export const pages = [
       {
         "key": "showRail",
         "prop": "showRail",
-        "label": "装饰文案",
+        "label": "装饰图片",
         "type": "toggle",
         "default": true,
         "desc": "底部缩略轨",
         "publicKey": "showRail",
-        "publicLabel": "装饰文案",
+        "publicLabel": "装饰图片",
         "description": "底部缩略轨"
       },
       {
         "key": "focus",
         "prop": "focus",
-        "label": "重点信息 Focus",
+        "label": "描边高亮",
         "type": "focus",
         "default": true,
         "publicKey": "focus",
-        "publicLabel": "重点信息 Focus"
+        "publicLabel": "描边高亮"
       }
     ],
     "defaultProps": {
@@ -13684,7 +14975,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -13706,7 +15011,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "laneCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -13865,7 +15172,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -13887,7 +15208,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -14003,7 +15326,7 @@ export const pages = [
       {
         "key": "credCount",
         "prop": "credCount",
-        "label": "数量",
+        "label": "富文本数量",
         "type": "slider",
         "default": 3,
         "min": 0,
@@ -14011,8 +15334,27 @@ export const pages = [
         "step": 1,
         "desc": "资历标签数",
         "publicKey": "credCount",
-        "publicLabel": "数量",
+        "publicLabel": "富文本数量",
         "description": "资历标签数"
+      },
+      {
+        "key": "mediaFit",
+        "prop": "mediaFit",
+        "label": "媒体填充类型",
+        "type": "radio",
+        "default": "原始比例",
+        "options": [
+          {
+            "value": "原始比例",
+            "label": "原始比例"
+          },
+          {
+            "value": "自适应",
+            "label": "自适应"
+          }
+        ],
+        "publicKey": "mediaFit",
+        "publicLabel": "媒体填充类型"
       },
       {
         "key": "showMark",
@@ -14026,11 +15368,11 @@ export const pages = [
       {
         "key": "focus",
         "prop": "focus",
-        "label": "重点信息 Focus",
+        "label": "描边高亮",
         "type": "focus",
         "default": true,
         "publicKey": "focus",
-        "publicLabel": "重点信息 Focus"
+        "publicLabel": "描边高亮"
       }
     ],
     "defaultProps": {
@@ -14040,6 +15382,7 @@ export const pages = [
       "role": "企业服务 合伙人",
       "org": "Enterprise Fund",
       "credCount": 3,
+      "mediaFit": "原始比例",
       "showMark": true,
       "focus": true,
       "badge": "09",
@@ -14092,7 +15435,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -14114,7 +15471,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -14192,7 +15551,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -14214,7 +15587,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -14302,7 +15677,10 @@ export const pages = [
         "min": -1,
         "step": 1,
         "publicKey": "highlightCol",
-        "publicLabel": "高亮列 (-1 关闭)"
+        "publicLabel": "高亮列 (-1 关闭)",
+        "max": 3,
+        "maxFromKey": "columnCount",
+        "maxFromKeyOffset": -1
       },
       {
         "key": "showAside",
@@ -14320,7 +15698,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -14342,7 +15734,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 4,
+        "maxFromKey": "rowCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -14492,7 +15886,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -14514,7 +15922,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "stepCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -14609,7 +16019,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -14631,7 +16055,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "itemCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -14701,14 +16127,14 @@ export const pages = [
         "prop": "imgSide",
         "label": "图片位置",
         "type": "radio",
-        "default": "左",
+        "default": "left",
         "options": [
           {
-            "value": "左",
+            "value": "left",
             "label": "左"
           },
           {
-            "value": "右",
+            "value": "right",
             "label": "右"
           }
         ],
@@ -14758,7 +16184,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 1,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -14873,7 +16301,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -14938,7 +16368,7 @@ export const pages = [
         "label": "图片槽数量",
         "type": "slider",
         "default": 4,
-        "min": 2,
+        "min": 1,
         "max": 5,
         "step": 1,
         "publicKey": "imgCount",
@@ -14960,7 +16390,21 @@ export const pages = [
         "type": "labelType",
         "default": "数字",
         "publicKey": "labelType",
-        "publicLabel": "标签类型"
+        "publicLabel": "标签类型",
+        "options": [
+          {
+            "value": "number",
+            "label": "数字"
+          },
+          {
+            "value": "symbol",
+            "label": "符号"
+          },
+          {
+            "value": "keyword",
+            "label": "关键词"
+          }
+        ]
       },
       {
         "key": "focus",
@@ -14982,7 +16426,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 3,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -15130,7 +16576,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 0,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {
@@ -15308,7 +16756,9 @@ export const pages = [
         "publicKey": "focusIndex",
         "publicLabel": "焦点序号",
         "displayOffset": 1,
-        "max": 9
+        "max": 2,
+        "maxFromKey": "imgCount",
+        "maxFromKeyOffset": -1
       }
     ],
     "defaultProps": {

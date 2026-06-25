@@ -58,6 +58,7 @@ function SlideThesis(props){
 
   const shown = premises.slice(0, Math.max(2, Math.min(itemCount, premises.length)));
   const fIdx = Math.max(0, Math.min(focusIndex, shown.length - 1));
+  const compact = showConclusion && shown.length >= 5;
   const num = (i)=> deckLabel(labelType, i, { keyword:'IF' });
 
   return (
@@ -66,8 +67,8 @@ function SlideThesis(props){
       <SlideHead no="论纲" en={head.en} cn={head.cn}
         badge={labelType==='keyword'?'IF':labelType==='symbol'?'◆':'∴'} />
 
-      <div style={{flex:'1 1 0', minHeight:0, display:'grid', marginTop:30,
-            gridTemplateColumns: showAside ? '0.86fr 1.14fr' : '1fr', gap:58}}>
+      <div style={{flex:'1 1 0', minHeight:0, display:'grid', marginTop:compact?24:30,
+            gridTemplateColumns: showAside ? '0.86fr 1.14fr' : '1fr', gap:compact?48:58}}>
 
         {/* 左：命题 */}
         {showAside && (
@@ -87,27 +88,27 @@ function SlideThesis(props){
         )}
 
         {/* 右：论据阶梯（脊线 + 悬挂段落）+ 推论 */}
-        <div style={{position:'relative', display:'flex', flexDirection:'column'}}>
+        <div data-dashi-theme09-thesis-stack="true" style={{position:'relative', display:'flex', flexDirection:'column', minHeight:0}}>
           <div style={{position:'absolute', left:26, top:8, bottom:8, width:2,
               background:'linear-gradient(180deg,'+hexA(ACC,.55)+','+hexA(ACC,.12)+')'}}></div>
-          <div style={{display:'flex', flexDirection:'column', gap:12, flex:'1 1 0', minHeight:0, justifyContent:'space-between'}}>
+          <div data-dashi-theme09-thesis-list="true" style={{display:'flex', flexDirection:'column', gap:compact?8:12, flex:'1 1 0', minHeight:0, justifyContent:'space-between'}}>
             {shown.map((p,i)=>{
               const hot = focus && i===fIdx;
               return (
-                <div key={i} className={'dk-anim d'+Math.min(i+1,5)} style={{
-                    display:'flex', alignItems:'center', gap:24, paddingLeft:0}}>
-                  <span style={{flexShrink:0, width:48, height:48, borderRadius:'50%', zIndex:1,
-                      display:'grid', placeItems:'center', fontFamily:'var(--font-display)', fontWeight:900, fontSize:20,
+                <div key={i} data-dashi-theme09-thesis-premise="true" className={'dk-anim d'+Math.min(i+1,5)} style={{
+                    display:'flex', alignItems:'center', gap:compact?18:24, paddingLeft:0}}>
+                  <span style={{flexShrink:0, width:compact?42:48, height:compact?42:48, borderRadius:'50%', zIndex:1,
+                      display:'grid', placeItems:'center', fontFamily:'var(--font-display)', fontWeight:900, fontSize:compact?17:20,
                       color: hot ? '#04122e' : ACC, background: hot ? ACC : 'var(--navy-card)',
                       border:'2px solid '+(hot?ACC:hexA(ACC,.4)),
                       boxShadow: hot ? '0 12px 30px '+hexA(ACC,.4) : 'none'}}>{num(i)}</span>
-                  <div style={{flex:1, minWidth:0, borderRadius:16, padding:'13px 26px',
+                  <div style={{flex:1, minWidth:0, borderRadius:compact?14:16, padding:compact?'9px 22px':'13px 26px',
                       background: hot ? 'linear-gradient(120deg,'+hexA(ACC,.12)+',rgba(255,255,255,.02))' : 'rgba(255,255,255,.03)',
                       border:'1px solid '+(hot?hexA(ACC,.42):'rgba(255,255,255,.10)')}}>
-                    <span style={{fontFamily:'var(--font-mono)', fontSize:13, letterSpacing:'.16em',
+                    <span style={{fontFamily:'var(--font-mono)', fontSize:compact?12:13, letterSpacing:'.16em',
                         textTransform:'uppercase', color: hot ? ACC : 'var(--ink-faint)'}}>{p.lead}</span>
-                    <p style={{fontFamily:'var(--font-cn)', fontWeight:600, fontSize:'var(--type-small)',
-                        lineHeight:1.42, color: hot ? '#fff' : 'var(--ink-dim)', marginTop:3, textWrap:'pretty'}}>{p.text}</p>
+                    <p style={{fontFamily:'var(--font-cn)', fontWeight:600, fontSize:compact?22:'var(--type-small)',
+                        lineHeight:compact?1.32:1.42, color: hot ? '#fff' : 'var(--ink-dim)', marginTop:compact?2:3, textWrap:'pretty'}}>{p.text}</p>
                   </div>
                 </div>
               );
@@ -116,17 +117,17 @@ function SlideThesis(props){
 
           {/* 推论：脊线终点 */}
           {showConclusion && (
-            <div className="dk-anim d5" style={{display:'flex', alignItems:'center', gap:26, marginTop:14}}>
-              <span style={{flexShrink:0, width:54, height:54, borderRadius:14, zIndex:1, display:'grid',
-                  placeItems:'center', fontFamily:'var(--font-display)', fontWeight:900, fontSize:30,
+            <div data-dashi-theme09-thesis-conclusion="true" className="dk-anim d5" style={{display:'flex', alignItems:'center', gap:compact?20:26, marginTop:compact?10:14, flexShrink:0}}>
+              <span style={{flexShrink:0, width:compact?48:54, height:compact?48:54, borderRadius:14, zIndex:1, display:'grid',
+                  placeItems:'center', fontFamily:'var(--font-display)', fontWeight:900, fontSize:compact?26:30,
                   color:'#04122e', background:ACC, boxShadow:'0 14px 34px '+hexA(ACC,.45)}}>∴</span>
-              <div style={{flex:1, minWidth:0, borderRadius:18, padding:'20px 32px',
+              <div style={{flex:1, minWidth:0, borderRadius:18, padding:compact?'15px 28px':'20px 32px',
                   background:'linear-gradient(120deg,'+hexA(ACC,.18)+','+hexA('#4a86ff',.10)+')',
                   border:'1px solid '+hexA(ACC,.5)}}>
-                <span style={{fontFamily:'var(--font-mono)', fontSize:13, letterSpacing:'.18em',
+                <span style={{fontFamily:'var(--font-mono)', fontSize:compact?12:13, letterSpacing:'.18em',
                     textTransform:'uppercase', color:ACC}}>{conclusion.tag}</span>
-                <p style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:'var(--type-sub)',
-                    lineHeight:1.3, color:'#fff', marginTop:4, textWrap:'balance'}}>{conclusion.text}</p>
+                <p style={{fontFamily:'var(--font-cn)', fontWeight:900, fontSize:compact?'var(--type-body)':'var(--type-sub)',
+                    lineHeight:compact?1.26:1.3, color:'#fff', marginTop:compact?2:4, textWrap:'balance'}}>{conclusion.text}</p>
               </div>
             </div>
           )}
@@ -153,5 +154,5 @@ export const slideSpec = { defaults: defaultProps, slot:'thesis', name:'论点�
   { prop:'showConclusion', type:'toggle', label:'推论块', default:true },
   { prop:'labelType', type:'labelType', label:'标签类型', default:'数字' },
   { prop:'focus', type:'focus', label:'重点信息 Focus', default:true },
-  { prop:'focusIndex', type:'slider', label:'焦点序号', default:1, min:0, max:(p)=>p.itemCount-1, step:1, showIf:(p)=>p.focus },
+  { prop:'focusIndex', type:'slider', label:'焦点序号', default:1, min:0, max:(p)=>p.itemCount-1, maxFromKey:'itemCount', maxFromKeyOffset:-1, displayOffset:1, step:1, showIf:(p)=>p.focus },
 ]};

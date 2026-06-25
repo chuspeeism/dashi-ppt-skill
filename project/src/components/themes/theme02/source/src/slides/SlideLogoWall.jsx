@@ -22,7 +22,7 @@
  */
 import React from 'react';
 import { ThemeStyle, THEME_CLASS, cx } from '../gxnTheme.js';
-import { SlideHeader } from '../gxnPrimitives.jsx';
+import { SlideHeader, MediaView, mediaItem } from '../gxnPrimitives.jsx';
 
 export const slideLogoWallDefaults = {
   kicker: 'PLAYERS · 公司图谱',
@@ -61,13 +61,14 @@ export const slideLogoWallControls = [
 const COLS = { 1: 1, 2: 2, 3: 3, 4: 2, 5: 3, 6: 3, 7: 4, 8: 4 };
 
 function Tile({ i, src, name, tag, fit, isFocus, showNames, showTags, onActivate, onClear }) {
-  const filled = !!src;
+  const media = mediaItem(src);
+  const filled = !!media?.src;
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0 }}>
       <div className={cx('gxn-slot', filled && 'is-filled', isFocus && 'is-focus')}
            style={{ flex: 1, minHeight: 0, borderRadius: 20 }}>
         {filled
-          ? <img src={src} alt="" style={{ objectFit: fit }} />
+          ? <MediaView value={media} fit={fit} />
           : <span className="gxn-slot-cap">{name || '拖入 LOGO · IMAGE'}</span>}
         {onActivate && (
           <button type="button" className="gxn-slot-btn gxn-slot-add"

@@ -21,7 +21,7 @@
  */
 import React from 'react';
 import { ThemeStyle, THEME_CLASS, cx } from '../gxnTheme.js';
-import { SlideHeader } from '../gxnPrimitives.jsx';
+import { SlideHeader, MediaView, mediaItem } from '../gxnPrimitives.jsx';
 
 export const slideVoicesDefaults = {
   kicker: 'VOICES · 多方之声',
@@ -61,12 +61,13 @@ export const slideVoicesControls = [
 /* Per-card portrait slot — ratio-adaptive (contain, no crop) inside a fixed
    portrait box so the row of cards stays uniform. Mirrors gxn-slot styling. */
 function PortraitSlot({ src, caption, placeholder, onActivate, onClear }) {
-  const filled = !!src;
+  const media = mediaItem(src);
+  const filled = !!media?.src;
   return (
     <div className={cx('gxn-slot', filled && 'is-filled')}
          style={{ width: '100%', aspectRatio: '4 / 5', borderRadius: 16 }}>
       {filled
-        ? <img src={src} alt="" style={{ objectFit: 'contain' }} />
+        ? <MediaView value={media} fit="contain" />
         : <span className="gxn-slot-cap">{placeholder}</span>}
       {filled && caption && (
         <div className="gxn-slot-overlay">
