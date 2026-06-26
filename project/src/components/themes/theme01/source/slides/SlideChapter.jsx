@@ -18,7 +18,7 @@ export const defaultProps = {
   ],
   caption: '章节导航 · 横向透视的四条主线',
   // tweakable
-  topicCount: 4,
+  topicCount: 5,
   highlight: true,
   highlightIndex: 0,
   showGhost: true,
@@ -30,7 +30,7 @@ export const defaultProps = {
 };
 
 export const controls = [
-  { key: 'topicCount', label: '主线数量', type: 'number', default: 4, min: 0, max: 5, step: 1, unit: ' 条',
+  { key: 'topicCount', label: '主线数量', type: 'number', default: 5, min: 0, max: 5, step: 1, unit: ' 条',
     description: '展示的分主题贴纸数量（0 时只显示标题）。' },
   { key: 'highlight', label: '重点强调', type: 'boolean', default: true,
     description: '是否高亮其中一条主线贴纸。' },
@@ -84,6 +84,7 @@ export default function SlideChapter(props) {
   const ac = p.accentColor;
   const topics = p.topics.slice(0, Math.max(0, Math.min(5, p.topicCount)));
   const hasImg = p.imageSlotCount > 0;
+  const titleFontSize = hasImg ? 126 : 150;
 
   return (
     <SlideFrame bg="b">
@@ -104,9 +105,9 @@ export default function SlideChapter(props) {
             <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 26, letterSpacing: '.22em', color: hexA(ac, 0.9), fontWeight: 700 }}>{p.partLabel}</span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 30, marginTop: 30 }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: hasImg ? 24 : 30, marginTop: 30, minWidth: 0 }}>
             <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 200, fontWeight: 700, lineHeight: 0.82, color: ac, letterSpacing: '-.04em' }}>{p.index}</span>
-            <h2 style={{ margin: 0, fontSize: 150, fontWeight: 900, lineHeight: 0.92, letterSpacing: '.01em', color: 'var(--aip-ink)' }}>{p.title}</h2>
+            <h2 style={{ margin: 0, fontSize: titleFontSize, fontWeight: 900, lineHeight: 0.92, letterSpacing: '.01em', color: 'var(--aip-ink)', whiteSpace: hasImg ? 'nowrap' : 'normal' }}>{p.title}</h2>
           </div>
 
           <div style={{ marginTop: 22, fontFamily: "'Space Mono', monospace", textTransform: 'uppercase', letterSpacing: '.16em', fontSize: 30, color: 'var(--aip-ink-3)' }}>{p.en}</div>

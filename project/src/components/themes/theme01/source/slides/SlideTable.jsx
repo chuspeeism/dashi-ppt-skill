@@ -44,7 +44,7 @@ export const controls = [
     description: '是否在强调列的单元格内叠加比例条。' },
   { key: 'highlight', label: '重点强调', type: 'boolean', default: true,
     description: '是否高亮其中一行。' },
-  { key: 'highlightIndex', label: '强调第几行', type: 'number', default: 4, min: 0, max: 9, step: 1,
+  { key: 'highlightIndex', label: '强调第几行', type: 'number', default: 4, min: 0, max: 5, step: 1,
     description: '被强调的数据行序号（从 0 开始）。' },
   { key: 'striped', label: '斑马纹', type: 'boolean', default: true,
     description: '隔行底色，便于横向阅读。' },

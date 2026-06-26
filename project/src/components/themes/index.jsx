@@ -5,7 +5,11 @@ import {
   normalizeControlValue,
   normalizePublicControls,
 } from '../../control-naming.mjs';
-import { serializeValue } from '../../prop-contract-core.mjs';
+import {
+  clampCountControlLimits,
+  clampDefaultCountProps,
+  serializeValue,
+} from '../../prop-contract-core.mjs';
 import { GENERATED_THEME_PAGES, GENERATED_THEME_PACKS } from './generated-metadata.js';
 import { ICONS as THEME03_DECOR_ICONS } from './theme03/source/src/icons.js';
 import { PRESET_3D as THEME03_PRESET_3D } from './theme03/source/src/preset3d.js';
@@ -88,8 +92,8 @@ export function makeImportedThemePage(layoutKey) {
   if (!page) throw new Error(`Unknown imported theme page "${layoutKey}"`);
   return function ImportedThemePage(props) {
     const viewModel = useSlideViewModel();
-    const defaults = serializeDefaults(page.defaultProps);
-    const controls = normalizeControls(page.controls, defaults, page);
+    const controls = normalizeControls(page.controls, page.defaultProps, page);
+    const defaults = clampDefaultCountProps(serializeDefaults(page.defaultProps), controls);
     return (
       <section
         className={`slide imported-theme-slide ${page.bgClass || ''}`}
@@ -115,7 +119,7 @@ export function makeImportedThemePage(layoutKey) {
 }
 
 function normalizeControls(controls, defaults, page) {
-  return normalizePublicControls((controls || [])
+  return clampCountControlLimits(normalizePublicControls((controls || [])
     .map(control => {
       const key = control.key || control.prop;
       if (!key) return null;
@@ -153,7 +157,7 @@ function normalizeControls(controls, defaults, page) {
       }
       return next;
     })
-    .filter(Boolean), { layout: page?.key, themeKey: page?.themeKey });
+    .filter(Boolean), { layout: page?.key, themeKey: page?.themeKey }), serializeDefaults(defaults));
 }
 
 function isThemeSwatchControl(page, key) {

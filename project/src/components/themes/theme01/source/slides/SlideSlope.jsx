@@ -25,6 +25,7 @@ export const defaultProps = {
     { label: 'AI 芯片', from: 41, to: 128, color: '#7a5ae0' },
     { label: '具身智能 · 机器人', from: 14, to: 96, color: '#e0a23a' },
     { label: '垂直应用层', from: 62, to: 70, color: '#e8503a' },
+    { label: 'AI 安全与治理', from: 18, to: 54, color: '#5b8def' },
   ],
   note: '口径为公开披露的单笔 ≥1 亿美元融资合计',
   caption: '斜率图 · 大模型与算力陡升，应用层相对走平',

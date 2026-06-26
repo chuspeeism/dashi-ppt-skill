@@ -43,7 +43,7 @@ export const controls = [
     description: '展示的目标指标条数。' },
   { key: 'highlight', label: '重点强调', type: 'boolean', default: true,
     description: '是否把某一条渲染成荧光主条（加粗 + 发光）。' },
-  { key: 'highlightIndex', label: '强调第几条', type: 'number', default: 3, min: 0, max: 5, step: 1,
+  { key: 'highlightIndex', label: '强调第几条', type: 'number', default: 3, min: 0, max: 4, step: 1,
     description: '被强调的指标序号（0 基）。' },
   { key: 'showTarget', label: '目标标尺', type: 'boolean', default: true,
     description: '竖向目标线与「目标」标注的显示。' },

@@ -28,6 +28,7 @@ export const defaultProps = {
     { period: '2022', shares: [38, 22, 28, 12] },
     { period: '2023', shares: [44, 26, 22, 8] },
     { period: '2024', shares: [48, 28, 18, 6] },
+    { period: '2025', shares: [50, 30, 15, 5] },
   ],
   note: '占比按当年大额融资金额归一计算',
   caption: '堆叠图 · 大模型与算力持续扩张，应用层占比逐年收缩',
@@ -75,6 +76,7 @@ function readableOn(hex) {
 
 export default function SlideStackedBars(props) {
   const p = { ...defaultProps, ...props };
+  const ac = p.accentColor;
   const nSeg = Math.max(2, Math.min(4, p.segmentCount));
   const nRow = Math.max(2, Math.min(5, p.itemCount));
   const segs = p.segments.slice(0, nSeg);
@@ -86,9 +88,13 @@ export default function SlideStackedBars(props) {
       <SlideHead kicker={p.kicker} tone={p.tone} title={p.title} en={p.en} cn={p.cn} />
 
       <div style={{ flex: 1, minHeight: 0, marginTop: 22, display: 'flex', flexDirection: 'column',
+        position: 'relative',
         background: 'rgba(255,255,255,.55)', backdropFilter: 'blur(28px) saturate(140%)', WebkitBackdropFilter: 'blur(28px) saturate(140%)',
-        border: '1px solid rgba(255,255,255,.72)', borderRadius: 30, padding: '30px 44px 26px',
-        boxShadow: '0 1px 0 rgba(255,255,255,.8) inset, 0 28px 64px rgba(70,72,100,.14)' }}>
+        border: `1.5px solid ${hexA(ac, 0.38)}`, borderRadius: 30, padding: '30px 44px 26px',
+        boxShadow: `0 1px 0 rgba(255,255,255,.8) inset, 0 28px 64px rgba(70,72,100,.14), 0 0 0 5px ${hexA(ac, 0.08)}` }}>
+        <span style={{ position: 'absolute', left: 22, top: 32, bottom: 30, width: 5, borderRadius: 999,
+          background: `linear-gradient(180deg, ${hexA(ac, 0.25)}, ${ac}, ${hexA(ac, 0.25)})`,
+          boxShadow: `0 0 18px ${hexA(ac, 0.38)}` }} />
 
         {/* legend */}
         {p.showLegend && (
@@ -115,7 +121,7 @@ export default function SlideStackedBars(props) {
               <div key={ri} style={{ flex: 1, minHeight: 0, display: 'flex', alignItems: 'center', gap: 28 }}>
                 {/* period label */}
                 <div style={{ flex: '0 0 130px', fontFamily: "'Space Mono', monospace", fontSize: 44, fontWeight: 700,
-                  color: 'var(--aip-ink)', letterSpacing: '-.01em' }}>{row.period}</div>
+                  color: ac, letterSpacing: '-.01em', textShadow: `0 5px 18px ${hexA(ac, 0.22)}` }}>{row.period}</div>
 
                 {/* stacked track */}
                 <div style={{ flex: 1, minWidth: 0, height: '74%', display: 'flex', borderRadius: 16, overflow: 'hidden',
@@ -152,7 +158,7 @@ export default function SlideStackedBars(props) {
 
         {p.showNote && (
           <div style={{ flex: '0 0 auto', marginTop: 14, fontFamily: "'Space Mono', monospace",
-            fontSize: 19, color: 'var(--aip-ink-3)' }}>{`* `}{p.note}</div>
+            fontSize: 19, color: 'var(--aip-ink-3)' }}><span style={{ color: ac, fontWeight: 700 }}>{`* `}</span>{p.note}</div>
         )}
       </div>
 

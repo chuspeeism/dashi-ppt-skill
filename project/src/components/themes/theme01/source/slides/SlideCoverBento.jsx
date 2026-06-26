@@ -28,7 +28,7 @@ export const defaultProps = {
 
 export const controls = [
   { key: 'tileCount', label: '元信息瓦', type: 'number', default: 3, min: 1, max: 3, step: 1, unit: ' 块',
-    description: '底排元信息瓦片的数量（自动均分宽度）。' },
+    description: '底排元信息瓦片的数量（按数量均分整行宽度）。' },
   { key: 'showBigTile', label: '数字瓦', type: 'boolean', default: true,
     description: '右上 accent 数字瓦的显示；关闭时标题瓦横向铺满。' },
   { key: 'accentColor', label: '主题色', type: 'color', default: '#e0a23a',
@@ -86,18 +86,21 @@ export default function SlideCoverBento(props) {
         )}
 
         {/* 元信息瓦 */}
-        {tiles.map((m, i) => (
-          <div key={i} className="aip-glass" style={{ gridColumn: String(i + 1), gridRow: '2',
-            display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 40px', borderRadius: 26 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-              <span style={{ width: 44, height: 44, borderRadius: 12, background: hexA(ac, 0.14),
-                border: `1px solid ${hexA(ac, 0.4)}`, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: MONO, fontSize: 24, fontWeight: 700, color: ac }}>{String(i + 1).padStart(2, '0')}</span>
-              <span style={{ fontFamily: MONO, fontSize: 24, letterSpacing: '.14em', color: 'var(--aip-ink-3)' }}>{m.label}</span>
+        <div style={{ gridColumn: '1 / 4', gridRow: '2', display: 'grid', gap: 26,
+          gridTemplateColumns: `repeat(${tiles.length}, minmax(0, 1fr))` }}>
+          {tiles.map((m, i) => (
+            <div key={i} className="aip-glass" style={{
+              display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 40px', borderRadius: 26 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                <span style={{ width: 44, height: 44, borderRadius: 12, background: hexA(ac, 0.14),
+                  border: `1px solid ${hexA(ac, 0.4)}`, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontFamily: MONO, fontSize: 24, fontWeight: 700, color: ac }}>{String(i + 1).padStart(2, '0')}</span>
+                <span style={{ fontFamily: MONO, fontSize: 24, letterSpacing: '.14em', color: 'var(--aip-ink-3)' }}>{m.label}</span>
+              </div>
+              <div style={{ marginTop: 16, fontSize: 40, fontWeight: 800, color: 'var(--aip-ink)', lineHeight: 1.1 }}>{m.value}</div>
             </div>
-            <div style={{ marginTop: 16, fontSize: 40, fontWeight: 800, color: 'var(--aip-ink)', lineHeight: 1.1 }}>{m.value}</div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {p.showCaption && (

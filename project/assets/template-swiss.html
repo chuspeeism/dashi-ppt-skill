@@ -187,9 +187,9 @@
   .preview-props{display:grid;gap:28px}
   /* property rows */
   .preview-prop-row{display:grid;grid-template-columns:minmax(96px,max-content) minmax(0,1fr);align-items:center;gap:12px}
-  .preview-prop-row.is-choice,.preview-prop-row.is-range,.preview-prop-row.is-icons{grid-template-columns:1fr;gap:11px}
+  .preview-prop-row.is-choice,.preview-prop-row.is-range,.preview-prop-row.is-icons,.preview-prop-row.is-number-picker{grid-template-columns:1fr;gap:11px}
   .preview-prop-row>span{display:flex;align-items:center;min-width:0;max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .preview-prop-row.is-choice>span,.preview-prop-row.is-range>span,.preview-prop-row.is-icons>span{font:650 11px/1 var(--sans-zh);letter-spacing:.06em;color:var(--pp-muted)}
+  .preview-prop-row.is-choice>span,.preview-prop-row.is-range>span,.preview-prop-row.is-icons>span,.preview-prop-row.is-number-picker>span{font:650 11px/1 var(--sans-zh);letter-spacing:.06em;color:var(--pp-muted)}
   /* slider (range) */
   .pp-slider{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-width:0}
   .pp-slider-track{position:relative;min-width:48px;height:15px;display:flex;align-items:center}
@@ -212,6 +212,11 @@
   .pp-ticks span.on::before{background:var(--pp-blue)}
   .pp-ticks span.on::after{color:var(--pp-fg)}
   .preview-prop-row output{min-width:42px;height:24px;padding:0 7px;display:grid;place-items:center;font:600 12px/1 var(--mono);color:var(--pp-fg);background:transparent;border-radius:6px;text-align:right}
+  .preview-prop-number-grid{display:grid;grid-template-columns:repeat(var(--pp-number-cols,4),minmax(0,1fr));gap:7px;width:100%;min-width:0}
+  .preview-prop-number-choice{height:32px;min-width:0;border:1px solid transparent;border-radius:7px;background:var(--pp-chip);color:var(--pp-fg2);font:650 12px/1 var(--mono);cursor:pointer;transition:background-color .15s,border-color .15s,color .15s,box-shadow .15s}
+  .preview-prop-number-choice:hover:not(.is-active){border-color:var(--pp-border);color:var(--pp-fg)}
+  .preview-prop-number-choice:focus-visible{outline:none;box-shadow:0 0 0 3px var(--pp-blue-soft)}
+  .preview-prop-number-choice.is-active{background:var(--pp-blue);border-color:var(--pp-blue);color:#fff}
   /* toggle / switch */
   .pp-switch{justify-self:end;position:relative;display:block;width:40px;height:23px;flex:0 0 auto;cursor:pointer}
   .pp-switch input{position:absolute;inset:0;z-index:2;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
@@ -3657,6 +3662,7 @@ refreshRailCatalog();
     console.warn('[preview] invalid options', err);
   }
 
+  const DEFAULT_PREVIEW_COUNT_BUTTON_LIMIT = 8;
   const STORE = 'dashi-ppt-preview';
   const viewModel = window.__deckViewModel;
   let deckSlides = readPreviewDeckSlides();
@@ -3675,6 +3681,9 @@ refreshRailCatalog();
   const saved = readSaved();
   const transitionModes = window.__pageTransitionModes || ['none', 'liquidMorph'];
   const themePacks = options.themePacks || {};
+  const previewCountButtonLimit = normalizePreviewCountButtonLimit(
+    options.previewControls?.countButtonMaxValue ?? options.previewCountButtonLimit,
+  );
   const initialThemePack = normalizeThemePack(urlViewState.themePack)
     || normalizeThemePack(saved.themePack)
     || normalizeThemePack(options.current?.themePack)
@@ -4020,14 +4029,20 @@ refreshRailCatalog();
     }
     const slide = getCurrentSlide();
     const values = getSlidePropValues(slide);
+    const imageListCountKeys = new Set(
+      controls.map(control => getImageListCountProxyControl(control, controls)?.key).filter(Boolean),
+    );
     propsField.classList.remove('is-hidden');
     const nextPanel = document.createDocumentFragment();
     controls.forEach(control => {
-      if(!shouldRenderPropControl(control, values)) return;
+      const proxyControl = getImageListCountProxyControl(control, controls);
+      if(!proxyControl && (imageListCountKeys.has(control.key) || isHiddenPropControl(control))) return;
+      const renderControl = proxyControl || control;
+      if(!shouldRenderPropControl(renderControl, values)) return;
       const row = document.createElement('div');
       row.className = 'preview-prop-row';
-      const controlType = normalizePropControlType(control.type, control);
-      const isColor = control.display === 'color';
+      const controlType = proxyControl ? 'range' : normalizePropControlType(renderControl.type, renderControl);
+      const isColor = renderControl.display === 'color';
       const label = document.createElement('span');
       label.title = control.label || control.key;
       label.textContent = control.label || control.key;
@@ -4037,10 +4052,10 @@ refreshRailCatalog();
         sw.className = 'pp-switch';
         const input = document.createElement('input');
         input.type = 'checkbox';
-        input.checked = !!values[control.key];
+        input.checked = !!values[renderControl.key];
         makePreviewControlKeyboardNeutral(input);
         input.addEventListener('change', () => {
-          updateCurrentProp(control, input.checked);
+          updateCurrentProp(renderControl, input.checked);
           releasePreviewControlFocus(input);
         });
         const track = document.createElement('span'); track.className = 'pp-track';
@@ -4053,7 +4068,7 @@ refreshRailCatalog();
         group.className = 'preview-prop-choice-group' + (isColor ? ' is-color' : '');
         group.setAttribute('role', 'group');
         group.setAttribute('aria-label', control.label || control.key);
-        const options = propOptions(control);
+        const options = propOptions(renderControl);
         if(isColor){
           group.style.setProperty('--pp-color-cols', '3');
         }else{
@@ -4073,35 +4088,35 @@ refreshRailCatalog();
           makePreviewControlKeyboardNeutral(button);
           if(isColor){
             button.textContent = '';
-            button.style.background = propSwatchColor(control, item);
+            button.style.background = propSwatchColor(renderControl, item);
             button.title = item.label;
             button.dataset.colorLabel = item.label;
             button.setAttribute('aria-label', item.label);
           }
           button.addEventListener('click', () => {
-            updateCurrentProp(control, item.value, {render:false});
+            updateCurrentProp(renderControl, item.value, {render:false});
             syncSelectionButtons(group, item.value);
             if(!isColor) window.setTimeout(renderPropControls, 420);
             releasePreviewControlFocus(button);
           });
           group.appendChild(button);
         });
-        syncSelectionButtons(group, values[control.key]);
+        syncSelectionButtons(group, values[renderControl.key]);
         row.appendChild(group);
       } else if(controlType === 'select'){
         const select = document.createElement('select');
         select.setAttribute('aria-label', control.label || control.key);
         makePreviewControlKeyboardNeutral(select, {blurOnPointer:false});
-        propOptions(control).forEach(item => {
+        propOptions(renderControl).forEach(item => {
           const option = document.createElement('option');
           option.value = propOptionDomValue(item.value);
           option.__propValue = item.value;
           option.textContent = item.label;
           select.appendChild(option);
         });
-        select.value = propOptionDomValue(values[control.key]);
+        select.value = propOptionDomValue(values[renderControl.key]);
         select.addEventListener('change', () => {
-          updateCurrentProp(control, select.selectedOptions[0]?.__propValue ?? select.value);
+          updateCurrentProp(renderControl, select.selectedOptions[0]?.__propValue ?? select.value);
           releasePreviewControlFocus(select);
         });
         row.appendChild(select);
@@ -4111,7 +4126,7 @@ refreshRailCatalog();
         group.className = 'preview-prop-icon-grid';
         group.setAttribute('role', 'group');
         group.setAttribute('aria-label', control.label || control.key);
-        [{value:'', label:'无'}, ...propOptions(control)].forEach(item => {
+        [{value:'', label:'无'}, ...propOptions(renderControl)].forEach(item => {
           const button = document.createElement('button');
           button.type = 'button';
           button.className = 'preview-prop-icon-choice';
@@ -4135,60 +4150,88 @@ refreshRailCatalog();
           button.appendChild(text);
           button.addEventListener('click', () => {
             const nextValue = item.value || null;
-            updateCurrentProp(control, nextValue, {
-              extra: control.key === 'decorSrc' && nextValue ? {showDecor: true} : {},
+            updateCurrentProp(renderControl, nextValue, {
+              extra: renderControl.key === 'decorSrc' && nextValue ? {showDecor: true} : {},
             });
             syncIconButtons(group, nextValue);
             releasePreviewControlFocus(button);
           });
           group.appendChild(button);
         });
-        syncIconButtons(group, values[control.key]);
+        syncIconButtons(group, values[renderControl.key]);
         row.appendChild(group);
       } else {
-        row.classList.add('is-range');
-        const { rawMin, displayOffset, min, max } = resolveRangeBounds(control, values);
-        const step = Number(control.step ?? 1);
+        const { rawMin, displayOffset, min, max } = resolveRangeBounds(renderControl, values);
+        const step = Number(renderControl.step ?? 1);
         const span = (max - min) / (step || 1);
-        const stepped = Number.isInteger(step) && step >= 1 && Number.isInteger(min) && Number.isInteger(max) && span <= 12;
-        const wrap = document.createElement('div');
-        wrap.className = 'pp-slider ' + (stepped ? 'is-stepped' : 'is-smooth');
-        const track = document.createElement('div');
-        track.className = 'pp-slider-track';
-        const input = document.createElement('input');
-        input.type = 'range';
-        input.min = min; input.max = max; input.step = step;
-        input.value = clampNumber(Number(values[control.key] ?? rawMin) + displayOffset, min, max);
-        makePreviewControlKeyboardNeutral(input);
-        track.appendChild(input);
-        let ticks = null;
-        if(stepped){
-          ticks = document.createElement('div');
-          ticks.className = 'pp-ticks';
-          for(let i = 0; i <= span; i++){
-            const tick = document.createElement('span');
-            tick.dataset.label = formatTickValue(min + i * step);
-            ticks.appendChild(tick);
+        const numberPickerValues = getCountButtonValues(renderControl, min, max, step);
+        if(numberPickerValues.length){
+          row.classList.add('is-number-picker');
+          const group = document.createElement('div');
+          group.className = 'preview-prop-number-grid';
+          group.style.setProperty('--pp-number-cols', String(Math.min(5, Math.max(1, numberPickerValues.length))));
+          group.setAttribute('role', 'group');
+          group.setAttribute('aria-label', control.label || control.key);
+          numberPickerValues.forEach(displayValue => {
+            const rawValue = displayValue - displayOffset;
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'preview-prop-number-choice';
+            button.dataset.propValue = String(Number(rawValue));
+            button.textContent = formatTickValue(displayValue);
+            button.setAttribute('aria-label', `${control.label || control.key} ${formatTickValue(displayValue)}`);
+            makePreviewControlKeyboardNeutral(button);
+            button.addEventListener('click', () => {
+              updateCurrentProp(renderControl, rawValue);
+              syncNumberButtons(group, rawValue);
+              releasePreviewControlFocus(button);
+            });
+            group.appendChild(button);
+          });
+          syncNumberButtons(group, values[renderControl.key]);
+          row.appendChild(group);
+        } else {
+          row.classList.add('is-range');
+          const stepped = Number.isInteger(step) && step >= 1 && Number.isInteger(min) && Number.isInteger(max) && span <= 12;
+          const wrap = document.createElement('div');
+          wrap.className = 'pp-slider ' + (stepped ? 'is-stepped' : 'is-smooth');
+          const track = document.createElement('div');
+          track.className = 'pp-slider-track';
+          const input = document.createElement('input');
+          input.type = 'range';
+          input.min = min; input.max = max; input.step = step;
+          input.value = clampNumber(Number(values[renderControl.key] ?? rawMin) + displayOffset, min, max);
+          makePreviewControlKeyboardNeutral(input);
+          track.appendChild(input);
+          let ticks = null;
+          if(stepped){
+            ticks = document.createElement('div');
+            ticks.className = 'pp-ticks';
+            for(let i = 0; i <= span; i++){
+              const tick = document.createElement('span');
+              tick.dataset.label = formatTickValue(min + i * step);
+              ticks.appendChild(tick);
+            }
+            track.appendChild(ticks);
           }
-          track.appendChild(ticks);
+          const output = document.createElement('output');
+          const unit = renderControl.unit || '';
+          const sync = () => {
+            const v = Number(input.value);
+            track.style.setProperty('--pp-pct', (max > min ? (v - min) / (max - min) * 100 : 0) + '%');
+            output.textContent = v + unit;
+            if(ticks) ticks.querySelectorAll('span').forEach((t, i) => t.classList.toggle('on', i <= (v - min) / step));
+          };
+          sync();
+          input.addEventListener('input', () => { sync(); updateCurrentProp(renderControl, Number(input.value) - displayOffset, {render:false}); });
+          input.addEventListener('change', () => {
+            updateCurrentProp(renderControl, Number(input.value) - displayOffset);
+            releasePreviewControlFocus(input);
+          });
+          wrap.appendChild(track);
+          wrap.appendChild(output);
+          row.appendChild(wrap);
         }
-        const output = document.createElement('output');
-        const unit = control.unit || '';
-        const sync = () => {
-          const v = Number(input.value);
-          track.style.setProperty('--pp-pct', (max > min ? (v - min) / (max - min) * 100 : 0) + '%');
-          output.textContent = v + unit;
-          if(ticks) ticks.querySelectorAll('span').forEach((t, i) => t.classList.toggle('on', i <= (v - min) / step));
-        };
-        sync();
-        input.addEventListener('input', () => { sync(); updateCurrentProp(control, Number(input.value) - displayOffset, {render:false}); });
-        input.addEventListener('change', () => {
-          updateCurrentProp(control, Number(input.value) - displayOffset);
-          releasePreviewControlFocus(input);
-        });
-        wrap.appendChild(track);
-        wrap.appendChild(output);
-        row.appendChild(wrap);
       }
       nextPanel.appendChild(row);
     });
@@ -4238,6 +4281,44 @@ refreshRailCatalog();
 
   function formatTickValue(value){
     return Number.isInteger(value) ? String(value) : String(Math.round(value * 100) / 100);
+  }
+
+  function normalizePreviewCountButtonLimit(value){
+    const numeric = Number(value ?? DEFAULT_PREVIEW_COUNT_BUTTON_LIMIT);
+    return Number.isInteger(numeric) && numeric >= 0 ? numeric : DEFAULT_PREVIEW_COUNT_BUTTON_LIMIT;
+  }
+
+  function getCountButtonValues(control, min, max, step){
+    if(!isImageCountControl(control)) return [];
+    if(!Number.isInteger(step) || step < 1 || !Number.isInteger(min) || !Number.isInteger(max) || max < min) return [];
+    const cappedMax = Math.min(max, previewCountButtonLimit);
+    const values = [];
+    for(let value = min; value <= cappedMax; value += step){
+      values.push(value);
+    }
+    return values;
+  }
+
+  function isImageCountControl(control){
+    const key = String(control?.publicKey || control?.key || '');
+    const label = [control?.label, control?.publicLabel, control?.desc, control?.description].filter(Boolean).join(' ');
+    if(/^(image|images|media|photo|photos|picture|pictures|logo|logos|thumb|thumbs|avatar|avatars|frame|frames)(Slot)?Count$/i.test(key)) return true;
+    if(/^(image|media|photo|picture|logo|thumb|avatar|frame).*Count$/i.test(key)) return true;
+    return /(图片|照片|配图|主图|背景图|缩略图|头像|画框|画格|画面|封面|邮票|品牌|Logo)/i.test(label)
+      && /(数量|槽|格数|条数|卡数|列数|画框|画格|主图)/i.test(label);
+  }
+
+  function getImageListCountProxyControl(control, controls){
+    if(normalizePropControlType(control?.type, control) !== 'image-list' || !control?.countKey) return null;
+    const countControl = controls.find(item => item?.key === control.countKey);
+    if(!countControl) return null;
+    return {
+      ...countControl,
+      label: control.label || countControl.label,
+      publicLabel: control.publicLabel || control.label || countControl.publicLabel,
+      desc: control.desc || control.description || countControl.desc,
+      description: control.description || control.desc || countControl.description,
+    };
   }
 
   function isHiddenPropControl(control){
@@ -4319,6 +4400,15 @@ refreshRailCatalog();
   function syncIconButtons(group, value){
     const current = propOptionDomValue(value);
     group.querySelectorAll('.preview-prop-icon-choice').forEach(button => {
+      const active = button.dataset.propValue === current;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  function syncNumberButtons(group, value){
+    const current = String(Number(value));
+    group.querySelectorAll('.preview-prop-number-choice').forEach(button => {
       const active = button.dataset.propValue === current;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-pressed', active ? 'true' : 'false');
@@ -4556,7 +4646,9 @@ refreshRailCatalog();
   function coercePropValue(control, value){
     const controlType = normalizePropControlType(control.type, control);
     if(controlType === 'toggle') return value === true || value === 'true' || value === 1 || value === '1';
-    if(controlType === 'range') return Number.isFinite(Number(value)) ? Number(value) : Number(control.min ?? 0);
+    if(controlType === 'range' || controlType === 'slider' || controlType === 'number'){
+      return Number.isFinite(Number(value)) ? Number(value) : Number(control.min ?? 0);
+    }
     if(controlType === 'select' || controlType === 'segment'){
       const options = propOptions(control);
       let match = options.find(item => String(item.value) === String(value));

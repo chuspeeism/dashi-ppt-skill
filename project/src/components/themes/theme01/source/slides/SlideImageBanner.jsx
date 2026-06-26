@@ -92,9 +92,10 @@ export default function SlideImageBanner(props) {
   const pos = p.plate === 'bottom-right'
     ? { right: 92, bottom: 88, left: 'auto', top: 'auto' }
     : p.plate === 'center-left'
-      ? { left: 92, top: '50%', bottom: 'auto', right: 'auto', transform: 'translateY(-50%)' }
+      ? { left: 92, top: 88, bottom: 88, right: 'auto', display: 'flex', alignItems: 'center' }
       : { left: 92, bottom: 88, right: 'auto', top: 'auto' };
   const scrimDir = p.plate === 'bottom-right' ? '300deg' : p.plate === 'center-left' ? '90deg' : '60deg';
+  const plateWidth = p.plate === 'center-left' ? 760 : 880;
 
   return (
     <SlideFrame bg="a">
@@ -127,7 +128,7 @@ export default function SlideImageBanner(props) {
       )}
 
       {/* floating glass label plate */}
-      <div style={{ position: 'absolute', zIndex: 3, maxWidth: 880, ...pos }}>
+      <div style={{ position: 'absolute', zIndex: 3, width: plateWidth, maxWidth: 'calc(100% - 184px)', ...pos }}>
         <div style={{
           padding: '40px 46px 38px', borderRadius: 28,
           background: 'rgba(22,22,30,.46)', backdropFilter: 'blur(30px) saturate(140%)',

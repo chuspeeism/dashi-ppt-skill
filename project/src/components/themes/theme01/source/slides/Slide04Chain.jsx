@@ -9,17 +9,17 @@ export const defaultProps = {
   cn: '上游 — 中游 — 下游 的层级结构',
   layers: [
     { name: '上游 · 基础设施', en: 'UPSTREAM · INFRASTRUCTURE', segments: [
-      { label: 'AI 芯片', items: ['Cerebras', 'Groq'] },
-      { label: '算力云 / 数据', items: ['CoreWeave', 'Scale AI'] },
+      { label: 'AI 芯片', items: ['Cerebras', 'Groq', 'SambaNova', 'Tenstorrent'] },
+      { label: '算力云 / 数据', items: ['CoreWeave', 'Scale AI', 'Lambda', 'Together AI'] },
     ] },
     { name: '中游 · 模型层', en: 'MIDSTREAM · MODEL LAYER', segments: [
-      { label: '通用大模型', items: ['OpenAI', 'Anthropic', 'xAI'] },
-      { label: '开源 / 专用', items: ['Mistral', 'SSI'] },
+      { label: '通用大模型', items: ['OpenAI', 'Anthropic', 'xAI', 'SSI'] },
+      { label: '开源 / 专用', items: ['Mistral', 'Cohere', 'Adept', 'Runway'] },
     ] },
     { name: '下游 · 应用层', en: 'DOWNSTREAM · APPLICATION', segments: [
-      { label: '企业生产力', items: ['Glean', 'Databricks'] },
-      { label: '消费 / 搜索', items: ['Perplexity'] },
-      { label: '具身智能', items: ['Figure AI'] },
+      { label: '企业生产力', items: ['Glean', 'Databricks', 'Harvey', 'Writer'] },
+      { label: '消费 / 搜索', items: ['Perplexity', 'Character AI', 'Suno', 'Midjourney'] },
+      { label: '具身智能', items: ['Figure AI', 'Physical Intelligence', 'Skild AI', 'Covariant'] },
     ] },
   ],
   caption: '缩进层级可直接转换为树状图 / Treemap · 上游确定性最强，中游竞争最激烈，下游潜力最大',

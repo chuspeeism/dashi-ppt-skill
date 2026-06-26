@@ -185,9 +185,15 @@ export const chapterMarketProps = {
   kicker: '章节', partLabel: 'PART 02', index: '02', title: '市场全景',
   en: 'Market Overview',
   desc: '沿时间轴追踪同一指标的演化——趋势向上还是向下、拐点在何处、节奏是否可持续。',
-  topics: [{ label: '逐季度走势' }, { label: '逐月热度' }, { label: '融资节奏' }],
+  topics: [
+    { label: '逐季度走势' },
+    { label: '逐月热度' },
+    { label: '融资节奏' },
+    { label: '热度分布' },
+    { label: '结构变迁' },
+  ],
   caption: '章节导航 · 纵向看市场节奏',
-  topicCount: 3, highlight: true, highlightIndex: 0, showGhost: true,
+  topicCount: 5, highlight: true, highlightIndex: 0, showGhost: true,
   accentColor: '#5b8def', imageSlotCount: 0, imageFit: 'cover', images: ['', ''], showCaption: true,
 };
 export const computeProps = {
@@ -211,18 +217,18 @@ export const chapterRiskProps = {
   kicker: '章节', partLabel: 'PART 06', index: '06', title: '风险与展望',
   en: 'Risks & Outlook',
   desc: '纪录之下，泡沫、监管、巨头挤压与算力卡脖子四重信号并存。资本的下一阶段，将从「赌叙事」转向「看兑现」。',
-  topics: [{ label: '估值泡沫' }, { label: '风险研判' }, { label: '投资展望' }, { label: '阶段策略' }],
-  caption: '章节导航 · 从风险信号到阶段策略',
-  topicCount: 4, highlight: true, highlightIndex: 0, showGhost: true,
+  topics: [{ label: '估值泡沫' }, { label: '风险研判' }, { label: '投资展望' }, { label: '阶段策略' }, { label: '监管政策' }],
+  caption: '章节导航 · 从风险信号到监管政策',
+  topicCount: 5, highlight: true, highlightIndex: 0, showGhost: true,
   accentColor: '#e8503a', imageSlotCount: 0, imageFit: 'cover', images: ['', ''], showCaption: true,
 };
 export const chapterCaseProps = {
   kicker: '章节', partLabel: 'PART 05', index: '05', title: '典型案例',
   en: 'Deep-Dive Case Studies',
-  desc: '从追赶到反超、从挑战者到“卖铲人”——用三个标杆案例，拆解资本为何下注、又如何兼现。',
-  topics: [{ label: 'Anthropic' }, { label: 'xAI' }, { label: 'CoreWeave' }],
-  caption: '章节导航 · 三个标杆案例',
-  topicCount: 3, highlight: true, highlightIndex: 0, showGhost: true,
+  desc: '从追赶到反超、从挑战者到“卖铲人”——用五个标杆案例，拆解资本为何下注、又如何兑现。',
+  topics: [{ label: 'Anthropic' }, { label: 'xAI' }, { label: 'CoreWeave' }, { label: 'Mistral' }, { label: 'Perplexity' }],
+  caption: '章节导航 · 五个标杆案例',
+  topicCount: 5, highlight: true, highlightIndex: 0, showGhost: true,
   accentColor: '#7a5ae0', imageSlotCount: 0, imageFit: 'cover', images: ['', ''], showCaption: true,
 };
 

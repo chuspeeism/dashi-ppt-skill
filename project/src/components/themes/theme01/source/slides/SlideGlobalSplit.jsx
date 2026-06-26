@@ -34,11 +34,11 @@ export const defaultProps = {
 };
 
 export const controls = [
-  { key: 'itemCount', label: '地区数量', type: 'number', default: 4, min: 2, max: 5, step: 1, unit: ' 个',
+  { key: 'itemCount', label: '地区数量', type: 'number', default: 4, min: 2, max: 4, step: 1, unit: ' 个',
     description: '参与堆叠与卡片展示的地区数量。' },
   { key: 'highlight', label: '重点强调', type: 'boolean', default: true,
     description: '是否高亮强调其中一个地区（描边卡片 + 加粗段）。' },
-  { key: 'highlightIndex', label: '强调第几个', type: 'number', default: 0, min: 0, max: 4, step: 1,
+  { key: 'highlightIndex', label: '强调第几个', type: 'number', default: 0, min: 0, max: 3, step: 1,
     description: '被强调的地区序号（从 0 开始）。' },
   { key: 'showBar', label: '堆叠条', type: 'boolean', default: true,
     description: '顶部 100% 堆叠占比条的显示。' },
@@ -65,7 +65,7 @@ const GRAD = {
 export default function SlideGlobalSplit(props) {
   const p = { ...defaultProps, ...props };
   const ac = p.accentColor;
-  const n = Math.max(2, Math.min(5, p.itemCount));
+  const n = Math.max(2, Math.min(4, p.itemCount));
   const regions = p.regions.slice(0, n);
   const sum = regions.reduce((a, r) => a + r.share, 0) || 1;
 

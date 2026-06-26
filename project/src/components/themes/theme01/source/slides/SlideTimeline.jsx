@@ -16,6 +16,7 @@ export const defaultProps = {
     { date: '2024 · 08', round: 'Series H · 首轮', amount: '180', unit: '亿', note: '估值 830 亿', color: '#46b083' },
     { date: '2024 · 11', round: 'Series H · 扩轮', amount: '190', unit: '亿', note: '估值 9650 亿', color: '#e8503a' },
     { date: '2026 · 06', round: '递交 IPO 申请', amount: '上市', unit: '', note: '全球估值最高 AI 初创', color: '#7a5ae0' },
+    { date: '2026 · H2', round: '公开市场定价', amount: 'IPO', unit: '', note: '进入二级市场验证期', color: '#e0a23a' },
   ],
   caption: '时间轴 · 资本如何在一年内重写估值',
   // tweakable (universal names — not bound to any specific business term)

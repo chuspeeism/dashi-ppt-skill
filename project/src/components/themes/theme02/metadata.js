@@ -10170,7 +10170,7 @@ export const pages = [
         "label": "人物卡数量",
         "default": 3,
         "min": 2,
-        "max": 4,
+        "max": 3,
         "step": 1,
         "describe": "一排人物卡的数量（2–4）",
         "publicKey": "voiceCount",

@@ -27,6 +27,11 @@ export const defaultProps = {
       points: ['若 AGI 突破未兑现，行业进入洗牌期', '逆周期抄底被低估的优质技术资产'],
       verdict: '逆周期布局', color: '#7a5ae0',
     },
+    {
+      period: '退出窗口', step: 'STEP 04', heading: '退出 · 政策定价',
+      points: ['跟踪监管框架与并购窗口变化', '在流动性改善时分批兑现头部仓位'],
+      verdict: '动态兑现', color: '#e0a23a',
+    },
   ],
   caption: '路线图 · 不同阶段，资本动作各不相同',
   // tweakable
@@ -69,13 +74,14 @@ export default function SlidePhaseRoadmap(props) {
   const p = { ...defaultProps, ...props };
   const ac = p.accentColor;
   const phases = p.phases.slice(0, Math.max(2, Math.min(4, p.itemCount)));
+  const compact = phases.length >= 4;
 
   return (
     <SlideFrame bg="b">
       <SlideHead kicker={p.kicker} tone="green" title={p.title} en={p.en} cn={p.cn} />
 
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', minHeight: 0, marginTop: 8 }}>
-        <div style={{ position: 'relative', width: '100%', display: 'flex', gap: 30, alignItems: 'stretch' }}>
+        <div style={{ position: 'relative', width: '100%', display: 'flex', gap: compact ? 20 : 30, alignItems: 'stretch' }}>
           {/* glowing rail behind the stations */}
           {p.showRail && (
             <div style={{ position: 'absolute', left: 12, right: 12, top: 38, height: 8, borderRadius: 4,
@@ -107,8 +113,8 @@ export default function SlidePhaseRoadmap(props) {
                 </div>
 
                 {/* body card */}
-                <div style={{ marginTop: 22, width: '100%', flex: 1, padding: on ? '30px 30px' : '28px 28px',
-                  borderRadius: 24, display: 'flex', flexDirection: 'column', gap: 16,
+                <div style={{ marginTop: compact ? 18 : 22, width: '100%', flex: 1, padding: on ? (compact ? '24px 22px' : '30px 30px') : (compact ? '22px 20px' : '28px 28px'),
+                  borderRadius: 24, display: 'flex', flexDirection: 'column', gap: compact ? 12 : 16,
                   background: on ? `linear-gradient(160deg, ${hexA(ac, 0.16)}, ${hexA(ac, 0.05)})` : 'rgba(255,255,255,.55)',
                   border: `1px solid ${on ? hexA(ac, 0.5) : 'rgba(255,255,255,.8)'}`,
                   backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)',
@@ -117,13 +123,13 @@ export default function SlidePhaseRoadmap(props) {
 
                   <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 24, letterSpacing: '.16em',
                     fontWeight: 700, color: hexA(c, 0.95) }}>{ph.step}</div>
-                  <div style={{ fontSize: 38, fontWeight: 900, color: 'var(--aip-ink)', lineHeight: 1.1, letterSpacing: '.01em' }}>{ph.heading}</div>
+                  <div style={{ fontSize: compact ? 32 : 38, fontWeight: 900, color: 'var(--aip-ink)', lineHeight: 1.1, letterSpacing: '.01em' }}>{ph.heading}</div>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 2 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: compact ? 9 : 12, marginTop: 2 }}>
                     {ph.points.map((pt, j) => (
                       <div key={j} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
                         <span style={{ flex: '0 0 auto', width: 11, height: 11, borderRadius: 3, marginTop: 12, background: c }} />
-                        <span style={{ fontSize: 26, lineHeight: 1.5, color: 'var(--aip-ink-2)', fontWeight: 500, textWrap: 'pretty' }}>{pt}</span>
+                        <span style={{ fontSize: compact ? 23 : 26, lineHeight: 1.45, color: 'var(--aip-ink-2)', fontWeight: 500, textWrap: 'pretty' }}>{pt}</span>
                       </div>
                     ))}
                   </div>

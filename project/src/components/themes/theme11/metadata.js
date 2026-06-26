@@ -5178,7 +5178,7 @@ export const pages = [
         "label": "权益条目数",
         "default": 4,
         "min": 3,
-        "max": 5,
+        "max": 4,
         "step": 1,
         "describe": "每张套餐展示的权益条目数量。",
         "publicKey": "itemCount",

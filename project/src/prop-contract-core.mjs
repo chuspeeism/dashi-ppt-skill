@@ -35,6 +35,8 @@ export const COUNT_ARRAY_BINDINGS = {
   wordCount: ['words'],
 };
 
+const MEDIA_COUNT_KEY_PATTERN = /^(image|images|media|photo|photos|picture|pictures|logo|logos|thumb|thumbs|avatar|avatars|frame)Count$/i;
+
 export function createLayoutContracts(pages = []) {
   return new Map(pages.map(page => [page.key, createContract(page, page.themeKey)]));
 }
@@ -91,12 +93,14 @@ export function buildLayoutManifestFromContracts(contracts) {
 }
 
 export function createContract(page, themePack) {
-  const controls = normalizeControls(page);
+  const rawDefaultProps = serializeValue(page.defaultProps || {}) || {};
+  const controls = clampCountControlLimits(normalizeControls(page), rawDefaultProps);
+  const defaultProps = clampDefaultCountProps(rawDefaultProps, controls);
   const countBindings = controls
     .filter(control => !isBooleanControl(control))
     .map(control => ({
       control,
-      arrays: normalizeCountArrays(control.countArrays) || COUNT_ARRAY_BINDINGS[control.key] || inferCountArrayBindings(control.key, page.defaultProps),
+      arrays: normalizeCountArrays(control.countArrays) || COUNT_ARRAY_BINDINGS[control.key] || inferCountArrayBindings(control.key, defaultProps),
     }))
     .filter(item => item.arrays.length)
     .map(({ control, arrays }) => ({
@@ -115,11 +119,52 @@ export function createContract(page, themePack) {
     label: page.label,
     slot: page.slot,
     dataLayout: page.layout,
-    defaultProps: serializeValue(page.defaultProps || {}) || {},
+    defaultProps,
     controls,
     countBindings,
-    propShapes: describePropShapes(page.defaultProps || {}),
+    propShapes: describePropShapes(defaultProps),
   };
+}
+
+export function clampCountControlLimits(controls = [], defaultProps = {}) {
+  return (controls || []).map(control => {
+    const limit = countControlLimit(control, defaultProps);
+    if (limit == null) return control;
+    const max = Number(control.max);
+    const min = Number(control.min);
+    const nextMax = Number.isFinite(min) ? Math.max(min, limit) : limit;
+    if (!Number.isFinite(max) || max <= nextMax) return control;
+    const next = { ...control, max: nextMax };
+    const defaultValue = Number(next.default);
+    if (Number.isFinite(defaultValue) && defaultValue > nextMax) next.default = nextMax;
+    return next;
+  });
+}
+
+export function clampDefaultCountProps(defaultProps = {}, controls = []) {
+  const next = { ...(defaultProps || {}) };
+  for (const control of controls || []) {
+    const key = control?.key;
+    if (!key || !Object.prototype.hasOwnProperty.call(next, key)) continue;
+    const max = Number(control.max);
+    const value = Number(next[key]);
+    if (Number.isFinite(max) && Number.isFinite(value) && value > max) next[key] = max;
+  }
+  return next;
+}
+
+function countControlLimit(control, defaultProps = {}) {
+  if (!control?.key || MEDIA_COUNT_KEY_PATTERN.test(control.key)) return null;
+  const arrays = COUNT_ARRAY_BINDINGS[control.key] || inferCountArrayBindings(control.key, defaultProps);
+  if (!arrays.length || arrays.some(isMediaCountPath)) return null;
+  const counts = arrays.flatMap(pathName => collectArrayCounts(defaultProps, pathName).map(item => item.count));
+  if (!counts.length) return null;
+  return Math.min(...counts);
+}
+
+function isMediaCountPath(pathName) {
+  const key = String(pathName || '').split('.')[0].replace(/\[\]$/, '');
+  return isMediaArrayKey(key) || /^(avatar|avatars)$/i.test(key);
 }
 
 function deriveAuthoredCounts(props, bindings) {

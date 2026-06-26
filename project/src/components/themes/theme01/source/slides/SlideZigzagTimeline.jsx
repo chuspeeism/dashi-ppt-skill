@@ -22,6 +22,7 @@ export const defaultProps = {
     { date: '09月', title: 'OpenAI 66 亿创纪录', desc: '刷新单轮融资上限，估值站上 1570 亿美元。' },
     { date: '11月', title: 'Anthropic 加注 40 亿', desc: '亚马逊追投，安全叙事持续吸金。' },
     { date: '12月', title: '全年大额融资破千亿', desc: '美国 AI 一级市场吸纳资金创历史新高。' },
+    { date: '年末', title: '算力与治理议题升温', desc: '基础设施、模型安全与监管框架同步成为长期投入方向。' },
   ],
   note: '节点为公开披露的代表性事件，非完整清单',
   caption: '时间轴 · 一年之内，纪录被反复刷新',

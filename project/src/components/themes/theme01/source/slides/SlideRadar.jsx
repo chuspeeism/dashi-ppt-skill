@@ -20,6 +20,7 @@ export const defaultProps = {
     { name: 'OpenAI', color: '#5b8def', values: [100, 100, 86, 96, 95, 98] },
     { name: 'Anthropic', color: '#46b083', values: [72, 64, 70, 92, 86, 90] },
     { name: 'xAI', color: '#e0a23a', values: [76, 30, 92, 80, 82, 70] },
+    { name: 'CoreWeave', color: '#e8503a', values: [58, 72, 100, 62, 78, 66] },
   ],
   leadLabel: '维度领先',
   scaleNote: '0–100 相对分 · 非绝对金额',
@@ -73,16 +74,17 @@ export default function SlideRadar(props) {
   // axis i angle: start at top (−90°), clockwise
   const ang = (i) => (-Math.PI / 2) + (i * 2 * Math.PI) / nA;
   const pt = (i, r) => [cx + r * Math.cos(ang(i)), cy + r * Math.sin(ang(i))];
+  const scoreAt = (s, i) => Math.max(0, Math.min(100, Number(s?.values?.[i]) || 0));
   const polyFor = (vals) =>
-    axes.map((_, i) => pt(i, (Math.max(0, Math.min(100, vals[i])) / 100) * R).join(',')).join(' ');
+    axes.map((_, i) => pt(i, (Math.max(0, Math.min(100, Number(vals?.[i]) || 0)) / 100) * R).join(',')).join(' ');
 
   const hiIdx = p.highlight ? Math.min(p.highlightIndex, nS - 1) : -1;
 
   // per-axis leader
   const leaders = axes.map((ax, i) => {
     let best = 0;
-    series.forEach((s, si) => { if (s.values[i] > series[best].values[i]) best = si; });
-    return { axis: ax, who: series[best], val: series[best].values[i] };
+    series.forEach((s, si) => { if (scoreAt(s, i) > scoreAt(series[best], i)) best = si; });
+    return { axis: ax, who: series[best], val: scoreAt(series[best], i) };
   });
 
   return (
@@ -131,7 +133,7 @@ export default function SlideRadar(props) {
                   <polygon points={polyFor(s.values)} fill={hexA(s.color, (p.fillOpacity / 100) * (dim ? 0.6 : 1))}
                     stroke={s.color} strokeWidth={dim ? 2.4 : 3} strokeLinejoin="round" opacity={dim ? 0.7 : 1} />
                   {p.showDots && axes.map((_, i) => {
-                    const [x, y] = pt(i, (s.values[i] / 100) * R);
+                    const [x, y] = pt(i, (scoreAt(s, i) / 100) * R);
                     return <circle key={i} cx={x} cy={y} r={dim ? 4.5 : 5.5} fill="#fff" stroke={s.color} strokeWidth="2.6" opacity={dim ? 0.7 : 1} />;
                   })}
                 </g>
@@ -145,7 +147,7 @@ export default function SlideRadar(props) {
                     stroke={s.color} strokeWidth="4.5" strokeLinejoin="round"
                     style={{ filter: `drop-shadow(0 8px 22px ${hexA(s.color, 0.4)})` }} />
                   {p.showDots && axes.map((_, i) => {
-                    const [x, y] = pt(i, (s.values[i] / 100) * R);
+                    const [x, y] = pt(i, (scoreAt(s, i) / 100) * R);
                     return <circle key={i} cx={x} cy={y} r="7" fill={s.color} stroke="#fff" strokeWidth="3" />;
                   })}
                 </g>
@@ -171,7 +173,7 @@ export default function SlideRadar(props) {
           <div style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
             {series.map((s, si) => {
               const on = si === hiIdx;
-              const sum = axes.reduce((a, _, i) => a + s.values[i], 0);
+              const sum = axes.reduce((a, _, i) => a + scoreAt(s, i), 0);
               const avg = Math.round(sum / nA);
               return (
                 <div key={si} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '11px 20px', borderRadius: 16,

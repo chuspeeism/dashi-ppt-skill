@@ -34,13 +34,13 @@ export const defaultProps = {
 
 export const controls = [
   { key: 'imageSlotCount', label: '图片数量', type: 'number', default: 1, min: 0, max: 3, step: 1, unit: ' 张',
-    description: '特写图片槽数量（0 时自动切换为纯文字大留白构图）；叠放拼贴版式下 2–3 张会互相叠压。' },
+    description: '特写图片槽数量（0 时自动切换为纯文字大留白构图）；常规与拼贴版式都会按数量重排。' },
   { key: 'imageFit', label: '图片填充', type: 'select', default: 'cover',
     options: [{ value: 'cover', label: '裁剪填满' }, { value: 'contain', label: '完整自适应' }],
     description: '图片填充方式：裁剪填满铺满版面，完整自适应按原始比例显示。' },
   { key: 'imageLayout', label: '图片版式', type: 'select', default: 'normal',
     options: [{ value: 'normal', label: '常规特写' }, { value: 'collage', label: '叠放拼贴' }],
-    description: '常规：单张特写（含满版叠字）；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。' },
+    description: '常规：整齐特写排布；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。' },
   { key: 'images', label: '图片', type: 'images', countKey: 'imageSlotCount',
     description: '上传特写图片，槽位自适应图片比例不变形。' },
   { key: 'layout', label: '版式', type: 'select', default: 'split-right',
@@ -124,6 +124,39 @@ function TextCol({ p, ac, onLight }) {
   );
 }
 
+function RegularImageArea({ count, images, fit, accent }) {
+  const n = Math.max(1, Math.min(3, count));
+  const mode = fit === 'contain' ? 'auto' : 'fill';
+  const slot = (i, style) => (
+    <ImageSlot key={i} slot={i} src={images[i] || ''} placeholder={`特写图片 ${i + 1}`} fit={fit}
+      ratioMode={n === 1 ? mode : 'fill'} accent={accent} radius={24} style={style} />
+  );
+  if (n === 1) {
+    return (
+      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center' }}>
+        {slot(0, { height: fit === 'contain' ? 'auto' : '100%' })}
+      </div>
+    );
+  }
+  if (n === 2) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 22, height: '100%' }}>
+        {slot(0, { flex: 1 })}
+        {slot(1, { flex: 1 })}
+      </div>
+    );
+  }
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 22, height: '100%' }}>
+      {slot(0, { flex: 1.35 })}
+      <div style={{ display: 'flex', gap: 22, flex: 1 }}>
+        {slot(1, { flex: 1 })}
+        {slot(2, { flex: 1 })}
+      </div>
+    </div>
+  );
+}
+
 export default function SlideImageFeature(props) {
   const p = { ...defaultProps, ...props };
   const ac = p.accentColor;
@@ -156,8 +189,7 @@ export default function SlideImageFeature(props) {
       </div>
     ) : (
       <div style={{ flex: '0 0 41%', minWidth: 0 }}>
-        <ImageSlot slot={0} src={p.images[0] || ''} placeholder="特写图片" fit={p.imageFit}
-          ratioMode="fill" accent="#5b8def" radius={26} style={{ height: '100%' }} />
+        <RegularImageArea count={p.imageSlotCount} images={p.images} fit={p.imageFit} accent={ac} />
       </div>
     )
   ) : null;

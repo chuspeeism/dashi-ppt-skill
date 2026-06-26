@@ -15,6 +15,7 @@ export const defaultProps = {
     { h: '安全对齐 · 信任壁垒', d: '技术路线聚焦「安全对齐」，在企业客户中建立长期信任优势。', color: '#5b8def' },
     { h: 'Claude 模型能力', d: 'Claude 系列在代码生成、长文本理解等任务上表现突出。', color: '#46b083' },
     { h: '云巨头深度合作', d: '与 Amazon、Google 等云巨头深度绑定，渠道覆盖迅速。', color: '#e0a23a' },
+    { h: '企业场景渗透', d: '通过 API、Team 与企业版产品切入高价值工作流，形成可持续收入闭环。', color: '#e8503a' },
   ],
   images: ['', ''],
   caption: '要点 · 三条护城河支撑估值反超',

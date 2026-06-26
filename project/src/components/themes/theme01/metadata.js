@@ -278,10 +278,10 @@ export const pages = [
         "max": 3,
         "step": 1,
         "unit": " 块",
-        "description": "底排元信息瓦片的数量（自动均分宽度）。",
+        "description": "底排元信息瓦片的数量（按数量均分整行宽度）。",
         "publicKey": "tileCount",
         "publicLabel": "元信息瓦",
-        "desc": "底排元信息瓦片的数量（自动均分宽度）。"
+        "desc": "底排元信息瓦片的数量（按数量均分整行宽度）。"
       },
       {
         "key": "showBigTile",
@@ -967,7 +967,7 @@ export const pages = [
         "type": "number",
         "default": 3,
         "min": 2,
-        "max": 4,
+        "max": 3,
         "step": 1,
         "unit": " 条",
         "description": "榜单拼块展示的条目数量。",
@@ -1435,7 +1435,7 @@ export const pages = [
         "key": "topicCount",
         "label": "主线数量",
         "type": "number",
-        "default": 4,
+        "default": 5,
         "min": 0,
         "max": 5,
         "step": 1,
@@ -1581,10 +1581,16 @@ export const pages = [
         },
         {
           "label": "融资节奏"
+        },
+        {
+          "label": "热度分布"
+        },
+        {
+          "label": "结构变迁"
         }
       ],
       "caption": "章节导航 · 纵向看市场节奏",
-      "topicCount": 3,
+      "topicCount": 5,
       "highlight": true,
       "highlightIndex": 0,
       "showGhost": true,
@@ -1758,7 +1764,7 @@ export const pages = [
         "key": "topicCount",
         "label": "主线数量",
         "type": "number",
-        "default": 4,
+        "default": 5,
         "min": 0,
         "max": 5,
         "step": 1,
@@ -1913,7 +1919,7 @@ export const pages = [
         }
       ],
       "caption": "章节导航 · 横向透视的四条主线",
-      "topicCount": 4,
+      "topicCount": 5,
       "highlight": true,
       "highlightIndex": 0,
       "showGhost": true,
@@ -2084,14 +2090,18 @@ export const pages = [
               "label": "AI 芯片",
               "items": [
                 "Cerebras",
-                "Groq"
+                "Groq",
+                "SambaNova",
+                "Tenstorrent"
               ]
             },
             {
               "label": "算力云 / 数据",
               "items": [
                 "CoreWeave",
-                "Scale AI"
+                "Scale AI",
+                "Lambda",
+                "Together AI"
               ]
             }
           ]
@@ -2105,14 +2115,17 @@ export const pages = [
               "items": [
                 "OpenAI",
                 "Anthropic",
-                "xAI"
+                "xAI",
+                "SSI"
               ]
             },
             {
               "label": "开源 / 专用",
               "items": [
                 "Mistral",
-                "SSI"
+                "Cohere",
+                "Adept",
+                "Runway"
               ]
             }
           ]
@@ -2125,19 +2138,27 @@ export const pages = [
               "label": "企业生产力",
               "items": [
                 "Glean",
-                "Databricks"
+                "Databricks",
+                "Harvey",
+                "Writer"
               ]
             },
             {
               "label": "消费 / 搜索",
               "items": [
-                "Perplexity"
+                "Perplexity",
+                "Character AI",
+                "Suno",
+                "Midjourney"
               ]
             },
             {
               "label": "具身智能",
               "items": [
-                "Figure AI"
+                "Figure AI",
+                "Physical Intelligence",
+                "Skild AI",
+                "Covariant"
               ]
             }
           ]
@@ -2176,10 +2197,10 @@ export const pages = [
         "max": 3,
         "step": 1,
         "unit": " 张",
-        "description": "特写图片槽数量（0 时自动切换为纯文字大留白构图）；叠放拼贴版式下 2–3 张会互相叠压。",
+        "description": "特写图片槽数量（0 时自动切换为纯文字大留白构图）；常规与拼贴版式都会按数量重排。",
         "publicKey": "imageSlotCount",
         "publicLabel": "图片数量",
-        "desc": "特写图片槽数量（0 时自动切换为纯文字大留白构图）；叠放拼贴版式下 2–3 张会互相叠压。"
+        "desc": "特写图片槽数量（0 时自动切换为纯文字大留白构图）；常规与拼贴版式都会按数量重排。"
       },
       {
         "key": "imageFit",
@@ -2216,10 +2237,10 @@ export const pages = [
             "label": "叠放拼贴"
           }
         ],
-        "description": "常规：单张特写（含满版叠字）；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。",
+        "description": "常规：整齐特写排布；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。",
         "publicKey": "imageLayout",
         "publicLabel": "图片版式",
-        "desc": "常规：单张特写（含满版叠字）；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。"
+        "desc": "常规：整齐特写排布；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。"
       },
       {
         "key": "images",
@@ -2597,7 +2618,7 @@ export const pages = [
         "type": "number",
         "default": 5,
         "min": 2,
-        "max": 6,
+        "max": 5,
         "step": 1,
         "unit": " 块",
         "description": "参与树图的板块数量；布局会按数量自动平铺，2–6 块都保持美观。",
@@ -2621,7 +2642,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
-        "max": 5,
+        "max": 4,
         "step": 1,
         "description": "被强调的板块序号（从 0 开始，按原始数据顺序）。",
         "publicKey": "highlightIndex",
@@ -3373,7 +3394,7 @@ export const pages = [
         "type": "number",
         "default": 4,
         "min": 0,
-        "max": 9,
+        "max": 5,
         "step": 1,
         "description": "被强调的数据行序号（从 0 开始）。",
         "publicKey": "highlightIndex",
@@ -3870,7 +3891,7 @@ export const pages = [
         "key": "topicCount",
         "label": "主线数量",
         "type": "number",
-        "default": 4,
+        "default": 5,
         "min": 0,
         "max": 5,
         "step": 1,
@@ -4006,7 +4027,7 @@ export const pages = [
       "index": "05",
       "title": "典型案例",
       "en": "Deep-Dive Case Studies",
-      "desc": "从追赶到反超、从挑战者到“卖铲人”——用三个标杆案例，拆解资本为何下注、又如何兼现。",
+      "desc": "从追赶到反超、从挑战者到“卖铲人”——用五个标杆案例，拆解资本为何下注、又如何兑现。",
       "topics": [
         {
           "label": "Anthropic"
@@ -4016,10 +4037,16 @@ export const pages = [
         },
         {
           "label": "CoreWeave"
+        },
+        {
+          "label": "Mistral"
+        },
+        {
+          "label": "Perplexity"
         }
       ],
-      "caption": "章节导航 · 三个标杆案例",
-      "topicCount": 3,
+      "caption": "章节导航 · 五个标杆案例",
+      "topicCount": 5,
       "highlight": true,
       "highlightIndex": 0,
       "showGhost": true,
@@ -4131,7 +4158,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
-        "max": 3,
+        "max": 1,
         "step": 1,
         "unit": " 个",
         "description": "表头 logo 图片槽数量（0 时用首字母色块代替）。",
@@ -4475,7 +4502,7 @@ export const pages = [
         "type": "number",
         "default": 2,
         "min": 0,
-        "max": 3,
+        "max": 2,
         "step": 1,
         "unit": " 个",
         "description": "右上角倾斜便签贴纸的数量（装饰性回声标签）。",
@@ -4730,6 +4757,14 @@ export const pages = [
           "unit": "",
           "note": "全球估值最高 AI 初创",
           "color": "#7a5ae0"
+        },
+        {
+          "date": "2026 · H2",
+          "round": "公开市场定价",
+          "amount": "IPO",
+          "unit": "",
+          "note": "进入二级市场验证期",
+          "color": "#e0a23a"
         }
       ],
       "caption": "时间轴 · 资本如何在一年内重写估值",
@@ -4935,6 +4970,11 @@ export const pages = [
           "h": "云巨头深度合作",
           "d": "与 Amazon、Google 等云巨头深度绑定，渠道覆盖迅速。",
           "color": "#e0a23a"
+        },
+        {
+          "h": "企业场景渗透",
+          "d": "通过 API、Team 与企业版产品切入高价值工作流，形成可持续收入闭环。",
+          "color": "#e8503a"
         }
       ],
       "images": [
@@ -5537,7 +5577,7 @@ export const pages = [
         "type": "number",
         "default": 6,
         "min": 1,
-        "max": 10,
+        "max": 6,
         "step": 1,
         "unit": " 行",
         "description": "展示的数据行数量（不含表头与合计行）；行高随行数自适应，不会溢出。",
@@ -5595,7 +5635,7 @@ export const pages = [
         "type": "number",
         "default": 4,
         "min": 0,
-        "max": 9,
+        "max": 5,
         "step": 1,
         "description": "被强调的数据行序号（从 0 开始）。",
         "publicKey": "highlightIndex",
@@ -5865,10 +5905,10 @@ export const pages = [
         "max": 3,
         "step": 1,
         "unit": " 张",
-        "description": "特写图片槽数量（0 时自动切换为纯文字大留白构图）；叠放拼贴版式下 2–3 张会互相叠压。",
+        "description": "特写图片槽数量（0 时自动切换为纯文字大留白构图）；常规与拼贴版式都会按数量重排。",
         "publicKey": "imageSlotCount",
         "publicLabel": "图片数量",
-        "desc": "特写图片槽数量（0 时自动切换为纯文字大留白构图）；叠放拼贴版式下 2–3 张会互相叠压。"
+        "desc": "特写图片槽数量（0 时自动切换为纯文字大留白构图）；常规与拼贴版式都会按数量重排。"
       },
       {
         "key": "imageFit",
@@ -5905,10 +5945,10 @@ export const pages = [
             "label": "叠放拼贴"
           }
         ],
-        "description": "常规：单张特写（含满版叠字）；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。",
+        "description": "常规：整齐特写排布；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。",
         "publicKey": "imageLayout",
         "publicLabel": "图片版式",
-        "desc": "常规：单张特写（含满版叠字）；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。"
+        "desc": "常规：整齐特写排布；叠放拼贴：多张图片倾斜叠压、白边浮起的拼贴效果。"
       },
       {
         "key": "images",
@@ -6083,7 +6123,7 @@ export const pages = [
         "key": "topicCount",
         "label": "主线数量",
         "type": "number",
-        "default": 4,
+        "default": 5,
         "min": 0,
         "max": 5,
         "step": 1,
@@ -6232,10 +6272,13 @@ export const pages = [
         },
         {
           "label": "阶段策略"
+        },
+        {
+          "label": "监管政策"
         }
       ],
-      "caption": "章节导航 · 从风险信号到阶段策略",
-      "topicCount": 4,
+      "caption": "章节导航 · 从风险信号到监管政策",
+      "topicCount": 5,
       "highlight": true,
       "highlightIndex": 0,
       "showGhost": true,
@@ -6790,6 +6833,17 @@ export const pages = [
           ],
           "verdict": "逆周期布局",
           "color": "#7a5ae0"
+        },
+        {
+          "period": "退出窗口",
+          "step": "STEP 04",
+          "heading": "退出 · 政策定价",
+          "points": [
+            "跟踪监管框架与并购窗口变化",
+            "在流动性改善时分批兑现头部仓位"
+          ],
+          "verdict": "动态兑现",
+          "color": "#e0a23a"
         }
       ],
       "caption": "路线图 · 不同阶段，资本动作各不相同",
@@ -8094,7 +8148,7 @@ export const pages = [
         "type": "number",
         "default": 2,
         "min": 0,
-        "max": 3,
+        "max": 2,
         "step": 1,
         "unit": " 个",
         "description": "右上角倾斜便签贴纸的数量（装饰性回声标签）。",
@@ -8204,7 +8258,7 @@ export const pages = [
         "type": "number",
         "default": 4,
         "min": 2,
-        "max": 5,
+        "max": 4,
         "step": 1,
         "unit": " 个",
         "description": "参与堆叠与卡片展示的地区数量。",
@@ -8228,7 +8282,7 @@ export const pages = [
         "type": "number",
         "default": 0,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "step": 1,
         "description": "被强调的地区序号（从 0 开始）。",
         "publicKey": "highlightIndex",
@@ -9491,7 +9545,7 @@ export const pages = [
         "type": "number",
         "default": 6,
         "min": 4,
-        "max": 7,
+        "max": 6,
         "step": 1,
         "unit": " 条",
         "description": "棒棒糖排行展示的分类条数。",
@@ -9836,6 +9890,12 @@ export const pages = [
           "from": 62,
           "to": 70,
           "color": "#e8503a"
+        },
+        {
+          "label": "AI 安全与治理",
+          "from": 18,
+          "to": 54,
+          "color": "#5b8def"
         }
       ],
       "note": "口径为公开披露的单笔 ≥1 亿美元融资合计",
@@ -9930,7 +9990,7 @@ export const pages = [
         "type": "number",
         "default": 5,
         "min": 0,
-        "max": 6,
+        "max": 5,
         "step": 1,
         "unit": " 个",
         "description": "贴在接缝上的标签贴纸数量。",
@@ -10227,6 +10287,11 @@ export const pages = [
           "date": "12月",
           "title": "全年大额融资破千亿",
           "desc": "美国 AI 一级市场吸纳资金创历史新高。"
+        },
+        {
+          "date": "年末",
+          "title": "算力与治理议题升温",
+          "desc": "基础设施、模型安全与监管框架同步成为长期投入方向。"
         }
       ],
       "note": "节点为公开披露的代表性事件，非完整清单",
@@ -10498,7 +10563,7 @@ export const pages = [
         "type": "number",
         "default": 5,
         "min": 3,
-        "max": 6,
+        "max": 5,
         "step": 1,
         "unit": " 条",
         "description": "展示的目标指标条数。",
@@ -10522,7 +10587,7 @@ export const pages = [
         "type": "number",
         "default": 3,
         "min": 0,
-        "max": 5,
+        "max": 4,
         "step": 1,
         "description": "被强调的指标序号（0 基）。",
         "publicKey": "highlightIndex",
@@ -11760,6 +11825,18 @@ export const pages = [
             80,
             82,
             70
+          ]
+        },
+        {
+          "name": "CoreWeave",
+          "color": "#e8503a",
+          "values": [
+            58,
+            72,
+            100,
+            62,
+            78,
+            66
           ]
         }
       ],
@@ -13017,6 +13094,15 @@ export const pages = [
             18,
             6
           ]
+        },
+        {
+          "period": "2025",
+          "shares": [
+            50,
+            30,
+            15,
+            5
+          ]
         }
       ],
       "note": "占比按当年大额融资金额归一计算",
@@ -13529,7 +13615,7 @@ export const pages = [
     "defaultProps": {
       "kicker": "横向透视 · 关键比率",
       "tone": "blue",
-      "title": "三个数字，看清资本格局",
+      "title": "关键比率，看清资本格局",
       "en": "Key Ratios at a Glance",
       "cn": "集中度、赛道与地理，一组环形仪表读懂结构",
       "gauges": [
@@ -13550,6 +13636,12 @@ export const pages = [
           "label": "地理集中",
           "sub": "旧金山湾区占比",
           "color": "#e0a23a"
+        },
+        {
+          "value": 33,
+          "label": "AI 渗透率",
+          "sub": "AI 占全美 VC 投资",
+          "color": "#e8503a"
         }
       ],
       "unit": "%",

@@ -33,7 +33,7 @@ export const controls = [
     description: '参与树图的板块数量；布局会按数量自动平铺，2–6 块都保持美观。' },
   { key: 'highlight', label: '重点强调', type: 'boolean', default: true,
     description: '是否强调其中一个板块（上浮 + 阴影，其余板块转为浅色）。' },
-  { key: 'highlightIndex', label: '强调第几个', type: 'number', default: 0, min: 0, max: 5, step: 1,
+  { key: 'highlightIndex', label: '强调第几个', type: 'number', default: 0, min: 0, max: 4, step: 1,
     description: '被强调的板块序号（从 0 开始，按原始数据顺序）。' },
   { key: 'showPercent', label: '占比数字', type: 'boolean', default: true,
     description: '是否在板块中显示百分比。' },

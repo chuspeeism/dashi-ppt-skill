@@ -46,7 +46,7 @@ export const controls = [
   { key: 'accentColor', label: '强调色', type: 'color', default: '#46b083',
     options: ['#46b083', '#5b8def', '#e0a23a', '#e8503a', '#7a5ae0'],
     description: '被强调列的着色。' },
-  { key: 'imageSlotCount', label: 'Logo 数量', type: 'number', default: 0, min: 0, max: 3, step: 1, unit: ' 个',
+  { key: 'imageSlotCount', label: 'Logo 数量', type: 'number', default: 0, min: 0, max: 1, step: 1, unit: ' 个',
     description: '表头 logo 图片槽数量（0 时用首字母色块代替）。' },
   { key: 'imageFit', label: '图片填充', type: 'select', default: 'contain',
     options: [{ value: 'contain', label: '完整自适应' }, { value: 'cover', label: '裁剪填满' }],
