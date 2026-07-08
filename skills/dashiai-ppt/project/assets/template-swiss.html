@@ -6285,6 +6285,131 @@ refreshRailCatalog();
   if(!deck) return;
   window.__deckExportLocked = false;
 
+  let htmlToImageLoadPromise = null;
+  function ensureHtmlToImageLoaded(){
+    if(window.htmlToImage) return Promise.resolve();
+    if(htmlToImageLoadPromise) return htmlToImageLoadPromise;
+    htmlToImageLoadPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'assets/vendor/html-to-image.js';
+      script.onload = () => resolve();
+      script.onerror = () => { htmlToImageLoadPromise = null; reject(new Error('无法加载截图组件 assets/vendor/html-to-image.js')); };
+      document.head.appendChild(script);
+    });
+    return htmlToImageLoadPromise;
+  }
+
+  async function waitForSlideMediaReadyForCapture(root){
+    const images = [...root.querySelectorAll('img')].filter(img => { const r = img.getBoundingClientRect(); return r.width > 1 && r.height > 1 && !img.complete; });
+    if(!images.length) return;
+    await Promise.race([
+      Promise.all(images.map(img => new Promise(resolve => { img.addEventListener('load', resolve, { once: true }); img.addEventListener('error', resolve, { once: true }); }))),
+      new Promise(resolve => setTimeout(resolve, 4000)),
+    ]);
+  }
+
+  function finishSlideAnimationsForCapture(root){
+    (root.getAnimations?.({ subtree: true }) || []).forEach(animation => {
+      try {
+        const timing = animation.effect?.getComputedTiming?.();
+        const endTime = Number(timing?.endTime);
+        if(Number.isFinite(endTime) && endTime > 0) animation.finish();
+        else animation.pause();
+      } catch {}
+    });
+    try {
+      (window.gsap?.globalTimeline?.getChildren?.(true, true, true) || []).forEach(tween => {
+        const targets = typeof tween.targets === 'function' ? tween.targets() : [];
+        if(!targets.some(target => target instanceof Node && root.contains(target))) return;
+        const duration = Number(tween.totalDuration?.());
+        if(Number.isFinite(duration) && duration > 0) tween.progress?.(1);
+        tween.pause?.();
+      });
+    } catch {}
+  }
+
+  async function captureDeckPagesInBrowser(exportUi){
+    await ensureHtmlToImageLoaded();
+    const slides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')];
+    if(!slides.length) throw new Error('没有可导出的页面。');
+    const originalIndex = Math.max(0, slides.findIndex(slide => slide.classList.contains('active')));
+    const waitFrame = () => new Promise(resolve => requestAnimationFrame(resolve));
+    const pages = [];
+    try {
+      for(let index = 0; index < slides.length; index += 1){
+        throwIfDeckExportCancelled(exportUi);
+        updateDeckExport(exportUi, index, slides.length, `浏览器内截取第 ${index + 1}/${slides.length} 页...`);
+        window.go?.(index, { animate: false, force: true });
+        await waitFrame(); await waitFrame();
+        const slide = slides[index];
+        slides.forEach((item, slideIndex) => {
+          const active = slideIndex === index;
+          item.classList.toggle('active', active);
+          if(active) item.setAttribute('data-deck-active', '');
+          else item.removeAttribute('data-deck-active');
+        });
+        window.__ensureRuntimeSlideRendered?.(slide);
+        window.__restoreEffectIframes?.(slide);
+        window.__syncDeckPageNumbers?.(slide);
+        window.__layoutDeck?.();
+        window.__initUnicornScenes?.(slide, { force: true });
+        if(document.fonts?.ready) await Promise.race([document.fonts.ready.catch(() => {}), new Promise(resolve => setTimeout(resolve, 2500))]);
+        await waitForSlideMediaReadyForCapture(slide);
+        finishSlideAnimationsForCapture(slide);
+        await waitFrame(); await waitFrame();
+        const capture = window.htmlToImage.toJpeg(slide, withSlideCaptureFilter({ quality: 0.92, pixelRatio: 1.5, backgroundColor: '#000000' }));
+        const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error(`第 ${index + 1} 页截图超时`)), 30000));
+        pages.push(await Promise.race([capture, timeout]));
+      }
+    } finally {
+      window.go?.(originalIndex, { animate: false, force: true });
+      window.__syncActiveEffects?.();
+    }
+    return pages;
+  }
+
+  // 浏览器内 PDF 导出:服务器在沙箱型宿主(如豆包)里无法启动导出浏览器时的兜底——
+  // 截图发生在用户自己打开预览页的浏览器(正常桌面进程,不受宿主沙箱影响),
+  // 服务器只用 pdf-lib 做纯 JS 合成。可手动调用,也由 __exportDeckPdf 自动降级触发。
+  window.__exportDeckPdfInBrowser = async function(existingUi){
+    if(window.__deckExportLocked && !existingUi) return;
+    let exportUi = existingUi || null;
+    const owns = !exportUi;
+    try {
+      if(owns) exportUi = beginDeckExport('PDF');
+      const pages = await captureDeckPagesInBrowser(exportUi);
+      throwIfDeckExportCancelled(exportUi);
+      updateDeckExport(exportUi, pages.length, pages.length, '上传页面截图,服务器合成 PDF...');
+      const response = await fetch('/api/export-pdf-assemble', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify({ title: document.title || 'Presentation', fileName: getDeckFileName(), pages }),
+      });
+      if(!response.ok){
+        let detail = '';
+        try { detail = (await response.json())?.error || ''; } catch {}
+        throw new Error(detail || `PDF assemble endpoint failed (${response.status})`);
+      }
+      const result = await response.json();
+      if(!result?.downloadUrl) throw new Error('PDF assemble did not return a download URL.');
+      window.__lastPdfExportResult = { ...result, downloadStarted: false };
+      const downloadStarted = startServerExportDownload(result.downloadUrl, 'PDF');
+      window.__lastPdfExportResult.downloadStarted = downloadStarted;
+      updateDeckExport(exportUi, pages.length, pages.length, downloadStarted ? 'PDF 已开始下载(浏览器内导出)' : `PDF 已生成：${result.relativePath || result.downloadName || 'download'}`);
+      if(!downloadStarted) alert(`PDF 已生成：\n${result.downloadName || result.relativePath || 'download'}`);
+      return result;
+    } catch (error) {
+      if(isDeckExportCancelledError(error)) return null;
+      if(!owns) throw error;
+      console.error('[export pdf][browser-capture]', error);
+      alert(error?.message || 'PDF 浏览器内导出失败，请在浏览器控制台查看错误。');
+      return null;
+    } finally {
+      if(owns) endDeckExport(exportUi);
+      window.__syncActiveEffects?.();
+    }
+  };
+
   window.__exportDeckPdf = async function(){
     if(window.__deckExportLocked) return;
     // Export is HTTP-service only. Opened directly from disk (file://) there is no
@@ -6329,6 +6454,13 @@ refreshRailCatalog();
       if(!response.ok){
         let detail = '';
         try { detail = (await response.json())?.error || ''; } catch {}
+        // 沙箱型宿主(如豆包)里服务器无法启动导出浏览器(Mach/显示服务被拦):
+        // 自动降级为「当前浏览器逐页截图 + 服务器纯 JS 合成」。
+        if(response.status === 500 && /browser has been closed|browserType\.launch|Target page, context or browser/i.test(detail)){
+          updateDeckExport(exportUi, 0, 1, '服务器无法启动导出浏览器,切换浏览器内导出...');
+          const fallbackResult = await window.__exportDeckPdfInBrowser(exportUi);
+          if(fallbackResult) return;
+        }
         throw new Error(detail || `PDF export endpoint failed (${response.status})`);
       }
       const result = await response.json();

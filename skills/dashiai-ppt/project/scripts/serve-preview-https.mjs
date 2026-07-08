@@ -19,6 +19,7 @@ import {
   handleEditablePptxDownload,
   handleSaveDeckState,
   handlePdfExport,
+  handlePdfAssemble,
   handlePdfProgress,
   handlePdfDownload,
 } from './preview/export-routes.mjs';
@@ -135,6 +136,10 @@ const serveRequest = async (req, res) => {
   }
   if (req.method === 'POST' && requestUrl.pathname === '/api/save-deck-state') {
     await handleSaveDeckState(req, res);
+    return;
+  }
+  if (req.method === 'POST' && requestUrl.pathname === '/api/export-pdf-assemble') {
+    await handlePdfAssemble(req, res);
     return;
   }
   if (req.method === 'POST' && requestUrl.pathname === '/api/export-pdf') {

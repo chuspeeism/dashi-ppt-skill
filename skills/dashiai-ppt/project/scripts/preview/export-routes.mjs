@@ -1,7 +1,7 @@
 // 导出/保存相关 API 路由(editable-pptx / pdf / save-deck-state)。从 scripts/serve-preview-https.mjs
 // 拆出,逻辑逐字节保留:仅把闭包捕获的顶层常量(ROOT/SERVE_ROOT/EXPORT_DIR/PORT/HOST/…)
 // 改为 initExportRoutes() 注入的模块内状态,行为不变。
-import { createReadStream, readFileSync, realpathSync, statSync } from 'node:fs';
+import { createReadStream, mkdirSync, readFileSync, realpathSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { scrubLocalPaths } from '../scrub-local-paths.mjs';
 import { launchExportBrowser } from './launch-export-browser.mjs';
@@ -199,6 +199,66 @@ export async function handlePdfExport(req, res) {
     const message = publicErrorMessage(error, 'PDF export failed');
     updateExportProgress(progressId, { stage: 'failed', detail: message, percent: 100, done: true, error: true });
     console.error('[pdf export]', error);
+    res.writeHead(500, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
+    res.end(JSON.stringify({ error: message }));
+  } finally {
+    activeExportCount -= 1;
+  }
+}
+
+// 浏览器端截图 PDF 的服务端合成端点:沙箱型宿主(如豆包)里,daemonize 的服务进程
+// 无法启动任何 Chromium(Mach 注册/显示服务被宿主 seatbelt 拦截,见
+// launch-export-browser.mjs 的分层说明)。此时前端把每页用 html-to-image 在「用户
+// 自己的浏览器」里截成 dataURL 上传,这里用 pdf-lib(纯 JS,无浏览器依赖)合成 PDF——
+// 用户浏览器是正常桌面进程,不受宿主沙箱影响,这条兜底对任何沙箱形态免疫。
+export async function handlePdfAssemble(req, res) {
+  activeExportCount += 1;
+  try {
+    if (!isAllowedExportRequest(req)) {
+      writeForbiddenExportResponse(res);
+      return;
+    }
+    const payload = await readJsonBody(req);
+    const pages = Array.isArray(payload.pages) ? payload.pages : [];
+    if (!pages.length || pages.length > 500) {
+      throw new Error('pages 必须是 1-500 张 png/jpeg dataURL。');
+    }
+    const { PDFDocument } = await import('pdf-lib');
+    const pdf = await PDFDocument.create();
+    pdf.setTitle(String(payload.title || 'Deck PDF Export'));
+    pdf.setAuthor('DashiAI PPT');
+    pdf.setSubject('Browser-captured PDF export');
+    const PDF_W = 16 * 72;
+    const PDF_H = 9 * 72;
+    for (const dataUrl of pages) {
+      const match = /^data:image\/(png|jpeg);base64,([A-Za-z0-9+/=]+)$/.exec(String(dataUrl || ''));
+      if (!match) throw new Error('pages 中存在无法识别的图片数据(仅支持 png/jpeg dataURL)。');
+      const bytes = Buffer.from(match[2], 'base64');
+      const image = match[1] === 'png' ? await pdf.embedPng(bytes) : await pdf.embedJpg(bytes);
+      const page = pdf.addPage([PDF_W, PDF_H]);
+      page.drawImage(image, { x: 0, y: 0, width: PDF_W, height: PDF_H });
+    }
+    const baseName = `${timestampForFile()}-${safeDownloadName(payload.fileName || 'presentation')}`;
+    const outFile = path.join(EXPORT_DIR, `${baseName}.pdf`);
+    mkdirSync(path.dirname(outFile), { recursive: true });
+    writeFileSync(outFile, Buffer.from(await pdf.save()));
+    res.writeHead(200, {
+      'content-type': 'application/json;charset=utf-8',
+      'cache-control': 'no-store',
+    });
+    res.end(JSON.stringify({
+      ok: true,
+      screenshot: true,
+      browserCapture: true,
+      relativePath: path.relative(ROOT, outFile),
+      downloadUrl: `/api/export-pdf-download?file=${encodeURIComponent(path.basename(outFile))}`,
+      downloadName: path.basename(outFile),
+      pages: pages.length,
+      generationMode: 'browser-capture',
+    }));
+  } catch (error) {
+    const message = publicErrorMessage(error, 'PDF assemble failed');
+    console.error('[pdf assemble]', error);
     res.writeHead(500, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
     res.end(JSON.stringify({ error: message }));
   } finally {
