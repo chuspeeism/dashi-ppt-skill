@@ -6462,16 +6462,18 @@ refreshRailCatalog();
       progressPoll.stop();
       progressPoll = null;
       throwIfDeckExportCancelled(exportUi);
-      // No export service reachable (e.g. preview server without export support).
-      if(!response || response.status === 404){
-        throw new Error('导出需要 HTTP 服务模式：未连接到导出服务,请用 `npm --prefix <skill-root>/project run preview:start -- <输出 ppt 目录> <port>` 启动本地预览服务后再导出。');
+      // 地址是 HTTP 但背后没有导出服务:通用静态服务器对 POST 返回 501/405,
+      // 路径没被服务的返回 404,服务进程退出则 fetch 直接失败——统一弹引导窗。
+      if(!response || [404, 405, 501].includes(response.status)){
+        showExportServiceRequired('no-service');
+        return;
       }
       if(!response.ok){
         let detail = '';
         try { detail = (await response.json())?.error || ''; } catch {}
         // 沙箱型宿主(如豆包)里服务器无法启动导出浏览器(Mach/显示服务被拦):
         // 自动降级为「当前浏览器逐页截图 + 服务器纯 JS 合成」。
-        if(response.status === 500 && /browser has been closed|browserType\.launch|Target page, context or browser/i.test(detail)){
+        if(response.status === 500 && /browser has been closed|browserType\.launch|Target page, context or browser|Chrome executable not found/i.test(detail)){
           updateDeckExport(exportUi, 0, 1, '服务器无法启动导出浏览器,切换浏览器内导出...');
           const fallbackResult = await window.__exportDeckPdfInBrowser(exportUi);
           if(fallbackResult) return;
@@ -6581,9 +6583,10 @@ refreshRailCatalog();
       progressPoll.stop();
       progressPoll = null;
       throwIfDeckExportCancelled(exportUi);
-      // No export service reachable.
-      if(!response || response.status === 404){
-        throw new Error('导出需要 HTTP 服务模式：未连接到导出服务,请用 `npm --prefix <skill-root>/project run preview:start -- <输出 ppt 目录> <port>` 启动本地预览服务后再导出。');
+      // 同 PDF:HTTP 地址但没有导出服务(静态服务器 501/405、404、或服务已退出)。
+      if(!response || [404, 405, 501].includes(response.status)){
+        showExportServiceRequired('no-service');
+        return;
       }
       if(!response.ok){
         let detail = '';
@@ -6602,7 +6605,7 @@ refreshRailCatalog();
       if(isDeckExportCancelledError(error)) return;
       console.error('[export pptx]', error);
       const message = location.protocol === 'http:' || location.protocol === 'https:'
-        ? `可编辑 PPTX 导出失败：当前页面是 HTTP/HTTPS 地址,但没有连到本地预览导出服务、服务目录不匹配，或使用了会影响下载的 HTTP LAN 地址。请确认用 npm --prefix <skill-root>/project run preview:start -- <输出 ppt 目录> <port> 启动，并优先打开本机 HTTP 地址 http://127.0.0.1:<port>/ 或 http://localhost:<port>/ 后导出。错误：${error?.message || '未知错误'}`
+        ? `可编辑 PPTX 导出失败：${error?.message || '未知错误'}\n\n可以把「帮我导出PPTX」发给 AI,让它重新走导出流程。`
         : '可编辑 PPTX 导出失败，请通过本地 HTTP/HTTPS 预览服务打开。直接打开本地 HTML/file:// 不能导出可编辑 PPTX。';
       window.__lastPptxExportErrorMessage = message;
       alert(message);
@@ -7450,29 +7453,42 @@ refreshRailCatalog();
     }
     return copied;
   }
-  function showExportServiceRequired(){
+  // mode: 'file' = file:// 直接打开;'no-service' = 地址是 HTTP 但背后没有导出服务
+  // (常见于 Agent 随手起的通用静态服务器如 `python3 -m http.server`,POST 一律 501,
+  // 或预览服务进程已退出)。两种场景都引导用户把提示词发给 AI 走正确的预览/导出流程。
+  const EXPORT_GUIDE_COPY = {
+    file: {
+      title: '当前非 HTTP 模式,无法导出',
+      desc: '直接打开本地 HTML 文件时没有导出服务。把下面的提示词发给 AI,让它启动 HTTP 服务后再导出:',
+      startLabel: '发送给 AI,启动 HTTP 服务:',
+      startPrompt: () => `帮我启动http服务来预览这个网页 ${deckLocalDirForPrompt()}`,
+    },
+    'no-service': {
+      title: '当前服务不支持导出',
+      desc: '这个地址后面没有可用的导出服务(可能是一个纯静态文件服务器,或预览服务已退出)。把下面的提示词发给 AI,让它用 DashiAI PPT 自带的预览服务重新启动:',
+      startLabel: '发送给 AI,重启预览服务:',
+      startPrompt: () => '帮我用 dashiai-ppt 的预览服务重新启动这个 PPT 的预览',
+    },
+  };
+  function showExportServiceRequired(mode){
+    const copy = EXPORT_GUIDE_COPY[mode] || EXPORT_GUIDE_COPY.file;
     let modal = document.getElementById('export-http-modal');
     if(!modal){
       modal = document.createElement('div');
       modal.id = 'export-http-modal';
-      const startPrompt = `帮我启动http服务来预览这个网页 ${deckLocalDirForPrompt()}`;
-      const exportPrompt = '帮我导出PPTX';
       modal.innerHTML = `
-        <div class="ehm-card" role="dialog" aria-modal="true" aria-label="导出需要 HTTP 服务">
+        <div class="ehm-card" role="dialog" aria-modal="true" aria-label="导出需要预览服务">
           <button class="ehm-close" type="button" aria-label="关闭">×</button>
-          <p class="ehm-title">当前非 HTTP 模式,无法导出</p>
-          <p class="ehm-desc">直接打开本地 HTML 文件时没有导出服务。把下面的提示词发给 AI,让它启动 HTTP 服务后再导出:</p>
-          <div class="ehm-label">发送给 AI,启动 HTTP 服务:</div>
+          <p class="ehm-title"></p>
+          <p class="ehm-desc"></p>
+          <div class="ehm-label" data-label="start"></div>
           <div class="ehm-prompt"><code data-prompt="start"></code><button class="ehm-copy" type="button" data-copy="start">复制</button></div>
           <div class="ehm-label">也可以直接跟 AI 说:</div>
           <div class="ehm-prompt"><code data-prompt="export"></code><button class="ehm-copy" type="button" data-copy="export">复制</button></div>
         </div>`;
-      modal.querySelector('[data-prompt="start"]').textContent = startPrompt;
-      modal.querySelector('[data-prompt="export"]').textContent = exportPrompt;
-      const prompts = { start: startPrompt, export: exportPrompt };
       modal.addEventListener('click', event => {
         const copyKey = event.target?.dataset?.copy;
-        if(copyKey) { copyPromptText(prompts[copyKey], event.target); return; }
+        if(copyKey) { copyPromptText(modal.querySelector(`[data-prompt="${copyKey}"]`)?.textContent || '', event.target); return; }
         if(event.target === modal || event.target.closest('.ehm-close')) modal.classList.remove('open');
       });
       document.addEventListener('keydown', event => {
@@ -7480,6 +7496,11 @@ refreshRailCatalog();
       });
       document.body.appendChild(modal);
     }
+    modal.querySelector('.ehm-title').textContent = copy.title;
+    modal.querySelector('.ehm-desc').textContent = copy.desc;
+    modal.querySelector('[data-label="start"]').textContent = copy.startLabel;
+    modal.querySelector('[data-prompt="start"]').textContent = copy.startPrompt();
+    modal.querySelector('[data-prompt="export"]').textContent = '帮我导出PPTX';
     modal.classList.add('open');
   }
 
