@@ -1614,6 +1614,21 @@
   body.preview-panel-open #preview-panel-collapse,body.editor-panels-collapsed #preview-panel-collapse{display:grid}
   #preview-panel-collapse:hover{background:var(--pp-chip);color:var(--pp-fg);border-color:var(--pp-border)}
   #preview-panel-collapse:focus-visible{outline:2px solid var(--pp-blue);outline-offset:2px}
+  /* 非 HTTP 模式导出引导弹窗:视觉与预览控制面板同一套 --pp-* token,深浅色自适应 */
+  #export-http-modal{position:fixed;inset:0;z-index:120;display:none;place-items:center;background:rgba(0,0,0,.44);backdrop-filter:blur(2px)}
+  #export-http-modal.open{display:grid}
+  #export-http-modal .ehm-card{width:min(480px,92vw);background:var(--pp-bg);color:var(--pp-fg);border:1px solid var(--pp-border);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,.28);padding:22px 22px 18px;font-family:inherit}
+  #export-http-modal .ehm-title{font-size:15px;font-weight:700;letter-spacing:.01em;margin:0 0 6px;display:flex;align-items:center;gap:8px}
+  #export-http-modal .ehm-desc{font-size:12.5px;color:var(--pp-fg2);line-height:1.65;margin:0 0 14px}
+  #export-http-modal .ehm-label{font-size:12px;color:var(--pp-fg2);margin:14px 0 6px}
+  #export-http-modal .ehm-prompt{display:flex;align-items:stretch;gap:8px}
+  #export-http-modal .ehm-prompt code{flex:1;min-width:0;display:block;background:var(--pp-chip);border:1px solid var(--pp-border);border-radius:8px;padding:10px 12px;font-size:12px;line-height:1.55;color:var(--pp-fg);white-space:pre-wrap;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  #export-http-modal .ehm-copy{flex:none;align-self:stretch;min-width:58px;border:1px solid var(--pp-border);border-radius:8px;background:var(--pp-bg);color:var(--pp-icon);font-size:12px;cursor:pointer;transition:background .15s,color .15s,border-color .15s;padding:0 10px}
+  #export-http-modal .ehm-copy:hover{background:var(--pp-chip);color:var(--pp-fg)}
+  #export-http-modal .ehm-copy.copied{color:var(--pp-blue);border-color:var(--pp-blue)}
+  #export-http-modal .ehm-close{position:absolute;top:14px;right:14px;width:30px;height:30px;display:grid;place-items:center;border:none;background:transparent;color:var(--pp-muted);font-size:18px;line-height:1;cursor:pointer;border-radius:6px}
+  #export-http-modal .ehm-close:hover{background:var(--pp-chip);color:var(--pp-fg)}
+  #export-http-modal .ehm-card{position:relative}
   #preview-panel-collapse img{width:20px;height:20px;display:block;object-fit:contain;filter:var(--pp-ui-icon-filter);opacity:.78;transition:transform .18s var(--ease-prod),opacity .15s}
   body.editor-panels-collapsed #preview-panel-collapse{right:18px;top:8px;border-color:rgba(255,255,255,.16);background:rgba(0,0,0,.55)}
   body.editor-panels-collapsed #preview-panel-collapse:hover{background:rgba(0,0,0,.72);border-color:rgba(255,255,255,.3)}
@@ -7404,8 +7419,68 @@ refreshRailCatalog();
   function isExportServiceContext(){
     return location.protocol === 'http:' || location.protocol === 'https:';
   }
+  function deckLocalDirForPrompt(){
+    try {
+      let dir = decodeURIComponent(location.pathname || '');
+      dir = dir.replace(/\/[^\/]*$/, '');
+      // Windows 下 file:// 的 pathname 形如 /C:/Users/...,去掉开头斜杠还原盘符路径。
+      if(/^\/[A-Za-z]:\//.test(dir + '/')) dir = dir.slice(1);
+      return dir || location.href;
+    } catch { return location.href; }
+  }
+  async function copyPromptText(text, button){
+    let copied = false;
+    try { await navigator.clipboard.writeText(text); copied = true; } catch {}
+    if(!copied){
+      try {
+        const area = document.createElement('textarea');
+        area.value = text;
+        area.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+        document.body.appendChild(area);
+        area.select();
+        copied = document.execCommand('copy');
+        area.remove();
+      } catch {}
+    }
+    if(button){
+      const original = button.textContent;
+      button.textContent = copied ? '已复制' : '复制失败';
+      button.classList.toggle('copied', copied);
+      setTimeout(() => { button.textContent = original; button.classList.remove('copied'); }, 1600);
+    }
+    return copied;
+  }
   function showExportServiceRequired(){
-    alert('仅支持 HTTP 服务模式下导出。\n\n直接打开本地 HTML(file://)不能导出可编辑 PPTX。请用 `npm --prefix <skill-root>/project run preview:start -- <输出 ppt 目录> <port>` 启动本地预览服务,再用 http://127.0.0.1:<port>/ 打开并导出 PDF / PPTX。');
+    let modal = document.getElementById('export-http-modal');
+    if(!modal){
+      modal = document.createElement('div');
+      modal.id = 'export-http-modal';
+      const startPrompt = `帮我启动http服务来预览这个网页 ${deckLocalDirForPrompt()}`;
+      const exportPrompt = '帮我导出PPTX';
+      modal.innerHTML = `
+        <div class="ehm-card" role="dialog" aria-modal="true" aria-label="导出需要 HTTP 服务">
+          <button class="ehm-close" type="button" aria-label="关闭">×</button>
+          <p class="ehm-title">当前非 HTTP 模式,无法导出</p>
+          <p class="ehm-desc">直接打开本地 HTML 文件时没有导出服务。把下面的提示词发给 AI,让它启动 HTTP 服务后再导出:</p>
+          <div class="ehm-label">发送给 AI,启动 HTTP 服务:</div>
+          <div class="ehm-prompt"><code data-prompt="start"></code><button class="ehm-copy" type="button" data-copy="start">复制</button></div>
+          <div class="ehm-label">也可以直接跟 AI 说:</div>
+          <div class="ehm-prompt"><code data-prompt="export"></code><button class="ehm-copy" type="button" data-copy="export">复制</button></div>
+        </div>`;
+      modal.querySelector('[data-prompt="start"]').textContent = startPrompt;
+      modal.querySelector('[data-prompt="export"]').textContent = exportPrompt;
+      const prompts = { start: startPrompt, export: exportPrompt };
+      modal.addEventListener('click', event => {
+        const copyKey = event.target?.dataset?.copy;
+        if(copyKey) { copyPromptText(prompts[copyKey], event.target); return; }
+        if(event.target === modal || event.target.closest('.ehm-close')) modal.classList.remove('open');
+      });
+      document.addEventListener('keydown', event => {
+        if(event.key === 'Escape') modal.classList.remove('open');
+      });
+      document.body.appendChild(modal);
+    }
+    modal.classList.add('open');
   }
 
   staticUnicornRuntime();
