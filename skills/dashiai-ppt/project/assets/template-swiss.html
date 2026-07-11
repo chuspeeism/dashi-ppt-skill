@@ -2029,6 +2029,7 @@
   // 不再有第三层 URL 编辑状态——分享链接式的编辑持久化已被自动保存(烧回 index.html 本体)取代。
   const deckSignature = createDeckSignature(vm, baseState.text);
   const saved = readSaved(deckSignature);
+  if(saved.__draftInIdb) setTimeout(() => restoreDraftFromIdb(), 0);
   vm.state.slideOrder = saved.slideOrder || baseState.slideOrder;
   vm.state.skippedSlides = saved.skippedSlides || baseState.skippedSlides;
   vm.state.deletedSlides = saved.deletedSlides || baseState.deletedSlides;
@@ -2152,14 +2153,62 @@
     }
   }
 
+  // 大 state(用户传图后 props 里是 data: URL)会超出 localStorage 配额——溢出到
+  // IndexedDB(容量以百 MB 计),localStorage 只留签名指针;readSaved 同步启动后由
+  // restoreDraftFromIdb 异步补齐。预览服务在时 state 仍会烧回 index.html 本体,
+  // 本地草稿只是无服务(静态服务器/file://)场景的兜底。
+  const DRAFT_DB = 'dashi-deck-drafts';
+  function idbDraft(mode, value){
+    return new Promise(resolve => {
+      try {
+        const open = indexedDB.open(DRAFT_DB, 1);
+        open.onupgradeneeded = () => open.result.createObjectStore('state');
+        open.onerror = () => resolve(null);
+        open.onsuccess = () => {
+          const db = open.result;
+          const tx = db.transaction('state', mode === 'get' ? 'readonly' : 'readwrite');
+          const store = tx.objectStore('state');
+          const req = mode === 'get' ? store.get(deckSignature) : store.put(value, deckSignature);
+          req.onsuccess = () => { resolve(mode === 'get' ? req.result : true); db.close(); };
+          req.onerror = () => { resolve(null); db.close(); };
+        };
+      } catch { resolve(null); }
+    });
+  }
   function persist(){
     vm.state.__deckSignature = deckSignature;
     try {
       localStorage.setItem(STORE, JSON.stringify(vm.state || {}));
     } catch (error) {
-      console.warn('[deck view model] state could not be persisted', error);
+      // 配额超限:整份 state 进 IndexedDB,localStorage 留指针供 readSaved 感知。
+      idbDraft('put', vm.state || {});
+      try {
+        localStorage.setItem(STORE, JSON.stringify({ __deckSignature: deckSignature, __draftInIdb: true }));
+      } catch {}
     }
     scheduleServerSave();
+  }
+  async function restoreDraftFromIdb(){
+    const draft = await idbDraft('get');
+    if(!draft || draft.__deckSignature !== deckSignature) return;
+    // 应用路径复用导出快照的共享实现(setText/setProps/文本 innerHTML/重渲染),
+    // 该路径已被服务端与浏览器端导出双重验证。
+    try {
+      const script = document.createElement('script');
+      await new Promise((resolve, reject) => {
+        if(window.__editablePptxBrowser?.applyEditablePptxSnapshot) return resolve();
+        script.src = 'assets/vendor/editable-pptx-browser.js';
+        script.onload = resolve;
+        script.onerror = () => reject(new Error('draft restore bundle failed'));
+        document.head.appendChild(script);
+      });
+      const currentIndex = Math.max(0, (window.__getVisibleSlides?.() || []).findIndex(s => s.classList.contains('active')));
+      await window.__editablePptxBrowser.applyEditablePptxSnapshot({ state: draft, currentIndex });
+      writeJson(textEl, vm.state.text);
+      writeVm();
+    } catch (error) {
+      console.warn('[deck draft] IndexedDB 草稿恢复失败', error);
+    }
   }
 
   function writeVm(){
@@ -6300,18 +6349,33 @@ refreshRailCatalog();
   if(!deck) return;
   window.__deckExportLocked = false;
 
-  let htmlToImageLoadPromise = null;
-  function ensureHtmlToImageLoaded(){
-    if(window.htmlToImage) return Promise.resolve();
-    if(htmlToImageLoadPromise) return htmlToImageLoadPromise;
-    htmlToImageLoadPromise = new Promise((resolve, reject) => {
+  const vendorScriptPromises = new Map();
+  function ensureVendorScript(src, readyCheck){
+    if(readyCheck?.()) return Promise.resolve();
+    if(vendorScriptPromises.has(src)) return vendorScriptPromises.get(src);
+    const promise = new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      script.src = 'assets/vendor/html-to-image.js';
+      script.src = src;
       script.onload = () => resolve();
-      script.onerror = () => { htmlToImageLoadPromise = null; reject(new Error('无法加载截图组件 assets/vendor/html-to-image.js')); };
+      script.onerror = () => { vendorScriptPromises.delete(src); reject(new Error(`无法加载组件 ${src}`)); };
       document.head.appendChild(script);
     });
-    return htmlToImageLoadPromise;
+    vendorScriptPromises.set(src, promise);
+    return promise;
+  }
+  function downloadBlobAsFile(blob, fileName){
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 30000);
+  }
+
+  function ensureHtmlToImageLoaded(){
+    return ensureVendorScript('assets/vendor/html-to-image.js', () => window.htmlToImage);
   }
 
   async function waitForSlideMediaReadyForCapture(root){
@@ -6341,6 +6405,25 @@ refreshRailCatalog();
         tween.pause?.();
       });
     } catch {}
+  }
+
+  async function assemblePdfInBrowser(pages, title){
+    await ensureVendorScript('assets/vendor/pdf-lib.min.js', () => window.PDFLib?.PDFDocument);
+    const { PDFDocument } = window.PDFLib;
+    const pdf = await PDFDocument.create();
+    pdf.setTitle(title || 'Deck PDF Export');
+    pdf.setAuthor('DashiAI PPT');
+    pdf.setSubject('Browser-captured PDF export');
+    const PDF_W = 16 * 72, PDF_H = 9 * 72;
+    for(const dataUrl of pages){
+      const base64 = String(dataUrl || '').split(',')[1] || '';
+      const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+      const image = /^data:image\/png/i.test(dataUrl) ? await pdf.embedPng(bytes) : await pdf.embedJpg(bytes);
+      const page = pdf.addPage([PDF_W, PDF_H]);
+      page.drawImage(image, { x: 0, y: 0, width: PDF_W, height: PDF_H });
+    }
+    const out = await pdf.save();
+    return new Blob([out], { type: 'application/pdf' });
   }
 
   async function captureDeckPagesInBrowser(exportUi){
@@ -6386,6 +6469,117 @@ refreshRailCatalog();
   // 浏览器内 PDF 导出:服务器在沙箱型宿主(如豆包)里无法启动导出浏览器时的兜底——
   // 截图发生在用户自己打开预览页的浏览器(正常桌面进程,不受宿主沙箱影响),
   // 服务器只用 pdf-lib 做纯 JS 合成。可手动调用,也由 __exportDeckPdf 自动降级触发。
+  async function runBrowserPptxExportInFrame(options){
+    const frame = document.createElement('iframe');
+    frame.style.cssText = 'position:fixed;left:-20020px;top:0;width:1920px;height:1080px;border:0;visibility:hidden;pointer-events:none';
+    frame.setAttribute('aria-hidden', 'true');
+    frame.src = location.pathname + location.search;
+    document.body.appendChild(frame);
+    try {
+      await new Promise((resolve, reject) => {
+        const timer = setTimeout(() => reject(new Error('导出环境加载超时')), 30000);
+        frame.onload = () => { clearTimeout(timer); resolve(); };
+        frame.onerror = () => { clearTimeout(timer); reject(new Error('导出环境加载失败')); };
+      });
+      const win = frame.contentWindow;
+      const doc = frame.contentDocument;
+      // 等 iframe 内 deck 就绪
+      await new Promise((resolve, reject) => {
+        const deadline = Date.now() + 30000;
+        (function poll(){
+          if(doc.querySelector('#deck > .slide.active') && typeof win.go === 'function') return resolve();
+          if(Date.now() > deadline) return reject(new Error('导出环境的页面未就绪'));
+          setTimeout(poll, 120);
+        })();
+      });
+      // 注入导出组件
+      for(const [src, ready] of [
+        ['assets/vendor/html-to-image.js', () => win.htmlToImage],
+        ['assets/vendor/pptxgen.bundle.js', () => typeof win.PptxGenJS === 'function'],
+        ['assets/vendor/editable-pptx-browser.js', () => win.__editablePptxBrowser?.exportEditablePptxInBrowser],
+      ]){
+        if(ready()) continue;
+        await new Promise((resolve, reject) => {
+          const script = doc.createElement('script');
+          script.src = src;
+          script.onload = () => resolve();
+          script.onerror = () => reject(new Error(`无法加载组件 ${src}`));
+          doc.head.appendChild(script);
+        });
+      }
+      return await win.__editablePptxBrowser.exportEditablePptxInBrowser(options);
+    } finally {
+      frame.remove();
+    }
+  }
+
+  // 浏览器内可编辑 PPTX 导出:服务器在沙箱型宿主里起不了无头浏览器时的降级——
+  // 采集/截图/组装全部在用户当前浏览器完成(assets/vendor/editable-pptx-browser.js),
+  // 服务器只负责把成品二进制落盘(/api/export-pptx-store)。可手动调用,也由
+  // __exportDeckPptx 自动降级触发。
+  window.__exportDeckPptxInBrowser = async function(existingUi){
+    if(window.__deckExportLocked && !existingUi) return;
+    let exportUi = existingUi || null;
+    const owns = !exportUi;
+    try {
+      if(owns) exportUi = beginDeckExport('PPTX');
+      updateDeckExport(exportUi, 0, 1, '准备浏览器内导出环境...');
+      window.__syncDeckPageNumbers?.();
+      window.__flushEditableTextState?.();
+      window.__syncDeckViewModelFromDom?.();
+      throwIfDeckExportCancelled(exportUi);
+      const slides = window.__getVisibleSlides?.() || [...document.querySelectorAll('#deck > .slide:not([hidden])')];
+      // 在屏外 1920×1080 iframe 里跑导出:视口与服务端无头浏览器完全一致(deck 缩放
+      // 为 1:1,细元素不会被视口阈值过滤),同时不打断用户正在看的页面;当前的编辑
+      // 状态经 snapshot 带入 iframe。
+      const { blob, report } = await runBrowserPptxExportInFrame({
+        snapshot: buildEditablePptxExportSnapshot(),
+        title: document.title || 'Presentation',
+        onProgress: update => {
+          if(!update?.detail) return;
+          const percent = Number(update.percent || 0);
+          updateDeckExport(exportUi, Math.min(slides.length, Math.round((percent / 100) * slides.length)), slides.length, `${update.detail}(浏览器内导出)`);
+        },
+      });
+      throwIfDeckExportCancelled(exportUi);
+      updateDeckExport(exportUi, slides.length, slides.length, '保存 PPTX...');
+      const downloadName = `${getDeckFileName()}.pptx`;
+      // 优先经预览服务落盘(产物进 output/exports,可追溯);静态文件服务器(node/python
+      // 静态托管)没有该端点——直接把 blob 交给浏览器下载,导出不依赖任何服务端能力。
+      let result = null;
+      try {
+        const response = await fetch(`/api/export-pptx-store?fileName=${encodeURIComponent(getDeckFileName())}`, {
+          method: 'POST',
+          headers: {'content-type': 'application/octet-stream'},
+          body: blob,
+        });
+        if(response.ok) result = await response.json();
+      } catch {}
+      if(result?.downloadUrl){
+        window.__lastPptxExportResult = { ...result, ...report, downloadStarted: false };
+        const downloadStarted = startServerExportDownload(result.downloadUrl, 'PPTX');
+        window.__lastPptxExportResult.downloadStarted = downloadStarted;
+        updateDeckExport(exportUi, slides.length, slides.length, downloadStarted ? 'PPTX 已开始下载(浏览器内导出)' : `PPTX 已生成:${result.relativePath || result.downloadName || 'download'}`);
+        if(!downloadStarted) alert(`PPTX 已生成:\n${result.downloadName || result.relativePath || 'download'}`);
+        return result;
+      }
+      downloadBlobAsFile(blob, downloadName);
+      result = { ok: true, browserCapture: true, blobDownload: true, downloadName, ...report, downloadStarted: true };
+      window.__lastPptxExportResult = result;
+      updateDeckExport(exportUi, slides.length, slides.length, 'PPTX 已开始下载(浏览器内导出)');
+      return result;
+    } catch (error) {
+      if(isDeckExportCancelledError(error)) return null;
+      if(!owns) throw error;
+      console.error('[export pptx][browser-capture]', error);
+      alert(error?.message || 'PPTX 浏览器内导出失败,请在浏览器控制台查看错误。');
+      return null;
+    } finally {
+      if(owns) endDeckExport(exportUi);
+      window.__syncActiveEffects?.();
+    }
+  };
+
   window.__exportDeckPdfInBrowser = async function(existingUi){
     if(window.__deckExportLocked && !existingUi) return;
     let exportUi = existingUi || null;
@@ -6394,24 +6588,32 @@ refreshRailCatalog();
       if(owns) exportUi = beginDeckExport('PDF');
       const pages = await captureDeckPagesInBrowser(exportUi);
       throwIfDeckExportCancelled(exportUi);
-      updateDeckExport(exportUi, pages.length, pages.length, '上传页面截图,服务器合成 PDF...');
-      const response = await fetch('/api/export-pdf-assemble', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify({ title: document.title || 'Presentation', fileName: getDeckFileName(), pages }),
-      });
-      if(!response.ok){
-        let detail = '';
-        try { detail = (await response.json())?.error || ''; } catch {}
-        throw new Error(detail || `PDF assemble endpoint failed (${response.status})`);
+      updateDeckExport(exportUi, pages.length, pages.length, '合成 PDF...');
+      // 优先经预览服务合成落盘;静态文件服务器没有 assemble 端点——用前端 pdf-lib
+      // 在浏览器内合成并直接下载,导出不依赖任何服务端能力。
+      let result = null;
+      try {
+        const response = await fetch('/api/export-pdf-assemble', {
+          method: 'POST',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify({ title: document.title || 'Presentation', fileName: getDeckFileName(), pages }),
+        });
+        if(response.ok) result = await response.json();
+      } catch {}
+      if(result?.downloadUrl){
+        window.__lastPdfExportResult = { ...result, downloadStarted: false };
+        const downloadStarted = startServerExportDownload(result.downloadUrl, 'PDF');
+        window.__lastPdfExportResult.downloadStarted = downloadStarted;
+        updateDeckExport(exportUi, pages.length, pages.length, downloadStarted ? 'PDF 已开始下载(浏览器内导出)' : `PDF 已生成：${result.relativePath || result.downloadName || 'download'}`);
+        if(!downloadStarted) alert(`PDF 已生成：\n${result.downloadName || result.relativePath || 'download'}`);
+        return result;
       }
-      const result = await response.json();
-      if(!result?.downloadUrl) throw new Error('PDF assemble did not return a download URL.');
-      window.__lastPdfExportResult = { ...result, downloadStarted: false };
-      const downloadStarted = startServerExportDownload(result.downloadUrl, 'PDF');
-      window.__lastPdfExportResult.downloadStarted = downloadStarted;
-      updateDeckExport(exportUi, pages.length, pages.length, downloadStarted ? 'PDF 已开始下载(浏览器内导出)' : `PDF 已生成：${result.relativePath || result.downloadName || 'download'}`);
-      if(!downloadStarted) alert(`PDF 已生成：\n${result.downloadName || result.relativePath || 'download'}`);
+      const blob = await assemblePdfInBrowser(pages, document.title || 'Presentation');
+      const downloadName = `${getDeckFileName()}.pdf`;
+      downloadBlobAsFile(blob, downloadName);
+      result = { ok: true, browserCapture: true, blobDownload: true, generationMode: 'browser-capture', pages: pages.length, downloadName, downloadStarted: true };
+      window.__lastPdfExportResult = result;
+      updateDeckExport(exportUi, pages.length, pages.length, 'PDF 已开始下载(浏览器内导出)');
       return result;
     } catch (error) {
       if(isDeckExportCancelledError(error)) return null;
@@ -6462,9 +6664,13 @@ refreshRailCatalog();
       progressPoll.stop();
       progressPoll = null;
       throwIfDeckExportCancelled(exportUi);
-      // 地址是 HTTP 但背后没有导出服务:通用静态服务器对 POST 返回 501/405,
-      // 路径没被服务的返回 404,服务进程退出则 fetch 直接失败——统一弹引导窗。
+      // 地址是 HTTP 但背后没有导出服务(通用静态服务器对 POST 返回 501/405,
+      // 路径没被服务的返回 404,服务进程退出则 fetch 直接失败):自 blob 导出支持后,
+      // 静态服务器同样可以完成全流程——直接切换浏览器内导出(截图+前端合成+blob 下载)。
       if(!response || [404, 405, 501].includes(response.status)){
+        updateDeckExport(exportUi, 0, 1, '当前服务无导出端点,切换浏览器内导出...');
+        const fallbackResult = await window.__exportDeckPdfInBrowser(exportUi);
+        if(fallbackResult) return;
         showExportServiceRequired('no-service');
         return;
       }
@@ -6583,14 +6789,25 @@ refreshRailCatalog();
       progressPoll.stop();
       progressPoll = null;
       throwIfDeckExportCancelled(exportUi);
-      // 同 PDF:HTTP 地址但没有导出服务(静态服务器 501/405、404、或服务已退出)。
+      // 同 PDF:HTTP 地址但没有导出服务(静态服务器 501/405、404、或服务已退出)——
+      // 自 blob 导出支持后直接切换浏览器内导出(iframe 采集+组装+blob 下载)。
       if(!response || [404, 405, 501].includes(response.status)){
+        updateDeckExport(exportUi, 0, 1, '当前服务无导出端点,切换浏览器内导出...');
+        const fallbackResult = await window.__exportDeckPptxInBrowser(exportUi);
+        if(fallbackResult) return;
         showExportServiceRequired('no-service');
         return;
       }
       if(!response.ok){
         let detail = '';
         try { detail = (await response.json())?.error || ''; } catch {}
+        // 沙箱型宿主里服务器无法启动导出浏览器(Mach/显示服务被拦)或机器无浏览器:
+        // 自动降级为「当前浏览器内采集/截图/组装 + 服务器纯落盘」。
+        if(response.status === 500 && /browser has been closed|browserType\.launch|Target page, context or browser|Chrome executable not found/i.test(detail)){
+          updateDeckExport(exportUi, 0, 1, '服务器无法启动导出浏览器,切换浏览器内导出...');
+          const fallbackResult = await window.__exportDeckPptxInBrowser(exportUi);
+          if(fallbackResult) return;
+        }
         throw new Error(detail || `Editable PPTX export endpoint failed (${response.status})`);
       }
       const result = await response.json();

@@ -211,6 +211,61 @@ export async function handlePdfExport(req, res) {
 // launch-export-browser.mjs 的分层说明)。此时前端把每页用 html-to-image 在「用户
 // 自己的浏览器」里截成 dataURL 上传,这里用 pdf-lib(纯 JS,无浏览器依赖)合成 PDF——
 // 用户浏览器是正常桌面进程,不受宿主沙箱影响,这条兜底对任何沙箱形态免疫。
+// 浏览器端可编辑 PPTX 的落盘端点:前端在用户浏览器里完成采集/截图/组装后,把
+// PPTX 二进制 POST 过来,这里只做写盘并返回与常规导出一致的下载结构——服务端全程
+// 不需要浏览器,对宿主沙箱免疫(与 /api/export-pdf-assemble 同一架构)。
+export async function handlePptxStore(req, res, requestUrl) {
+  activeExportCount += 1;
+  try {
+    if (!isAllowedExportRequest(req)) {
+      writeForbiddenExportResponse(res);
+      return;
+    }
+    const bytes = await readBinaryBody(req, 300 * 1024 * 1024);
+    if (!bytes.length || bytes.length < 4 || bytes[0] !== 0x50 || bytes[1] !== 0x4b) {
+      throw new Error('请求体不是有效的 PPTX(zip)数据。');
+    }
+    const fileName = requestUrl.searchParams.get('fileName') || 'presentation';
+    const baseName = `${timestampForFile()}-${safeDownloadName(fileName)}`;
+    const outFile = path.join(EXPORT_DIR, `${baseName}.pptx`);
+    mkdirSync(path.dirname(outFile), { recursive: true });
+    writeFileSync(outFile, bytes);
+    res.writeHead(200, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
+    res.end(JSON.stringify({
+      ok: true,
+      browserCapture: true,
+      relativePath: path.relative(ROOT, outFile),
+      downloadUrl: `/api/export-editable-pptx-download?file=${encodeURIComponent(path.basename(outFile))}`,
+      downloadName: path.basename(outFile),
+    }));
+  } catch (error) {
+    const message = publicErrorMessage(error, 'PPTX store failed');
+    console.error('[pptx store]', error);
+    res.writeHead(500, { 'content-type': 'application/json;charset=utf-8', 'cache-control': 'no-store' });
+    res.end(JSON.stringify({ error: message }));
+  } finally {
+    activeExportCount -= 1;
+  }
+}
+
+function readBinaryBody(req, maxBytes) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    let size = 0;
+    req.on('data', chunk => {
+      size += chunk.length;
+      if (size > maxBytes) {
+        reject(new Error('Request body is too large.'));
+        req.destroy();
+        return;
+      }
+      chunks.push(chunk);
+    });
+    req.on('end', () => resolve(Buffer.concat(chunks)));
+    req.on('error', reject);
+  });
+}
+
 export async function handlePdfAssemble(req, res) {
   activeExportCount += 1;
   try {

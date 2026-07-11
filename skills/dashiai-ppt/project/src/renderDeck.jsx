@@ -135,6 +135,7 @@ function copyRuntimeAssets(outDir, { usedThemeKeys = [] } = {}) {
     fs.mkdirSync(assetsDir, { recursive: true });
     copyRequiredFile(path.join(ROOT, 'node_modules/gsap/dist/gsap.min.js'), path.join(assetsDir, 'vendor/gsap.min.js'));
     copyRequiredFile(path.join(ROOT, 'node_modules/pptxgenjs/dist/pptxgen.bundle.js'), path.join(assetsDir, 'vendor/pptxgen.bundle.js'));
+    copyRequiredFile(path.join(ROOT, 'node_modules/pdf-lib/dist/pdf-lib.min.js'), path.join(assetsDir, 'vendor/pdf-lib.min.js'));
     copyRequiredFile(path.join(ROOT, 'node_modules/html-to-image/dist/html-to-image.js'), path.join(assetsDir, 'vendor/html-to-image.js'));
     for (const assetPath of RUNTIME_ASSET_PATHS) {
       if (assetPath === RUNTIME_TEMPLATE) continue;

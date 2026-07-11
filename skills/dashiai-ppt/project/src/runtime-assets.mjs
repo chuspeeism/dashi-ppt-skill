@@ -18,6 +18,9 @@ export const RUNTIME_ASSET_PATHS = [
   // 会让交付 deck 产生外链请求(隐私/离线/供应链面),与 SDK 本体一样全部随 deck 分发。
   'assets/unicorn/media',
   'assets/vendor/unicornstudio.umd.js',
+  // 浏览器端可编辑 PPTX 导出 bundle(服务端起不了无头浏览器时的降级通道,
+  // 由 scripts/build/build-editable-pptx-browser.mjs 预构建)。
+  'assets/vendor/editable-pptx-browser.js',
   'assets/vendor/fonts',
 ];
 
@@ -29,6 +32,8 @@ export const VENDOR_RUNTIME_OUTPUT_ASSETS = [
   'assets/vendor/gsap.min.js',
   'assets/vendor/pptxgen.bundle.js',
   'assets/vendor/html-to-image.js',
+  // 浏览器内 PDF 合成(静态服务器/无 assemble 端点时的 blob 导出)。
+  'assets/vendor/pdf-lib.min.js',
 ];
 
 export const REQUIRED_OUTPUT_ASSETS = [
