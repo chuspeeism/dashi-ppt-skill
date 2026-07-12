@@ -41,14 +41,19 @@
 
 ## 30 秒开始
 
-**Claude Code** 用官方插件（支持自动更新，之后 `/plugin marketplace update dashiai-ppt-skill` 即可升级）：
+**推荐:npm 一键安装**（自动探测技能目录，更新时保留已装依赖；国内走 npmmirror 镜像，无需访问 GitHub）：
 
-```
-/plugin marketplace add chuspeeism/dashiAI-ppt-skill
-/plugin install dashiai-ppt@dashiai-ppt-skill
+```bash
+# 国内网络
+npx --registry=https://registry.npmmirror.com dashiai-ppt-skill
+
+# 国际网络
+npx dashiai-ppt-skill
 ```
 
-**Codex / Cursor 等其他 Agent** 用一行命令：
+需要装到指定目录时加 `--dir <路径>`（如 `--dir ~/.codex/skills`）。
+
+**Codex / Cursor 等 Agent** 也可以用 skills CLI：
 
 ```bash
 npx skills add https://github.com/chuspeeism/dashiAI-ppt-skill --skill dashiai-ppt
@@ -57,15 +62,15 @@ npx skills add https://github.com/chuspeeism/dashiAI-ppt-skill --skill dashiai-p
 也可以直接把这句话发给你的 AI Agent，让它自己完成安装：
 
 ```text
-克隆安装这个 skill https://github.com/chuspeeism/dashiAI-ppt-skill
+帮我安装 dashiai-ppt 这个 skill：国内网络运行 npx --registry=https://registry.npmmirror.com dashiai-ppt-skill，国际网络克隆 https://github.com/chuspeeism/dashiAI-ppt-skill
 ```
 
-> skill 内容在仓库的 `skills/dashiai-ppt/` 子目录，Agent 应把该子目录放进自己的 skills 目录；没有固定 skills 目录约定的 Agent（如 Marvis / Workbuddy / Dumate / Qclaw），把该子目录放到任意位置、让它读取其中的 `SKILL.md` 执行即可。
+> GitHub 安装方式的 skill 内容在仓库的 `skills/dashiai-ppt/` 子目录，Agent 应把该子目录放进自己的 skills 目录；没有固定 skills 目录约定的 Agent（如 Marvis / Workbuddy / Dumate / Qclaw），把该子目录放到任意位置、让它读取其中的 `SKILL.md` 执行即可。
 
-已经安装过的话，用这句话更新：
+已经安装过的话，重跑上面的 npx 命令即可原地更新，或把这句话发给 Agent：
 
 ```text
-帮我更新 dashiai-ppt 这个 skill https://github.com/chuspeeism/dashiAI-ppt-skill
+帮我更新 dashiai-ppt 这个 skill（国内用 npx --registry=https://registry.npmmirror.com dashiai-ppt-skill）
 ```
 
 环境要求：本机能运行 **Node.js 18+ 和 npm**（首次生成时依赖自动安装）；导出 PPTX / PDF 需要本机装有 Chrome / Chromium / Edge。
