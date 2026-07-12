@@ -1,0 +1,16 @@
+{
+  "title": "测试报告",
+  "goal": "验证 goal spec 校验逻辑的基础用例",
+  "audience": "开发团队",
+  "owner": "QA",
+  "randomSeed": "test-20260712-a1b",
+  "pageCount": 5,
+  "themePack": "theme01",
+  "slides": [
+    {"layout": "theme01_page001", "props": {"kicker": "测试报告", "titleTop": "验证", "titleBottom": "Goal Spec", "lead": "基础验证用例。"}},
+    {"layout": "theme01_page006", "props": {"kicker": "核心数字", "value": "100", "unit": "%", "sub": "覆盖率达到预期。"}},
+    {"layout": "theme01_page010", "props": {"kicker": "# 方法", "title": "测试方法", "cn": "单元测试 + 集成测试。"}},
+    {"layout": "theme01_page030", "props": {"kicker": "# 结果", "title": "测试结果"}},
+    {"layout": "theme01_page084", "props": {"kicker": "# 附录", "title": "参考数据"}}
+  ]
+}

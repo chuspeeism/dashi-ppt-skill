@@ -16,7 +16,9 @@
     "validate:swiss": "node scripts/validate-swiss-deck.mjs",
     "validate:goal-copy": "node scripts/validate-goal-copy.mjs",
     "export:pptx": "node scripts/export-pptx.mjs",
-    "export:pdf": "node scripts/export-pptx.mjs --pdf"
+    "export:pdf": "node scripts/export-pptx.mjs --pdf",
+    "test": "node --test ../tests/*.test.mjs",
+    "test:version": "node --test ../tests/check-version.test.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",
