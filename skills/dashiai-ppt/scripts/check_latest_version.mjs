@@ -16,6 +16,8 @@ const REMOTE_VERSION_ENDPOINTS = [
   { url: 'https://raw.githubusercontent.com/chuspeeism/dashiAI-ppt-skill/main/skills/dashiai-ppt/project/package.json', pick: (json) => json.version },
 ];
 const REQUEST_TIMEOUT_MS = 5000;
+const MAX_RETRIES = 2;
+const RETRY_DELAY_MS = 1000;
 
 main().catch(() => {});
 
@@ -30,6 +32,29 @@ async function main() {
   );
 }
 
+async function readRemoteVersion() {
+  for (const endpoint of REMOTE_VERSION_ENDPOINTS) {
+    const version = await fetchVersionWithRetry(endpoint);
+    if (version) return version;
+  }
+  return '';
+}
+
+async function fetchVersionWithRetry(endpoint) {
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
+    const version = await fetchVersion(endpoint);
+    if (version) return version;
+    if (attempt < MAX_RETRIES) {
+      await sleep(RETRY_DELAY_MS * (attempt + 1));
+    }
+  }
+  return '';
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function readLocalVersion() {
   const packagePath = fs.existsSync(INSTALLED_PACKAGE) ? INSTALLED_PACKAGE : SOURCE_PACKAGE;
   try {
@@ -37,14 +62,6 @@ function readLocalVersion() {
   } catch {
     return '';
   }
-}
-
-async function readRemoteVersion() {
-  for (const endpoint of REMOTE_VERSION_ENDPOINTS) {
-    const version = await fetchVersion(endpoint);
-    if (version) return version;
-  }
-  return '';
 }
 
 function fetchVersion({ url, pick }) {

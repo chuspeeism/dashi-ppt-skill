@@ -17,7 +17,7 @@ const serveRootArg = process.argv[2];
 const serveRoot = serveRootArg
   ? path.resolve(CALLER_CWD, serveRootArg)
   : path.resolve(ROOT, 'output/theme-preview/ppt');
-const requestedPort = Number(process.env.DASHI_PPT_PREVIEW_PORT || process.argv[3] || 4178);
+const requestedPort = Number(process.env.DASHI_PPT_PREVIEW_PORT || process.argv[3] || 5200);
 const host = process.env.DASHI_PPT_PREVIEW_HOST || process.env.HOST || '0.0.0.0';
 const localName = process.env.DASHI_PPT_PREVIEW_NAME || os.hostname().split('.')[0] || 'localhost';
 const portScanLimit = Math.max(40, Number(process.env.DASHI_PPT_PREVIEW_PORT_SCAN || 240));
@@ -457,7 +457,10 @@ function scrubLocalPath(value) {
 }
 
 function wait(ms) {
-  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+  // Synchronous sleep without Atomics.wait (which requires --experimental flags
+  // on Node.js < 22 and throws on the main thread otherwise).
+  const end = Date.now() + ms;
+  while (Date.now() < end) { /* busy-wait for lock contention (used sparingly) */ }
 }
 
 function fetchHttps(url) {
