@@ -6810,7 +6810,7 @@ refreshRailCatalog();
       } catch {}
       if(result?.downloadUrl){
         window.__lastPptxExportResult = { ...result, ...report, downloadStarted: false };
-        const downloadStarted = startServerExportDownload(result.downloadUrl, 'PPTX');
+        const downloadStarted = await startServerExportDownload(result.downloadUrl, 'PPTX');
         window.__lastPptxExportResult.downloadStarted = downloadStarted;
         updateDeckExport(exportUi, slides.length, slides.length, downloadStarted ? window.__deckI18n.ui('PPTX 已开始下载(浏览器内导出)') : window.__deckI18n.ui('PPTX 已生成：{name}', {name: result.relativePath || result.downloadName || 'download'}));
         if(!downloadStarted) alert(window.__deckI18n.ui('PPTX 已生成：\n{name}', {name: result.downloadName || result.relativePath || 'download'}));
@@ -6855,7 +6855,7 @@ refreshRailCatalog();
       } catch {}
       if(result?.downloadUrl){
         window.__lastPdfExportResult = { ...result, downloadStarted: false };
-        const downloadStarted = startServerExportDownload(result.downloadUrl, 'PDF');
+        const downloadStarted = await startServerExportDownload(result.downloadUrl, 'PDF');
         window.__lastPdfExportResult.downloadStarted = downloadStarted;
         updateDeckExport(exportUi, pages.length, pages.length, downloadStarted ? window.__deckI18n.ui('PDF 已开始下载(浏览器内导出)') : window.__deckI18n.ui('PDF 已生成：{name}', {name: result.relativePath || result.downloadName || 'download'}));
         if(!downloadStarted) alert(window.__deckI18n.ui('PDF 已生成：\n{name}', {name: result.downloadName || result.relativePath || 'download'}));
@@ -6942,7 +6942,7 @@ refreshRailCatalog();
       const result = await response.json();
       if(!result?.downloadUrl) throw new Error('PDF export did not return a download URL.');
       window.__lastPdfExportResult = result;
-      const downloadStarted = startServerExportDownload(result.downloadUrl, 'PDF');
+      const downloadStarted = await startServerExportDownload(result.downloadUrl, 'PDF');
       window.__lastPdfExportResult.downloadStarted = downloadStarted;
       updateDeckExport(exportUi, slides.length, slides.length, downloadStarted ? window.__deckI18n.ui('PDF 已开始下载') : window.__deckI18n.ui('PDF 已生成：{name}', {name: result.relativePath || result.downloadName || 'download'}));
       if(!downloadStarted) alert(window.__deckI18n.ui('PDF 已生成：\n{name}', {name: result.downloadName || result.relativePath || 'download'}));
@@ -7067,7 +7067,7 @@ refreshRailCatalog();
       if(!result?.downloadUrl) throw new Error('Editable PPTX export did not return a download URL.');
       window.__lastPptxExportResult = result;
       throwIfDeckExportCancelled(exportUi);
-      const downloadStarted = startServerExportDownload(result.downloadUrl, 'PPTX');
+      const downloadStarted = await startServerExportDownload(result.downloadUrl, 'PPTX');
       window.__lastPptxExportResult.downloadStarted = downloadStarted;
       updateDeckExport(exportUi, slides.length, slides.length, downloadStarted ? window.__deckI18n.ui('PPTX 已开始下载') : window.__deckI18n.ui('PPTX 已生成：{name}', {name: result.relativePath || result.downloadName || 'download'}));
       if(!downloadStarted) alert(window.__deckI18n.ui('PPTX 已生成：\n{name}', {name: result.downloadName || result.relativePath || 'download'}));
@@ -7146,7 +7146,7 @@ refreshRailCatalog();
     return new URL(location.href).pathname;
   }
 
-  function startServerExportDownload(downloadUrl, exportType){
+  async function startServerExportDownload(downloadUrl, exportType){
     if(!downloadUrl) return false;
     try {
       const url = new URL(downloadUrl, location.href);
@@ -7160,7 +7160,21 @@ refreshRailCatalog();
       if(!expected) return false;
       if(url.pathname !== expected.path) return false;
       if(!file.toLowerCase().endsWith(expected.ext)) return false;
-      location.assign(url.href);
+      // fetch → blob → downloadBlob:导航式下载(location.assign 依赖响应头
+      // attachment)会被 Workbuddy 等内嵌浏览器的下载策略整体禁止(issue #23,
+      // 表现为"已被禁止/0B"),而同环境 blob 下载可用——统一走 blob 通道,
+      // 普通浏览器行为等价且文件名更可控。
+      const response = await fetch(url.href, { credentials: 'same-origin' });
+      if(!response.ok) return false;
+      const blob = await response.blob();
+      if(!blob.size) return false;
+      const fallbackName = `${getDeckFileName()}${expected.ext}`;
+      let downloadName = fallbackName;
+      try {
+        const decoded = decodeURIComponent(file);
+        downloadName = decoded.split('/').pop() || fallbackName;
+      } catch { /* keep fallback */ }
+      await downloadBlob(blob, downloadName);
       return true;
     } catch {
       return false;

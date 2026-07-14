@@ -1,6 +1,11 @@
 // 把 skill 发布为 npm 包 dashi-ppt-skill(国内经 npmmirror 自动同步分发,
-// 替代直连 GitHub 的下载通道)。内容与 skill:sync 产物同源;幂等:npm 上已有
-// 当前版本则跳过。用法:node scripts/publish-npm-skill.mjs [--dry-run]
+// 替代直连 GitHub 的下载通道)。幂等:npm 上已有当前版本则跳过。
+// 用法:node scripts/publish-npm-skill.mjs [--dry-run]
+//
+// 本脚本在私有开发仓库执行(公开仓库 npm-dist/ 下的同名文件是发布时同步出去的
+// 审计副本,不在那里运行,路径均以开发仓库为准)。打包内容默认由本脚本现场
+// skill:sync 到临时目录生成 —— 发布物永远与当前工作区一致,不依赖本机安装
+// 目录的新旧;DASHI_PPT_SKILL_ROOT 仅作为显式覆盖。
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -8,8 +13,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SKILL_ROOT = process.env.DASHI_PPT_SKILL_ROOT
-  || path.join(os.homedir(), '.agents', 'skills', 'dashiai-ppt');
 const PACKAGE_NAME = 'dashi-ppt-skill';
 const DRY_RUN = process.argv.includes('--dry-run');
 
@@ -31,7 +34,20 @@ function copySkillTree(source, dest) {
   }
 }
 
+function resolveSkillRoot() {
+  if (process.env.DASHI_PPT_SKILL_ROOT) return process.env.DASHI_PPT_SKILL_ROOT;
+  // 现场 sync 到临时目录:发布内容与当前 commit 严格一致(本机安装目录可能陈旧)。
+  const syncRoot = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'dashi-npm-sync-')), 'skill');
+  execFileSync('node', ['scripts/sync-skill.mjs'], {
+    cwd: ROOT,
+    stdio: 'pipe',
+    env: { ...process.env, DASHI_PPT_SKILL_ROOT: syncRoot, DASHI_PPT_SKIP_SOURCE_SYNC: '1' },
+  });
+  return syncRoot;
+}
+
 function main() {
+  const SKILL_ROOT = resolveSkillRoot();
   for (const required of ['SKILL.md', 'project/package.json', 'project/src', 'assets', 'scripts/render_goal_deck.sh']) {
     if (!fs.existsSync(path.join(SKILL_ROOT, required))) {
       throw new Error(`skill 产物缺少 ${required};先运行 npm run skill:sync`);

@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "DashiAI PPT skill marketplace",
-    "version": "0.3.1"
+    "version": "0.3.2"
   },
   "plugins": [
     {
