@@ -83,17 +83,17 @@ export const pages = [
       "indexTotal": "03",
       "photos": [
         {
-          "placeholder": "旗舰新品实拍",
+          "placeholder": "上传",
           "caption": "旗舰新品",
           "capClass": "supp-pink"
         },
         {
-          "placeholder": "发布会现场",
+          "placeholder": "上传",
           "caption": "技术路演",
           "capClass": ""
         },
         {
-          "placeholder": "产品细节",
+          "placeholder": "上传",
           "caption": "NEXT-GEN",
           "capClass": "supp-ink"
         }
@@ -241,12 +241,12 @@ export const pages = [
       "indexTotal": "03",
       "photos": [
         {
-          "placeholder": "团队 / 路演",
+          "placeholder": "上传",
           "caption": "核心团队",
           "capClass": "supp-pink"
         },
         {
-          "placeholder": "市场 / 数据",
+          "placeholder": "上传",
           "caption": "市场洞察",
           "capClass": "supp-ink"
         }
@@ -313,19 +313,19 @@ export const pages = [
       "sticker": "集团供应链体系三年发展战略",
       "photos": [
         {
-          "placeholder": "物流枢纽",
+          "placeholder": "上传",
           "tag": "全国网络"
         },
         {
-          "placeholder": "干线运输",
+          "placeholder": "上传",
           "tag": ""
         },
         {
-          "placeholder": "智能仓",
+          "placeholder": "上传",
           "tag": "高效履约"
         },
         {
-          "placeholder": "履约现场",
+          "placeholder": "上传",
           "tag": ""
         }
       ]
@@ -725,7 +725,9 @@ export const pages = [
           "pct": 5.1
         }
       ],
-      "closingLine": "资本仍在涌入 AI，但下一阶段会从赌叙事转向看兑现。"
+      "closingLine": "资本仍在涌入 AI，但下一阶段会从赌叙事转向看兑现。",
+      "summaryTagLabel": "摘要",
+      "focusBadgeLabel": "重点"
     }
   },
   {
@@ -834,7 +836,8 @@ export const pages = [
           "en": "Conclusion"
         }
       ],
-      "closingLine": "先建立框架，再进入数据和判断。"
+      "closingLine": "先建立框架，再进入数据和判断。",
+      "focusBadgeLabel": "重点"
     }
   },
   {
@@ -972,7 +975,8 @@ export const pages = [
       "countUnit": "笔",
       "peakNote": "全年最高点 →",
       "trendNote": "事件数同步走高",
-      "closingLine": "高峰过后不是崩塌，而是市场开始筛选。"
+      "closingLine": "高峰过后不是崩塌，而是市场开始筛选。",
+      "peakBadgeLabel": "峰值"
     }
   },
   {
@@ -1847,7 +1851,8 @@ export const pages = [
         }
       ],
       "unit": "亿美元",
-      "closingLine": "头部融资规模既反映技术叙事，也反映资源绑定能力。"
+      "closingLine": "头部融资规模既反映技术叙事，也反映资源绑定能力。",
+      "topBadgeLabel": "榜首"
     }
   },
   {
@@ -1974,7 +1979,11 @@ export const pages = [
           ]
         }
       ],
-      "closingLine": "资本正在从叙事驱动转向兑现驱动。"
+      "closingLine": "资本正在从叙事驱动转向兑现驱动。",
+      "axisYHighLabel": "高",
+      "axisYLowLabel": "低",
+      "axisXLowLabel": "低",
+      "axisXHighLabel": "高 →"
     }
   },
   {
@@ -2221,7 +2230,8 @@ export const pages = [
         "头部集中度本身就是市场结构，长尾被超级交易重新定价。",
         "兑现能力正取代叙事，成为衡量公司价值的新标尺。"
       ],
-      "source": "数据口径：2024 全年 · 单笔 ≥1 亿美元 · AI CAPITAL LAB"
+      "source": "数据口径：2024 全年 · 单笔 ≥1 亿美元 · AI CAPITAL LAB",
+      "judgmentBadgeLabel": "核心判断"
     }
   },
   {
@@ -3148,6 +3158,7 @@ export const pages = [
         }
       ],
       "unit": "亿",
+      "deltaSuffix": "% vs 上期",
       "deckNote": "仍处高位",
       "closingLine": "回落不是终点，而是分化的开始。"
     }
@@ -6400,7 +6411,8 @@ export const pages = [
           "repEn": "Interconnect"
         }
       ],
-      "closingLine": "硬件方向看长期确定性。"
+      "closingLine": "硬件方向看长期确定性。",
+      "focusStickerLabel": "长期确定性"
     }
   },
   {
@@ -8368,6 +8380,8 @@ export const pages = [
         "信号强度"
       ],
       "amountUnit": "亿美元",
+      "countUnit": "笔",
+      "focusBadgeLabel": "新主题",
       "rows": [
         {
           "round": "种子轮 Seed",
@@ -8993,7 +9007,8 @@ export const pages = [
           "val": 21
         }
       ],
-      "closingLine": "云资源，正在成为融资交易的一部分。"
+      "closingLine": "云资源，正在成为融资交易的一部分。",
+      "segmentUnit": "亿"
     }
   },
   {
@@ -9525,7 +9540,8 @@ export const pages = [
           "t": "4%"
         }
       },
-      "closingLine": "行业客户密度，决定垂直应用的落地机会。"
+      "closingLine": "行业客户密度，决定垂直应用的落地机会。",
+      "focusBadgeLabel": "重点"
     }
   },
   {
@@ -10193,7 +10209,9 @@ export const pages = [
           "size": 64
         }
       ],
-      "closingLine": "本地行业资源，也能形成应用机会。"
+      "closingLine": "本地行业资源，也能形成应用机会。",
+      "focusBadgeLabel": "重点",
+      "nodeUnit": "亿"
     }
   },
   {
@@ -10524,7 +10542,8 @@ export const pages = [
           "v": "X 平台"
         }
       ],
-      "closingLine": "独特的数据入口，可以成为模型的差异化。"
+      "closingLine": "独特的数据入口，可以成为模型的差异化。",
+      "coreAssetBadgeLabel": "核心资产"
     }
   },
   {
@@ -11282,7 +11301,8 @@ export const pages = [
           "unit": "%"
         }
       ],
-      "closingLine": "存量客户基础，是 AI 商业化的捷径。"
+      "closingLine": "存量客户基础，是 AI 商业化的捷径。",
+      "expansionBadgeLabel": "延展"
     },
     "numberBounds": {
       "layers[].meter": {
@@ -13377,7 +13397,8 @@ export const pages = [
           "unit": "亿新增"
         }
       ],
-      "closingLine": "看清主线，比押中单点更重要。"
+      "closingLine": "看清主线，比押中单点更重要。",
+      "mainlineBadgeLabel": "主线"
     }
   },
   {
@@ -13676,7 +13697,8 @@ export const pages = [
           "unit": "% 净留存"
         }
       ],
-      "closingLine": "可复制的路径，才是模板的价值所在。"
+      "closingLine": "可复制的路径，才是模板的价值所在。",
+      "templateBadgeLabel": "样板"
     }
   },
   {
@@ -14130,6 +14152,7 @@ export const pages = [
       "refValue": 30,
       "refLabel": "全市场中位",
       "spreadLegendLabel": "区间跨度",
+      "spreadBadgeLabel": "跨度",
       "insightStickerLabel": "区间越宽 越分化",
       "items": [
         {
@@ -14304,7 +14327,8 @@ export const pages = [
           "unit": "类"
         }
       ],
-      "closingLine": "路线图不是预测，而是提前站位的坐标。"
+      "closingLine": "路线图不是预测，而是提前站位的坐标。",
+      "keyNodeBadgeLabel": "关键节点"
     }
   },
   {

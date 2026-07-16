@@ -617,6 +617,7 @@ export const pages = [
       "closing": "资本仍在涌入 AI，但下一阶段会从赌叙事转向看兑现。",
       "chartTitle": "赛道融资占比",
       "shareLabel": "SHARE",
+      "donutCenterLabel": "亿美元 · 全年",
       "tracks": [
         {
           "label": "通用大模型",
@@ -3013,6 +3014,8 @@ export const pages = [
       "lead": "Q3 融资额和事件数均达到全年最高，是市场情绪高点，强度来自头部公司融资和多赛道同时活跃。",
       "closing": "高峰之后，市场开始从热度转向筛选。",
       "chartLabel": "全年月度融资额 / 亿美元",
+      "seriesLabelBars": "月度融资额",
+      "seriesLabelArea": "融资额",
       "peakTag": "全年峰值",
       "avgLabel": "月度均值 80.8",
       "metrics": [
@@ -3420,6 +3423,8 @@ export const pages = [
       "closing": "月度波动背后是头部交易节奏。",
       "chartLabel": "月度融资额 / 亿美元",
       "avgLabel": "全年均值",
+      "peakLegend": "峰值",
+      "troughLegend": "低位",
       "months": [
         {
           "m": "1",
@@ -11118,6 +11123,7 @@ export const pages = [
       "bandCore": "剩余壁垒",
       "bandCoreSub": "数据 · 工作流 · 行业入口",
       "metersTitle": "竞争压力 · 逼近壁垒线",
+      "thresholdLabel": "壁垒线",
       "threshold": 60,
       "indicators": [
         {

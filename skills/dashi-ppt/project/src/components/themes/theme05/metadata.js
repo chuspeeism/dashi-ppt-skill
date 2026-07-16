@@ -17044,6 +17044,7 @@ export const pages = [
         "flowCap": "工作流嵌入点",
         "flowUnit": "EMBED IN PROCESS",
         "embedBadge": "AI 嵌入",
+        "trackBase": "宿主刚性流程 · HOST PROCESS",
         "stages": [
           {
             "k": "业务输入",

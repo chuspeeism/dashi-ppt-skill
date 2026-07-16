@@ -1111,11 +1111,17 @@ export function isNonContentContractValue(pathName, value) {
     // pins/photos 等媒体名数组:若项内没有任何媒体源字段、却带 CJK 文案(标注点文字、
     // 始终可见的照片图注),它是内容数组而非媒体数组,不整体剪(theme11 pins、theme08 photos)
     const rows = Array.isArray(value) ? value.filter(isPlainObject) : [];
-    const hasMediaSource = rows.some(row => Object.keys(row).some(k => /^(src|url|image|img|poster|video|href)$/i.test(k)));
-    const hasCjkCopy = rows.some(row => Object.values(row).some(v => typeof v === 'string' && /[一-龥]/.test(v)));
-    if (rows.length && !hasMediaSource && hasCjkCopy) {
+    // 项内带 CJK 文本(标注文字、照片图注)即视为内容数组,不整体剪 —— 媒体源字段(src/url)
+    // 由字段级黑名单单独剪除;纯媒体数组(无文本)照旧整体排除。
+    const hasCjkCopy = rows.some(row => Object.entries(row).some(([k, v]) =>
+      typeof v === 'string' && /[一-龥]/.test(v) && !/^(src|url|image|img|poster|video|href)$/i.test(k)));
+    if (rows.length && hasCjkCopy) {
       return isColorArray(value);
     }
+    if (Array.isArray(value)) return true;
+    // 媒体名命中但值是单个项对象(photos[] 的递归项):交给下方对象/字段级判定,
+    // 项内文本字段(caption/tag)保留、媒体源字段由字段级黑名单剪除。
+    if (isPlainObject(value)) return NON_CONTENT_FIELD_PATTERN.test(field);
     return true;
   }
   if (Array.isArray(value)) return isColorArray(value) || isVisualContainerPath(pathName);

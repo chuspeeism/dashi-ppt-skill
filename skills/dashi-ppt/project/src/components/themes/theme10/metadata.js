@@ -7063,6 +7063,8 @@ export const pages = [
       }
     ],
     "defaultProps": {
+      "overline": "答疑 · COMMON QUESTIONS",
+      "title": "你可能正想问的",
       "items": [
         {
           "q": "我的钱安全吗？",
@@ -7093,6 +7095,7 @@ export const pages = [
       "focus": false,
       "focusIndex": 1,
       "showIndex": true,
+      "countUnit": " 个常见问题",
       "idPrefix": "faq",
       "tone": "light"
     }
@@ -7998,6 +8001,17 @@ export const pages = [
       "showLegend": true,
       "focusRow": false,
       "focusIndex": 1,
+      "overline": "分散度 · CORRELATION",
+      "title": "它们彼此独立吗",
+      "labels": [
+        "全球股票",
+        "科技成长",
+        "投资级债",
+        "另类对冲",
+        "黄金",
+        "现金",
+        "新兴市场"
+      ],
       "legendCaption": "相关系数",
       "legendHigh": "+1 同向",
       "legendMid": "0",
@@ -8088,8 +8102,54 @@ export const pages = [
       "showGrid": true,
       "fillArea": true,
       "showScores": true,
+      "overline": "组合体检 · FACTOR PROFILE",
+      "title": "六个维度的均衡",
+      "primaryLabel": "本组合",
+      "compareLabel": "市场基准",
       "avgLabel": "综合评分 / 100",
       "note": "每根轴代表一个独立维度，越靠外表现越好。",
+      "axes": [
+        {
+          "label": "回报",
+          "a": 88,
+          "b": 62
+        },
+        {
+          "label": "抗跌",
+          "a": 74,
+          "b": 58
+        },
+        {
+          "label": "分散度",
+          "a": 92,
+          "b": 50
+        },
+        {
+          "label": "流动性",
+          "a": 66,
+          "b": 80
+        },
+        {
+          "label": "税务效率",
+          "a": 95,
+          "b": 40
+        },
+        {
+          "label": "成本",
+          "a": 84,
+          "b": 55
+        },
+        {
+          "label": "透明度",
+          "a": 90,
+          "b": 48
+        },
+        {
+          "label": "自动化",
+          "a": 97,
+          "b": 35
+        }
+      ],
       "idPrefix": "radar",
       "tone": "light"
     }

@@ -111005,7 +111005,18 @@
           "publicKey": "showScores"
         }
       ],
-      "countBindings": [],
+      "countBindings": [
+        {
+          "key": "axisCount",
+          "publicKey": "axisCount",
+          "label": "维度轴数",
+          "arrays": [
+            "axes"
+          ],
+          "min": 4,
+          "max": 8
+        }
+      ],
       "lengthBindings": [],
       "numberBounds": {},
       "freeTextFields": []

@@ -1299,6 +1299,7 @@ export const pages = [
         "desc": "沿时间轴追踪同一指标的演化——趋势向上还是向下、拐点在何处、节奏是否可持续。"
       },
       "result": "产业链层级结构 · 因果传导关系",
+      "crossLabel": "交叉",
       "caption": "两个维度交叉后，可进一步识别产业链的层级结构与因果传导关系",
       "colorA": "#5b8def",
       "colorB": "#46b083",
@@ -2373,6 +2374,7 @@ export const pages = [
       "centerUnit": "亿美元",
       "centerLabel": "全年合计",
       "overflowLabel": "其他",
+      "unit": "亿",
       "caption": "通用大模型占据近半壁江山，反映对 AGI 叙事的押注；基础设施与芯片合计超四分之一",
       "chartType": "donut",
       "segmentCount": 5,
@@ -5071,6 +5073,7 @@ export const pages = [
       "cn": "不同轮次的事件笔数与平均单笔",
       "barLegendLabel": "事件笔数",
       "lineLegendLabel": "平均单笔（亿美元）",
+      "dealsUnit": "笔",
       "rounds": [
         {
           "label": "种子轮",
@@ -5410,6 +5413,7 @@ export const pages = [
         "note": "独占六成以上 · 人才、资本、算力虹吸效应进一步强化"
       },
       "overflowLabel": "其他地区",
+      "unit": "亿",
       "caption": "“地理护城河”短期内难以撼动 · 旧金山湾区独占六成以上份额",
       "segmentCount": 5,
       "highlight": true,
@@ -7712,6 +7716,7 @@ export const pages = [
       "totalValue": "970",
       "totalUnit": "亿美元",
       "barAnnotation": "*/ 各地区占全球 AI 融资份额 · 合计 100% /*",
+      "amountUnit": "亿",
       "regions": [
         {
           "name": "美国",
@@ -8241,6 +8246,8 @@ export const pages = [
       "refLabel": "20× 合理参考",
       "metricAxisLabel": "P/S MULTIPLE · 估值 ÷ 年化收入",
       "unit": "亿",
+      "valLabel": "估值",
+      "revLabel": "收入",
       "items": [
         {
           "name": "OpenAI",
@@ -8628,6 +8635,9 @@ export const pages = [
         }
       ],
       "unit": "亿美元",
+      "totalsLabel": "合计",
+      "lowLabel": "低",
+      "highLabel": "高",
       "caption": "热力矩阵 · 资金向大模型与算力、向下半年同时收口",
       "rowCount": 5,
       "highlight": true,
@@ -9861,6 +9871,7 @@ export const pages = [
       "legendTargetLabel": "目标线",
       "legendBandsLabel": "差 · 良 · 优 区间",
       "noteBadgeLabel": "核心发现",
+      "targetLabel": "目标",
       "unit": "亿",
       "items": [
         {
@@ -10924,6 +10935,7 @@ export const pages = [
         }
       ],
       "leadLabel": "维度领先",
+      "avgLabel": "均分",
       "scaleNote": "0–100 相对分 · 非绝对金额",
       "caption": "雷达图 · OpenAI 全维领跑，Anthropic 胜在模型，xAI 强于算力",
       "itemCount": 3,
@@ -11452,6 +11464,7 @@ export const pages = [
       "unit": "亿美元",
       "startLabel": "年初",
       "endLabel": "最新",
+      "valuationLabel": "估值",
       "rows": [
         {
           "name": "OpenAI",
@@ -13547,6 +13560,7 @@ export const pages = [
         "#46b083",
         "#e0a23a"
       ],
+      "unit": "亿",
       "caption": "可变宽堆叠 · 大模型不仅最吸金，且资金高度押注后期；越垂直，越早期",
       "itemCount": 5,
       "highlight": true,

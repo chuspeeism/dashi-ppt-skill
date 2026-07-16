@@ -1079,8 +1079,15 @@ function buildFillPlanMedia(mediaSlots = []) {
 
 function fillPlanItemFields(arrayKey, items, copyBudgets, copyRoles, explicitBoundsByField = null) {
   const prunedItems = pruneContractItems(items, arrayKey);
-  const shape = prunedItems.find(isPlainObject);
-  if (!shape) return {};
+  // 异质对象数组合并全部项的键,理由同 fillPlanArrayItemShape。
+  const objectItems = prunedItems.filter(isPlainObject);
+  if (!objectItems.length) return {};
+  const shape = {};
+  for (const obj of objectItems) {
+    for (const [key, value] of Object.entries(obj)) {
+      if (!(key in shape) || shape[key] == null) shape[key] = value;
+    }
+  }
   // 与 validateFillableValueShape 校验时同一推导(numberBoundsForArrayItems,来自
   // src/prop-contract-core.mjs,单一实现):只有数组项的直接标量字段(无点号的顶层 key)
   // 才会被数值上下限拦截,深一层嵌套字段目前不在校验范围内,因此这里也只对顶层字段算
@@ -1272,14 +1279,23 @@ function countControlForArrayField(field, controls = []) {
 function fillPlanArrayItemShape(items, pathName = '') {
   const prunedItems = pruneContractItems(items, pathName);
   if (!prunedItems.length) return null;
-  const object = prunedItems.find(isPlainObject);
-  if (object) {
+  // JAD-2xx:异质对象数组(如 bento tilesData 混排 image/stat/quote 三种子形状)只取首项
+  // 会漏掉后续项独有的字段(quote/tail/value/unit/label 等)——与 collectCopyPaths/
+  // fillPlanTupleItemShape 同口径,合并全部对象项的键(首个非 null 值为准)。
+  const objectItems = prunedItems.filter(isPlainObject);
+  if (objectItems.length) {
+    const object = {};
+    for (const obj of objectItems) {
+      for (const [key, value] of Object.entries(obj)) {
+        if (!(key in object) || object[key] == null) object[key] = value;
+      }
+    }
     const shape = {};
     for (const [key, value] of Object.entries(object)) {
       const childPath = pathName ? `${pathName}[].${key}` : key;
       if (Array.isArray(value)) {
         if (!isMediaArrayKey(key) && isContractContentArray(childPath, value)) {
-          const childShape = fillPlanArrayValueShape(value, childPath);
+          const childShape = arrayFieldShape(value, childPath);
           if (childShape.length) shape[key] = childShape;
         }
         continue;
@@ -1295,6 +1311,15 @@ function fillPlanArrayItemShape(items, pathName = '') {
   }
   const tuple = fillPlanTupleShapeForArrayItems(prunedItems);
   if (tuple) return tuple;
+  // 定长异质元组(如 theme11 rows[].us = [boolean, string]):这里的 prunedItems 就是
+  // 元组本身的各个位置(不是多行样本),fillPlanTupleShapeForArrayItems 按"多行转置"
+  // 设计、对本例不适用(位置本身都不是数组)。若各位置标量类型不同,按位置回报元组类型
+  // 数组,而不是坍缩成首个元素的单一标量类型——否则后续的字符串位置会从 itemShape 里
+  // 丢失,deck 构造器就判断不出该元组还有可填文案槽。
+  if (prunedItems.length > 1) {
+    const positional = prunedItems.map(simpleValueType);
+    if (new Set(positional).size > 1) return positional;
+  }
   return simpleValueType(prunedItems.find(item => item != null));
 }
 
@@ -1305,7 +1330,7 @@ function fillableObjectShape(value, pathName = '') {
     const childPath = pathName ? `${pathName}.${key}` : key;
     if (Array.isArray(item)) {
       if (!isMediaArrayKey(key) && isContractContentArray(childPath, item)) {
-        const childShape = fillPlanArrayValueShape(item, childPath);
+        const childShape = arrayFieldShape(item, childPath);
         if (childShape.length) shape[key] = childShape;
       }
       continue;
@@ -1323,6 +1348,19 @@ function fillableObjectShape(value, pathName = '') {
 function fillPlanArrayValueShape(items, pathName = '') {
   const itemShape = fillPlanArrayItemShape(items, pathName);
   return itemShape == null ? [] : [itemShape];
+}
+
+// 数组字段的 shape:区分"定长异质标量元组"(如 theme11 rows[].us=[boolean,string]——
+// value 本身就是元组的各个位置,不是可重复的多行样本)与"可重复的同形列表"(如
+// tiles[].feats 的字符串列表、cards[].specs 这类多行 [label,value] 元组列表)。前者
+// 直接把 fillPlanArrayItemShape 按位置算出的类型数组当 shape;后者维持
+// fillPlanArrayValueShape 的「每项同形状」外层包装。混用会让 validateFillableValueShape
+// 把元组的标量位置误判成需要是数组,或反过来把列表误判成"元组长度不能超过 N"。
+function arrayFieldShape(value, childPath) {
+  const isScalarTuple = Array.isArray(value) && value.length > 1
+    && value.every(item => item == null || (typeof item !== 'object' && !Array.isArray(item)))
+    && new Set(value.map(simpleValueType)).size > 1;
+  return isScalarTuple ? (fillPlanArrayItemShape(value, childPath) || []) : fillPlanArrayValueShape(value, childPath);
 }
 
 function pruneContractItems(items, pathName = '') {

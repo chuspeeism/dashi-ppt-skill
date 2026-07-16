@@ -2198,6 +2198,7 @@ export const pages = [
       "focusIndex": 0,
       "labelType": "number",
       "showAside": true,
+      "centerLabel": "对联投关系",
       "head": {
         "no": "03",
         "en": "Chord · Co-investment",
@@ -4992,6 +4993,21 @@ export const pages = [
       "focusIndex": 0,
       "labelType": "number",
       "showAside": true,
+      "topRankCaption": "↑ 名次第 1 在顶部",
+      "asideTag": "轨迹",
+      "riseWordPrefix": "↑ 升 ",
+      "riseWordSuffix": " 位",
+      "fallWordPrefix": "↓ 降 ",
+      "fallWordSuffix": " 位",
+      "flatWord": "持平",
+      "riseVerb": "稳步攀升至",
+      "fallVerb": "回落至",
+      "flatVerb": "保持",
+      "deltaMetricLabel": "名次变化",
+      "insightFromWord": "自",
+      "insightRankWord": "第",
+      "insightUnitWord": "名",
+      "insightTail": "；资本注意力在多期内显著重排，头部赛道更替加速。",
       "head": {
         "no": "08",
         "en": "Bump · Rank Trajectory",
@@ -8319,6 +8335,7 @@ export const pages = [
       "legendCaption1": "● 点径 ∝ 机构出资体量",
       "legendCaption2": "⌒ 弧宽 ∝ 共投强度",
       "asideTag": "关联",
+      "asideMetricLabel": "关联机构",
       "insightMid1": " 共与 ",
       "insightMid2": " 家机构联合出资， 其中与 ",
       "insightMid3": " 的共投跨度最强（强度 ",
@@ -8817,7 +8834,8 @@ export const pages = [
         {
           "label": "轮次",
           "unit": "次",
-          "type": "num"
+          "type": "num",
+          "rawTotal": true
         },
         {
           "label": "同比",
@@ -10066,6 +10084,15 @@ export const pages = [
       "highlightCol": -1,
       "labelType": "number",
       "showAside": true,
+      "compositeLabel": "综合",
+      "gradeLegendLabel": "等级",
+      "gradeNames": {
+        "S": "卓越",
+        "A": "优",
+        "B": "良",
+        "C": "中",
+        "D": "弱"
+      },
       "rowHeader": "赛道 / 投资原型",
       "note": "等级为研究性主观判断：S 卓越 · A 优 · B 良 · C 中 · D 弱；综合为各维度等级的加权折算。",
       "head": {
@@ -10680,6 +10707,7 @@ export const pages = [
       "focusIndex": 0,
       "labelType": "number",
       "showAside": true,
+      "asideTag": "口径说明",
       "head": {
         "no": "10",
         "en": "Radial Bars",
@@ -11802,7 +11830,23 @@ export const pages = [
       "totalStrengthLabel": "全年累计强度",
       "focusMonthPrefix": "焦点月份 · ",
       "focusStrengthSuffix": " 当月强度",
-      "peakMonthLabel": "全年最热月份"
+      "peakMonthLabel": "全年最热月份",
+      "monthNames": [
+        "1月",
+        "2月",
+        "3月",
+        "4月",
+        "5月",
+        "6月",
+        "7月",
+        "8月",
+        "9月",
+        "10月",
+        "11月",
+        "12月"
+      ],
+      "totalStrengthUnit": "格·年",
+      "focusStrengthUnit": "格"
     }
   },
   {
@@ -12578,7 +12622,9 @@ export const pages = [
       "insightMid3": " ",
       "insightPost": "；资金加速向头部赛道集中，部分前期热门方向理性退潮。",
       "changeSuffix": " 变化",
-      "upShareLabel": "上升赛道占比"
+      "upShareLabel": "上升赛道占比",
+      "changeValue": "+210",
+      "upShareValue": "7/8"
     }
   },
   {

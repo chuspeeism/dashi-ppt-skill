@@ -401,6 +401,7 @@ export const pages = [
       "phrase": "在资本与算力的浪潮里，每一笔融资都是一次方向的押注。",
       "closing": "从资本流向，看 AI 产业下一阶段的真实重心。",
       "watermark": "CAPITAL",
+      "mediaPlaceholder": "封面主视觉 / DROP IMAGE",
       "data": [
         {
           "label": "年份 / YEAR",
@@ -691,6 +692,7 @@ export const pages = [
       "title": "报告结构",
       "subhead": "从方法到结论的阅读路径",
       "closing": "先建立框架，再进入数据和判断。",
+      "sectionUnit": "章节",
       "items": [
         {
           "name": "研究方法",
@@ -1248,6 +1250,7 @@ export const pages = [
       "subhead": "大额融资事件地图 / 金额 $B",
       "closing": "影响最大的往往是少数巨额交易。",
       "unit": "亿",
+      "dealUnit": "笔",
       "tiers": [
         {
           "range": "1–2亿",
@@ -1710,6 +1713,7 @@ export const pages = [
       "periodLabel": "Q3",
       "periodCaption": "市场情绪高点 / THIRD QUARTER",
       "peakTag": "全年峰值 / PEAK",
+      "mediaPlaceholder": "主视觉 / DROP IMAGE",
       "hero": {
         "value": "318",
         "unit": "亿$",
@@ -1833,6 +1837,7 @@ export const pages = [
       "title": "理性回落季度",
       "subhead": "Q4 融资拆解 / RATIONAL PULLBACK",
       "closing": "回落不是终点，而是分化的开始。",
+      "stageUnit": "阶段",
       "periodLabel": "Q4",
       "periodCaption": "资金挑选确定性 / FOURTH QUARTER",
       "axisCaption": "季度演进 / QUARTERLY PROGRESSION",
@@ -2014,6 +2019,8 @@ export const pages = [
       "subhead": "月度峰谷对比 / MONTHLY SPREAD",
       "closing": "月度波动背后是头部交易节奏。",
       "unit": "亿",
+      "meanLabel": "均值",
+      "spreadLabel": "峰谷差",
       "points": [
         {
           "label": "8月",
@@ -2189,6 +2196,7 @@ export const pages = [
       "unit": "亿",
       "closing": "大模型制造热度，基础设施和应用承接兑现。",
       "totalLabel": "全年合计",
+      "footTotalLabel": "合计",
       "segments": [
         {
           "name": "通用大模型",
@@ -2611,6 +2619,7 @@ export const pages = [
       "subhead": "资本集中曲线 / CONCENTRATION",
       "closing": "集中度本身就是市场结构。",
       "unit": "%",
+      "tierUnit": "档",
       "hero": {
         "value": 71.2,
         "label": "累计占比 / CUMULATIVE"
@@ -3758,6 +3767,7 @@ export const pages = [
       "title": "产业链分层透视",
       "subhead": "上游、中游、下游的资本位置",
       "closing": "产业链分层决定了资本确定性与商业风险的不同位置。",
+      "layerUnit": "层",
       "layers": [
         {
           "tier": "上游 / UPSTREAM",
@@ -3911,6 +3921,8 @@ export const pages = [
       "title": "典型案例深度剖析",
       "subhead": "三类资本逻辑的代表公司",
       "closing": "不同案例共同指向：技术优势能否转成可持续收入。",
+      "mediaPlaceholder": "案例配图 / DROP IMAGE",
+      "statUnit": "例",
       "cases": [
         {
           "name": "Anthropic",
@@ -4205,6 +4217,15 @@ export const pages = [
       "summary": "高估值、盈利验证、监管压力、大厂竞争与算力成本，构成一条<b>互相传导的风险链条</b>。",
       "railCaption": "风险传导 / TRANSMISSION",
       "closing": "下一阶段会淘汰只会讲故事的公司。",
+      "mediaPlaceholder": "风险主视觉 / DROP IMAGE",
+      "riskLevelLabels": [
+        "高",
+        "偏高",
+        "中"
+      ],
+      "riskGaugeLabel": "综合风险水位",
+      "riskLevelSuffix": "风险",
+      "riskCountUnit": "项风险",
       "risks": [
         {
           "name": "估值泡沫",
@@ -4683,6 +4704,7 @@ export const pages = [
       "title": "慢变量高壁垒",
       "subhead": "医疗 AI 赛道 / HEALTHCARE AI",
       "closing": "慢场景不代表低价值。",
+      "countUnit": "支",
       "rootTag": "医疗 AI 赛道 / HEALTH",
       "hero": {
         "value": "34",
@@ -4847,6 +4869,7 @@ export const pages = [
       "subhead": "金融 AI 赛道 / FINANCE AI",
       "unit": "%",
       "closing": "高价值行业需要更强可信度。",
+      "segUnit": "项",
       "railCaption": "场景占比 / SEGMENT SHARE",
       "hero": {
         "value": "22",
@@ -5125,6 +5148,7 @@ export const pages = [
       "title": "企业 AI 底座",
       "subhead": "数据基础设施 / DATA INFRASTRUCTURE",
       "closing": "没有数据底座，AI 应用很难稳定落地。",
+      "stageUnit": "段",
       "pipelineCaption": "数据流 / DATA PIPELINE",
       "stages": [
         {
@@ -5302,6 +5326,7 @@ export const pages = [
       "subhead": "销售与营销 AI / GROWTH TOOLS",
       "unit": " 亿",
       "closing": "营销 AI 要用转化率证明自己。",
+      "tierUnit": "层",
       "funnelCaption": "增长漏斗 / GROWTH FUNNEL",
       "hero": {
         "value": "24",
@@ -5812,6 +5837,7 @@ export const pages = [
       "title": "安全与对齐工具",
       "subhead": "模型安全公司 / MODEL ALIGNMENT",
       "closing": "可信 AI 会成为企业级 AI 的基础设施。",
+      "stageUnit": "段",
       "pipelineCaption": "数据流 / DATA PIPELINE",
       "stages": [
         {
@@ -6128,6 +6154,7 @@ export const pages = [
       "closing": "小金额交易往往藏着下一轮主题。",
       "unitCount": " 笔",
       "unitAmount": " 亿",
+      "roundUnit": "轮",
       "rounds": [
         {
           "name": "Pre-Seed",
@@ -6372,6 +6399,8 @@ export const pages = [
         }
       ],
       "mediaPlaceholder": "交易结构示意 / DROP IMAGE",
+      "totalLabel": "合计",
+      "partUnit": "项",
       "railCaption": "交易结构拆解 / STRUCTURE",
       "chartType": "stacked",
       "partCount": 4,
@@ -6500,6 +6529,7 @@ export const pages = [
       "subhead": "投资人类型分布 / INVESTOR MIX",
       "unit": "%",
       "closing": "钱的来源本身也是产业结构信号。",
+      "segUnit": "项",
       "railCaption": "场景占比 / SEGMENT SHARE",
       "hero": {
         "value": "40",
@@ -6699,6 +6729,7 @@ export const pages = [
         }
       ],
       "mediaPlaceholder": "资源类型示意 / DROP IMAGE",
+      "resourceUnit": "类资源",
       "cardCount": 4,
       "layout": "grid",
       "mediaSlotCount": 1,
@@ -6832,6 +6863,7 @@ export const pages = [
       "subhead": "云厂商联盟 / CLOUD ALLIANCES",
       "unit": "亿$",
       "closing": "云资源正在成为融资交易的一部分。",
+      "countUnit": "家",
       "providers": [
         {
           "name": "Azure",
@@ -6991,6 +7023,7 @@ export const pages = [
       "title": "GPU 资源链条",
       "subhead": "NVIDIA 生态 / NVIDIA ECOSYSTEM",
       "closing": "算力供给能力正在变成融资能力。",
+      "countUnit": "支",
       "rootTag": "NVIDIA 生态 / GPU",
       "hero": {
         "value": "92",
@@ -10780,6 +10813,7 @@ export const pages = [
       "title": "确定性预算",
       "subhead": "策略 · 优先基础设施 / PRIORITIZE INFRA",
       "closing": "优先看能支撑全行业增长的基础设施。",
+      "directionUnit": "方向",
       "stanceTag": "STRATEGY · 优先基础设施",
       "dirTag": "PICKS",
       "thesis": "基础设施公司更接近 <b>刚性预算</b>，收入确定性相对更强——模型胜负未定时，卖铲子仍是更稳的资本逻辑。",
@@ -10967,6 +11001,7 @@ export const pages = [
       "title": "嵌入工作流",
       "subhead": "策略 · 筛选垂直应用 / EMBED IN WORKFLOW",
       "closing": "应用价值来自流程位置。",
+      "directionUnit": "方向",
       "stanceTag": "STRATEGY · 筛选垂直应用",
       "dirTag": "SCENES",
       "thesis": "垂直应用要看是否 <b>嵌入刚性流程</b>，而不是只看生成效果——能成为工作流一部分的应用才有长期价值。",
@@ -11609,6 +11644,9 @@ export const pages = [
       "footRight": "12 MONTHS · PEAK AUG",
       "totalLabel": "全年合计 / TOTAL",
       "scaleLowLabel": "低 / LOW",
+      "scaleHighLabel": "高 / HIGH",
+      "peakLabel": "峰值 / PEAK",
+      "troughLabel": "低位 / TROUGH",
       "periods": [
         {
           "m": "1月",
@@ -11797,6 +11835,8 @@ export const pages = [
       "subhead": "10 亿美元以上交易层 / MEGA-DEAL TIER",
       "closing": "市场被少数超级交易重新定价。",
       "galleryTag": "超级交易 / MEGA",
+      "mediaPlaceholder": "主视觉 / DROP IMAGE",
+      "wallUnit": "笔",
       "hero": {
         "value": "718",
         "unit": "亿$",
