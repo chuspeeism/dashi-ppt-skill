@@ -761,7 +761,7 @@ function validateValueShape(value, defaultValue, field, errors, warnings = [], e
         errors.push(`${field}[${index}]: expected object item`);
         return;
       }
-      validateObjectShape(item, shape, `${field}[${index}]`, errors, warnings, enumFields, numberBounds, defaultValue[index]);
+      validateObjectShape(item, shape, `${field}[${index}]`, errors, warnings, enumFields, numberBounds, defaultValue[index], defaultValue);
     });
     return;
   }
@@ -779,7 +779,7 @@ function isRawMatrixProp(key) {
   return String(key || '') === 'matrix';
 }
 
-function validateObjectShape(value, shape, field, errors, warnings = [], enumFields = new Map(), numberBounds = new Map(), posDefault = undefined) {
+function validateObjectShape(value, shape, field, errors, warnings = [], enumFields = new Map(), numberBounds = new Map(), posDefault = undefined, siblingRows = undefined) {
   const allowed = new Set(Object.keys(shape || {}));
   for (const [key, item] of Object.entries(value || {})) {
     if (!allowed.has(key)) {
@@ -812,6 +812,17 @@ function validateObjectShape(value, shape, field, errors, warnings = [], enumFie
       const mergedErrors = [];
       validateValueShape(item, shape[key], `${field}.${key}`, mergedErrors, warnings);
       if (!mergedErrors.length) continue;
+      // 第三轨:任一兄弟行的同名字段作为校验基准通过 → 跨行联合类型
+      // (勾选表格某行 vals 全 boolean、另一行全 string,单元格级翻转应被允许)
+      if (Array.isArray(siblingRows)) {
+        const passedSibling = siblingRows.some(row => {
+          if (!row || typeof row !== 'object' || !(key in row) || row[key] === posDefault[key]) return false;
+          const sibErrors = [];
+          validateValueShape(item, row[key], `${field}.${key}`, sibErrors, []);
+          return !sibErrors.length;
+        });
+        if (passedSibling) continue;
+      }
       errors.push(...posErrors);
       continue;
     }
@@ -856,7 +867,7 @@ function validatePrimitiveValue(value, expected, defaultValue, field, errors) {
   }
 }
 
-function enumFieldsForArrayItems(items = [], excludedFields = null) {
+export function enumFieldsForArrayItems(items = [], excludedFields = null) {
   const result = new Map();
   const objects = items.filter(isPlainObject);
   const keys = new Set(objects.flatMap(item => Object.keys(item)));

@@ -48,7 +48,7 @@ function resolveSkillRoot() {
 
 function main() {
   const SKILL_ROOT = resolveSkillRoot();
-  for (const required of ['SKILL.md', 'project/package.json', 'project/src', 'assets', 'scripts/render_goal_deck.sh']) {
+  for (const required of ['SKILL.md', 'project/package.json', 'project/src', 'assets', 'scripts/render_goal_deck.sh', 'scripts/render_goal_deck.ps1']) {
     if (!fs.existsSync(path.join(SKILL_ROOT, required))) {
       throw new Error(`skill 产物缺少 ${required};先运行 npm run skill:sync`);
     }

@@ -670,7 +670,8 @@
           y: stored && Number.isFinite(stored.y) ? stored.y : 0,
         };
       }
-      this._cap.textContent = this.getAttribute('placeholder') || '上传';
+      const isEn = typeof window !== 'undefined' && window.__deckI18n?.isEn;
+      this._cap.textContent = isEn ? 'Upload' : (this.getAttribute('placeholder') || '上传');
       // Toggle via style.display — the [hidden] attribute alone loses to
       // the display:flex / display:block rules in the stylesheet above.
       if (url) {

@@ -11302,7 +11302,8 @@ export const pages = [
         }
       ],
       "closingLine": "存量客户基础，是 AI 商业化的捷径。",
-      "expansionBadgeLabel": "延展"
+      "expansionBadgeLabel": "延展",
+      "retentionStickerSub": "NRR"
     },
     "numberBounds": {
       "layers[].meter": {

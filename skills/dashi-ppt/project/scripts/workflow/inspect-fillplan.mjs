@@ -8,6 +8,7 @@ import {
 import {
   explicitNumberBoundsForArrayKey,
   isContractContentArray,
+  enumFieldsForArrayItems,
   isMediaArrayKey,
   isNonContentContractValue,
   isPrivateDefaultRoundTrip,
@@ -1093,6 +1094,9 @@ function fillPlanItemFields(arrayKey, items, copyBudgets, copyRoles, explicitBou
   // 才会被数值上下限拦截,深一层嵌套字段目前不在校验范围内,因此这里也只对顶层字段算
   // numericBounds,避免暴露一个实际并不会被拦的假契约。
   const itemNumberBounds = numberBoundsForArrayItems(items.filter(isPlainObject), explicitBoundsByField);
+  // token 枚举字段(如甘特 status: done/active/planned):渲染层会锁定取值集合,
+  // 在 fillPlan 里显式给出 enum,Agent 按集合填而不是当自由文本
+  const itemEnumFields = enumFieldsForArrayItems(items.filter(isPlainObject));
   const fields = {};
   function collect(value, fieldPath) {
     if (Array.isArray(value)) return;
@@ -1103,9 +1107,11 @@ function fillPlanItemFields(arrayKey, items, copyBudgets, copyRoles, explicitBou
     const pathName = `${arrayKey}[].${fieldPath}`;
     if (!isFillableCopyLeaf(pathName, value)) return;
     const bounds = fieldPath.includes('.') ? null : itemNumberBounds.get(fieldPath);
+    const enumValues = !fieldPath.includes('.') ? itemEnumFields.get(fieldPath) : null;
     fields[fieldPath] = {
       role: normalizeFieldContractRole(copyRoles[pathName] || copyRoleForField(pathName)),
       type: simpleValueType(value),
+      ...(enumValues ? { enum: [...enumValues] } : {}),
       ...(simpleValueType(value) === 'number' ? { numericRange: numericRangeForValues(items.map(item => valueAtPath(item, fieldPath))) } : {}),
       // numericBounds:props:safe/validate:goal-spec/render 实际执行数值上下限校验时的同一
       // 推导(numberBoundsForArrayItems)。enforced:false 表示这是从默认示例数据反推的提示性

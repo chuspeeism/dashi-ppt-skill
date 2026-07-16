@@ -5497,6 +5497,8 @@ export const pages = [
       "kicker": "路线图 / Roadmap",
       "title": "未来四季，[[齐头并进]]。",
       "nowLabel": "当前 NOW",
+      "laneUnit": "lanes",
+      "quarterUnit": "quarters",
       "nowCol": 1,
       "quarters": [
         "26·Q1",
@@ -7727,6 +7729,7 @@ export const pages = [
         "s": "当下"
       },
       "axisLabel": "占总播放份额 · SHARE OF PLAYS (%)",
+      "deltaUnit": "pt",
       "metrics": [
         {
           "t": "独立厂牌 Indies",
@@ -11074,6 +11077,7 @@ export const pages = [
       "kicker": "画框墙 / Gallery Wall",
       "title": "把每张作品，[[挂上墙]]。",
       "metaPrefix": "声浪典藏 ·",
+      "countUnit": "works",
       "mediaPlaceholder": "拖入画作",
       "plaques": [
         {

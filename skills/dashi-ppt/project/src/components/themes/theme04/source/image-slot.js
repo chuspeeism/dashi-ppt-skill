@@ -783,7 +783,10 @@
           y: stored && Number.isFinite(stored.y) ? stored.y : 0,
         };
       }
-      this._cap.textContent = this.getAttribute('placeholder') || 'Drop media';
+      // English decks show a fixed 'Upload' caption; the per-page Chinese
+      // placeholder attribute is untouched and still shows for zh decks.
+      const isEn = typeof window !== 'undefined' && window.__deckI18n?.isEn;
+      this._cap.textContent = isEn ? 'Upload' : (this.getAttribute('placeholder') || 'Drop media');
       // Toggle via style.display — the [hidden] attribute alone loses to
       // the display:flex / display:block rules in the stylesheet above.
       if (url) {

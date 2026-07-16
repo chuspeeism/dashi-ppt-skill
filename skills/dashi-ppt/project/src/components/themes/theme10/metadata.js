@@ -12129,6 +12129,7 @@ export const pages = [
       "images": [],
       "overline": "标的档案 · ONE NAME, UP CLOSE",
       "fileNo": "NO.012",
+      "fileTag": "DOSSIER",
       "title": "长江电力",
       "subtitle": "600900 · 公用事业 / 水电",
       "specs": [

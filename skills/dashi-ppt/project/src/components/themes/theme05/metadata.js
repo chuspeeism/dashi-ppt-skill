@@ -3156,6 +3156,7 @@ export const pages = [
           }
         ],
         "timelineCap": "阶段性观察 · 2024 → 2027",
+        "timelineCapEn": "PHASE TIMELINE",
         "timeline": [
           {
             "year": "2024",
@@ -11947,6 +11948,7 @@ export const pages = [
         "message": "优势来自人才密度、资本网络、云厂商和模型实验室邻近。",
         "shareLabel": "湾区",
         "restLabel": "其余地区",
+        "gaugeCapEn": "SHARE OF TOTAL",
         "aux": [
           [
             "其余地区合计",
@@ -16602,6 +16604,7 @@ export const pages = [
           }
         ],
         "wallLabel": "壁垒墙",
+        "anchorCapEn": "RESIDUAL MOAT",
         "anchorNum": "14",
         "anchorUnit": "%",
         "anchorLabel": "剩余独立壁垒空间",

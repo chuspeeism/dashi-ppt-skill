@@ -4062,7 +4062,7 @@ const OVERVIEW_CARD_WIDTH=144;
 const OVERVIEW_CARD_PADDING=5;
 const OVERVIEW_CARD_GAP=12;
 const OVERVIEW_THUMB_NEAR_MARGIN=720;
-const OVERVIEW_THUMB_CACHE_LIMIT=160;
+const OVERVIEW_THUMB_CACHE_LIMIT=64;
 const OVERVIEW_THUMB_QUEUE_DELAY=80;
 const OVERVIEW_SYNC_RESTORE_LIMIT=8;
 const OVERVIEW_ASPECT_W=16;
@@ -4820,6 +4820,7 @@ function queueNearbyOverviewThumbs(opts={}){
   if(!isEditMode()) return;
   const startAt = performance.now();
   const range = getOverviewThumbRange(overviewGrid, {includeNear:true});
+  recycleOffscreenOverviewThumbs(range);
   const visibleWraps = getOverviewViewportThumbs();
   overviewProgressThumbs = visibleWraps;
   if(deckDiagnosticFlags.disableThumbGeneration){
@@ -4863,6 +4864,26 @@ function queueNearbyOverviewThumbs(opts={}){
   recordOverviewLayoutRead('queue-nearby', 'range-card-metrics', range.cards.length);
   recordOverviewStage('queue-nearby-overview-thumbs', startAt, {count:range.cards.length, queued:items.length});
 }
+function recycleOffscreenOverviewThumbs(range){
+  // 视口外缩略图回收:滚出 near 范围的整页 DOM 克隆退回 placeholder。渲染时
+  // rememberOverviewThumbFromDom 已写入缓存,滚回来走 dom-cache-restore 快速恢复;
+  // 不回收的话长 deck 翻页/滚动中活克隆线性积累(每张都是完整页面 DOM),越翻越卡。
+  if(!overviewGrid || !range?.cards) return;
+  const keep = new Set(range.cards);
+  const activeKey = getOverviewSlideKey(slides[idx]);
+  let recycled = 0;
+  overviewGrid.querySelectorAll('[data-overview-thumb="true"][data-overview-rendered="true"]').forEach(wrap => {
+    const card = wrap.closest('[data-overview-card="true"]');
+    if(!card || keep.has(card) || card.dataset.slideKey === activeKey) return;
+    delete wrap.dataset.overviewRendered;
+    delete wrap.dataset.overviewMode;
+    delete wrap.dataset.overviewQueued;
+    wrap.replaceChildren(createOverviewThumbPlaceholder());
+    recycled += 1;
+  });
+  if(recycled) recordOverviewStage('recycle-offscreen-thumbs', performance.now(), {count:recycled});
+}
+
 function queueVisibleOverviewThumbs(){
   queueNearbyOverviewThumbs();
 }
@@ -7570,10 +7591,16 @@ refreshRailCatalog();
       scene.id = elementId;
       frame.dataset.unicornReady = 'true';
       frame.dataset.unicornActiveSource = sourceKey;
+      // dpi 按实际显示尺寸自适应:deck 缩放 0.7 时无需按全尺寸 1.5x 超采样渲染,
+      // GPU 像素量随窗口缩放线性下降(unicorn 页「进入即卡」的主要来源)。
+      const declaredDpi = Number(frame.dataset.unicornDpi || 1.5);
+      const deckScale = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--deck-scale')) || 1;
+      const adaptiveDpi = Math.max(0.75, Math.min(declaredDpi, (window.devicePixelRatio || 1) * deckScale));
       const config = {
         elementId,
         scale: Number(frame.dataset.unicornScale || 1),
-        dpi: Number(frame.dataset.unicornDpi || 1.5),
+        dpi: adaptiveDpi,
+        fps: Number(frame.dataset.unicornFps || 30),
         lazyLoad: false,
         production: true,
         altText: 'Shader scene',
@@ -7910,7 +7937,7 @@ refreshRailCatalog();
     try {
       let dir = decodeURIComponent(location.pathname || '');
       dir = dir.replace(/\/[^\/]*$/, '');
-      // Windows 下 file:// 的 pathname 形如 /C:/Users/...,去掉开头斜杠还原盘符路径。
+      // Windows 下 file:// 的 pathname 形如 /C:/...,去掉开头斜杠还原盘符路径。
       if(/^\/[A-Za-z]:\//.test(dir + '/')) dir = dir.slice(1);
       return dir || location.href;
     } catch { return location.href; }

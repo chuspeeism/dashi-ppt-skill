@@ -8406,6 +8406,7 @@ export const pages = [
       "showLegend": true,
       "showNote": true,
       "avgCenterLabel": "平均达成率",
+      "rateLabel": "RATE",
       "scheme": "green",
       "emphasis": "ticket",
       "breath": 55,

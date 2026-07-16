@@ -1122,12 +1122,16 @@ function releaseRuntimeSlideVideos(root) {
 }
 
 function releaseInactiveRuntimeSlides(activeSlide, options = {}) {
-  const keys = options.themeKeys ? new Set(options.themeKeys) : releaseInactiveThemeKeys;
+  // 缓存策略:只保留当前页与前后一页(cv-near)的渲染,其余全部卸载 ——
+  // 长 deck 逐页翻阅时,已渲染页的合成层/滤镜(玻璃卡 backdrop-filter)与 React 树
+  // 会线性堆积,这是「越翻越卡」的直接来源。卸载后翻回由惰性渲染即时重建。
+  const keys = options.themeKeys ? new Set(options.themeKeys) : null;
   document.querySelectorAll?.('.slide.imported-theme-slide').forEach(slide => {
     if (slide === activeSlide) return;
     const root = slide.querySelector?.('.imported-theme-root');
-    if (!root || (!keys.has(root.dataset.themeKey) && !hasLiveVideoElement(root))) return;
-    if (options.adjacentPreload === true && slide.classList?.contains('cv-near')) {
+    if (!root) return;
+    if (keys && !keys.has(root.dataset.themeKey) && !hasLiveVideoElement(root)) return;
+    if (slide.classList?.contains('cv-near')) {
       releaseRuntimeSlideVideos(root);
       return;
     }

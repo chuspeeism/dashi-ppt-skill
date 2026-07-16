@@ -112,7 +112,9 @@ function collectCopyPaths(value, pathName, out) {
 export function isColorString(value) {
   if (typeof value !== 'string') return false;
   const text = value.trim();
-  return /^#[0-9a-fA-F]{3,8}$/.test(text) || /^(rgb|rgba|hsl|hsla)\(/i.test(text);
+  return /^#[0-9a-fA-F]{3,8}$/.test(text)
+    || /^(rgb|rgba|hsl|hsla)\(/i.test(text)
+    || /^(linear|radial|conic)-gradient\(/i.test(text);
 }
 
 export function isColorArray(value) {
@@ -323,7 +325,7 @@ export function isFillableCopyLeaf(pathName, value) {
   const field = pathFieldName(pathName);
   if (/axesData\[\]\.id$/i.test(String(pathName || '')) && typeof value === 'string') return true;
   if (isNonContentContractValue(pathName, value)) return false;
-  if (isColorString(value) && /^(c|color|colour|accent|fill|stroke|background|bg|tint|hex)$/i.test(field)) return false;
+  if (isColorString(value) && (/^(c|color|colour|accent|fill|stroke|background|bg|tint|hex)$/i.test(field) || /colou?r$/i.test(field))) return false;
   if (/placeholder$/i.test(field)) return false; // 图片槽占位提示:固定文案,不暴露(用户输入会被填错位置)
   if (/^(id|key|type|kind|mode|variant|style|layout|align|side|position|fit|icon|href|url|src|className|\w*Class|state)$/i.test(field)) {
     // 字段名撞结构词但值是自然文案(CJK 或多词文本,且非路径/枚举 token)——按文案放行:
