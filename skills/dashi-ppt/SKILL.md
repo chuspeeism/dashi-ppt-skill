@@ -30,7 +30,8 @@ node <skill-root>/scripts/check_latest_version.mjs
 
 渲染脚本:
 
-`<skill-root>/scripts/render_goal_deck.sh`
+- Windows PowerShell: `<skill-root>/scripts/render_goal_deck.ps1`
+- macOS / Linux: `<skill-root>/scripts/render_goal_deck.sh`
 
 版本检查脚本:
 
@@ -46,7 +47,7 @@ node <skill-root>/scripts/check_latest_version.mjs
 
 ## 使用规则
 
-- 运行生成器需要 Node.js 20+ 和 npm;首次生成时渲染脚本会在 Skill 内置 `project/` 目录安装依赖。
+- 运行生成器需要 Node.js 20+ 和 npm;首次生成时渲染脚本会在 Skill 内置 `project/` 目录安装依赖。Windows 必须使用 `render_goal_deck.ps1`,不要通过 WSL/bash 调用 `.sh`;macOS / Linux 使用 `render_goal_deck.sh`。
 - 风格选择提问:用户可见回复必须嵌入 `<skill-root>/assets/skill/theme-style-grid.png` 的 Markdown 图片,先展开绝对路径;这是回复展示用内置风格图,不可写入 `goal.json` 或任何 media 字段;列出当前可选风格和极简“适合/人群”,不能只在内部进度提示中提到风格图。
 - 开工前确认两件事:主题风格、是否需要图片/视频。用户未明确表达且非整体委托时,先提问等答复,不得代选;无法提问的环境(脚本/批处理)才自选,并在交付说明中列出所选与理由。
 - 委托模式:仅当用户对整体明确委托(“都你来定”“不用问,直接开干”)时,才自选主题、默认 HTML、默认不使用 image-gen,最终说明假设。用户只说内容/文案“随意”“自拟”时,仅自拟内容;风格、页数、媒体等已给的不得擅自改变,未给的按上一条先问。
@@ -114,7 +115,7 @@ node <skill-root>/scripts/check_latest_version.mjs
 5. 每页只承载一个主要信息角色。无法安全覆盖的页面优先换 layout,不要改样式字段硬凑。
 6. 把 JSON 写入本次工作目录的 `output/<deck-name>/goal.json`;渲染前运行 `npm --prefix <skill-root>/project run props:safe -- --goal output/<deck-name>/goal.json --write` 和 goal spec 校验。`--write` 后核对输出的 `layoutChanges`;不认可替换就改回并换页。
 7. 图表页填入自己的数据后,页内 insight/读图/结论类文案字段必须据新数据一并改写,不保留默认结论。
-7. 运行渲染脚本输出 `output/<deck-name>/ppt/index.html`;脚本会使用 Skill 内置生成器,不要切回外部项目目录。
+7. 按当前平台运行渲染脚本输出 `output/<deck-name>/ppt/index.html`:Windows 使用 `render_goal_deck.ps1`,macOS / Linux 使用 `render_goal_deck.sh`;脚本会使用 Skill 内置生成器,不要切回外部项目目录。
 8. 渲染后核对素材路径,缺失时补最终 `ppt/assets`。
 9. 确认脚本完成 `validate:swiss` 和 `validate:goal-copy` 校验。
 10. 运行 `node <skill-root>/scripts/check_latest_version.mjs` 做静默版本检查。
@@ -131,7 +132,15 @@ node <skill-root>/scripts/check_latest_version.mjs
 
 浏览器 smoke check 只确认页面能打开、页数正确、首尾页不是空白。不要默认截图精修,不要因为普通换行问题反复改稿。
 
-示例命令:
+Windows PowerShell 示例:
+
+```powershell
+& "<skill-root>/scripts/render_goal_deck.ps1" `
+  "output/client-review/goal.json" `
+  "output/client-review/ppt/index.html"
+```
+
+macOS / Linux 示例:
 
 ```bash
 <skill-root>/scripts/render_goal_deck.sh \
