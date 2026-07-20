@@ -2584,7 +2584,11 @@
   function compactStatePropsFromRender(slideId, renderProps){
     const defaults = getComponentDefaultSlideProps(slideId);
     const source = getSlideSourceProps(slideId);
-    const authored = compactAuthoredPropValue(renderProps || {}, defaults, source, '');
+    // 默认值剔除时必须看到 HTML 内嵌保存层(baseState.props):用户把颜色改回组件
+    // 默认值时,如果保存层里是旧颜色,当前默认值仍是一个必须保留的显式覆盖。但最后只能相对
+    // goal source 做根层 diff;若再相对 baseState diff,刚烧回 HTML 的媒体等值会在重新打开时被清空。
+    const fallback = {...source, ...(baseState.props?.[slideId] || {})};
+    const authored = compactAuthoredPropValue(renderProps || {}, defaults, fallback, '');
     if(!authored || typeof authored !== 'object' || Array.isArray(authored)) return {};
     return diffAuthoredRootForState(authored, source);
   }
