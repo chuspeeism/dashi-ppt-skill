@@ -23,6 +23,15 @@
 
 ![生成效果演示](https://github.com/chuspeeism/dashi-ppt-skill/releases/download/readme-assets-v1/hero-result.gif)
 
+## ❤️赞助商
+
+<table>
+<tr>
+<td width="180"><a href="https://slidesign.cn/"><img src="assets/partners/logos/slidesign.png" alt="夺幕传媒 SLIDESIGN" width="150"></a></td>
+<td>感谢夺幕传媒 SLIDESIGN 赞助了本项目！夺幕传媒 SLIDESIGN 是一家专注发布会与战略表达的演示咨询公司，为企业提供演示咨询、发布会 Keynote / PPT、产品发布会视觉全案、品牌视觉、影视动画与活动空间服务。了解更多请访问 <a href="https://slidesign.cn/">slidesign.cn</a>。</td>
+</tr>
+</table>
+
 ## 12 套内置视觉主题
 
 Skill 会展示预览让你选择主题，可以随时让 Agent 整套换掉。下面每套主题的预览，都是从它自己的版式库里挑出的 4 个正文版式（图表、分析模型、卡片、目录等），全部由这个 Skill 真实渲染，非示意图：

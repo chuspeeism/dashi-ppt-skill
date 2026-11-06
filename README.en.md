@@ -23,6 +23,15 @@ A PPT skill built for people who actually present at work. Hand a document to yo
 
 ![Generated deck demo](https://github.com/chuspeeism/dashi-ppt-skill/releases/download/readme-assets-v1/hero-result.gif)
 
+## ❤️Sponsor
+
+<table>
+<tr>
+<td width="180"><a href="https://slidesign.cn/"><img src="assets/partners/logos/slidesign.png" alt="SLIDESIGN" width="150"></a></td>
+<td>Thanks to SLIDESIGN for sponsoring this project! SLIDESIGN is a presentation consultancy focused on launch events and strategic communication, offering presentation consulting, Keynote and PPT design for launches, end-to-end launch event visuals, brand design, film and motion graphics, and event space services. Learn more at <a href="https://slidesign.cn/">slidesign.cn</a>.</td>
+</tr>
+</table>
+
 ## 12 Built-in Visual Themes
 
 The skill shows you theme previews to pick from, and you can ask the agent to restyle the whole deck at any time. Each preview below shows 4 body layouts (charts, analysis frameworks, cards, table of contents, etc.) drawn from that theme's own layout library — all really rendered by this skill, not mockups:
